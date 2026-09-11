@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Energy Management | EEMS</title>
+
+<meta name="description"
+content="Energy Management System — pengelolaan konsumsi energi, efisiensi, kinerja, biaya, target dan continuous improvement.">
+
+<style>
+:root {
+    --bg: #070b12;
+    --bg-soft: #0c121c;
+    --panel: #101722;
+    --panel-2: #131c28;
+    --gold: #d4af37;
+    --gold-light: #f1d77a;
+    --text: #edf1f7;
+    --muted: #9aa6b5;
+    --line: rgba(212,175,55,.22);
+    --line-soft: rgba(255,255,255,.08);
+    --success: #77d69b;
+    --shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+    background:
+        radial-gradient(circle at 80% 0%, rgba(212,175,55,.07), transparent 28%),
+        radial-gradient(circle at 10% 20%, rgba(35,63,100,.13), transparent 30%),
+        var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(18px);
+    background: rgba(7,11,18,.88);
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.header-inner {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-mark {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--gold);
+    display: grid;
+    place-items: center;
+    color: var(--gold-light);
+    font-weight: 800;
+    letter-spacing: .04em;
+    font-size: 13px;
+    background: rgba(212,175,55,.05);
+}
+
+.brand-text strong {
+    display: block;
+    font-size: 15px;
+    letter-spacing: .14em;
+}
+
+.brand-text span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: .08em;
+    margin-top: 1px;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-nav a {
+    color: var(--muted);
+    font-size: 13px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: .25s ease;
+}
+
+.header-nav a:hover {
+    color: var(--gold-light);
+    background: rgba(212,175,55,.06);
+}
+
+.home-btn {
+    border: 1px solid var(--line);
+    color: var(--gold-light) !important;
+}
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+
+.breadcrumb {
+    padding: 22px 0 8px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.breadcrumb span {
+    color: var(--gold);
+    margin: 0 7px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    padding: 70px 0 55px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    right: -120px;
+    top: 20px;
+    width: 340px;
+    height: 340px;
+    border: 1px solid rgba(212,175,55,.10);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 45px rgba(212,175,55,.025),
+        0 0 0 90px rgba(212,175,55,.015);
+    pointer-events: none;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.hero h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -.035em;
+    max-width: 850px;
+}
+
+.hero h1 span {
+    color: var(--gold-light);
+}
+
+.hero-description {
+    max-width: 760px;
+    color: var(--muted);
+    font-size: 16px;
+    margin-top: 24px;
+}
+
+.hero-line {
+    width: 90px;
+    height: 1px;
+    background: var(--gold);
+    margin-top: 30px;
+}
+
+/* =========================================================
+   STATUS BAR
+========================================================= */
+
+.status-bar {
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+    background: rgba(255,255,255,.018);
+}
+
+.status-inner {
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.status-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(119,214,155,.4);
+}
+
+.status-label {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+section {
+    padding: 85px 0;
+}
+
+.section-head {
+    margin-bottom: 35px;
+}
+
+.section-kicker {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+.section-description {
+    color: var(--muted);
+    max-width: 700px;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+/* =========================================================
+   FUNCTION GRID
+========================================================= */
+
+.function-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.function-card {
+    position: relative;
+    background:
+        linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012)),
+        var(--panel);
+    border: 1px solid var(--line-soft);
+    padding: 27px;
+    min-height: 205px;
+    transition: .3s ease;
+}
+
+.function-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--line);
+    box-shadow: var(--shadow);
+}
+
+.function-number {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    margin-bottom: 18px;
+}
+
+.function-icon {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--line);
+    display: grid;
+    place-items: center;
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 17px;
+}
+
+.function-card h3 {
+    font-size: 16px;
+    font-weight: 650;
+    margin-bottom: 8px;
+}
+
+.function-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+/* =========================================================
+   CONTROL MATRIX
+========================================================= */
+
+.matrix-wrap {
+    border: 1px solid var(--line-soft);
+    background: var(--panel);
+    overflow: hidden;
+}
+
+.matrix {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.matrix th,
+.matrix td {
+    padding: 17px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 13px;
+}
+
+.matrix th {
+    background: rgba(212,175,55,.045);
+    color: var(--gold-light);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.matrix td {
+    color: var(--muted);
+}
+
+.matrix td:first-child {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.matrix tr:last-child td {
+    border-bottom: none;
+}
+
+/* =========================================================
+   MANAGEMENT VIEW
+========================================================= */
+
+.management-view {
+    margin-top: 25px;
+    border: 1px solid var(--line-soft);
+    background:
+        linear-gradient(145deg, rgba(212,175,55,.045), rgba(255,255,255,.015)),
+        var(--panel);
+    padding: 30px;
+}
+
+.view-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 25px;
+    margin-bottom: 22px;
+}
+
+.view-flow {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.view-step {
+    border: 1px solid var(--line-soft);
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    background: rgba(255,255,255,.015);
+}
+
+.view-step strong {
+    color: var(--gold-light);
+    font-size: 12px;
+    letter-spacing: .06em;
+}
+
+.view-step span {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+/* =========================================================
+   CYCLE
+========================================================= */
+
+.cycle {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.cycle-step {
+    position: relative;
+    min-height: 155px;
+    border: 1px solid var(--line-soft);
+    background: var(--panel);
+    padding: 23px;
+}
+
+.cycle-step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 18px;
+    z-index: 2;
+}
+
+.cycle-number {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+.cycle-step h3 {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.cycle-step p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+/* =========================================================
+   RESPONSIBILITY
+========================================================= */
+
+.responsibility-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.responsibility-card {
+    border-left: 2px solid var(--gold);
+    padding: 19px 20px;
+    background: rgba(255,255,255,.025);
+}
+
+.responsibility-card h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.responsibility-card p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* =========================================================
+   KPI
+========================================================= */
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.kpi-card {
+    background: var(--panel);
+    border: 1px solid var(--line-soft);
+    padding: 25px;
+    min-height: 140px;
+}
+
+.kpi-label {
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.kpi-value {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--gold-light);
+    font-size: 30px;
+    margin-top: 15px;
+}
+
+.kpi-unit {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+/* =========================================================
+   PRINCIPLE
+========================================================= */
+
+.principles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.principle {
+    text-align: center;
+    padding: 30px 18px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.principle strong {
+    display: block;
+    color: var(--gold-light);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.principle span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 7px;
+}
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta {
+    padding: 70px 0 90px;
+}
+
+.cta-box {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background:
+        radial-gradient(circle at 90% 50%, rgba(212,175,55,.09), transparent 30%),
+        var(--panel);
+    padding: 55px;
+    text-align: center;
+}
+
+.cta-box h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 500;
+}
+
+.cta-box p {
+    color: var(--muted);
+    max-width: 620px;
+    margin: 14px auto 28px;
+    font-size: 14px;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    transition: .25s ease;
+}
+
+.cta-button:hover {
+    background: var(--gold);
+    color: #090c12;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top: 1px solid var(--line-soft);
+    padding: 28px 0;
+    background: #05080d;
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-brand {
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+}
+
+.footer-text {
+    color: var(--muted);
+    font-size: 11px;
+    text-align: right;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .function-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .view-flow {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cycle {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cycle-step:not(:last-child)::after {
+        display: none;
+    }
+
+    .responsibility-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .principles {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 680px) {
+
+    .container {
+        width: min(100% - 28px, 1180px);
+    }
+
+    .header-inner {
+        min-height: 64px;
+    }
+
+    .header-nav a:not(.home-btn) {
+        display: none;
+    }
+
+    .hero {
+        padding: 55px 0 45px;
+    }
+
+    .hero h1 {
+        font-size: 46px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    section {
+        padding: 65px 0;
+    }
+
+    .function-grid,
+    .responsibility-grid,
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .view-flow {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cycle {
+        grid-template-columns: 1fr;
+    }
+
+    .principles {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .status-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 12px 0;
+    }
+
+    .matrix-wrap {
+        overflow-x: auto;
+    }
+
+    .matrix {
+        min-width: 650px;
+    }
+
+    .cta-box {
+        padding: 42px 22px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-text {
+        text-align: left;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .principles {
+        grid-template-columns: 1fr;
+    }
+
+    .view-flow {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .brand-text strong {
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+    <div class="container header-inner">
+
+        <a href="../index.html" class="brand">
+
+            <div class="brand-mark">E</div>
+
+            <div class="brand-text">
+                <strong>EEMS</strong>
+                <span>ENERGY MANAGEMENT</span>
+            </div>
+
+        </a>
+
+        <nav class="header-nav">
+            <a href="#functions">Functions</a>
+            <a href="#control">Control</a>
+            <a href="#cycle">Cycle</a>
+            <a href="#kpi">KPI</a>
+
+            <a href="../index.html" class="home-btn">
+                ← EEMS Home
+            </a>
+        </nav>
+
+    </div>
+</header>
+
+
+<!-- =====================================================
+     BREADCRUMB
+===================================================== -->
+
+<div class="container breadcrumb">
+    EEMS
+    <span>›</span>
+    Energy Management
+</div>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<main>
+
+<section class="hero">
+    <div class="container">
+
+        <div class="eyebrow">
+            EEMS · Module 03
+        </div>
+
+        <h1>
+            Energy <span>Management</span>
+        </h1>
+
+        <p class="hero-description">
+            Sistem pengelolaan energi yang mengubah data konsumsi
+            menjadi informasi kinerja, pengendalian biaya,
+            peningkatan efisiensi, dan program perbaikan
+            yang terukur.
+        </p>
+
+        <div class="hero-line"></div>
+
+    </div>
+</section>
+
+
+<!-- =====================================================
+     STATUS
+===================================================== -->
+
+<div class="status-bar">
+
+    <div class="container status-inner">
+
+        <div class="status-group">
+            <span class="status-dot"></span>
+            <span class="status-label">
+                Energy Management Module
+            </span>
+        </div>
+
+        <div class="status-group">
+            Consumption · Efficiency · Cost · KPI
+        </div>
+
+        <div class="status-group">
+            EEMS Version 1.0
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FUNCTIONS
+===================================================== -->
+
+<section id="functions">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-kicker">
+                Energy Management Functions
+            </div>
+
+            <h2 class="section-title">
+                Sembilan fungsi utama
+            </h2>
+
+            <p class="section-description">
+                Energy Management berfokus pada bagaimana energi
+                diukur, dipantau, dianalisis, dikendalikan,
+                dan ditingkatkan kinerjanya secara berkelanjutan.
+            </p>
+
+        </div>
+
+
+        <div class="function-grid">
+
+            <!-- 01 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    EMG-01
+                </div>
+
+                <div class="function-icon">
+                    DATA
+                </div>
+
+                <h3>
+                    Energy Data Management
+                </h3>
+
+                <p>
+                    Pengumpulan, validasi, pencatatan, dan
+                    pengelolaan data energi dari meter dan
+                    sumber pengukuran lainnya.
+                </p>
+
+            </article>
+
+
+            <!-- 02 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    EMG-02
+                </div>
+
+                <div class="function-icon">
+                    kWh
+                </div>
+
+                <h3>
+                    Consumption Monitoring
+                </h3>
+
+                <p>
+                    Pemantauan konsumsi energi harian, bulanan,
+                    pola pemakaian, serta perubahan profil
+                    beban dari waktu ke waktu.
+                </p>
+
+            </article>
+
+
+            <!-- 03 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    EMG-03
+                </div>
+
+                <div class="function-icon">
+                    EnPI
+                </div>
+
+                <h3>
+                    Energy Performance
+                </h3>
+
+                <p>
+                    Pengukuran kinerja energi menggunakan KPI,
+                    EnPI, tren, baseline, dan perbandingan
+                    actual terhadap target.
+                </p>
+
+            </article>
+
+
+            <!-- 04 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    EMG-04
+                </div>
+
+                <div class="function-icon">
+                    η
+                </div>
+
+                <h3>
+                    Energy Efficiency
+                </h3>
+
+                <p>
+                    Identifikasi peluang penghematan energi
+                    dan pengembangan tindakan yang meningkatkan
+                    efisiensi penggunaan energi.
+                </p>
+
+            </article>
+
+
+            <!-- 05 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    EMG-05
+                </div>
+
+                <div class="function-icon">
+                    kW
+                </div>
+
+                <h3>
+                    Demand Management
+                </h3>
+
+                <p>
+                    Pengendalian beban puncak, demand profile,
+                    load shifting, dan strategi untuk
+                    mengurangi demand yang tidak perlu.
+                </p>
+
+            </article>
+
+
+            <!-- 06 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    EMG-06
+                </div>
+
+                <div class="function-icon">
+                    Rp
+                </div>
+
+                <h3>
+                    Energy Cost Management
+                </h3>
+
+                <p>
+                    Analisis biaya energi, tarif, cost driver,
+                    konsumsi terhadap biaya, dan peluang
+                    pengendalian pengeluaran energi.
+                </p>
+
+            </article>
+
+
+            <!-- 07 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    EMG-07
+                </div>
+
+                <div class="function-icon">
+                    TGT
+                </div>
+
+                <h3>
+                    Energy Baseline & Target
+                </h3>
+
+                <p>
+                    Penetapan baseline energi, target kinerja,
+                    batas kendali, serta analisis variance
+                    terhadap kondisi aktual.
+                </p>
+
+            </article>
+
+
+            <!-- 08 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    EMG-08
+                </div>
+
+                <div class="function-icon">
+                    AUD
+                </div>
+
+                <h3>
+                    Energy Audit & Analysis
+                </h3>
+
+                <p>
+                    Review penggunaan energi, identifikasi
+                    significant energy use, losses, dan
+                    root cause dari pemborosan energi.
+                </p>
+
+            </article>
+
+
+            <!-- 09 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    EMG-09
+                </div>
+
+                <div class="function-icon">
+                    IMP
+                </div>
+
+                <h3>
+                    Improvement Program
+                </h3>
+
+                <p>
+                    Pengelolaan action plan, implementasi
+                    improvement, verifikasi penghematan,
+                    dan continuous improvement.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTROL
+===================================================== -->
+
+<section id="control">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-kicker">
+                Energy Control Matrix
+            </div>
+
+            <h2 class="section-title">
+                Apa yang dikendalikan?
+            </h2>
+
+            <p class="section-description">
+                Energy Management tidak hanya melihat jumlah
+                energi yang digunakan, tetapi juga hubungan
+                antara konsumsi, produksi, kinerja, demand,
+                dan biaya.
+            </p>
+
+        </div>
+
+
+        <div class="matrix-wrap">
+
+            <table class="matrix">
+
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Unit</th>
+                        <th>Tujuan Pengendalian</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Energy Consumption</td>
+                        <td>kWh</td>
+                        <td>
+                            Mengetahui total energi yang digunakan.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Energy Demand</td>
+                        <td>kW</td>
+                        <td>
+                            Mengendalikan beban dan peak demand.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Energy Cost</td>
+                        <td>Rp</td>
+                        <td>
+                            Mengendalikan biaya akibat konsumsi energi.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Energy Intensity</td>
+                        <td>kWh/unit</td>
+                        <td>
+                            Mengukur konsumsi energi terhadap output.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Energy Performance</td>
+                        <td>% / EnPI</td>
+                        <td>
+                            Membandingkan kinerja aktual dengan baseline
+                            dan target.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Peak Demand</td>
+                        <td>kW</td>
+                        <td>
+                            Mengidentifikasi dan mengurangi beban puncak.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Power Factor</td>
+                        <td>PF</td>
+                        <td>
+                            Mendukung pengendalian kualitas pemakaian
+                            listrik bila relevan terhadap biaya dan sistem.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Energy Savings</td>
+                        <td>kWh / %</td>
+                        <td>
+                            Mengukur hasil nyata dari program efisiensi.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- MANAGEMENT VIEW -->
+
+        <div class="management-view">
+
+            <div class="view-title">
+                Management View
+            </div>
+
+            <div class="view-flow">
+
+                <div class="view-step">
+                    <strong>DATA</strong>
+                    <span>Meter & Records</span>
+                </div>
+
+                <div class="view-step">
+                    <strong>BASELINE</strong>
+                    <span>Reference</span>
+                </div>
+
+                <div class="view-step">
+                    <strong>TARGET</strong>
+                    <span>Expected</span>
+                </div>
+
+                <div class="view-step">
+                    <strong>ACTUAL</strong>
+                    <span>Measured</span>
+                </div>
+
+                <div class="view-step">
+                    <strong>VARIANCE</strong>
+                    <span>Gap Analysis</span>
+                </div>
+
+                <div class="view-step">
+                    <strong>ACTION</strong>
+                    <span>Improvement</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MANAGEMENT CYCLE
+===================================================== -->
+
+<section id="cycle">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-kicker">
+                Energy Management Cycle
+            </div>
+
+            <h2 class="section-title">
+                Dari pengukuran menuju perbaikan
+            </h2>
+
+            <p class="section-description">
+                Setiap data energi harus berakhir pada keputusan
+                dan tindakan. Karena itu sistem bekerja sebagai
+                siklus yang terus berulang.
+            </p>
+
+        </div>
+
+
+        <div class="cycle">
+
+            <div class="cycle-step">
+
+                <div class="cycle-number">
+                    01
+                </div>
+
+                <h3>
+                    MEASURE
+                </h3>
+
+                <p>
+                    Mengukur konsumsi dan parameter energi.
+                </p>
+
+            </div>
+
+
+            <div class="cycle-step">
+
+                <div class="cycle-number">
+                    02
+                </div>
+
+                <h3>
+                    MONITOR
+                </h3>
+
+                <p>
+                    Memantau tren, pola, dan perubahan penggunaan.
+                </p>
+
+            </div>
+
+
+            <div class="cycle-step">
+
+                <div class="cycle-number">
+                    03
+                </div>
+
+                <h3>
+                    ANALYZE
+                </h3>
+
+                <p>
+                    Menganalisis variance, losses, dan peluang efisiensi.
+                </p>
+
+            </div>
+
+
+            <div class="cycle-step">
+
+                <div class="cycle-number">
+                    04
+                </div>
+
+                <h3>
+                    CONTROL
+                </h3>
+
+                <p>
+                    Menetapkan tindakan untuk mengendalikan konsumsi.
+                </p>
+
+            </div>
+
+
+            <div class="cycle-step">
+
+                <div class="cycle-number">
+                    05
+                </div>
+
+                <h3>
+                    IMPROVE
+                </h3>
+
+                <p>
+                    Memverifikasi hasil dan meningkatkan kinerja.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RESPONSIBILITY
+===================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-kicker">
+                Responsibility
+            </div>
+
+            <h2 class="section-title">
+                Siapa yang terlibat?
+            </h2>
+
+            <p class="section-description">
+                Energy Management membutuhkan koordinasi lintas
+                fungsi. Data energi tidak berdiri sendiri.
+            </p>
+
+        </div>
+
+
+        <div class="responsibility-grid">
+
+            <div class="responsibility-card">
+                <h3>
+                    Energy Manager
+                </h3>
+
+                <p>
+                    Mengelola energy performance, baseline,
+                    target, EnPI, dan program efisiensi.
+                </p>
+            </div>
+
+
+            <div class="responsibility-card">
+                <h3>
+                    Electrical Management
+                </h3>
+
+                <p>
+                    Menyediakan data teknis kelistrikan,
+                    metering, demand, dan kondisi sistem.
+                </p>
+            </div>
+
+
+            <div class="responsibility-card">
+                <h3>
+                    Operations
+                </h3>
+
+                <p>
+                    Mengendalikan pola operasi dan penggunaan
+                    energi sesuai kebutuhan proses.
+                </p>
+            </div>
+
+
+            <div class="responsibility-card">
+                <h3>
+                    Maintenance
+                </h3>
+
+                <p>
+                    Menjaga kondisi equipment agar bekerja
+                    secara reliable dan efisien.
+                </p>
+            </div>
+
+
+            <div class="responsibility-card">
+                <h3>
+                    Finance
+                </h3>
+
+                <p>
+                    Menghubungkan konsumsi energi dengan tarif,
+                    biaya, anggaran, dan financial impact.
+                </p>
+            </div>
+
+
+            <div class="responsibility-card">
+                <h3>
+                    Management
+                </h3>
+
+                <p>
+                    Menetapkan arah, target, prioritas,
+                    sumber daya, dan keputusan strategis.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     KPI
+===================================================== -->
+
+<section id="kpi">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-kicker">
+                Energy Performance Indicators
+            </div>
+
+            <h2 class="section-title">
+                Energy KPI
+            </h2>
+
+            <p class="section-description">
+                KPI akan diisi dari data aktual EEMS setelah
+                sistem metering dan database terhubung.
+                Tidak ada nilai simulasi yang ditampilkan.
+            </p>
+
+        </div>
+
+
+        <div class="kpi-grid">
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Total Energy Consumption
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    kWh
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Energy Cost
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    Rp
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Energy Intensity
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    kWh / unit
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Energy Performance
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    %
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Energy Savings
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    kWh / %
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Peak Demand
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    kW
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PRINCIPLES
+===================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-kicker">
+                EEMS Principle
+            </div>
+
+            <h2 class="section-title">
+                Prinsip pengelolaan energi
+            </h2>
+
+        </div>
+
+
+        <div class="principles">
+
+            <div class="principle">
+                <strong>Measure</strong>
+                <span>Ukur sebelum mengambil keputusan.</span>
+            </div>
+
+            <div class="principle">
+                <strong>Understand</strong>
+                <span>Pahami pola dan penyebab konsumsi.</span>
+            </div>
+
+            <div class="principle">
+                <strong>Control</strong>
+                <span>Kendalikan penggunaan dan biaya.</span>
+            </div>
+
+            <div class="principle">
+                <strong>Improve</strong>
+                <span>Tingkatkan kinerja secara berkelanjutan.</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta">
+
+    <div class="container">
+
+        <div class="cta-box">
+
+            <h2>
+                Manage the Energy.<br>
+                Improve the Performance.
+            </h2>
+
+            <p>
+                Energi yang terukur dapat dipahami.
+                Energi yang dipahami dapat dikendalikan.
+                Dan energi yang dikendalikan dapat menghasilkan
+                efisiensi yang nyata.
+            </p>
+
+            <a href="../index.html" class="cta-button">
+                ← BACK TO EEMS
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div class="footer-brand">
+            EEMS · ENERGY MANAGEMENT
+        </div>
+
+        <div class="footer-text">
+            Electrical Energy Management System<br>
+            Module 03 · Version 1.0
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
