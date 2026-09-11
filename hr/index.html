@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Human Resources Management | EEMS</title>
+
+<meta name="description"
+content="EEMS Human Resources Management — pengelolaan kompetensi, tenaga kerja, training, authorization, manpower, performance dan human resource records.">
+
+<style>
+
+:root{
+    --bg:#070b12;
+    --bg2:#0b111b;
+    --panel:#101722;
+    --panel2:#0d141f;
+    --line:rgba(212,175,55,.20);
+    --gold:#d4af37;
+    --gold2:#f0d477;
+    --text:#edf1f7;
+    --muted:#8f9baa;
+    --shadow:0 18px 50px rgba(0,0,0,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+    background:
+        radial-gradient(
+            circle at 80% 0%,
+            rgba(212,175,55,.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 0% 30%,
+            rgba(36,70,110,.10),
+            transparent 35%
+        ),
+        var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(7,11,18,.90);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+}
+
+.header-inner{
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.brand-mark{
+    width:40px;
+    height:40px;
+    border:1px solid var(--gold);
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold2);
+    font-weight:800;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+.brand-text strong{
+    display:block;
+    font-size:15px;
+    letter-spacing:2px;
+}
+
+.brand-text span{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+nav a{
+    color:#b9c1cc;
+    font-size:13px;
+    padding:8px 11px;
+    border-radius:7px;
+    transition:.25s;
+}
+
+nav a:hover{
+    color:var(--gold2);
+    background:rgba(212,175,55,.07);
+}
+
+.home-btn{
+    border:1px solid var(--line);
+    color:var(--gold2)!important;
+}
+
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb{
+    padding:24px 0 10px;
+    color:#707b89;
+    font-size:12px;
+}
+
+.breadcrumb span{
+    color:var(--gold);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:45px 0 55px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:45px;
+    align-items:center;
+}
+
+.eyebrow{
+    color:var(--gold);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    margin-bottom:17px;
+}
+
+h1{
+    font-size:clamp(42px,6vw,70px);
+    line-height:1.02;
+    letter-spacing:-2.5px;
+    margin-bottom:23px;
+}
+
+h1 span{
+    color:var(--gold);
+}
+
+.hero-description{
+    max-width:700px;
+    color:var(--muted);
+    font-size:16px;
+}
+
+.hero-card{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212,175,55,.09),
+            rgba(255,255,255,.015)
+        ),
+        var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px;
+    box-shadow:var(--shadow);
+}
+
+.hero-card-label{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.hero-card h3{
+    font-size:22px;
+    margin-bottom:12px;
+}
+
+.hero-card p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:rgba(255,255,255,.015);
+}
+
+.status-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+}
+
+.status-item{
+    padding:20px;
+    border-right:1px solid var(--line);
+}
+
+.status-item:last-child{
+    border-right:none;
+}
+
+.status-label{
+    color:#687483;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    font-size:10px;
+    margin-bottom:5px;
+}
+
+.status-value{
+    color:#d8dde5;
+    font-size:13px;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    padding:82px 0;
+}
+
+.section-head{
+    max-width:760px;
+    margin-bottom:38px;
+}
+
+.section-number{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:2px;
+    font-weight:700;
+    margin-bottom:9px;
+}
+
+.section-title{
+    font-size:34px;
+    line-height:1.15;
+    margin-bottom:12px;
+}
+
+.section-description{
+    color:var(--muted);
+    font-size:14px;
+}
+
+
+/* =========================
+   FUNCTION CARDS
+========================= */
+
+.function-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.function-card{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.025),
+            rgba(255,255,255,.008)
+        );
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:14px;
+    padding:25px;
+    min-height:185px;
+    transition:.25s;
+}
+
+.function-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--line);
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.function-number{
+    color:var(--gold);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    margin-bottom:16px;
+}
+
+.function-card h3{
+    font-size:17px;
+    margin-bottom:9px;
+}
+
+.function-card p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+
+/* =========================
+   CONTROL MATRIX
+========================= */
+
+.matrix{
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--panel);
+}
+
+.matrix-row{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.matrix-row:last-child{
+    border-bottom:none;
+}
+
+.matrix-row div{
+    padding:16px 20px;
+    font-size:13px;
+}
+
+.matrix-row div:first-child{
+    color:var(--gold2);
+    font-weight:600;
+    background:rgba(212,175,55,.025);
+}
+
+.matrix-row div:last-child{
+    color:var(--muted);
+}
+
+
+/* =========================
+   HR CONTROL VIEW
+========================= */
+
+.control-view{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--panel);
+}
+
+.control-step{
+    min-height:145px;
+    padding:23px 15px;
+    text-align:center;
+    border-right:1px solid rgba(255,255,255,.06);
+}
+
+.control-step:last-child{
+    border-right:none;
+}
+
+.control-step strong{
+    display:block;
+    color:var(--gold);
+    font-size:13px;
+    letter-spacing:1px;
+    margin-bottom:8px;
+}
+
+.control-step span{
+    color:var(--muted);
+    font-size:11px;
+}
+
+
+/* =========================
+   CYCLE
+========================= */
+
+.cycle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+    flex-wrap:wrap;
+}
+
+.cycle-item{
+    min-width:145px;
+    padding:24px 18px;
+    text-align:center;
+    border:1px solid var(--line);
+    background:var(--panel);
+}
+
+.cycle-item strong{
+    display:block;
+    color:var(--gold2);
+    font-size:13px;
+    letter-spacing:1px;
+}
+
+.cycle-item span{
+    color:#687483;
+    font-size:10px;
+}
+
+.cycle-arrow{
+    color:var(--gold);
+    padding:0 8px;
+    font-size:18px;
+}
+
+
+/* =========================
+   RESPONSIBILITY
+========================= */
+
+.responsibility-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.role{
+    padding:23px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:14px;
+    background:var(--panel2);
+}
+
+.role h3{
+    font-size:15px;
+    margin-bottom:7px;
+}
+
+.role p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+
+/* =========================
+   KPI
+========================= */
+
+.kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.kpi{
+    padding:26px;
+    border:1px solid rgba(255,255,255,.07);
+    background:
+        linear-gradient(
+            145deg,
+            var(--panel),
+            var(--panel2)
+        );
+    border-radius:14px;
+}
+
+.kpi-label{
+    color:#7e8997;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1.3px;
+    margin-bottom:10px;
+}
+
+.kpi-value{
+    color:var(--gold2);
+    font-size:28px;
+    font-weight:700;
+}
+
+.kpi-unit{
+    color:#697482;
+    font-size:11px;
+}
+
+
+/* =========================
+   HR MANAGEMENT VIEW
+========================= */
+
+.hr-view{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:10px;
+}
+
+.hr-box{
+    text-align:center;
+    padding:20px 10px;
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:10px;
+}
+
+.hr-box strong{
+    color:var(--gold2);
+    display:block;
+    font-size:12px;
+}
+
+.hr-box span{
+    color:#66717e;
+    font-size:10px;
+}
+
+
+/* =========================
+   PRINCIPLES
+========================= */
+
+.principles{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.principle{
+    padding:25px;
+    border-top:2px solid var(--gold);
+    background:var(--panel);
+    border-radius:0 0 12px 12px;
+}
+
+.principle strong{
+    display:block;
+    color:var(--gold2);
+    font-size:15px;
+    margin-bottom:7px;
+}
+
+.principle span{
+    color:var(--muted);
+    font-size:12px;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    margin:15px 0 75px;
+    padding:52px;
+    text-align:center;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(212,175,55,.10),
+            transparent 65%
+        ),
+        var(--panel);
+}
+
+.cta h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.cta p{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.cta-btn{
+    display:inline-block;
+    padding:12px 24px;
+    border:1px solid var(--gold);
+    border-radius:8px;
+    color:var(--gold2);
+    font-size:13px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.cta-btn:hover{
+    background:var(--gold);
+    color:#080b10;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:30px 0;
+    background:#05080d;
+}
+
+.footer-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.footer-brand{
+    color:var(--gold2);
+    font-size:12px;
+    letter-spacing:1.8px;
+    font-weight:700;
+}
+
+.footer-info{
+    color:#596472;
+    font-size:11px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    nav a:not(.home-btn){
+        display:none;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .function-grid,
+    .responsibility-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .control-view{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .control-step:nth-child(3){
+        border-right:none;
+    }
+
+    .control-step{
+        border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .kpi-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hr-view{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .principles{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+
+@media(max-width:600px){
+
+    .header-inner{
+        min-height:65px;
+    }
+
+    .brand-mark{
+        width:36px;
+        height:36px;
+    }
+
+    .brand-text strong{
+        font-size:13px;
+    }
+
+    .brand-text span{
+        font-size:9px;
+    }
+
+    .hero{
+        padding:32px 0 40px;
+    }
+
+    h1{
+        font-size:43px;
+        letter-spacing:-1.8px;
+    }
+
+    .hero-description{
+        font-size:14px;
+    }
+
+    .status-grid{
+        grid-template-columns:1fr;
+    }
+
+    .status-item{
+        border-right:none;
+        border-bottom:1px solid var(--line);
+    }
+
+    .status-item:last-child{
+        border-bottom:none;
+    }
+
+    section{
+        padding:60px 0;
+    }
+
+    .section-title{
+        font-size:28px;
+    }
+
+    .function-grid,
+    .responsibility-grid,
+    .kpi-grid{
+        grid-template-columns:1fr;
+    }
+
+    .matrix-row{
+        grid-template-columns:1fr;
+    }
+
+    .matrix-row div:first-child{
+        padding-bottom:5px;
+    }
+
+    .matrix-row div:last-child{
+        padding-top:5px;
+    }
+
+    .control-view{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .control-step:nth-child(3){
+        border-right:1px solid rgba(255,255,255,.06);
+    }
+
+    .control-step:nth-child(even){
+        border-right:none;
+    }
+
+    .cycle{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:8px;
+    }
+
+    .cycle-item{
+        width:100%;
+    }
+
+    .cycle-arrow{
+        display:none;
+    }
+
+    .hr-view{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .principles{
+        grid-template-columns:1fr;
+    }
+
+    .cta{
+        padding:38px 22px;
+        margin-bottom:55px;
+    }
+
+    .cta h2{
+        font-size:27px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="container header-inner">
+
+        <a href="../index.html" class="brand">
+
+            <div class="brand-mark">
+                E
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    EEMS
+                </strong>
+
+                <span>
+                    Human Resources Management
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <nav>
+
+            <a href="#functions">
+                Functions
+            </a>
+
+            <a href="#control">
+                Control
+            </a>
+
+            <a href="#cycle">
+                Cycle
+            </a>
+
+            <a href="#kpi">
+                KPI
+            </a>
+
+            <a href="../index.html" class="home-btn">
+                ← EEMS Home
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     BREADCRUMB
+========================= -->
+
+<div class="container breadcrumb">
+
+    EEMS <span>›</span> Human Resources Management
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+        <div>
+
+            <div class="eyebrow">
+                EEMS · Module 08
+            </div>
+
+            <h1>
+                Human Resources
+                <span>Management</span>
+            </h1>
+
+            <p class="hero-description">
+                Sistem pengelolaan sumber daya manusia untuk memastikan
+                organisasi memiliki personel yang kompeten, sehat,
+                berwenang, terlatih dan tersedia sesuai kebutuhan
+                operasional, maintenance, electrical, energy dan project.
+            </p>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="hero-card-label">
+                People & Competence
+            </div>
+
+            <h3>
+                The Right People. The Right Competence.
+            </h3>
+
+            <p>
+                Menghubungkan manpower, kompetensi, training,
+                authorization, performance dan pengembangan personel
+                dengan kebutuhan sistem EEMS.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STATUS
+========================= -->
+
+<div class="status">
+
+    <div class="container status-grid">
+
+        <div class="status-item">
+
+            <div class="status-label">
+                Module
+            </div>
+
+            <div class="status-value">
+                Human Resources Management
+            </div>
+
+        </div>
+
+
+        <div class="status-item">
+
+            <div class="status-label">
+                Control Area
+            </div>
+
+            <div class="status-value">
+                Manpower · Competence · Training · Authorization
+            </div>
+
+        </div>
+
+
+        <div class="status-item">
+
+            <div class="status-label">
+                System
+            </div>
+
+            <div class="status-value">
+                EEMS Version 1.0
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FUNCTIONS
+========================= -->
+
+<section id="functions">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                01 · HR FUNCTIONS
+            </div>
+
+            <h2 class="section-title">
+                Human Resources Functions
+            </h2>
+
+            <p class="section-description">
+                Fungsi utama untuk memastikan ketersediaan personel,
+                kompetensi dan kesiapan sumber daya manusia.
+            </p>
+
+        </div>
+
+
+        <div class="function-grid">
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    HR-01
+                </div>
+
+                <h3>
+                    Manpower Planning
+                </h3>
+
+                <p>
+                    Menentukan kebutuhan jumlah dan jenis tenaga kerja
+                    berdasarkan struktur organisasi dan kebutuhan operasi.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    HR-02
+                </div>
+
+                <h3>
+                    Competency Management
+                </h3>
+
+                <p>
+                    Mengidentifikasi kompetensi yang dibutuhkan untuk
+                    setiap posisi dan fungsi pekerjaan.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    HR-03
+                </div>
+
+                <h3>
+                    Training & Development
+                </h3>
+
+                <p>
+                    Merencanakan, melaksanakan dan mengevaluasi
+                    training serta pengembangan personel.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    HR-04
+                </div>
+
+                <h3>
+                    Authorization
+                </h3>
+
+                <p>
+                    Memastikan personel memiliki kewenangan yang sesuai
+                    sebelum menjalankan pekerjaan tertentu.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    HR-05
+                </div>
+
+                <h3>
+                    Personnel Records
+                </h3>
+
+                <p>
+                    Mengelola data personel, posisi, kompetensi,
+                    training dan riwayat pekerjaan.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    HR-06
+                </div>
+
+                <h3>
+                    Performance Management
+                </h3>
+
+                <p>
+                    Mengukur dan mengevaluasi kinerja personel
+                    berdasarkan tanggung jawab dan target.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    HR-07
+                </div>
+
+                <h3>
+                    Workforce Scheduling
+                </h3>
+
+                <p>
+                    Mengatur kebutuhan shift, availability,
+                    manpower deployment dan work schedule.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    HR-08
+                </div>
+
+                <h3>
+                    Succession & Development
+                </h3>
+
+                <p>
+                    Menyiapkan pengembangan kompetensi dan
+                    kesinambungan posisi penting dalam organisasi.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    HR-09
+                </div>
+
+                <h3>
+                    HR Reporting
+                </h3>
+
+                <p>
+                    Menyediakan informasi manpower, competency,
+                    training dan performance untuk manajemen.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTROL MATRIX
+========================= -->
+
+<section id="control">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                02 · HR CONTROL
+            </div>
+
+            <h2 class="section-title">
+                What is Controlled?
+            </h2>
+
+            <p class="section-description">
+                Human Resources Management memastikan pekerjaan
+                dilaksanakan oleh personel yang sesuai dengan
+                kompetensi dan kewenangannya.
+            </p>
+
+        </div>
+
+
+        <div class="matrix">
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Manpower
+                </div>
+
+                <div>
+                    Jumlah, posisi, availability dan kebutuhan tenaga kerja.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Competency
+                </div>
+
+                <div>
+                    Kompetensi teknis dan non-teknis yang dibutuhkan setiap fungsi.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Training
+                </div>
+
+                <div>
+                    Training requirement, attendance, completion dan evaluation.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Authorization
+                </div>
+
+                <div>
+                    Kewenangan personel untuk melakukan pekerjaan tertentu.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Qualification
+                </div>
+
+                <div>
+                    Qualification, certification dan persyaratan jabatan.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Performance
+                </div>
+
+                <div>
+                    Target, evaluation, performance result dan development needs.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Workforce
+                </div>
+
+                <div>
+                    Shift, deployment, workload dan workforce availability.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Personnel Records
+                </div>
+
+                <div>
+                    Data personel, history, competency dan training records.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Development
+                </div>
+
+                <div>
+                    Career development, succession dan improvement program.
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HR CONTROL VIEW
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                03 · CONTROL VIEW
+            </div>
+
+            <h2 class="section-title">
+                Human Resource Control View
+            </h2>
+
+            <p class="section-description">
+                Alur pengendalian sumber daya manusia dari kebutuhan
+                personel sampai evaluasi dan pengembangan.
+            </p>
+
+        </div>
+
+
+        <div class="control-view">
+
+
+            <div class="control-step">
+
+                <strong>
+                    PLAN
+                </strong>
+
+                <span>
+                    Define manpower need
+                </span>
+
+            </div>
+
+
+            <div class="control-step">
+
+                <strong>
+                    QUALIFY
+                </strong>
+
+                <span>
+                    Verify competence
+                </span>
+
+            </div>
+
+
+            <div class="control-step">
+
+                <strong>
+                    TRAIN
+                </strong>
+
+                <span>
+                    Develop capability
+                </span>
+
+            </div>
+
+
+            <div class="control-step">
+
+                <strong>
+                    AUTHORIZE
+                </strong>
+
+                <span>
+                    Confirm authority
+                </span>
+
+            </div>
+
+
+            <div class="control-step">
+
+                <strong>
+                    PERFORM
+                </strong>
+
+                <span>
+                    Execute responsibility
+                </span>
+
+            </div>
+
+
+            <div class="control-step">
+
+                <strong>
+                    IMPROVE
+                </strong>
+
+                <span>
+                    Evaluate & develop
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HR CYCLE
+========================= -->
+
+<section id="cycle">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                04 · MANAGEMENT CYCLE
+            </div>
+
+            <h2 class="section-title">
+                Human Resources Cycle
+            </h2>
+
+            <p class="section-description">
+                Siklus pengelolaan personel yang memastikan kompetensi
+                selalu sesuai dengan kebutuhan organisasi.
+            </p>
+
+        </div>
+
+
+        <div class="cycle">
+
+
+            <div class="cycle-item">
+
+                <strong>
+                    IDENTIFY
+                </strong>
+
+                <span>
+                    Define people needs
+                </span>
+
+            </div>
+
+
+            <div class="cycle-arrow">
+                →
+            </div>
+
+
+            <div class="cycle-item">
+
+                <strong>
+                    QUALIFY
+                </strong>
+
+                <span>
+                    Check competence
+                </span>
+
+            </div>
+
+
+            <div class="cycle-arrow">
+                →
+            </div>
+
+
+            <div class="cycle-item">
+
+                <strong>
+                    DEVELOP
+                </strong>
+
+                <span>
+                    Build capability
+                </span>
+
+            </div>
+
+
+            <div class="cycle-arrow">
+                →
+            </div>
+
+
+            <div class="cycle-item">
+
+                <strong>
+                    PERFORM
+                </strong>
+
+                <span>
+                    Execute the role
+                </span>
+
+            </div>
+
+
+            <div class="cycle-arrow">
+                →
+            </div>
+
+
+            <div class="cycle-item">
+
+                <strong>
+                    IMPROVE
+                </strong>
+
+                <span>
+                    Evaluate & develop
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RESPONSIBILITY
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                05 · RESPONSIBILITY
+            </div>
+
+            <h2 class="section-title">
+                Human Resources Responsibilities
+            </h2>
+
+            <p class="section-description">
+                Pengelolaan manusia bukan hanya tugas HR. Setiap
+                manager dan supervisor bertanggung jawab terhadap
+                kompetensi dan kinerja personelnya.
+            </p>
+
+        </div>
+
+
+        <div class="responsibility-grid">
+
+
+            <div class="role">
+
+                <h3>
+                    HR Management
+                </h3>
+
+                <p>
+                    Mengelola manpower, personnel records, training,
+                    competency dan HR reporting.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Management
+                </h3>
+
+                <p>
+                    Menetapkan organizational direction, manpower policy
+                    dan kebutuhan strategic capability.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Project Management
+                </h3>
+
+                <p>
+                    Menentukan kebutuhan personel dan kompetensi
+                    untuk pelaksanaan proyek.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Electrical Management
+                </h3>
+
+                <p>
+                    Memastikan personel electrical memiliki
+                    kompetensi dan authorization yang sesuai.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Energy Management
+                </h3>
+
+                <p>
+                    Mengidentifikasi kebutuhan kompetensi untuk
+                    energy management dan efficiency program.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Maintenance
+                </h3>
+
+                <p>
+                    Menentukan kebutuhan teknisi, skill matrix,
+                    training dan maintenance competency.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    HSE / K3
+                </h3>
+
+                <p>
+                    Menetapkan kebutuhan safety training,
+                    awareness dan kompetensi K3.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Supervisors
+                </h3>
+
+                <p>
+                    Memastikan personel siap bekerja dan menjalankan
+                    tugas sesuai kompetensi dan authorization.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Personnel
+                </h3>
+
+                <p>
+                    Menjaga kompetensi, mengikuti training dan
+                    menjalankan pekerjaan sesuai kewenangan.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     KPI
+========================= -->
+
+<section id="kpi">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                06 · HR KPI
+            </div>
+
+            <h2 class="section-title">
+                Human Resources Performance Indicators
+            </h2>
+
+            <p class="section-description">
+                KPI digunakan untuk melihat kesiapan tenaga kerja,
+                kompetensi dan efektivitas pengembangan personel.
+            </p>
+
+        </div>
+
+
+        <div class="kpi-grid">
+
+
+            <div class="kpi">
+
+                <div class="kpi-label">
+                    Manpower Availability
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    %
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-label">
+                    Competency Compliance
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    %
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-label">
+                    Training Completion
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    %
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-label">
+                    Authorization Compliance
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    %
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-label">
+                    Safety Training
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    Hours / %
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-label">
+                    Performance Completion
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    %
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HR MANAGEMENT VIEW
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                07 · MANAGEMENT VIEW
+            </div>
+
+            <h2 class="section-title">
+                Executive People View
+            </h2>
+
+            <p class="section-description">
+                Manajemen dapat melihat kesiapan organisasi melalui
+                hubungan antara manpower, competency, training,
+                authorization dan performance.
+            </p>
+
+        </div>
+
+
+        <div class="hr-view">
+
+
+            <div class="hr-box">
+
+                <strong>
+                    MANPOWER
+                </strong>
+
+                <span>
+                    Available
+                </span>
+
+            </div>
+
+
+            <div class="hr-box">
+
+                <strong>
+                    COMPETENCY
+                </strong>
+
+                <span>
+                    Qualified
+                </span>
+
+            </div>
+
+
+            <div class="hr-box">
+
+                <strong>
+                    TRAINING
+                </strong>
+
+                <span>
+                    Developed
+                </span>
+
+            </div>
+
+
+            <div class="hr-box">
+
+                <strong>
+                    AUTHORIZATION
+                </strong>
+
+                <span>
+                    Authorized
+                </span>
+
+            </div>
+
+
+            <div class="hr-box">
+
+                <strong>
+                    PERFORMANCE
+                </strong>
+
+                <span>
+                    Measured
+                </span>
+
+            </div>
+
+
+            <div class="hr-box">
+
+                <strong>
+                    DEVELOPMENT
+                </strong>
+
+                <span>
+                    Improved
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRINCIPLES
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                08 · PRINCIPLES
+            </div>
+
+            <h2 class="section-title">
+                Human Resources Principles
+            </h2>
+
+        </div>
+
+
+        <div class="principles">
+
+
+            <div class="principle">
+
+                <strong>
+                    Competent
+                </strong>
+
+                <span>
+                    Personel harus memiliki kompetensi yang sesuai
+                    dengan tanggung jawab pekerjaannya.
+                </span>
+
+            </div>
+
+
+            <div class="principle">
+
+                <strong>
+                    Authorized
+                </strong>
+
+                <span>
+                    Pekerjaan tertentu hanya dilakukan oleh personel
+                    yang memiliki kewenangan yang sesuai.
+                </span>
+
+            </div>
+
+
+            <div class="principle">
+
+                <strong>
+                    Developed
+                </strong>
+
+                <span>
+                    Kompetensi harus dipelihara dan dikembangkan
+                    melalui training serta pengalaman kerja.
+                </span>
+
+            </div>
+
+
+            <div class="principle">
+
+                <strong>
+                    Accountable
+                </strong>
+
+                <span>
+                    Setiap personel memahami tanggung jawab,
+                    target dan kontribusinya terhadap organisasi.
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<div class="container">
+
+    <div class="cta">
+
+        <h2>
+            Build the Competence. Strengthen the System.
+        </h2>
+
+        <p>
+            Human Resources memastikan EEMS tidak hanya memiliki
+            sistem yang baik, tetapi juga manusia yang mampu
+            menjalankannya dengan benar.
+        </p>
+
+        <a href="../index.html" class="cta-btn">
+            ← Back to EEMS
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div class="footer-brand">
+            EEMS · HUMAN RESOURCES MANAGEMENT
+        </div>
+
+        <div class="footer-info">
+            Module 08 · Version 1.0
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
