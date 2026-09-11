@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EEMS | Management Report</title>
+
+<meta name="description"
+content="EEMS Management Report — Integrated management dashboard, KPI, performance reporting and improvement tracking.">
+
+<style>
+:root{
+    --bg:#070b12;
+    --bg2:#0b111c;
+    --panel:#101824;
+    --panel2:#131e2c;
+    --gold:#d6b56d;
+    --gold2:#f0d58c;
+    --text:#f4f5f7;
+    --muted:#9aa6b5;
+    --line:rgba(214,181,109,.22);
+    --line2:rgba(255,255,255,.08);
+    --success:#79c99a;
+    --danger:#d98282;
+    --blue:#7ea7d8;
+    --max:1200px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(214,181,109,.08),
+            transparent 28%
+        ),
+        linear-gradient(
+            180deg,
+            #070b12 0%,
+            #090f18 45%,
+            #070b12 100%
+        );
+    color:var(--text);
+    line-height:1.6;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(92%, var(--max));
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(7,11,18,.94);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+}
+
+.header-inner{
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    white-space:nowrap;
+}
+
+.brand-mark{
+    width:38px;
+    height:38px;
+    border:1px solid var(--gold);
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold2);
+    font-weight:800;
+    font-size:13px;
+    letter-spacing:1px;
+}
+
+.brand-text strong{
+    display:block;
+    font-size:15px;
+    letter-spacing:2px;
+}
+
+.brand-text span{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:24px;
+}
+
+nav a{
+    color:var(--muted);
+    font-size:13px;
+    transition:.25s ease;
+}
+
+nav a:hover{
+    color:var(--gold2);
+}
+
+.nav-home{
+    color:var(--gold2);
+}
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb{
+    padding:28px 0 10px;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.breadcrumb span{
+    color:var(--gold);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:54px 0 70px;
+    display:grid;
+    grid-template-columns:1.5fr .7fr;
+    gap:50px;
+    align-items:center;
+}
+
+.eyebrow{
+    color:var(--gold);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:clamp(42px,6vw,76px);
+    line-height:1.03;
+    letter-spacing:-2px;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:var(--gold2);
+}
+
+.hero p{
+    max-width:720px;
+    color:var(--muted);
+    font-size:17px;
+}
+
+.hero-card{
+    min-height:230px;
+    padding:32px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(214,181,109,.08),
+            rgba(255,255,255,.015)
+        );
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.hero-card small{
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:10px;
+    margin-bottom:15px;
+}
+
+.hero-card strong{
+    font-size:27px;
+    line-height:1.25;
+}
+
+/* =========================
+   STATUS BAR
+========================= */
+
+.status-bar{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    margin-bottom:80px;
+}
+
+.status-item{
+    padding:20px 22px;
+    border-right:1px solid var(--line);
+}
+
+.status-item:last-child{
+    border-right:0;
+}
+
+.status-item small{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    margin-bottom:5px;
+}
+
+.status-item strong{
+    color:var(--gold2);
+    font-size:13px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    padding:40px 0 80px;
+}
+
+.section-head{
+    margin-bottom:32px;
+}
+
+.section-head .eyebrow{
+    margin-bottom:9px;
+}
+
+.section-head h2{
+    font-size:34px;
+    letter-spacing:-.7px;
+}
+
+.section-head p{
+    color:var(--muted);
+    margin-top:8px;
+    max-width:720px;
+}
+
+/* =========================
+   FUNCTIONS
+========================= */
+
+.function-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.function-card{
+    min-height:180px;
+    padding:25px;
+    border:1px solid var(--line2);
+    border-radius:14px;
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.035),
+        rgba(255,255,255,.012)
+    );
+    transition:.25s ease;
+}
+
+.function-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--line);
+}
+
+.function-number{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:2px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.function-card h3{
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.function-card p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* =========================
+   CONTROL MATRIX
+========================= */
+
+.matrix{
+    border:1px solid var(--line2);
+    border-radius:16px;
+    overflow:hidden;
+}
+
+.matrix-row{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    border-bottom:1px solid var(--line2);
+}
+
+.matrix-row:last-child{
+    border-bottom:0;
+}
+
+.matrix-row > div{
+    padding:18px 20px;
+}
+
+.matrix-row > div:first-child{
+    color:var(--gold2);
+    font-weight:600;
+    background:rgba(214,181,109,.035);
+    border-right:1px solid var(--line2);
+}
+
+.matrix-row > div:last-child{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* =========================
+   REPORT FLOW
+========================= */
+
+.flow{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:8px;
+    align-items:stretch;
+}
+
+.flow-step{
+    min-height:115px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:18px 10px;
+    background:rgba(214,181,109,.035);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+}
+
+.flow-step span{
+    color:var(--gold2);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.8px;
+}
+
+.flow-step:not(:last-child)::after{
+    content:"›";
+    position:absolute;
+    right:-9px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--gold);
+    font-size:20px;
+    z-index:2;
+}
+
+/* =========================
+   KPI DASHBOARD
+========================= */
+
+.kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.kpi-card{
+    padding:25px;
+    border:1px solid var(--line2);
+    border-radius:15px;
+    background:var(--panel);
+}
+
+.kpi-label{
+    color:var(--muted);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1.3px;
+    margin-bottom:15px;
+}
+
+.kpi-value{
+    color:var(--gold2);
+    font-size:31px;
+    font-weight:700;
+    line-height:1.1;
+}
+
+.kpi-unit{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:8px;
+}
+
+/* =========================
+   EXECUTIVE VIEW
+========================= */
+
+.executive-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.executive-card{
+    padding:25px 18px;
+    text-align:center;
+    border:1px solid var(--line);
+    border-radius:13px;
+    background:
+        linear-gradient(
+            160deg,
+            rgba(214,181,109,.07),
+            rgba(255,255,255,.015)
+        );
+}
+
+.executive-card strong{
+    display:block;
+    color:var(--gold2);
+    font-size:13px;
+    letter-spacing:1.2px;
+    margin-bottom:7px;
+}
+
+.executive-card span{
+    color:var(--muted);
+    font-size:11px;
+}
+
+/* =========================
+   REPORTING CYCLE
+========================= */
+
+.cycle{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+}
+
+.cycle-step{
+    text-align:center;
+    padding:24px 10px;
+    border-top:2px solid var(--gold);
+    background:rgba(255,255,255,.025);
+}
+
+.cycle-step strong{
+    display:block;
+    color:var(--gold2);
+    font-size:13px;
+    letter-spacing:1px;
+}
+
+.cycle-step span{
+    display:block;
+    margin-top:6px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+/* =========================
+   PRINCIPLES
+========================= */
+
+.principles{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.principle{
+    padding:26px;
+    border-left:2px solid var(--gold);
+    background:rgba(255,255,255,.025);
+}
+
+.principle strong{
+    color:var(--gold2);
+    display:block;
+    margin-bottom:7px;
+}
+
+.principle span{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    margin:40px 0 80px;
+    padding:50px 35px;
+    text-align:center;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(214,181,109,.09),
+            transparent 65%
+        );
+}
+
+.cta h2{
+    font-size:clamp(27px,4vw,42px);
+    margin-bottom:12px;
+}
+
+.cta p{
+    color:var(--muted);
+    margin-bottom:28px;
+}
+
+.btn{
+    display:inline-block;
+    padding:13px 25px;
+    border:1px solid var(--gold);
+    border-radius:8px;
+    color:#080b10;
+    background:var(--gold2);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.8px;
+    transition:.25s ease;
+}
+
+.btn:hover{
+    background:#fff1bd;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:30px 0;
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.footer-brand{
+    color:var(--gold2);
+    font-size:12px;
+    letter-spacing:1.5px;
+    font-weight:700;
+}
+
+.footer-meta{
+    color:var(--muted);
+    font-size:11px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+    nav{
+        gap:14px;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+    }
+
+    .function-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .executive-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .flow{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .flow-step:not(:last-child)::after{
+        display:none;
+    }
+}
+
+@media(max-width:700px){
+
+    .header-inner{
+        min-height:64px;
+    }
+
+    nav a:not(.nav-home){
+        display:none;
+    }
+
+    .hero{
+        padding:35px 0 50px;
+    }
+
+    .hero h1{
+        font-size:43px;
+    }
+
+    .status-bar{
+        grid-template-columns:1fr;
+    }
+
+    .status-item{
+        border-right:0;
+        border-bottom:1px solid var(--line);
+    }
+
+    .status-item:last-child{
+        border-bottom:0;
+    }
+
+    .function-grid,
+    .kpi-grid,
+    .executive-grid,
+    .principles{
+        grid-template-columns:1fr;
+    }
+
+    .matrix-row{
+        grid-template-columns:1fr;
+    }
+
+    .matrix-row > div:first-child{
+        border-right:0;
+        border-bottom:1px solid var(--line2);
+    }
+
+    .flow{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .cycle{
+        grid-template-columns:1fr;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+@media(max-width:450px){
+
+    .container{
+        width:90%;
+    }
+
+    .brand-text span{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .flow{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+    <div class="container header-inner">
+
+        <a href="../index.html" class="brand">
+
+            <div class="brand-mark">
+                EE
+            </div>
+
+            <div class="brand-text">
+                <strong>EEMS</strong>
+                <span>Management Report</span>
+            </div>
+
+        </a>
+
+        <nav>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#kpi">KPI</a>
+            <a href="#reports">Reports</a>
+            <a href="#cycle">Cycle</a>
+
+            <a href="../index.html" class="nav-home">
+                ← EEMS Home
+            </a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+<div class="container">
+
+<!-- =========================
+     BREADCRUMB
+========================= -->
+
+<div class="breadcrumb">
+    EEMS <span>›</span> Management Report
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div>
+
+        <div class="eyebrow">
+            EEMS · Module 09
+        </div>
+
+        <h1>
+            Management
+            <span>Report</span>
+        </h1>
+
+        <p>
+            Integrated management information that consolidates
+            Electrical, Energy, Maintenance, HSE, Project, Finance,
+            Human Resources and Corporate performance into one
+            decision-support view.
+        </p>
+
+    </div>
+
+    <div class="hero-card">
+
+        <small>
+            Management Principle
+        </small>
+
+        <strong>
+            From Data<br>
+            to Decision.
+        </strong>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STATUS
+========================= -->
+
+<div class="status-bar">
+
+    <div class="status-item">
+        <small>Module</small>
+        <strong>Management Report</strong>
+    </div>
+
+    <div class="status-item">
+        <small>Control Area</small>
+        <strong>Dashboard · KPI · Trend · Exception · Action</strong>
+    </div>
+
+    <div class="status-item">
+        <small>System</small>
+        <strong>EEMS Version 1.0</strong>
+    </div>
+
+</div>
+
+
+<!-- =========================
+     REPORT FUNCTIONS
+========================= -->
+
+<section id="reports">
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            Report Functions
+        </div>
+
+        <h2>
+            Nine Management Reporting Functions
+        </h2>
+
+        <p>
+            The Management Report module transforms information
+            from each EEMS module into structured management
+            information for monitoring, review and decision-making.
+        </p>
+
+    </div>
+
+
+    <div class="function-grid">
+
+        <div class="function-card">
+            <div class="function-number">MR-01</div>
+            <h3>Executive Dashboard</h3>
+            <p>
+                Consolidated view of critical system performance,
+                status, exceptions and management priorities.
+            </p>
+        </div>
+
+        <div class="function-card">
+            <div class="function-number">MR-02</div>
+            <h3>Electrical Performance</h3>
+            <p>
+                Electrical availability, load, power quality,
+                protection and system condition.
+            </p>
+        </div>
+
+        <div class="function-card">
+            <div class="function-number">MR-03</div>
+            <h3>Energy Performance</h3>
+            <p>
+                Energy consumption, demand, efficiency,
+                intensity, cost and savings performance.
+            </p>
+        </div>
+
+        <div class="function-card">
+            <div class="function-number">MR-04</div>
+            <h3>Maintenance Performance</h3>
+            <p>
+                Asset availability, maintenance backlog,
+                work orders, reliability and completion status.
+            </p>
+        </div>
+
+        <div class="function-card">
+            <div class="function-number">MR-05</div>
+            <h3>HSE Performance</h3>
+            <p>
+                Incident, near miss, risk, inspection,
+                corrective action and safety performance.
+            </p>
+        </div>
+
+        <div class="function-card">
+            <div class="function-number">MR-06</div>
+            <h3>Project Performance</h3>
+            <p>
+                Project progress, schedule, cost, risk,
+                quality, commissioning and closeout.
+            </p>
+        </div>
+
+        <div class="function-card">
+            <div class="function-number">MR-07</div>
+            <h3>Financial Performance</h3>
+            <p>
+                Budget, actual cost, commitment, variance,
+                energy cost and financial control.
+            </p>
+        </div>
+
+        <div class="function-card">
+            <div class="function-number">MR-08</div>
+            <h3>HR & Competency</h3>
+            <p>
+                Manpower, competency, training, authorization
+                and personnel performance.
+            </p>
+        </div>
+
+        <div class="function-card">
+            <div class="function-number">MR-09</div>
+            <h3>Action & Improvement Tracking</h3>
+            <p>
+                Corrective actions, improvement programs,
+                ownership, deadlines and closure status.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MANAGEMENT CONTROL MATRIX
+========================= -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            Management Control
+        </div>
+
+        <h2>
+            What is Reported?
+        </h2>
+
+    </div>
+
+
+    <div class="matrix">
+
+        <div class="matrix-row">
+            <div>Electrical Status</div>
+            <div>
+                Availability, load, power quality, protection,
+                condition and electrical incidents.
+            </div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Energy Performance</div>
+            <div>
+                Consumption, demand, cost, efficiency,
+                intensity, variance and savings.
+            </div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Maintenance</div>
+            <div>
+                Asset availability, preventive maintenance,
+                corrective work, backlog and reliability.
+            </div>
+        </div>
+
+        <div class="matrix-row">
+            <div>HSE / K3</div>
+            <div>
+                Risk, permit, inspection, incident,
+                near miss, training and corrective action.
+            </div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Project</div>
+            <div>
+                Scope, schedule, progress, cost, risk,
+                quality, commissioning and handover.
+            </div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Finance</div>
+            <div>
+                Budget, actual, commitment, variance,
+                procurement and energy-related cost.
+            </div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Human Resources</div>
+            <div>
+                Manpower, competency, qualification,
+                authorization, training and performance.
+            </div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Corrective Actions</div>
+            <div>
+                Open actions, ownership, due date,
+                priority and closure effectiveness.
+            </div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Improvement Program</div>
+            <div>
+                Improvement initiatives, expected benefits,
+                implementation status and realized results.
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     REPORT FLOW
+========================= -->
+
+<section id="dashboard">
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            Management Report Flow
+        </div>
+
+        <h2>
+            From Data to Action
+        </h2>
+
+    </div>
+
+
+    <div class="flow">
+
+        <div class="flow-step">
+            <span>COLLECT</span>
+        </div>
+
+        <div class="flow-step">
+            <span>VALIDATE</span>
+        </div>
+
+        <div class="flow-step">
+            <span>CONSOLIDATE</span>
+        </div>
+
+        <div class="flow-step">
+            <span>ANALYZE</span>
+        </div>
+
+        <div class="flow-step">
+            <span>REPORT</span>
+        </div>
+
+        <div class="flow-step">
+            <span>DECIDE</span>
+        </div>
+
+        <div class="flow-step">
+            <span>ACT</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     KPI DASHBOARD
+========================= -->
+
+<section id="kpi">
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            Executive KPI
+        </div>
+
+        <h2>
+            Management Performance Dashboard
+        </h2>
+
+        <p>
+            KPI values are intentionally shown as
+            <strong>—</strong> until connected to actual
+            operational and management data.
+        </p>
+
+    </div>
+
+
+    <div class="kpi-grid">
+
+        <div class="kpi-card">
+            <div class="kpi-label">
+                Total Energy Consumption
+            </div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">kWh</div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-label">
+                Peak Demand
+            </div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">kW</div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-label">
+                System Availability
+            </div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">%</div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-label">
+                Maintenance Backlog
+            </div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">Count</div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-label">
+                HSE Incident
+            </div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">Count</div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-label">
+                Project Progress
+            </div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">%</div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-label">
+                Budget Variance
+            </div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">Rp / %</div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-label">
+                Competency Compliance
+            </div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">%</div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-label">
+                Open Corrective Action
+            </div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">Count</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EXECUTIVE VIEW
+========================= -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            Executive Management View
+        </div>
+
+        <h2>
+            One System. One Management View.
+        </h2>
+
+    </div>
+
+
+    <div class="executive-grid">
+
+        <div class="executive-card">
+            <strong>ELECTRICAL</strong>
+            <span>System Condition & Reliability</span>
+        </div>
+
+        <div class="executive-card">
+            <strong>ENERGY</strong>
+            <span>Consumption & Efficiency</span>
+        </div>
+
+        <div class="executive-card">
+            <strong>MAINTENANCE</strong>
+            <span>Asset Reliability</span>
+        </div>
+
+        <div class="executive-card">
+            <strong>HSE / K3</strong>
+            <span>Risk & Safety</span>
+        </div>
+
+        <div class="executive-card">
+            <strong>PROJECT</strong>
+            <span>Progress & Delivery</span>
+        </div>
+
+        <div class="executive-card">
+            <strong>FINANCE</strong>
+            <span>Cost & Budget</span>
+        </div>
+
+        <div class="executive-card">
+            <strong>HR</strong>
+            <span>People & Competency</span>
+        </div>
+
+        <div class="executive-card">
+            <strong>ACTION</strong>
+            <span>Improvement & Closure</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     REPORTING CYCLE
+========================= -->
+
+<section id="cycle">
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            Reporting Cycle
+        </div>
+
+        <h2>
+            Management Review Rhythm
+        </h2>
+
+    </div>
+
+
+    <div class="cycle">
+
+        <div class="cycle-step">
+            <strong>DAILY</strong>
+            <span>Operational Status</span>
+        </div>
+
+        <div class="cycle-step">
+            <strong>WEEKLY</strong>
+            <span>Performance & Action</span>
+        </div>
+
+        <div class="cycle-step">
+            <strong>MONTHLY</strong>
+            <span>KPI & Management Review</span>
+        </div>
+
+        <div class="cycle-step">
+            <strong>QUARTERLY</strong>
+            <span>Strategic Performance</span>
+        </div>
+
+        <div class="cycle-step">
+            <strong>ANNUAL</strong>
+            <span>System & Improvement Review</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRINCIPLES
+========================= -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            Reporting Principles
+        </div>
+
+        <h2>
+            Information That Management Can Trust
+        </h2>
+
+    </div>
+
+
+    <div class="principles">
+
+        <div class="principle">
+            <strong>Accurate</strong>
+            <span>
+                Information must be based on valid,
+                verified and traceable data.
+            </span>
+        </div>
+
+        <div class="principle">
+            <strong>Timely</strong>
+            <span>
+                Information must reach management
+                at the right time for action.
+            </span>
+        </div>
+
+        <div class="principle">
+            <strong>Integrated</strong>
+            <span>
+                Different EEMS modules must provide
+                one consistent management picture.
+            </span>
+        </div>
+
+        <div class="principle">
+            <strong>Actionable</strong>
+            <span>
+                Every significant exception should
+                lead toward a decision or action.
+            </span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<div class="cta">
+
+    <h2>
+        See the System. Make the Decision.
+    </h2>
+
+    <p>
+        Management reporting is not the end of the system.
+        It is the bridge from information to improvement.
+    </p>
+
+    <a href="../index.html" class="btn">
+        ← BACK TO EEMS
+    </a>
+
+</div>
+
+</div>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div class="footer-brand">
+            EEMS · MANAGEMENT REPORT
+        </div>
+
+        <div class="footer-meta">
+            Module 09 · Version 1.0
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
