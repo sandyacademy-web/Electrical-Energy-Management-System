@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EEMS — Energy Monitoring</title>
+
+    <meta name="description"
+          content="EEMS Energy Monitoring — Pemantauan penggunaan dan kinerja energi listrik.">
+
+    <meta name="theme-color" content="#0b1220">
+
+    <style>
+
+        /* =====================================================
+           EEMS — ENERGY MONITORING
+           ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            background: #f4f7fb;
+            color: #182230;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =====================================================
+           HEADER
+           ===================================================== */
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            z-index: 1000;
+
+            background: rgba(11,18,32,.97);
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.08);
+
+            backdrop-filter: blur(12px);
+        }
+
+        .nav {
+            max-width: 1200px;
+
+            min-height: 70px;
+
+            margin: auto;
+            padding: 0 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4c95d,
+                    #d49a17
+                );
+
+            color: #101827;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .brand-text strong {
+            display: block;
+
+            color: #ffffff;
+
+            font-size: 17px;
+
+            letter-spacing: 1px;
+        }
+
+        .brand-text span {
+            display: block;
+
+            color: #8997aa;
+
+            font-size: 9px;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 8px 14px;
+
+            border-radius: 7px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            color: #c8d1df;
+
+            font-size: 11px;
+        }
+
+        .nav-btn:hover {
+            color: #f4c95d;
+
+            border-color:
+                rgba(244,201,93,.5);
+        }
+
+        /* =====================================================
+           PAGE
+           ===================================================== */
+
+        .page {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding:
+                115px 24px
+                60px;
+        }
+
+        /* =====================================================
+           PAGE HEADER
+           ===================================================== */
+
+        .page-header {
+            margin-bottom: 35px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            margin-bottom: 12px;
+
+            color: #8a96a7;
+
+            font-size: 11px;
+        }
+
+        .breadcrumb a:hover {
+            color: #b18419;
+        }
+
+        .page-label {
+            color: #b18419;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 5px;
+        }
+
+        .page-header h1 {
+            font-size:
+                clamp(30px, 5vw, 45px);
+
+            line-height: 1.1;
+
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            max-width: 700px;
+
+            color: #6d7a8d;
+
+            font-size: 14px;
+        }
+
+        /* =====================================================
+           STATUS BAR
+           ===================================================== */
+
+        .status-bar {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 12px;
+
+            border-radius: 7px;
+
+            background: #ffffff;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            color: #657286;
+
+            font-size: 11px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #50c878;
+
+            box-shadow:
+                0 0 8px
+                rgba(80,200,120,.6);
+        }
+
+        /* =====================================================
+           KPI
+           ===================================================== */
+
+        .kpi-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 16px;
+
+            margin-bottom: 25px;
+        }
+
+        .kpi {
+            padding: 22px;
+
+            background: #ffffff;
+
+            border:
+                1px solid
+                #e3e8ef;
+
+            border-radius: 11px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .kpi::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 3px;
+
+            background: #d5a82c;
+        }
+
+        .kpi-label {
+            color: #778396;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .8px;
+
+            margin-bottom: 8px;
+        }
+
+        .kpi-value {
+            font-size: 28px;
+
+            font-weight: 750;
+
+            color: #172235;
+        }
+
+        .kpi-unit {
+            font-size: 12px;
+
+            color: #7b8798;
+
+            margin-left: 3px;
+        }
+
+        .kpi-change {
+            margin-top: 6px;
+
+            font-size: 10px;
+
+            color: #50a96d;
+        }
+
+        /* =====================================================
+           MAIN GRID
+           ===================================================== */
+
+        .main-grid {
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr;
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: #ffffff;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 18px 20px;
+
+            border-bottom:
+                1px solid
+                #edf0f4;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-header h2 {
+            font-size: 15px;
+        }
+
+        .card-header span {
+            color: #8a95a5;
+
+            font-size: 10px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* =====================================================
+           CHART
+           ===================================================== */
+
+        .chart {
+            height: 280px;
+
+            position: relative;
+
+            padding:
+                15px
+                10px
+                30px
+                42px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent 24%,
+                    #edf1f5 25%,
+                    transparent 25%,
+                    transparent 49%,
+                    #edf1f5 50%,
+                    transparent 50%,
+                    transparent 74%,
+                    #edf1f5 75%,
+                    transparent 75%
+                );
+        }
+
+        .chart-line {
+            position: absolute;
+
+            left: 45px;
+            right: 15px;
+
+            bottom: 45px;
+
+            height: 160px;
+        }
+
+        .chart-line svg {
+            width: 100%;
+            height: 100%;
+
+            overflow: visible;
+        }
+
+        .chart-labels {
+            position: absolute;
+
+            left: 45px;
+            right: 15px;
+            bottom: 8px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #8b96a6;
+
+            font-size: 9px;
+        }
+
+        .chart-y {
+            position: absolute;
+
+            left: 5px;
+            top: 15px;
+            bottom: 45px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            color: #8b96a6;
+
+            font-size: 9px;
+        }
+
+        /* =====================================================
+           LIVE LOAD
+           ===================================================== */
+
+        .load-value {
+            display: flex;
+
+            align-items: baseline;
+
+            gap: 5px;
+
+            margin-bottom: 18px;
+        }
+
+        .load-value strong {
+            font-size: 40px;
+
+            line-height: 1;
+        }
+
+        .load-value span {
+            color: #7a8799;
+
+            font-size: 13px;
+        }
+
+        .meter {
+            height: 9px;
+
+            border-radius: 10px;
+
+            background: #edf1f5;
+
+            overflow: hidden;
+
+            margin-bottom: 8px;
+        }
+
+        .meter-fill {
+            width: 62%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #d5a82c,
+                    #f0c95d
+                );
+
+            border-radius: inherit;
+        }
+
+        .meter-info {
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #7b8798;
+
+            font-size: 10px;
+        }
+
+        .load-details {
+            margin-top: 25px;
+
+            border-top:
+                1px solid
+                #edf0f4;
+
+            padding-top: 18px;
+        }
+
+        .load-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 8px 0;
+
+            font-size: 11px;
+        }
+
+        .load-row span:first-child {
+            color: #778396;
+        }
+
+        .load-row strong {
+            color: #263449;
+        }
+
+        /* =====================================================
+           EQUIPMENT
+           ===================================================== */
+
+        .equipment-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 14px;
+        }
+
+        .equipment {
+            padding: 18px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid
+                #e5eaf0;
+
+            border-radius: 10px;
+        }
+
+        .equipment-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 12px;
+        }
+
+        .equipment-name {
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .equipment-status {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #50c878;
+        }
+
+        .equipment-value {
+            font-size: 20px;
+
+            font-weight: 700;
+
+            margin-bottom: 3px;
+        }
+
+        .equipment-unit {
+            color: #8792a1;
+
+            font-size: 10px;
+        }
+
+        /* =====================================================
+           INFORMATION
+           ===================================================== */
+
+        .info-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .info-card {
+            padding: 22px;
+
+            background: #101b2d;
+
+            border-radius: 11px;
+
+            color: white;
+        }
+
+        .info-card .number {
+            color: #f4c95d;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            margin-bottom: 8px;
+        }
+
+        .info-card h3 {
+            font-size: 15px;
+
+            margin-bottom: 7px;
+        }
+
+        .info-card p {
+            color: #9eacc0;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        footer {
+            background: #080f1b;
+
+            color: #8290a4;
+
+            margin-top: 30px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding:
+                24px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            font-size: 10px;
+        }
+
+        .footer-inner a:hover {
+            color: #f4c95d;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 950px) {
+
+            .kpi-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .main-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .equipment-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .info-grid {
+                grid-template-columns:
+                    1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .nav {
+                padding: 0 16px;
+            }
+
+            .nav-actions .nav-btn:first-child {
+                display: none;
+            }
+
+            .page {
+                padding:
+                    105px 16px
+                    45px;
+            }
+
+            .kpi-grid {
+                grid-template-columns:
+                    1fr 1fr;
+
+                gap: 10px;
+            }
+
+            .kpi {
+                padding: 17px;
+            }
+
+            .kpi-value {
+                font-size: 23px;
+            }
+
+            .main-grid {
+                gap: 13px;
+            }
+
+            .equipment-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .card-body {
+                padding: 15px;
+            }
+
+            .chart {
+                height: 240px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="header">
+
+    <nav class="nav">
+
+        <a href="../index.html" class="brand">
+
+            <div class="brand-icon">
+                ⚡
+            </div>
+
+            <div class="brand-text">
+
+                <strong>EEMS</strong>
+
+                <span>
+                    Energy Monitoring
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <div class="nav-actions">
+
+            <a
+                href="../index.html"
+                class="nav-btn">
+                ← Dashboard Utama
+            </a>
+
+            <a
+                href="../management/master-document.html"
+                class="nav-btn">
+                Management
+            </a>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================================
+     PAGE
+     ========================================================= -->
+
+<main class="page">
+
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-header">
+
+        <div class="breadcrumb">
+
+            <a href="../index.html">
+                EEMS
+            </a>
+
+            <span>›</span>
+
+            <span>
+                Monitoring
+            </span>
+
+        </div>
+
+
+        <div class="page-label">
+            Energy Monitoring
+        </div>
+
+        <h1>
+            Energy Monitoring
+        </h1>
+
+        <p>
+            Pusat pemantauan penggunaan energi listrik
+            secara terstruktur untuk mengetahui kondisi
+            konsumsi, beban, dan kinerja energi.
+        </p>
+
+    </div>
+
+
+
+    <!-- SYSTEM STATUS -->
+
+    <div class="status-bar">
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            Monitoring System Online
+
+        </div>
+
+
+        <div class="status">
+
+            Data refresh:
+            <strong id="clock">
+                --:--:--
+            </strong>
+
+        </div>
+
+
+        <div class="status">
+
+            Mode:
+            <strong>
+                Dashboard
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         KPI
+         ===================================================== -->
+
+    <section class="kpi-grid">
+
+
+        <div class="kpi">
+
+            <div class="kpi-label">
+                Konsumsi Hari Ini
+            </div>
+
+            <div class="kpi-value">
+                428
+                <span class="kpi-unit">
+                    kWh
+                </span>
+            </div>
+
+            <div class="kpi-change">
+                ↓ 4.8% dibanding kemarin
+            </div>
+
+        </div>
+
+
+        <div class="kpi">
+
+            <div class="kpi-label">
+                Beban Saat Ini
+            </div>
+
+            <div class="kpi-value">
+                184
+                <span class="kpi-unit">
+                    kW
+                </span>
+            </div>
+
+            <div class="kpi-change">
+                Kondisi normal
+            </div>
+
+        </div>
+
+
+        <div class="kpi">
+
+            <div class="kpi-label">
+                Peak Load
+            </div>
+
+            <div class="kpi-value">
+                296
+                <span class="kpi-unit">
+                    kW
+                </span>
+            </div>
+
+            <div class="kpi-change">
+                Hari ini
+            </div>
+
+        </div>
+
+
+        <div class="kpi">
+
+            <div class="kpi-label">
+                Efisiensi
+            </div>
+
+            <div class="kpi-value">
+                91.4
+                <span class="kpi-unit">
+                    %
+                </span>
+            </div>
+
+            <div class="kpi-change">
+                ↑ 2.1% bulan berjalan
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CHART + LIVE LOAD
+         ===================================================== -->
+
+    <div class="main-grid">
+
+
+        <!-- ENERGY TREND -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h2>
+                    Tren Konsumsi Energi
+                </h2>
+
+                <span>
+                    24 Jam Terakhir
+                </span>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <div class="chart">
+
+                    <div class="chart-y">
+
+                        <span>300</span>
+                        <span>225</span>
+                        <span>150</span>
+                        <span>75</span>
+                        <span>0</span>
+
+                    </div>
+
+
+                    <div class="chart-line">
+
+                        <svg
+                            viewBox="0 0 700 160"
+                            preserveAspectRatio="none">
+
+                            <polyline
+                                points="
+                                0,115
+                                35,108
+                                70,120
+                                105,96
+                                140,102
+                                175,76
+                                210,82
+                                245,65
+                                280,72
+                                315,51
+                                350,43
+                                385,57
+                                420,39
+                                455,48
+                                490,31
+                                525,41
+                                560,55
+                                595,46
+                                630,61
+                                665,52
+                                700,65
+                                "
+                                fill="none"
+                                stroke="#c49621"
+                                stroke-width="3"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <div class="chart-labels">
+
+                        <span>00:00</span>
+                        <span>04:00</span>
+                        <span>08:00</span>
+                        <span>12:00</span>
+                        <span>16:00</span>
+                        <span>20:00</span>
+                        <span>24:00</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LIVE LOAD -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h2>
+                    Live Load
+                </h2>
+
+                <span>
+                    Real-time
+                </span>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <div class="load-value">
+
+                    <strong>
+                        184
+                    </strong>
+
+                    <span>
+                        kW
+                    </span>
+
+                </div>
+
+
+                <div class="meter">
+
+                    <div class="meter-fill"></div>
+
+                </div>
+
+
+                <div class="meter-info">
+
+                    <span>
+                        0 kW
+                    </span>
+
+                    <span>
+                        300 kW
+                    </span>
+
+                </div>
+
+
+                <div class="load-details">
+
+                    <div class="load-row">
+
+                        <span>
+                            Tegangan
+                        </span>
+
+                        <strong>
+                            380 V
+                        </strong>
+
+                    </div>
+
+
+                    <div class="load-row">
+
+                        <span>
+                            Arus
+                        </span>
+
+                        <strong>
+                            278 A
+                        </strong>
+
+                    </div>
+
+
+                    <div class="load-row">
+
+                        <span>
+                            Power Factor
+                        </span>
+
+                        <strong>
+                            0.94
+                        </strong>
+
+                    </div>
+
+
+                    <div class="load-row">
+
+                        <span>
+                            Frekuensi
+                        </span>
+
+                        <strong>
+                            50.02 Hz
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         EQUIPMENT
+         ===================================================== -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>
+                Pemantauan Beban Utama
+            </h2>
+
+            <span>
+                Current Load
+            </span>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <div class="equipment-grid">
+
+
+                <div class="equipment">
+
+                    <div class="equipment-top">
+
+                        <span class="equipment-name">
+                            Main Panel
+                        </span>
+
+                        <span class="equipment-status"></span>
+
+                    </div>
+
+                    <div class="equipment-value">
+                        184 kW
+                    </div>
+
+                    <div class="equipment-unit">
+                        Beban utama
+                    </div>
+
+                </div>
+
+
+                <div class="equipment">
+
+                    <div class="equipment-top">
+
+                        <span class="equipment-name">
+                            HVAC
+                        </span>
+
+                        <span class="equipment-status"></span>
+
+                    </div>
+
+                    <div class="equipment-value">
+                        72 kW
+                    </div>
+
+                    <div class="equipment-unit">
+                        Sistem pendingin
+                    </div>
+
+                </div>
+
+
+                <div class="equipment">
+
+                    <div class="equipment-top">
+
+                        <span class="equipment-name">
+                            Production
+                        </span>
+
+                        <span class="equipment-status"></span>
+
+                    </div>
+
+                    <div class="equipment-value">
+                        64 kW
+                    </div>
+
+                    <div class="equipment-unit">
+                        Beban produksi
+                    </div>
+
+                </div>
+
+
+                <div class="equipment">
+
+                    <div class="equipment-top">
+
+                        <span class="equipment-name">
+                            Lighting
+                        </span>
+
+                        <span class="equipment-status"></span>
+
+                    </div>
+
+                    <div class="equipment-value">
+                        21 kW
+                    </div>
+
+                    <div class="equipment-unit">
+                        Penerangan
+                    </div>
+
+                </div>
+
+
+                <div class="equipment">
+
+                    <div class="equipment-top">
+
+                        <span class="equipment-name">
+                            Office
+                        </span>
+
+                        <span class="equipment-status"></span>
+
+                    </div>
+
+                    <div class="equipment-value">
+                        13 kW
+                    </div>
+
+                    <div class="equipment-unit">
+                        Area kantor
+                    </div>
+
+                </div>
+
+
+                <div class="equipment">
+
+                    <div class="equipment-top">
+
+                        <span class="equipment-name">
+                            Other Loads
+                        </span>
+
+                        <span class="equipment-status"></span>
+
+                    </div>
+
+                    <div class="equipment-value">
+                        14 kW
+                    </div>
+
+                    <div class="equipment-unit">
+                        Beban lainnya
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MONITORING PRINCIPLES
+         ===================================================== -->
+
+    <div class="info-grid">
+
+
+        <div class="info-card">
+
+            <div class="number">
+                01
+            </div>
+
+            <h3>
+                Measure
+            </h3>
+
+            <p>
+                Mengumpulkan data konsumsi dan parameter
+                kelistrikan secara terstruktur.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="number">
+                02
+            </div>
+
+            <h3>
+                Observe
+            </h3>
+
+            <p>
+                Mengamati perubahan beban, pola konsumsi,
+                dan kondisi operasi sistem.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="number">
+                03
+            </div>
+
+            <h3>
+                Respond
+            </h3>
+
+            <p>
+                Menggunakan informasi monitoring sebagai
+                dasar tindakan pengendalian dan peningkatan.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer>
+
+    <div class="footer-inner">
+
+        <span>
+            © 2026 EEMS — Electrical Energy Management System
+        </span>
+
+        <a href="../index.html">
+            ← Kembali ke EEMS
+        </a>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     CLOCK
+     ========================================================= -->
+
+<script>
+
+    function updateClock() {
+
+        const now = new Date();
+
+        const time =
+            now.toLocaleTimeString(
+                "id-ID",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit"
+                }
+            );
+
+        document.getElementById("clock")
+            .textContent = time;
+
+    }
+
+    updateClock();
+
+    setInterval(
+        updateClock,
+        1000
+    );
+
+</script>
+
+
+</body>
+</html>
