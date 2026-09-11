@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EEMS Management System — Master Document v1.0</title>
+
+<meta name="description"
+content="EEMS Management System — Master Document v1.0. Dokumen induk sistem manajemen Electrical & Energy Management System.">
+
+<style>
+:root{
+    --navy:#071525;
+    --navy2:#0d2035;
+    --gold:#c9a44c;
+    --gold2:#e4c56a;
+    --white:#f8fafc;
+    --text:#d7dee8;
+    --muted:#91a0b2;
+    --line:rgba(255,255,255,.10);
+    --card:rgba(255,255,255,.045);
+    --green:#5fcf91;
+    --red:#ef7777;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top right, rgba(201,164,76,.10), transparent 35%),
+        linear-gradient(180deg,#061321,#091827 45%,#06111d);
+    color:var(--text);
+    line-height:1.65;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(5,16,28,.94);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+}
+
+.header-inner{
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand-mark{
+    width:42px;
+    height:42px;
+    border:1px solid var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold2);
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.brand-text strong{
+    display:block;
+    color:#fff;
+    font-size:15px;
+    letter-spacing:1.5px;
+}
+
+.brand-text span{
+    display:block;
+    color:var(--gold2);
+    font-size:11px;
+    letter-spacing:1px;
+    margin-top:2px;
+}
+
+.nav{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.nav a{
+    padding:8px 10px;
+    color:var(--muted);
+    font-size:12px;
+    border-radius:5px;
+}
+
+.nav a:hover{
+    color:#fff;
+    background:rgba(255,255,255,.06);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:85px 0 65px;
+    border-bottom:1px solid var(--line);
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:50px;
+    align-items:end;
+}
+
+.eyebrow{
+    color:var(--gold2);
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+
+h1{
+    margin:0;
+    color:#fff;
+    font-size:clamp(35px,5vw,62px);
+    line-height:1.08;
+    letter-spacing:-1.5px;
+}
+
+.hero-title{
+    color:var(--gold2);
+}
+
+.hero p{
+    max-width:780px;
+    margin:25px 0 0;
+    font-size:17px;
+    color:#b9c4d1;
+}
+
+.document-box{
+    border:1px solid rgba(201,164,76,.45);
+    background:linear-gradient(
+        145deg,
+        rgba(201,164,76,.10),
+        rgba(255,255,255,.025)
+    );
+    padding:25px;
+}
+
+.document-box .label{
+    color:var(--muted);
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.document-box strong{
+    display:block;
+    color:#fff;
+    font-size:20px;
+    margin:8px 0 18px;
+}
+
+.meta{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.meta div{
+    border-top:1px solid var(--line);
+    padding-top:9px;
+}
+
+.meta span{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.meta b{
+    color:#fff;
+    font-size:13px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    padding:70px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.section-heading{
+    margin-bottom:35px;
+}
+
+.section-number{
+    color:var(--gold2);
+    font-size:11px;
+    letter-spacing:3px;
+    font-weight:bold;
+}
+
+h2{
+    color:#fff;
+    font-size:31px;
+    margin:8px 0 10px;
+}
+
+h3{
+    color:#fff;
+    font-size:19px;
+    margin-top:0;
+}
+
+.section-heading p{
+    max-width:800px;
+    color:var(--muted);
+    margin:0;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:25px;
+    border-radius:8px;
+}
+
+.card:hover{
+    border-color:rgba(201,164,76,.35);
+}
+
+.card-number{
+    color:var(--gold2);
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:2px;
+    margin-bottom:12px;
+}
+
+.card p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.card ul{
+    padding-left:20px;
+    color:#b9c4d1;
+    font-size:14px;
+}
+
+.card li{
+    margin:6px 0;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrap{
+    overflow-x:auto;
+    border:1px solid var(--line);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:760px;
+}
+
+th,
+td{
+    padding:14px 15px;
+    text-align:left;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+    font-size:13px;
+}
+
+th{
+    background:rgba(201,164,76,.08);
+    color:var(--gold2);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+td{
+    color:#c5cfda;
+}
+
+tr:last-child td{
+    border-bottom:0;
+}
+
+/* =========================
+   FLOW
+========================= */
+
+.flow{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:8px;
+    align-items:stretch;
+}
+
+.flow-item{
+    position:relative;
+    padding:20px 13px;
+    text-align:center;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.035);
+}
+
+.flow-item strong{
+    display:block;
+    color:#fff;
+    font-size:13px;
+}
+
+.flow-item span{
+    display:block;
+    color:var(--gold2);
+    font-size:10px;
+    margin-top:7px;
+}
+
+.flow-arrow{
+    display:none;
+}
+
+/* =========================
+   POLICY
+========================= */
+
+.policy{
+    border-left:3px solid var(--gold);
+    background:rgba(201,164,76,.055);
+    padding:25px 28px;
+}
+
+.policy p{
+    margin:0;
+    color:#d7dee8;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+.form-sheet{
+    background:#fff;
+    color:#111827;
+    padding:35px;
+    margin-top:25px;
+    border-radius:5px;
+}
+
+.form-sheet h3{
+    color:#111827;
+    border-bottom:2px solid #111827;
+    padding-bottom:10px;
+}
+
+.form-meta{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid #bbb;
+}
+
+.form-meta div{
+    padding:10px;
+    border-right:1px solid #bbb;
+}
+
+.form-meta div:last-child{
+    border-right:0;
+}
+
+.form-meta span{
+    display:block;
+    font-size:9px;
+    color:#555;
+    text-transform:uppercase;
+}
+
+.form-meta b{
+    font-size:11px;
+}
+
+.print-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    min-width:0;
+}
+
+.print-table th,
+.print-table td{
+    color:#111;
+    border:1px solid #999;
+    font-size:11px;
+    padding:8px;
+}
+
+.print-table th{
+    background:#eee;
+    color:#111;
+}
+
+.signature{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    margin-top:35px;
+    text-align:center;
+}
+
+.signature-box{
+    min-height:100px;
+    border-top:1px solid #777;
+    padding-top:8px;
+    font-size:11px;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+    display:inline-block;
+    padding:4px 9px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.status.active{
+    background:rgba(95,207,145,.12);
+    color:var(--green);
+}
+
+.status.draft{
+    background:rgba(201,164,76,.12);
+    color:var(--gold2);
+}
+
+.status.control{
+    background:rgba(239,119,119,.12);
+    color:var(--red);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    padding:45px 0;
+    background:#040d17;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr .6fr .6fr;
+    gap:40px;
+}
+
+.footer h3{
+    font-size:15px;
+}
+
+.footer p,
+.footer li{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.footer ul{
+    list-style:none;
+    padding:0;
+}
+
+.footer li{
+    margin:7px 0;
+}
+
+.copyright{
+    margin-top:35px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    color:#647386;
+    font-size:11px;
+}
+
+/* =========================
+   PRINT
+========================= */
+
+.print-button{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:100;
+    border:1px solid var(--gold);
+    background:#0a1b2e;
+    color:var(--gold2);
+    padding:11px 15px;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+@media(max-width:900px){
+
+    .hero-grid,
+    .grid-2,
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .flow{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .nav{
+        display:none;
+    }
+}
+
+@media(max-width:600px){
+
+    .hero{
+        padding:55px 0 45px;
+    }
+
+    section{
+        padding:50px 0;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .flow{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .form-sheet{
+        padding:20px;
+    }
+
+    .form-meta{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .form-meta div:nth-child(2){
+        border-right:0;
+    }
+
+    .form-meta div{
+        border-bottom:1px solid #bbb;
+    }
+
+    .signature{
+        grid-template-columns:1fr;
+    }
+}
+
+@media print{
+
+    body{
+        background:#fff;
+        color:#111;
+    }
+
+    .header,
+    .print-button,
+    .nav{
+        display:none !important;
+    }
+
+    .hero,
+    section{
+        border:0;
+        padding:25px 0;
+    }
+
+    .hero p,
+    .section-heading p,
+    .card p,
+    .card li{
+        color:#222;
+    }
+
+    h1,
+    h2,
+    h3,
+    .card h3{
+        color:#111;
+    }
+
+    .card{
+        border:1px solid #bbb;
+        background:#fff;
+    }
+
+    .document-box{
+        border:1px solid #777;
+        background:#fff;
+    }
+
+    .document-box strong,
+    .meta b{
+        color:#111;
+    }
+
+    .policy{
+        border-left:3px solid #111;
+        background:#f5f5f5;
+    }
+
+    .form-sheet{
+        box-shadow:none;
+        border:1px solid #aaa;
+        page-break-inside:avoid;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<div class="container header-inner">
+
+    <a href="#top" class="brand">
+        <div class="brand-mark">E</div>
+        <div class="brand-text">
+            <strong>EEMS</strong>
+            <span>Electrical & Energy Management System</span>
+        </div>
+    </a>
+
+    <nav class="nav">
+        <a href="#identitas">Identitas</a>
+        <a href="#tujuan">Tujuan</a>
+        <a href="#struktur">Struktur</a>
+        <a href="#proses">Proses</a>
+        <a href="#dokumen">Dokumen</a>
+        <a href="#formulir">Formulir</a>
+        <a href="#kontrol">Kontrol</a>
+    </nav>
+
+</div>
+</header>
+
+
+<main id="top">
+
+<!-- =====================================================
+     COVER / HERO
+====================================================== -->
+
+<section class="hero">
+<div class="container">
+
+<div class="hero-grid">
+
+<div>
+
+<div class="eyebrow">
+Management System
+</div>
+
+<h1>
+Electrical & Energy<br>
+<span class="hero-title">Management System</span>
+</h1>
+
+<p>
+Dokumen induk yang menjadi dasar pengelolaan,
+pengendalian, pelaksanaan, pemantauan dan pelaporan
+seluruh kegiatan Electrical & Energy Management System
+di lingkungan perusahaan.
+</p>
+
+</div>
+
+
+<div class="document-box">
+
+<div class="label">
+Controlled Document
+</div>
+
+<strong>
+EEMS Management System
+</strong>
+
+<div class="meta">
+
+<div>
+<span>Document No.</span>
+<b>EEMS-MGT-MST-001</b>
+</div>
+
+<div>
+<span>Revision</span>
+<b>01</b>
+</div>
+
+<div>
+<span>Version</span>
+<b>1.0</b>
+</div>
+
+<div>
+<span>Status</span>
+<b>MASTER</b>
+</div>
+
+<div>
+<span>Effective</span>
+<b>2026</b>
+</div>
+
+<div>
+<span>Approval</span>
+<b>DIRECTOR</b>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- =====================================================
+     01 IDENTITAS
+====================================================== -->
+
+<section id="identitas">
+<div class="container">
+
+<div class="section-heading">
+
+<div class="section-number">01 — DOCUMENT IDENTITY</div>
+
+<h2>Identitas Dokumen</h2>
+
+<p>
+Informasi resmi yang mengendalikan identitas dan status
+dokumen induk EEMS.
+</p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>Item</th>
+<th>Keterangan</th>
+</tr>
+
+<tr>
+<td>Nama Sistem</td>
+<td>Electrical & Energy Management System (EEMS)</td>
+</tr>
+
+<tr>
+<td>Nama Dokumen</td>
+<td>EEMS Management System — Master Document</td>
+</tr>
+
+<tr>
+<td>Nomor Dokumen</td>
+<td>EEMS-MGT-MST-001</td>
+</tr>
+
+<tr>
+<td>Versi</td>
+<td>1.0</td>
+</tr>
+
+<tr>
+<td>Revisi</td>
+<td>01</td>
+</tr>
+
+<tr>
+<td>Pemilik Dokumen</td>
+<td>Direktur / Management</td>
+</tr>
+
+<tr>
+<td>Status</td>
+<td><span class="status active">MASTER DOCUMENT</span></td>
+</tr>
+
+<tr>
+<td>Klasifikasi</td>
+<td>Internal Management Document</td>
+</tr>
+
+<tr>
+<td>Berlaku</td>
+<td>Setelah disahkan oleh Direktur</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =====================================================
+     02 TUJUAN
+====================================================== -->
+
+<section id="tujuan">
+<div class="container">
+
+<div class="section-heading">
+
+<div class="section-number">02 — MANAGEMENT PURPOSE</div>
+
+<h2>Tujuan Sistem EEMS</h2>
+
+<p>
+EEMS dibangun sebagai sistem manajemen, bukan sekadar
+pekerjaan teknis kelistrikan.
+</p>
+
+</div>
+
+
+<div class="policy">
+
+<p>
+<strong>Prinsip Direktur:</strong>
+EEMS harus memastikan bahwa energi dan sistem kelistrikan
+perusahaan dikelola secara terencana, aman, efisien,
+terukur, terdokumentasi dan dapat dipertanggungjawabkan
+kepada manajemen.
+</p>
+
+</div>
+
+
+<br>
+
+
+<div class="grid">
+
+<div class="card">
+<div class="card-number">01</div>
+<h3>Reliability</h3>
+<p>
+Menjaga keandalan sistem kelistrikan dan kontinuitas
+operasional perusahaan.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">02</div>
+<h3>Safety</h3>
+<p>
+Mengendalikan risiko kelistrikan dan keselamatan kerja
+melalui prosedur serta pengawasan yang terstruktur.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">03</div>
+<h3>Efficiency</h3>
+<p>
+Mengendalikan penggunaan energi agar biaya operasional
+dapat diketahui dan dikendalikan.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">04</div>
+<h3>Control</h3>
+<p>
+Membangun sistem pengukuran, monitoring dan pengendalian
+yang dapat digunakan oleh manajemen.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">05</div>
+<h3>Documentation</h3>
+<p>
+Seluruh pekerjaan penting harus memiliki bukti,
+catatan dan dokumen yang dapat ditelusuri.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">06</div>
+<h3>Improvement</h3>
+<p>
+Hasil monitoring dan evaluasi digunakan untuk perbaikan
+berkelanjutan.
+</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =====================================================
+     03 STRUKTUR
+====================================================== -->
+
+<section id="struktur">
+<div class="container">
+
+<div class="section-heading">
+
+<div class="section-number">03 — MANAGEMENT STRUCTURE</div>
+
+<h2>Struktur Manajemen EEMS</h2>
+
+<p>
+Struktur berikut menempatkan Direktur sebagai pemegang
+kendali strategis, sementara fungsi teknis dan administratif
+berjalan secara terkoordinasi.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+<div class="card-number">LEVEL 01</div>
+<h3>Director</h3>
+
+<ul>
+<li>Menetapkan kebijakan.</li>
+<li>Menyetujui target.</li>
+<li>Menyetujui anggaran.</li>
+<li>Menetapkan prioritas risiko.</li>
+<li>Meninjau laporan manajemen.</li>
+<li>Mengambil keputusan strategis.</li>
+</ul>
+
+</div>
+
+
+<div class="card">
+<div class="card-number">LEVEL 02</div>
+<h3>EEMS Manager</h3>
+
+<ul>
+<li>Mengendalikan pelaksanaan sistem.</li>
+<li>Mengoordinasikan audit.</li>
+<li>Mengendalikan KPI.</li>
+<li>Mengoordinasikan maintenance.</li>
+<li>Menyusun laporan kepada Direktur.</li>
+</ul>
+
+</div>
+
+
+<div class="card">
+<div class="card-number">LEVEL 03</div>
+<h3>Technical Team</h3>
+
+<ul>
+<li>Survey teknis.</li>
+<li>Inspeksi.</li>
+<li>Pengukuran.</li>
+<li>Pemeliharaan.</li>
+<li>Troubleshooting.</li>
+<li>Dokumentasi teknis.</li>
+</ul>
+
+</div>
+
+
+<div class="card">
+<div class="card-number">LEVEL 04</div>
+<h3>HSE / K3</h3>
+
+<ul>
+<li>Identifikasi bahaya.</li>
+<li>Risk assessment.</li>
+<li>Permit / izin kerja sesuai kebutuhan.</li>
+<li>Inspeksi keselamatan.</li>
+<li>Incident reporting.</li>
+</ul>
+
+</div>
+
+
+<div class="card">
+<div class="card-number">LEVEL 05</div>
+<h3>Finance & Commercial</h3>
+
+<ul>
+<li>Budget.</li>
+<li>Purchase order.</li>
+<li>Vendor.</li>
+<li>Invoice.</li>
+<li>Cost control.</li>
+<li>Project profitability.</li>
+</ul>
+
+</div>
+
+
+<div class="card">
+<div class="card-number">LEVEL 06</div>
+<h3>Document Control</h3>
+
+<ul>
+<li>Nomor dokumen.</li>
+<li>Revision control.</li>
+<li>Distribusi.</li>
+<li>Arsip.</li>
+<li>Record retention.</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =====================================================
+     04 PROSES
+====================================================== -->
+
+<section id="proses">
+<div class="container">
+
+<div class="section-heading">
+
+<div class="section-number">04 — EEMS CORE PROCESS</div>
+
+<h2>Siklus Utama EEMS</h2>
+
+<p>
+Seluruh pekerjaan EEMS mengikuti siklus pengelolaan
+yang terstruktur.
+</p>
+
+</div>
+
+
+<div class="flow">
+
+<div class="flow-item">
+<strong>Audit</strong>
+<span>01 — ASSESS</span>
+</div>
+
+<div class="flow-item">
+<strong>Planning</strong>
+<span>02 — PLAN</span>
+</div>
+
+<div class="flow-item">
+<strong>Implementasi</strong>
+<span>03 — EXECUTE</span>
+</div>
+
+<div class="flow-item">
+<strong>Monitoring</strong>
+<span>04 — MONITOR</span>
+</div>
+
+<div class="flow-item">
+<strong>Maintenance</strong>
+<span>05 — MAINTAIN</span>
+</div>
+
+<div class="flow-item">
+<strong>Reporting</strong>
+<span>06 — REPORT</span>
+</div>
+
+</div>
+
+
+<br><br>
+
+
+<div class="card">
+
+<h3>Prinsip Pengendalian</h3>
+
+<p>
+Tidak ada pekerjaan penting yang hanya berhenti pada
+pelaksanaan teknis. Setiap kegiatan harus memiliki
+perencanaan, penanggung jawab, bukti pelaksanaan,
+hasil pengukuran dan tindak lanjut.
+</p>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =====================================================
+     05 MASTER DOCUMENT REGISTER
+====================================================== -->
+
+<section id="dokumen">
+<div class="container">
+
+<div class="section-heading">
+
+<div class="section-number">05 — MASTER DOCUMENT REGISTER</div>
+
+<h2>Daftar Induk Dokumen EEMS</h2>
+
+<p>
+Daftar ini menjadi peta dokumen yang akan kita bangun
+satu per satu di GitHub.
+</p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>No.</th>
+<th>Kode</th>
+<th>Dokumen</th>
+<th>Fungsi</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>01</td>
+<td>EEMS-COR</td>
+<td>Corporate Management</td>
+<td>Kebijakan, struktur, kewenangan dan administrasi.</td>
+<td><span class="status active">MASTER</span></td>
+</tr>
+
+<tr>
+<td>02</td>
+<td>EEMS-SAL</td>
+<td>Sales & Client</td>
+<td>Client intake, quotation, proposal dan kontrak.</td>
+<td><span class="status draft">NEXT</span></td>
+</tr>
+
+<tr>
+<td>03</td>
+<td>EEMS-AUD</td>
+<td>Electrical & Energy Audit</td>
+<td>Survey, inspection, measurement dan audit report.</td>
+<td><span class="status draft">NEXT</span></td>
+</tr>
+
+<tr>
+<td>04</td>
+<td>EEMS-EL</td>
+<td>Electrical Management</td>
+<td>Pengelolaan sistem kelistrikan.</td>
+<td><span class="status draft">NEXT</span></td>
+</tr>
+
+<tr>
+<td>05</td>
+<td>EEMS-EN</td>
+<td>Energy Management</td>
+<td>Energi, konsumsi, biaya dan efisiensi.</td>
+<td><span class="status draft">NEXT</span></td>
+</tr>
+
+<tr>
+<td>06</td>
+<td>EEMS-MNT</td>
+<td>Maintenance Management</td>
+<td>Preventive, corrective dan emergency maintenance.</td>
+<td><span class="status draft">NEXT</span></td>
+</tr>
+
+<tr>
+<td>07</td>
+<td>EEMS-HSE</td>
+<td>HSE / K3</td>
+<td>Keselamatan, risiko dan izin kerja.</td>
+<td><span class="status draft">NEXT</span></td>
+</tr>
+
+<tr>
+<td>08</td>
+<td>EEMS-PRJ</td>
+<td>Project Management</td>
+<td>Perencanaan dan pengendalian proyek.</td>
+<td><span class="status draft">NEXT</span></td>
+</tr>
+
+<tr>
+<td>09</td>
+<td>EEMS-FIN</td>
+<td>Finance & Commercial</td>
+<td>Budget, costing, invoice dan kontrol biaya.</td>
+<td><span class="status draft">NEXT</span></td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>EEMS-HR</td>
+<td>Human Resources</td>
+<td>Kompetensi, training dan evaluasi personel.</td>
+<td><span class="status draft">NEXT</span></td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>EEMS-DOC</td>
+<td>Document Control</td>
+<td>Kontrol dokumen dan rekaman.</td>
+<td><span class="status draft">NEXT</span></td>
+</tr>
+
+<tr>
+<td>12</td>
+<td>EEMS-RPT</td>
+<td>Management Reporting</td>
+<td>Laporan berkala kepada Direktur.</td>
+<td><span class="status draft">NEXT</span></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =====================================================
+     06 AUTHORITY
+====================================================== -->
+
+<section>
+<div class="container">
+
+<div class="section-heading">
+
+<div class="section-number">06 — AUTHORITY & RESPONSIBILITY</div>
+
+<h2>Matriks Kewenangan</h2>
+
+<p>
+Setiap keputusan penting harus mempunyai pemilik
+kewenangan yang jelas.
+</p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Aktivitas</th>
+<th>Direktur</th>
+<th>EEMS Manager</th>
+<th>Technical</th>
+<th>Admin / Finance</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Kebijakan EEMS</td>
+<td>APPROVE</td>
+<td>RECOMMEND</td>
+<td>INPUT</td>
+<td>RECORD</td>
+</tr>
+
+<tr>
+<td>Target EEMS</td>
+<td>APPROVE</td>
+<td>PROPOSE</td>
+<td>INPUT</td>
+<td>RECORD</td>
+</tr>
+
+<tr>
+<td>Audit</td>
+<td>REVIEW</td>
+<td>CONTROL</td>
+<td>EXECUTE</td>
+<td>SUPPORT</td>
+</tr>
+
+<tr>
+<td>Maintenance</td>
+<td>REVIEW</td>
+<td>CONTROL</td>
+<td>EXECUTE</td>
+<td>RECORD</td>
+</tr>
+
+<tr>
+<td>Budget</td>
+<td>APPROVE</td>
+<td>PROPOSE</td>
+<td>INPUT</td>
+<td>CONTROL</td>
+</tr>
+
+<tr>
+<td>Management Report</td>
+<td>RECEIVE</td>
+<td>PREPARE</td>
+<td>INPUT</td>
+<td>COMPILE</td>
+</tr>
+
+<tr>
+<td>Corrective Action</td>
+<td>ESCALATE</td>
+<td>CONTROL</td>
+<td>EXECUTE</td>
+<td>RECORD</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =====================================================
+     07 KPI
+====================================================== -->
+
+<section>
+<div class="container">
+
+<div class="section-heading">
+
+<div class="section-number">07 — MANAGEMENT KPI</div>
+
+<h2>Indikator Kinerja EEMS</h2>
+
+<p>
+Direktur tidak harus masuk ke detail teknis setiap hari.
+Direktur membutuhkan indikator yang dapat menunjukkan
+kondisi sistem.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+<div class="card-number">KPI 01</div>
+<h3>Electrical Reliability</h3>
+<p>
+Gangguan listrik, downtime dan kontinuitas operasional.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">KPI 02</div>
+<h3>Energy Consumption</h3>
+<p>
+Konsumsi energi berdasarkan periode dan aktivitas.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">KPI 03</div>
+<h3>Energy Cost</h3>
+<p>
+Biaya energi dan kecenderungan kenaikan atau penurunan.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">KPI 04</div>
+<h3>Maintenance</h3>
+<p>
+Persentase preventive maintenance dan pekerjaan tertunda.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">KPI 05</div>
+<h3>Safety</h3>
+<p>
+Insiden, temuan risiko dan penyelesaian corrective action.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">KPI 06</div>
+<h3>Improvement</h3>
+<p>
+Jumlah dan nilai program peningkatan efisiensi.
+</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =====================================================
+     08 FORMULIR
+====================================================== -->
+
+<section id="formulir">
+<div class="container">
+
+<div class="section-heading">
+
+<div class="section-number">08 — MANAGEMENT FORMS</div>
+
+<h2>Formulir Inti</h2>
+
+<p>
+Berikut contoh formulir yang menjadi bagian dari sistem.
+Formulir berikut nantinya dapat dipisahkan menjadi
+dokumen individual.
+</p>
+
+</div>
+
+
+<!-- FORM 01 -->
+
+<div class="form-sheet">
+
+<h3>FORM EEMS-MGT-F01 — Management Review</h3>
+
+<div class="form-meta">
+
+<div>
+<span>Document</span>
+<b>EEMS-MGT-F01</b>
+</div>
+
+<div>
+<span>Revision</span>
+<b>01</b>
+</div>
+
+<div>
+<span>Period</span>
+<b>____________</b>
+</div>
+
+<div>
+<span>Prepared By</span>
+<b>____________</b>
+</div>
+
+</div>
+
+
+<table class="print-table">
+
+<thead>
+<tr>
+<th>No.</th>
+<th>Parameter</th>
+<th>Current Condition</th>
+<th>Issue / Risk</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>1</td>
+<td>Electrical Reliability</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Energy Consumption</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Energy Cost</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Maintenance</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>Safety / K3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>Improvement Program</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+</tbody>
+
+</table>
+
+
+<div class="signature">
+
+<div class="signature-box">
+Prepared By
+<br><br><br>
+(________________)
+</div>
+
+<div class="signature-box">
+Checked By
+<br><br><br>
+(________________)
+</div>
+
+<div class="signature-box">
+Approved By — Director
+<br><br><br>
+(________________)
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FORM 02 -->
+
+<div class="form-sheet">
+
+<h3>FORM EEMS-MGT-F02 — Management Action Register</h3>
+
+<div class="form-meta">
+
+<div>
+<span>Document</span>
+<b>EEMS-MGT-F02</b>
+</div>
+
+<div>
+<span>Revision</span>
+<b>01</b>
+</div>
+
+<div>
+<span>Period</span>
+<b>____________</b>
+</div>
+
+<div>
+<span>Owner</span>
+<b>____________</b>
+</div>
+
+</div>
+
+
+<table class="print-table">
+
+<thead>
+
+<tr>
+<th>No.</th>
+<th>Finding / Issue</th>
+<th>Risk</th>
+<th>Corrective Action</th>
+<th>PIC</th>
+<th>Due Date</th>
+<th>Status</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<!-- FORM 03 -->
+
+<div class="form-sheet">
+
+<h3>FORM EEMS-MGT-F03 — Director Decision Record</h3>
+
+<div class="form-meta">
+
+<div>
+<span>Document</span>
+<b>EEMS-MGT-F03</b>
+</div>
+
+<div>
+<span>Date</span>
+<b>____________</b>
+</div>
+
+<div>
+<span>Meeting</span>
+<b>____________</b>
+</div>
+
+<div>
+<span>Reference</span>
+<b>____________</b>
+</div>
+
+</div>
+
+
+<table class="print-table">
+
+<tr>
+<th style="width:25%">Agenda / Issue</th>
+<td></td>
+</tr>
+
+<tr>
+<th>Management Analysis</th>
+<td style="height:80px"></td>
+</tr>
+
+<tr>
+<th>Decision Director</th>
+<td style="height:80px"></td>
+</tr>
+
+<tr>
+<th>Responsible Person</th>
+<td></td>
+</tr>
+
+<tr>
+<th>Target Date</th>
+<td></td>
+</tr>
+
+<tr>
+<th>Follow-up</th>
+<td style="height:60px"></td>
+</tr>
+
+</table>
+
+
+<div class="signature">
+
+<div class="signature-box">
+Prepared By
+<br><br><br>
+(________________)
+</div>
+
+<div class="signature-box">
+EEMS Manager
+<br><br><br>
+(________________)
+</div>
+
+<div class="signature-box">
+Director
+<br><br><br>
+(________________)
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =====================================================
+     09 DOCUMENT CONTROL
+====================================================== -->
+
+<section id="kontrol">
+<div class="container">
+
+<div class="section-heading">
+
+<div class="section-number">09 — DOCUMENT CONTROL</div>
+
+<h2>Pengendalian Dokumen</h2>
+
+<p>
+Dokumen EEMS harus dapat diketahui versi, status,
+pemilik dan riwayat perubahannya.
+</p>
+
+</div>
+
+
+<div class="grid-2">
+
+<div class="card">
+
+<h3>Document Identification</h3>
+
+<ul>
+<li>Document Number</li>
+<li>Document Title</li>
+<li>Revision</li>
+<li>Effective Date</li>
+<li>Prepared By</li>
+<li>Checked By</li>
+<li>Approved By</li>
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h3>Revision Control</h3>
+
+<ul>
+<li>Setiap perubahan harus memiliki nomor revisi.</li>
+<li>Perubahan harus dicatat.</li>
+<li>Versi lama harus dikendalikan.</li>
+<li>Dokumen aktif harus mudah dikenali.</li>
+<li>Distribusi harus dikontrol.</li>
+</ul>
+
+</div>
+
+</div>
+
+
+<br>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Revision</th>
+<th>Date</th>
+<th>Description</th>
+<th>Prepared</th>
+<th>Approved</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>00</td>
+<td>____________</td>
+<td>Initial Issue</td>
+<td>____________</td>
+<td>____________</td>
+</tr>
+
+<tr>
+<td>01</td>
+<td>____________</td>
+<td>First Revision</td>
+<td>____________</td>
+<td>____________</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =====================================================
+     10 RECORD
+====================================================== -->
+
+<section>
+<div class="container">
+
+<div class="section-heading">
+
+<div class="section-number">10 — RECORD MANAGEMENT</div>
+
+<h2>Pengelolaan Rekaman</h2>
+
+<p>
+Rekaman menjadi bukti bahwa sistem benar-benar berjalan.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+<h3>Technical Record</h3>
+<ul>
+<li>Inspection</li>
+<li>Measurement</li>
+<li>Testing</li>
+<li>Maintenance</li>
+<li>Equipment history</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Management Record</h3>
+<ul>
+<li>Meeting</li>
+<li>Decision</li>
+<li>KPI</li>
+<li>Management review</li>
+<li>Corrective action</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Commercial Record</h3>
+<ul>
+<li>Quotation</li>
+<li>Purchase order</li>
+<li>Invoice</li>
+<li>Budget</li>
+<li>Cost report</li>
+</ul>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =====================================================
+     11 MANAGEMENT REPORT
+====================================================== -->
+
+<section>
+<div class="container">
+
+<div class="section-heading">
+
+<div class="section-number">11 — DIRECTOR REPORTING</div>
+
+<h2>Laporan kepada Direktur</h2>
+
+<p>
+Laporan EEMS harus menjawab pertanyaan manajemen,
+bukan sekadar menampilkan data teknis.
+</p>
+
+</div>
+
+
+<div class="policy">
+
+<p>
+<strong>Direktur harus dapat mengetahui:</strong>
+Apa yang terjadi? Mengapa terjadi? Berapa dampaknya?
+Apa risikonya? Apa yang sudah dilakukan? Apa keputusan
+yang diperlukan dari manajemen?
+</p>
+
+</div>
+
+
+<br>
+
+
+<div class="grid">
+
+<div class="card">
+<div class="card-number">01</div>
+<h3>Executive Summary</h3>
+<p>
+Ringkasan kondisi EEMS dalam satu halaman.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">02</div>
+<h3>Energy Performance</h3>
+<p>
+Konsumsi, biaya dan kecenderungan energi.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">03</div>
+<h3>Electrical Condition</h3>
+<p>
+Kondisi sistem, gangguan dan risiko.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">04</div>
+<h3>Maintenance</h3>
+<p>
+Pekerjaan selesai, pending dan kritis.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">05</div>
+<h3>Safety</h3>
+<p>
+Temuan K3 dan corrective action.
+</p>
+</div>
+
+<div class="card">
+<div class="card-number">06</div>
+<h3>Management Decision</h3>
+<p>
+Keputusan atau persetujuan yang diperlukan.
+</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =====================================================
+     12 DIRECTOR DECLARATION
+====================================================== -->
+
+<section>
+<div class="container">
+
+<div class="section-heading">
+
+<div class="section-number">12 — DIRECTOR DECLARATION</div>
+
+<h2>Pengesahan Dokumen Induk</h2>
+
+</div>
+
+
+<div class="policy">
+
+<p>
+Dengan disahkannya dokumen ini, Direktur menetapkan
+<strong>EEMS Management System — Master Document v1.0</strong>
+sebagai dokumen induk dalam pengembangan dan pelaksanaan
+sistem Electrical & Energy Management System perusahaan.
+</p>
+
+<br>
+
+<p>
+Seluruh dokumen turunan, prosedur, formulir, checklist,
+laporan, instruksi kerja dan rekaman EEMS harus mengacu
+pada struktur dan prinsip pengendalian yang ditetapkan
+dalam dokumen induk ini.
+</p>
+
+</div>
+
+
+<div class="form-sheet">
+
+<h3>Pengesahan</h3>
+
+<table class="print-table">
+
+<tr>
+<th>Nama Perusahaan</th>
+<td></td>
+</tr>
+
+<tr>
+<th>Nama Direktur</th>
+<td></td>
+</tr>
+
+<tr>
+<th>Jabatan</th>
+<td>Direktur</td>
+</tr>
+
+<tr>
+<th>Tanggal Pengesahan</th>
+<td></td>
+</tr>
+
+<tr>
+<th>Nomor Dokumen</th>
+<td>EEMS-MGT-MST-001</td>
+</tr>
+
+</table>
+
+
+<div class="signature">
+
+<div class="signature-box">
+Tempat / Tanggal
+<br><br><br>
+________________________
+</div>
+
+<div class="signature-box">
+Direktur
+<br><br><br>
+________________________
+</div>
+
+<div class="signature-box">
+Cap Perusahaan
+<br><br><br>
+________________________
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer">
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+
+<h3>EEMS</h3>
+
+<p>
+Electrical & Energy Management System
+untuk pengelolaan kelistrikan dan energi
+yang terukur, aman, efisien dan terkendali.
+</p>
+
+</div>
+
+
+<div>
+
+<h3>Document</h3>
+
+<ul>
+<li>Master Document</li>
+<li>Management System</li>
+<li>Document Control</li>
+<li>Management Reporting</li>
+</ul>
+
+</div>
+
+
+<div>
+
+<h3>Control</h3>
+
+<ul>
+<li>EEMS-MGT-MST-001</li>
+<li>Version 1.0</li>
+<li>Revision 01</li>
+<li>Controlled Document</li>
+</ul>
+
+</div>
+
+</div>
+
+
+<div class="copyright">
+
+© 2026 EEMS — Electrical & Energy Management System.
+All internal management documents are subject to document control.
+
+</div>
+
+</div>
+
+</footer>
+
+
+<button
+class="print-button"
+onclick="window.print()"
+title="Cetak / Simpan sebagai PDF">
+PRINT / PDF
+</button>
+
+
+</body>
+</html>
