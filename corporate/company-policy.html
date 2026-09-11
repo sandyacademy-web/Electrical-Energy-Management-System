@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EEMS Corporate Policy</title>
+
+<style>
+:root{
+    --navy:#071525;
+    --navy2:#0d2138;
+    --gold:#c9a227;
+    --gold2:#e3c45b;
+    --white:#f5f5f2;
+    --muted:#b8c0ca;
+    --line:#30445b;
+    --paper:#ffffff;
+    --ink:#18212b;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--navy);
+    color:var(--white);
+    line-height:1.65;
+}
+
+.container{
+    width:min(1100px,94%);
+    margin:auto;
+}
+
+header{
+    padding:45px 0 35px;
+    background:
+        linear-gradient(135deg,#06111f,#102943);
+    border-bottom:1px solid var(--gold);
+}
+
+.brand{
+    letter-spacing:3px;
+    font-size:13px;
+    color:var(--gold2);
+    font-weight:bold;
+}
+
+h1{
+    margin:10px 0 5px;
+    font-size:34px;
+    letter-spacing:.5px;
+}
+
+.subtitle{
+    color:var(--muted);
+    font-size:16px;
+}
+
+.document-control{
+    margin-top:28px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+}
+
+.document-control div{
+    padding:14px;
+    background:var(--navy2);
+}
+
+.document-control strong{
+    display:block;
+    color:var(--gold2);
+    font-size:12px;
+    margin-bottom:4px;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+}
+
+.document-control span{
+    font-size:14px;
+}
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(7,21,37,.96);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(8px);
+}
+
+.nav-inner{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:10px 0;
+}
+
+nav a{
+    color:var(--muted);
+    text-decoration:none;
+    white-space:nowrap;
+    padding:7px 11px;
+    border:1px solid transparent;
+    border-radius:4px;
+    font-size:13px;
+}
+
+nav a:hover{
+    color:var(--gold2);
+    border-color:var(--gold);
+}
+
+main{
+    padding:45px 0 70px;
+}
+
+section{
+    margin-bottom:45px;
+}
+
+.section-number{
+    color:var(--gold2);
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+h2{
+    margin:5px 0 18px;
+    font-size:25px;
+    color:#fff;
+}
+
+h3{
+    color:var(--gold2);
+    margin-top:28px;
+}
+
+p{
+    margin:10px 0;
+}
+
+.card{
+    background:var(--navy2);
+    border:1px solid var(--line);
+    border-left:3px solid var(--gold);
+    padding:22px;
+    margin:18px 0;
+    border-radius:4px;
+}
+
+.policy-box{
+    background:#101f31;
+    border:1px solid var(--gold);
+    padding:28px;
+    margin:22px 0;
+    font-size:17px;
+}
+
+.policy-box .lead{
+    color:var(--gold2);
+    font-size:12px;
+    letter-spacing:2px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+ul,ol{
+    padding-left:25px;
+}
+
+li{
+    margin:7px 0;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+    font-size:14px;
+}
+
+th{
+    background:#122941;
+    color:var(--gold2);
+    text-align:left;
+    padding:12px;
+    border:1px solid var(--line);
+}
+
+td{
+    padding:11px;
+    border:1px solid var(--line);
+    vertical-align:top;
+}
+
+.kpi{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.kpi-card{
+    border:1px solid var(--line);
+    background:var(--navy2);
+    padding:20px;
+}
+
+.kpi-card strong{
+    display:block;
+    color:var(--gold2);
+    margin-bottom:8px;
+}
+
+.form{
+    background:var(--paper);
+    color:var(--ink);
+    padding:30px;
+    margin:25px 0;
+    border-radius:4px;
+}
+
+.form h3{
+    color:#8b6d12;
+    margin-top:0;
+}
+
+.form table{
+    color:var(--ink);
+}
+
+.form th{
+    background:#eee7cf;
+    color:#4e3e0d;
+    border-color:#bdb7a5;
+}
+
+.form td{
+    border-color:#bdb7a5;
+    min-height:35px;
+}
+
+.signature{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    margin-top:55px;
+}
+
+.sign-box{
+    text-align:center;
+    min-height:150px;
+}
+
+.line{
+    border-bottom:1px solid #777;
+    margin:65px auto 8px;
+    width:80%;
+}
+
+.print-button{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:30;
+    background:var(--gold);
+    color:#081421;
+    border:0;
+    padding:13px 18px;
+    font-weight:bold;
+    border-radius:5px;
+    cursor:pointer;
+    box-shadow:0 5px 20px rgba(0,0,0,.35);
+}
+
+.print-button:hover{
+    background:var(--gold2);
+}
+
+footer{
+    border-top:1px solid var(--gold);
+    padding:30px 0;
+    background:#050f1b;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.footer-grid{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.gold{
+    color:var(--gold2);
+}
+
+.note{
+    font-size:13px;
+    color:var(--muted);
+    font-style:italic;
+}
+
+@media(max-width:800px){
+    .document-control{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .kpi{
+        grid-template-columns:1fr;
+    }
+
+    .signature{
+        grid-template-columns:1fr;
+        gap:10px;
+    }
+
+    h1{
+        font-size:27px;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+        white-space:normal;
+    }
+}
+
+@media print{
+    body{
+        background:white;
+        color:#111;
+    }
+
+    header,
+    nav,
+    footer{
+        background:white;
+        color:#111;
+        border-color:#777;
+    }
+
+    .brand,
+    .section-number,
+    h3,
+    .gold{
+        color:#333;
+    }
+
+    h1,h2{
+        color:#111;
+    }
+
+    .subtitle,
+    .note{
+        color:#555;
+    }
+
+    .document-control,
+    .document-control div,
+    .card,
+    .kpi-card,
+    .policy-box{
+        background:white;
+        color:#111;
+        border-color:#999;
+    }
+
+    .document-control strong,
+    .kpi-card strong,
+    .policy-box .lead{
+        color:#333;
+    }
+
+    .print-button{
+        display:none;
+    }
+
+    .form{
+        border:1px solid #999;
+        box-shadow:none;
+        page-break-inside:avoid;
+    }
+
+    section{
+        page-break-inside:avoid;
+    }
+
+    a{
+        color:#111;
+        text-decoration:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container">
+
+    <div class="brand">EEMS MANAGEMENT SYSTEM</div>
+
+    <h1>Corporate Policy</h1>
+
+    <div class="subtitle">
+        Kebijakan Manajemen Electrical &amp; Energy Management System
+    </div>
+
+    <div class="document-control">
+
+        <div>
+            <strong>Document No.</strong>
+            <span>EEMS-COR-POL-001</span>
+        </div>
+
+        <div>
+            <strong>Revision</strong>
+            <span>01</span>
+        </div>
+
+        <div>
+            <strong>Version</strong>
+            <span>1.0</span>
+        </div>
+
+        <div>
+            <strong>Status</strong>
+            <span>MASTER / CONTROLLED</span>
+        </div>
+
+        <div>
+            <strong>Owner</strong>
+            <span>Director / Management</span>
+        </div>
+
+        <div>
+            <strong>Effective Date</strong>
+            <span>____ / ____ / ______</span>
+        </div>
+
+        <div>
+            <strong>Review Period</strong>
+            <span>Minimum 1 Tahun</span>
+        </div>
+
+        <div>
+            <strong>Classification</strong>
+            <span>Corporate Document</span>
+        </div>
+
+    </div>
+
+</div>
+</header>
+
+
+<nav>
+<div class="container nav-inner">
+
+    <a href="#purpose">Tujuan</a>
+    <a href="#policy">Kebijakan</a>
+    <a href="#commitment">Komitmen</a>
+    <a href="#scope">Ruang Lingkup</a>
+    <a href="#authority">Kewenangan</a>
+    <a href="#targets">Sasaran</a>
+    <a href="#kpi">KPI</a>
+    <a href="#implementation">Implementasi</a>
+    <a href="#review">Review</a>
+    <a href="#approval">Pengesahan</a>
+
+</div>
+</nav>
+
+
+<main>
+<div class="container">
+
+
+<!-- 01 -->
+<section id="purpose">
+
+    <div class="section-number">01 — PURPOSE</div>
+
+    <h2>Tujuan Kebijakan</h2>
+
+    <p>
+        Corporate Policy ini merupakan pernyataan resmi Direktur/Manajemen
+        mengenai arah, komitmen, tanggung jawab, dan prinsip pengelolaan
+        kelistrikan serta energi dalam perusahaan.
+    </p>
+
+    <p>
+        Kebijakan ini menjadi dasar bagi seluruh proses EEMS mulai dari
+        <strong>Audit → Implementasi → Monitoring → Maintenance → Laporan Manajemen</strong>.
+    </p>
+
+    <div class="card">
+        <strong class="gold">Prinsip utama:</strong>
+        keputusan teknis tidak berdiri sendiri, tetapi harus dapat
+        diterjemahkan menjadi keputusan manajemen yang terukur,
+        terdokumentasi, dan dapat dipertanggungjawabkan.
+    </div>
+
+</section>
+
+
+<!-- 02 -->
+<section id="policy">
+
+    <div class="section-number">02 — CORPORATE POLICY</div>
+
+    <h2>Pernyataan Kebijakan EEMS</h2>
+
+    <div class="policy-box">
+
+        <div class="lead">PERNYATAAN DIREKTUR / MANAJEMEN</div>
+
+        <p>
+            Perusahaan berkomitmen untuk mengelola penggunaan energi dan
+            sistem kelistrikan secara aman, efisien, andal, terukur,
+            ekonomis, dan berkelanjutan sesuai dengan kebutuhan operasional
+            perusahaan serta ketentuan yang berlaku.
+        </p>
+
+        <p>
+            Manajemen akan memastikan bahwa keputusan mengenai kelistrikan,
+            energi, pemeliharaan, investasi, dan perbaikan dilakukan
+            berdasarkan data, risiko, kebutuhan operasional, serta
+            pertimbangan biaya dan manfaat.
+        </p>
+
+        <p>
+            Perusahaan akan melakukan pemantauan dan evaluasi secara berkala
+            untuk menemukan peluang penghematan energi, peningkatan
+            keandalan sistem, pengurangan risiko, serta peningkatan
+            kinerja operasional.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- 03 -->
+<section id="commitment">
+
+    <div class="section-number">03 — MANAGEMENT COMMITMENT</div>
+
+    <h2>Komitmen Manajemen</h2>
+
+    <p>Manajemen menetapkan komitmen sebagai berikut:</p>
+
+    <ol>
+        <li>Menempatkan keselamatan dan keandalan sistem sebagai prioritas.</li>
+
+        <li>Mendorong penggunaan energi secara efisien dan bertanggung jawab.</li>
+
+        <li>Menggunakan data sebagai dasar evaluasi dan pengambilan keputusan.</li>
+
+        <li>Melakukan identifikasi terhadap pemborosan energi dan risiko kelistrikan.</li>
+
+        <li>Menetapkan prioritas perbaikan berdasarkan risiko, dampak, dan biaya.</li>
+
+        <li>Memastikan kegiatan maintenance direncanakan dan terdokumentasi.</li>
+
+        <li>Mendorong kompetensi personel yang terlibat dalam pekerjaan EEMS.</li>
+
+        <li>Menjaga dokumentasi dan rekaman pekerjaan secara tertib.</li>
+
+        <li>Melakukan review terhadap pencapaian target secara berkala.</li>
+
+        <li>Mendorong perbaikan berkelanjutan terhadap sistem manajemen.</li>
+    </ol>
+
+</section>
+
+
+<!-- 04 -->
+<section id="scope">
+
+    <div class="section-number">04 — SCOPE</div>
+
+    <h2>Ruang Lingkup</h2>
+
+    <p>
+        Kebijakan ini berlaku terhadap kegiatan perusahaan yang berkaitan
+        dengan pengelolaan sistem kelistrikan dan energi, termasuk namun
+        tidak terbatas pada:
+    </p>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Area</th>
+                <th>Ruang Lingkup</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>1</td>
+                <td>Electrical</td>
+                <td>
+                    Distribusi listrik, panel, beban, proteksi,
+                    pengukuran, keandalan, dan kondisi instalasi.
+                </td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Energy</td>
+                <td>
+                    Konsumsi energi, pola penggunaan, efisiensi,
+                    peluang penghematan, dan evaluasi biaya energi.
+                </td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>Maintenance</td>
+                <td>
+                    Preventive, corrective, inspection, troubleshooting,
+                    dan maintenance record.
+                </td>
+            </tr>
+
+            <tr>
+                <td>4</td>
+                <td>HSE / K3</td>
+                <td>
+                    Pengendalian risiko pekerjaan dan keselamatan
+                    yang berkaitan dengan aktivitas kelistrikan.
+                </td>
+            </tr>
+
+            <tr>
+                <td>5</td>
+                <td>Project</td>
+                <td>
+                    Perubahan, upgrade, instalasi, improvement,
+                    dan pekerjaan terkait sistem energi.
+                </td>
+            </tr>
+
+            <tr>
+                <td>6</td>
+                <td>Management</td>
+                <td>
+                    KPI, biaya, laporan, keputusan, tindakan korektif,
+                    dan evaluasi kinerja.
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</section>
+
+
+<!-- 05 -->
+<section id="authority">
+
+    <div class="section-number">05 — AUTHORITY &amp; RESPONSIBILITY</div>
+
+    <h2>Kewenangan dan Tanggung Jawab</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Jabatan</th>
+                <th>Tanggung Jawab Utama</th>
+                <th>Kewenangan</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td><strong>Director / Management</strong></td>
+                <td>
+                    Menetapkan arah, kebijakan, target, prioritas,
+                    dan evaluasi kinerja.
+                </td>
+                <td>
+                    Persetujuan kebijakan, anggaran, prioritas,
+                    dan keputusan strategis.
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>EEMS Manager / Coordinator</strong></td>
+                <td>
+                    Mengkoordinasikan pelaksanaan sistem EEMS,
+                    monitoring, evaluasi, dan laporan.
+                </td>
+                <td>
+                    Mengkoordinasikan personel dan meminta data
+                    yang diperlukan.
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>Electrical / Energy Engineer</strong></td>
+                <td>
+                    Melaksanakan analisis teknis, audit,
+                    pengukuran, dan rekomendasi.
+                </td>
+                <td>
+                    Memberikan rekomendasi teknis berdasarkan
+                    hasil pemeriksaan dan data.
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>Technician</strong></td>
+                <td>
+                    Melaksanakan pekerjaan teknis sesuai
+                    instruksi dan kompetensi.
+                </td>
+                <td>
+                    Melaksanakan pekerjaan yang telah
+                    diotorisasi.
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>Administration / Document Control</strong></td>
+                <td>
+                    Mengelola dokumen, formulir, rekaman,
+                    dan distribusi informasi.
+                </td>
+                <td>
+                    Mengendalikan status dan versi dokumen.
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <p class="note">
+        Catatan: pekerjaan yang membutuhkan kompetensi, kewenangan,
+        sertifikasi, atau perizinan tertentu harus dilaksanakan oleh
+        personel yang memenuhi persyaratan yang berlaku.
+    </p>
+
+</section>
+
+
+<!-- 06 -->
+<section id="targets">
+
+    <div class="section-number">06 — MANAGEMENT TARGETS</div>
+
+    <h2>Sasaran Manajemen</h2>
+
+    <p>
+        Sasaran EEMS ditetapkan secara realistis berdasarkan kondisi
+        perusahaan, kebutuhan operasional, data energi, risiko,
+        serta kemampuan sumber daya yang tersedia.
+    </p>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Sasaran</th>
+                <th>Indikator</th>
+                <th>Target</th>
+                <th>Periode</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>1</td>
+                <td>Keandalan listrik</td>
+                <td>Gangguan / downtime</td>
+                <td>__________</td>
+                <td>__________</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Efisiensi energi</td>
+                <td>kWh / unit produksi / area</td>
+                <td>__________</td>
+                <td>__________</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>Maintenance</td>
+                <td>Completion preventive maintenance</td>
+                <td>__________</td>
+                <td>__________</td>
+            </tr>
+
+            <tr>
+                <td>4</td>
+                <td>Keselamatan</td>
+                <td>Incident / unsafe condition</td>
+                <td>__________</td>
+                <td>__________</td>
+            </tr>
+
+            <tr>
+                <td>5</td>
+                <td>Cost control</td>
+                <td>Biaya energi / maintenance</td>
+                <td>__________</td>
+                <td>__________</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</section>
+
+
+<!-- 07 -->
+<section id="kpi">
+
+    <div class="section-number">07 — MANAGEMENT KPI</div>
+
+    <h2>Indikator Kinerja Utama</h2>
+
+    <div class="kpi">
+
+        <div class="kpi-card">
+            <strong>ENERGY PERFORMANCE</strong>
+            Konsumsi energi, tren penggunaan,
+            intensitas energi, dan peluang penghematan.
+        </div>
+
+        <div class="kpi-card">
+            <strong>ELECTRICAL RELIABILITY</strong>
+            Gangguan, downtime, kondisi sistem,
+            dan keandalan distribusi.
+        </div>
+
+        <div class="kpi-card">
+            <strong>MAINTENANCE PERFORMANCE</strong>
+            Preventive maintenance,
+            corrective maintenance, dan backlog.
+        </div>
+
+        <div class="kpi-card">
+            <strong>SAFETY</strong>
+            Insiden, temuan, unsafe condition,
+            dan tindakan pengendalian.
+        </div>
+
+        <div class="kpi-card">
+            <strong>COST</strong>
+            Biaya energi, maintenance,
+            spare part, dan improvement.
+        </div>
+
+        <div class="kpi-card">
+            <strong>IMPROVEMENT</strong>
+            Jumlah improvement,
+            saving, dan penyelesaian action plan.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- 08 -->
+<section id="implementation">
+
+    <div class="section-number">08 — IMPLEMENTATION</div>
+
+    <h2>Pelaksanaan Kebijakan</h2>
+
+    <p>
+        Kebijakan ini diterapkan melalui siklus manajemen:
+    </p>
+
+    <div class="card">
+
+        <strong class="gold">01 — IDENTIFY</strong>
+        <p>
+            Mengidentifikasi kondisi, kebutuhan, risiko,
+            konsumsi energi, dan masalah kelistrikan.
+        </p>
+
+        <strong class="gold">02 — AUDIT</strong>
+        <p>
+            Mengumpulkan data dan melakukan pemeriksaan
+            terhadap kondisi aktual.
+        </p>
+
+        <strong class="gold">03 — ANALYZE</strong>
+        <p>
+            Menganalisis penyebab, risiko, biaya,
+            dan peluang improvement.
+        </p>
+
+        <strong class="gold">04 — IMPLEMENT</strong>
+        <p>
+            Menjalankan tindakan perbaikan atau improvement
+            berdasarkan prioritas yang disetujui.
+        </p>
+
+        <strong class="gold">05 — MONITOR</strong>
+        <p>
+            Mengukur hasil dan membandingkannya
+            dengan target yang telah ditetapkan.
+        </p>
+
+        <strong class="gold">06 — REPORT</strong>
+        <p>
+            Menyampaikan hasil kepada manajemen
+            sebagai dasar pengambilan keputusan.
+        </p>
+
+        <strong class="gold">07 — IMPROVE</strong>
+        <p>
+            Menetapkan tindakan lanjutan untuk
+            meningkatkan kinerja sistem.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- 09 -->
+<section id="review">
+
+    <div class="section-number">09 — POLICY REVIEW</div>
+
+    <h2>Review dan Pengendalian Kebijakan</h2>
+
+    <p>
+        Kebijakan ini ditinjau secara berkala sekurang-kurangnya
+        satu kali dalam satu tahun atau apabila terjadi perubahan
+        signifikan yang mempengaruhi sistem kelistrikan, energi,
+        organisasi, kegiatan usaha, risiko, atau kebutuhan perusahaan.
+    </p>
+
+    <h3>Review dapat dilakukan apabila:</h3>
+
+    <ul>
+        <li>terjadi perubahan struktur organisasi;</li>
+        <li>terjadi perubahan proses bisnis;</li>
+        <li>terjadi perubahan sistem kelistrikan;</li>
+        <li>terjadi perubahan penggunaan energi yang signifikan;</li>
+        <li>terjadi insiden atau gangguan besar;</li>
+        <li>terdapat hasil audit yang memerlukan perubahan kebijakan;</li>
+        <li>terdapat kebutuhan improvement dari manajemen.</li>
+    </ul>
+
+</section>
+
+
+<!-- 10 FORM -->
+<section>
+
+    <div class="section-number">10 — POLICY CONTROL FORM</div>
+
+    <h2>Formulir Pengendalian Kebijakan</h2>
+
+    <div class="form">
+
+        <h3>EEMS-COR-F01 — Corporate Policy Review Record</h3>
+
+        <table>
+
+            <tr>
+                <th width="30%">Tanggal Review</th>
+                <td>________________________________________</td>
+            </tr>
+
+            <tr>
+                <th>Review Oleh</th>
+                <td>________________________________________</td>
+            </tr>
+
+            <tr>
+                <th>Alasan Review</th>
+                <td style="height:70px;"></td>
+            </tr>
+
+            <tr>
+                <th>Perubahan Diperlukan?</th>
+                <td>
+                    ☐ Tidak &nbsp;&nbsp;&nbsp;
+                    ☐ Ya
+                </td>
+            </tr>
+
+            <tr>
+                <th>Deskripsi Perubahan</th>
+                <td style="height:90px;"></td>
+            </tr>
+
+            <tr>
+                <th>Keputusan Manajemen</th>
+                <td style="height:90px;"></td>
+            </tr>
+
+            <tr>
+                <th>Revision Baru</th>
+                <td>________________________________________</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- 11 FORM -->
+<section>
+
+    <div class="section-number">11 — POLICY IMPLEMENTATION RECORD</div>
+
+    <h2>Catatan Implementasi Kebijakan</h2>
+
+    <div class="form">
+
+        <h3>EEMS-COR-F02 — Policy Implementation Record</h3>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Kegiatan</th>
+                    <th>Penanggung Jawab</th>
+                    <th>Target</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>1</td>
+                    <td style="height:55px;"></td>
+                    <td></td>
+                    <td></td>
+                    <td>☐ Open ☐ Done</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td style="height:55px;"></td>
+                    <td></td>
+                    <td></td>
+                    <td>☐ Open ☐ Done</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td style="height:55px;"></td>
+                    <td></td>
+                    <td></td>
+                    <td>☐ Open ☐ Done</td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td style="height:55px;"></td>
+                    <td></td>
+                    <td></td>
+                    <td>☐ Open ☐ Done</td>
+                </tr>
+
+                <tr>
+                    <td>5</td>
+                    <td style="height:55px;"></td>
+                    <td></td>
+                    <td></td>
+                    <td>☐ Open ☐ Done</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- 12 -->
+<section id="approval">
+
+    <div class="section-number">12 — APPROVAL</div>
+
+    <h2>Pengesahan Direktur / Manajemen</h2>
+
+    <div class="policy-box">
+
+        <p>
+            Dengan ditetapkannya dokumen ini, manajemen menyatakan bahwa
+            Corporate Policy EEMS merupakan dasar pengelolaan kelistrikan
+            dan energi perusahaan serta menjadi acuan bagi dokumen,
+            prosedur, formulir, dan kegiatan EEMS lainnya.
+        </p>
+
+        <p>
+            Dokumen ini berlaku sejak tanggal ditetapkan dan dikendalikan
+            sesuai sistem pengendalian dokumen perusahaan.
+        </p>
+
+    </div>
+
+
+    <div class="signature">
+
+        <div class="sign-box">
+
+            <strong>DISEMAK OLEH</strong>
+
+            <div class="line"></div>
+
+            <strong>Nama: __________________________</strong>
+
+            <br>
+
+            Jabatan: ______________________________
+
+            <br><br>
+
+            Tanggal: ____ / ____ / ______
+
+        </div>
+
+
+        <div class="sign-box">
+
+            <strong>DISETUJUI OLEH</strong>
+
+            <div class="line"></div>
+
+            <strong>Nama Direktur: ___________________</strong>
+
+            <br>
+
+            Jabatan: DIRECTOR / MANAGEMENT
+
+            <br><br>
+
+            Tanggal: ____ / ____ / ______
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DOCUMENT CONTROL -->
+<section>
+
+    <div class="section-number">DOCUMENT CONTROL</div>
+
+    <h2>Riwayat Revisi</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Revision</th>
+                <th>Tanggal</th>
+                <th>Deskripsi Perubahan</th>
+                <th>Dibuat Oleh</th>
+                <th>Disetujui</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>00</td>
+                <td>____/____/______</td>
+                <td>Initial Issue</td>
+                <td>________________</td>
+                <td>________________</td>
+            </tr>
+
+            <tr>
+                <td>01</td>
+                <td>____/____/______</td>
+                <td>Corporate Policy v1.0</td>
+                <td>________________</td>
+                <td>________________</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <p class="note">
+        Dokumen ini merupakan dokumen terkendali. Salinan cetak dianggap
+        sebagai uncontrolled copy kecuali dinyatakan lain oleh Document Control.
+    </p>
+
+</section>
+
+
+</div>
+</main>
+
+
+<footer>
+<div class="container footer-grid">
+
+    <div>
+        <strong class="gold">EEMS MANAGEMENT SYSTEM</strong><br>
+        Electrical &amp; Energy Management System
+    </div>
+
+    <div>
+        EEMS-COR-POL-001 · Rev.01 · v1.0
+    </div>
+
+</div>
+</footer>
+
+
+<button class="print-button" onclick="window.print()">
+    PRINT / PDF
+</button>
+
+
+</body>
+</html>
