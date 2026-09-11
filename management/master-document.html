@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EEMS Management System — Master Document v1.0</title>
+
+<meta name="description"
+content="EEMS Management System — Master Document v1.0 | Electrical & Energy Management System">
+
+<style>
+
+/* =========================================================
+   EEMS MANAGEMENT SYSTEM
+   MASTER DOCUMENT v1.0
+   Document No : EEMS-MGT-001
+   Revision    : 00
+   ========================================================= */
+
+:root{
+    --navy:#0b1730;
+    --navy-2:#13284d;
+    --gold:#c9a45c;
+    --gold-light:#ead7a5;
+    --white:#ffffff;
+    --paper:#ffffff;
+    --bg:#e8ecf2;
+    --text:#1e2735;
+    --muted:#687385;
+    --line:#cfd6e0;
+    --soft:#f5f7fa;
+    --danger:#8b3030;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* =========================================================
+   TOP TOOLBAR
+   ========================================================= */
+
+.toolbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    padding:10px 15px;
+
+    background:rgba(11,23,48,.97);
+    border-bottom:1px solid rgba(234,215,165,.35);
+    box-shadow:0 3px 15px rgba(0,0,0,.15);
+}
+
+.toolbar button{
+    border:1px solid var(--gold);
+    border-radius:5px;
+    padding:9px 16px;
+
+    background:var(--gold);
+    color:var(--navy);
+
+    font-weight:700;
+    cursor:pointer;
+}
+
+.toolbar button.secondary{
+    background:transparent;
+    color:white;
+}
+
+/* =========================================================
+   DOCUMENT
+   ========================================================= */
+
+.document{
+    width:min(1100px,100%);
+    margin:25px auto;
+
+    background:var(--paper);
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.13);
+}
+
+/* =========================================================
+   COVER
+   ========================================================= */
+
+.cover{
+    min-height:780px;
+
+    padding:75px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    color:white;
+
+    background:
+        radial-gradient(
+            circle at 85% 18%,
+            rgba(201,164,92,.25),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #081326,
+            #142b51
+        );
+
+    page-break-after:always;
+}
+
+.cover-brand{
+    color:var(--gold-light);
+
+    font-size:14px;
+    font-weight:bold;
+
+    letter-spacing:5px;
+}
+
+.cover h1{
+    margin:25px 0 15px;
+
+    max-width:850px;
+
+    font-size:clamp(38px,6vw,66px);
+    line-height:1.05;
+
+    letter-spacing:-1px;
+}
+
+.cover h2{
+    margin:0;
+
+    color:var(--gold-light);
+
+    font-size:23px;
+    font-weight:400;
+}
+
+.cover-rule{
+    width:140px;
+    height:4px;
+
+    margin:32px 0;
+
+    background:var(--gold);
+}
+
+.cover-description{
+    max-width:720px;
+
+    font-size:16px;
+    color:#dce4f0;
+}
+
+.cover-meta{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+
+    padding-top:25px;
+
+    border-top:
+        1px solid
+        rgba(234,215,165,.45);
+
+    font-size:13px;
+}
+
+.cover-meta strong{
+    display:block;
+
+    margin-bottom:4px;
+
+    color:var(--gold-light);
+}
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.page{
+    padding:55px 70px;
+
+    page-break-after:always;
+}
+
+.page:last-child{
+    page-break-after:auto;
+}
+
+h1{
+    margin:0 0 30px;
+
+    padding-bottom:12px;
+
+    color:var(--navy);
+
+    font-size:30px;
+
+    border-bottom:
+        3px solid
+        var(--gold);
+}
+
+h2{
+    margin-top:34px;
+    margin-bottom:15px;
+
+    padding-bottom:8px;
+
+    color:var(--navy);
+
+    font-size:22px;
+
+    border-bottom:
+        1px solid
+        var(--line);
+}
+
+h3{
+    margin-top:25px;
+
+    color:var(--navy);
+
+    font-size:17px;
+}
+
+h4{
+    color:var(--navy);
+}
+
+p{
+    margin:8px 0;
+}
+
+ul,
+ol{
+    padding-left:25px;
+}
+
+li{
+    margin:5px 0;
+}
+
+/* =========================================================
+   BOX
+   ========================================================= */
+
+.box{
+    margin:18px 0;
+
+    padding:16px 18px;
+
+    background:#fffdf8;
+
+    border:
+        1px solid
+        var(--line);
+
+    border-left:
+        5px solid
+        var(--gold);
+}
+
+.info-box{
+    margin:18px 0;
+
+    padding:16px;
+
+    background:var(--soft);
+
+    border:
+        1px solid
+        var(--line);
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+table{
+    width:100%;
+
+    margin:15px 0 25px;
+
+    border-collapse:collapse;
+
+    font-size:13px;
+}
+
+th,
+td{
+    padding:8px 9px;
+
+    vertical-align:top;
+
+    border:
+        1px solid
+        #bcc5d2;
+}
+
+th{
+    color:white;
+
+    background:var(--navy);
+
+    font-weight:700;
+}
+
+tr:nth-child(even) td{
+    background:#fafbfd;
+}
+
+/* =========================================================
+   DOCUMENT IDENTITY
+   ========================================================= */
+
+.document-control{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    margin-bottom:25px;
+
+    border:
+        1px solid
+        #333;
+}
+
+.document-control div{
+    min-height:50px;
+
+    padding:8px;
+
+    border-right:
+        1px solid
+        #333;
+
+    border-bottom:
+        1px solid
+        #333;
+
+    font-size:12px;
+}
+
+.document-control div:nth-child(4n){
+    border-right:0;
+}
+
+.document-control strong{
+    display:block;
+
+    margin-bottom:2px;
+
+    font-size:10px;
+
+    text-transform:uppercase;
+}
+
+/* =========================================================
+   SIGNATURE
+   ========================================================= */
+
+.signature{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+
+    margin-top:30px;
+}
+
+.signature-box{
+    position:relative;
+
+    min-height:135px;
+
+    padding:12px;
+
+    border:
+        1px solid
+        var(--line);
+}
+
+.signature-line{
+    position:absolute;
+
+    left:12px;
+    right:12px;
+    bottom:31px;
+
+    border-bottom:
+        1px solid
+        #333;
+}
+
+.signature-name{
+    position:absolute;
+
+    left:12px;
+    bottom:10px;
+
+    font-size:11px;
+
+    color:var(--muted);
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.form-header{
+    margin-bottom:18px;
+
+    text-align:center;
+
+    border:
+        2px solid
+        var(--navy);
+
+    padding:13px;
+}
+
+.form-header h2{
+    margin:0;
+    padding:0;
+
+    border:0;
+
+    font-size:20px;
+}
+
+.form-header p{
+    margin:4px 0 0;
+
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+.form-table td:first-child{
+    width:32%;
+    font-weight:600;
+}
+
+.blank{
+    height:45px;
+}
+
+.blank-tall{
+    height:90px;
+}
+
+.check-table td:first-child{
+    width:35px;
+
+    text-align:center;
+}
+
+.check-table td:nth-child(2){
+    width:55%;
+}
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status{
+    display:inline-block;
+
+    padding:2px 7px;
+
+    border:1px solid var(--line);
+    border-radius:3px;
+
+    font-size:11px;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer{
+    display:flex;
+    justify-content:space-between;
+
+    margin-top:35px;
+    padding-top:10px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    border-top:
+        1px solid
+        var(--line);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:700px){
+
+    body{
+        font-size:13px;
+    }
+
+    .document{
+        margin:0;
+    }
+
+    .cover{
+        min-height:700px;
+
+        padding:45px 25px;
+    }
+
+    .cover h1{
+        font-size:40px;
+    }
+
+    .cover-meta{
+        grid-template-columns:1fr;
+    }
+
+    .page{
+        padding:35px 22px;
+    }
+
+    .document-control{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .document-control div:nth-child(4n){
+        border-right:1px solid #333;
+    }
+
+    .document-control div:nth-child(2n){
+        border-right:0;
+    }
+
+    .signature{
+        grid-template-columns:1fr;
+    }
+
+    table{
+        font-size:11px;
+    }
+
+    th,
+    td{
+        padding:6px;
+    }
+
+    .toolbar{
+        position:relative;
+    }
+
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print{
+
+    @page{
+        size:A4;
+        margin:12mm;
+    }
+
+    body{
+        background:white;
+    }
+
+    .toolbar{
+        display:none;
+    }
+
+    .document{
+        width:100%;
+
+        margin:0;
+
+        box-shadow:none;
+    }
+
+    .cover{
+        min-height:267mm;
+    }
+
+    .page{
+        min-height:270mm;
+
+        padding:0;
+    }
+
+    table{
+        page-break-inside:auto;
+    }
+
+    tr{
+        page-break-inside:avoid;
+        page-break-after:auto;
+    }
+
+    h1,
+    h2,
+    h3{
+        page-break-after:avoid;
+    }
+
+}
+
+/* =========================================================
+   END CSS
+   ========================================================= */
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     TOOLBAR
+     ======================================================== -->
+
+<div class="toolbar">
+
+    <button onclick="window.print()">
+        Cetak / Simpan PDF
+    </button>
+
+    <button
+        class="secondary"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        Kembali ke Atas
+    </button>
+
+</div>
+
+
+<main class="document">
+
+
+<!-- =======================================================
+     COVER
+     ======================================================== -->
+
+<section class="cover">
+
+    <div>
+
+        <div class="cover-brand">
+            EEMS MANAGEMENT SYSTEM
+        </div>
+
+        <h1>
+            Master Document<br>
+            v1.0
+        </h1>
+
+        <h2>
+            Electrical &amp; Energy Management System
+        </h2>
+
+        <div class="cover-rule"></div>
+
+        <div class="cover-description">
+            Dokumen Induk Sistem Manajemen Kelistrikan dan Energi
+            untuk pengendalian perusahaan, proyek, klien,
+            teknis, keselamatan, biaya, dan pelaporan manajemen.
+        </div>
+
+    </div>
+
+
+    <div class="cover-meta">
+
+        <div>
+            <strong>Nama Perusahaan</strong>
+            CV/PT __________________________
+        </div>
+
+        <div>
+            <strong>Nomor Dokumen</strong>
+            EEMS-MGT-001
+        </div>
+
+        <div>
+            <strong>Revisi</strong>
+            00
+        </div>
+
+        <div>
+            <strong>Tanggal Berlaku</strong>
+            ____ / ____ / ______
+        </div>
+
+        <div>
+            <strong>Pemilik Dokumen</strong>
+            Direktur
+        </div>
+
+        <div>
+            <strong>Status</strong>
+            Dokumen Terkendali
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     HALAMAN PENGESAHAN
+     ======================================================== -->
+
+<section class="page">
+
+    <h1>
+        Halaman Pengesahan
+    </h1>
+
+
+    <div class="document-control">
+
+        <div>
+            <strong>Nama Dokumen</strong>
+            EEMS Management System
+        </div>
+
+        <div>
+            <strong>Nomor Dokumen</strong>
+            EEMS-MGT-001
+        </div>
+
+        <div>
+            <strong>Revisi</strong>
+            00
+        </div>
+
+        <div>
+            <strong>Status</strong>
+            Terkendali
+        </div>
+
+        <div>
+            <strong>Tanggal Berlaku</strong>
+            ____/____/______
+        </div>
+
+        <div>
+            <strong>Pemilik</strong>
+            Direktur
+        </div>
+
+        <div>
+            <strong>Periode Review</strong>
+            __________
+        </div>
+
+        <div>
+            <strong>Klasifikasi</strong>
+            Internal
+        </div>
+
+    </div>
+
+
+    <p>
+        Dokumen ini merupakan dokumen induk yang menjadi dasar
+        penyelenggaraan, pengendalian, pelaksanaan, evaluasi,
+        dan pengembangan sistem EEMS di lingkungan perusahaan.
+    </p>
+
+
+    <div class="signature">
+
+        <div class="signature-box">
+
+            <strong>Disusun oleh</strong>
+
+            <div class="signature-line"></div>
+
+            <div class="signature-name">
+                Nama / Jabatan / Tanggal
+            </div>
+
+        </div>
+
+
+        <div class="signature-box">
+
+            <strong>Diperiksa oleh</strong>
+
+            <div class="signature-line"></div>
+
+            <div class="signature-name">
+                Nama / Jabatan / Tanggal
+            </div>
+
+        </div>
+
+
+        <div class="signature-box">
+
+            <strong>Disetujui oleh</strong>
+
+            <div class="signature-line"></div>
+
+            <div class="signature-name">
+                Direktur / Tanggal
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <h2>
+        Riwayat Revisi
+    </h2>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Revisi</th>
+                <th>Tanggal</th>
+                <th>Uraian Perubahan</th>
+                <th>Disetujui</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>00</td>
+                <td>____/____/______</td>
+                <td>
+                    Penerbitan awal dokumen induk EEMS.
+                </td>
+                <td>Direktur</td>
+            </tr>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <div class="footer">
+
+        <span>
+            EEMS-MGT-001 | Rev. 00
+        </span>
+
+        <span>
+            Dokumen Terkendali
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     DAFTAR ISI
+     ======================================================== -->
+
+<section class="page">
+
+    <h1>
+        Daftar Isi
+    </h1>
+
+
+    <table>
+
+        <thead>
+            <tr>
+                <th style="width:80px">
+                    No.
+                </th>
+
+                <th>
+                    Bagian
+                </th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+            <tr>
+                <td>1</td>
+                <td>Tujuan dan Fungsi Dokumen</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Ruang Lingkup EEMS</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>Prinsip Dasar Manajemen</td>
+            </tr>
+
+            <tr>
+                <td>4</td>
+                <td>Struktur Organisasi dan Wewenang</td>
+            </tr>
+
+            <tr>
+                <td>5</td>
+                <td>Kebijakan EEMS</td>
+            </tr>
+
+            <tr>
+                <td>6</td>
+                <td>Sasaran, KPI, dan Program Kerja</td>
+            </tr>
+
+            <tr>
+                <td>7</td>
+                <td>Siklus Operasional EEMS</td>
+            </tr>
+
+            <tr>
+                <td>8</td>
+                <td>Pengendalian Risiko</td>
+            </tr>
+
+            <tr>
+                <td>9</td>
+                <td>Pengendalian Dokumen dan Rekaman</td>
+            </tr>
+
+            <tr>
+                <td>10</td>
+                <td>Komunikasi dan Pelaporan</td>
+            </tr>
+
+            <tr>
+                <td>11</td>
+                <td>Evaluasi dan Tinjauan Manajemen</td>
+            </tr>
+
+            <tr>
+                <td>12</td>
+                <td>Formulir Inti</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <div class="box">
+
+        <strong>Catatan penting:</strong>
+
+        <p>
+            Dokumen ini merupakan sistem manajemen internal
+            perusahaan. Dokumen ini tidak dengan sendirinya
+            menyatakan bahwa perusahaan telah tersertifikasi
+            ISO, memiliki sertifikasi kompetensi tertentu,
+            atau memenuhi seluruh persyaratan perizinan
+            ketenagalistrikan.
+        </p>
+
+        <p>
+            Persyaratan hukum, perizinan, kompetensi,
+            inspeksi, keselamatan, dan standar teknis harus
+            disesuaikan dengan jenis pekerjaan serta ketentuan
+            yang berlaku.
+        </p>
+
+    </div>
+
+
+    <div class="footer">
+
+        <span>EEMS-MGT-001 | Rev. 00</span>
+
+        <span>Dokumen Terkendali</span>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     1. TUJUAN
+     ======================================================== -->
+
+<section class="page">
+
+    <h1>
+        1. Tujuan dan Fungsi Dokumen
+    </h1>
+
+
+    <h2>
+        1.1 Tujuan
+    </h2>
+
+    <p>
+        Master Document ini menetapkan kerangka kerja
+        perusahaan dalam mengelola sistem kelistrikan dan
+        energi secara terstruktur, terdokumentasi,
+        terukur, aman, dan dapat dipertanggungjawabkan.
+    </p>
+
+
+    <h2>
+        1.2 Fungsi
+    </h2>
+
+    <ul>
+
+        <li>
+            Menjadi pedoman utama seluruh kegiatan EEMS.
+        </li>
+
+        <li>
+            Menetapkan tanggung jawab dan batas kewenangan.
+        </li>
+
+        <li>
+            Menjamin setiap pekerjaan mempunyai
+            perencanaan, pelaksanaan, pemeriksaan,
+            dan laporan.
+        </li>
+
+        <li>
+            Mengendalikan risiko teknis, operasional,
+            keselamatan, biaya, dan reputasi.
+        </li>
+
+        <li>
+            Menyediakan dasar pengambilan keputusan
+            Direktur.
+        </li>
+
+        <li>
+            Membentuk rekaman yang dapat ditelusuri.
+        </li>
+
+    </ul>
+
+
+    <h2>
+        1.3 Sasaran Sistem
+    </h2>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Area</th>
+                <th>Sasaran</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>Keandalan</td>
+                <td>
+                    Mengurangi gangguan dan meningkatkan
+                    kesiapan sistem kelistrikan.
+                </td>
+            </tr>
+
+            <tr>
+                <td>Efisiensi</td>
+                <td>
+                    Mengendalikan konsumsi energi dan
+                    biaya operasional.
+                </td>
+            </tr>
+
+            <tr>
+                <td>Keselamatan</td>
+                <td>
+                    Mencegah kecelakaan, kerusakan,
+                    dan pekerjaan tanpa pengendalian.
+                </td>
+            </tr>
+
+            <tr>
+                <td>Administrasi</td>
+                <td>
+                    Memastikan aktivitas mempunyai bukti
+                    dan persetujuan.
+                </td>
+            </tr>
+
+            <tr>
+                <td>Komersial</td>
+                <td>
+                    Menjaga pekerjaan layak secara biaya
+                    dan memberikan hasil usaha yang sehat.
+                </td>
+            </tr>
+
+            <tr>
+                <td>Kepuasan Klien</td>
+                <td>
+                    Memberikan hasil sesuai ruang lingkup,
+                    mutu, waktu, dan kesepakatan.
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <div class="footer">
+        <span>EEMS-MGT-001 | Rev. 00</span>
+        <span>Dokumen Terkendali</span>
+    </div>
+
+</section>
+
+
+<!-- ==================================================
