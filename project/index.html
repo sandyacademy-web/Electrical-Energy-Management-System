@@ -4,793 +4,797 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Maintenance Management | EEMS</title>
+<title>Project Management | EEMS</title>
 
 <meta name="description"
-content="Maintenance Management — pengelolaan preventive maintenance, corrective maintenance, reliability, condition monitoring, spare parts dan asset performance dalam EEMS.">
+content="EEMS Project Management — pengelolaan proyek mulai dari inisiasi, scope, schedule, cost, procurement, execution, risk, quality, commissioning hingga handover.">
 
 <style>
-:root {
-    --bg: #070b12;
-    --bg-soft: #0c121c;
-    --panel: #101722;
-    --panel-2: #131c28;
-    --gold: #d4af37;
-    --gold-light: #f1d77a;
-    --text: #edf1f7;
-    --muted: #9aa6b5;
-    --line: rgba(212,175,55,.22);
-    --line-soft: rgba(255,255,255,.08);
-    --success: #77d69b;
-    --shadow: 0 20px 60px rgba(0,0,0,.35);
+:root{
+    --bg:#070b12;
+    --bg2:#0b111b;
+    --panel:#101722;
+    --panel2:#0d141f;
+    --line:rgba(212,175,55,.20);
+    --gold:#d4af37;
+    --gold2:#f0d477;
+    --text:#edf1f7;
+    --muted:#8f9baa;
+    --white:#ffffff;
+    --success:#8fcf9b;
+    --shadow:0 18px 50px rgba(0,0,0,.35);
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
+body{
+    font-family:Inter,Segoe UI,Arial,sans-serif;
     background:
-        radial-gradient(circle at 80% 0%, rgba(212,175,55,.07), transparent 28%),
-        radial-gradient(circle at 10% 20%, rgba(35,63,100,.13), transparent 30%),
+        radial-gradient(circle at 80% 0%,rgba(212,175,55,.08),transparent 30%),
+        radial-gradient(circle at 0% 30%,rgba(36,70,110,.10),transparent 35%),
         var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    min-height: 100vh;
+    color:var(--text);
+    line-height:1.6;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+a{
+    color:inherit;
+    text-decoration:none;
 }
 
-.container {
-    width: min(1180px, calc(100% - 40px));
-    margin: auto;
+.container{
+    width:min(1180px,92%);
+    margin:auto;
 }
 
-/* =========================================================
+/* =========================
    HEADER
-========================================================= */
+========================= */
 
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(18px);
-    background: rgba(7,11,18,.88);
-    border-bottom: 1px solid var(--line-soft);
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(7,11,18,.90);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
 }
 
-.header-inner {
-    min-height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25px;
+.header-inner{
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:13px;
 }
 
-.brand-mark {
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--gold);
-    display: grid;
-    place-items: center;
-    color: var(--gold-light);
-    font-weight: 800;
-    letter-spacing: .04em;
-    font-size: 12px;
-    background: rgba(212,175,55,.05);
+.brand-mark{
+    width:40px;
+    height:40px;
+    border:1px solid var(--gold);
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold2);
+    font-weight:800;
+    font-size:14px;
+    letter-spacing:1px;
+    box-shadow:0 0 20px rgba(212,175,55,.08);
 }
 
-.brand-text strong {
-    display: block;
-    font-size: 15px;
-    letter-spacing: .14em;
+.brand-text strong{
+    display:block;
+    font-size:15px;
+    letter-spacing:2px;
 }
 
-.brand-text span {
-    display: block;
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: .08em;
-    margin-top: 1px;
+.brand-text span{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    margin-top:1px;
 }
 
-.header-nav {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+nav{
+    display:flex;
+    align-items:center;
+    gap:7px;
 }
 
-.header-nav a {
-    color: var(--muted);
-    font-size: 13px;
-    padding: 8px 10px;
-    border-radius: 6px;
-    transition: .25s ease;
+nav a{
+    color:#b9c1cc;
+    font-size:13px;
+    padding:8px 11px;
+    border-radius:7px;
+    transition:.25s;
 }
 
-.header-nav a:hover {
-    color: var(--gold-light);
-    background: rgba(212,175,55,.06);
+nav a:hover{
+    color:var(--gold2);
+    background:rgba(212,175,55,.07);
 }
 
-.home-btn {
-    border: 1px solid var(--line);
-    color: var(--gold-light) !important;
+.home-btn{
+    border:1px solid var(--line);
+    color:var(--gold2)!important;
 }
 
-/* =========================================================
+/* =========================
    BREADCRUMB
-========================================================= */
+========================= */
 
-.breadcrumb {
-    padding: 22px 0 8px;
-    color: var(--muted);
-    font-size: 12px;
+.breadcrumb{
+    padding:24px 0 10px;
+    color:#707b89;
+    font-size:12px;
 }
 
-.breadcrumb span {
-    color: var(--gold);
-    margin: 0 7px;
+.breadcrumb span{
+    color:var(--gold);
 }
 
-/* =========================================================
+/* =========================
    HERO
-========================================================= */
+========================= */
 
-.hero {
-    padding: 70px 0 55px;
-    position: relative;
-    overflow: hidden;
+.hero{
+    padding:45px 0 55px;
+    position:relative;
 }
 
-.hero::after {
-    content: "";
-    position: absolute;
-    right: -120px;
-    top: 20px;
-    width: 340px;
-    height: 340px;
-    border: 1px solid rgba(212,175,55,.10);
-    border-radius: 50%;
-    box-shadow:
-        0 0 0 45px rgba(212,175,55,.025),
-        0 0 0 90px rgba(212,175,55,.015);
-    pointer-events: none;
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:45px;
+    align-items:center;
 }
 
-.eyebrow {
-    color: var(--gold);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
+.eyebrow{
+    color:var(--gold);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    margin-bottom:17px;
 }
 
-.hero h1 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(42px, 7vw, 76px);
-    line-height: 1;
-    font-weight: 500;
-    letter-spacing: -.035em;
-    max-width: 850px;
+h1{
+    font-size:clamp(42px,6vw,70px);
+    line-height:1.02;
+    letter-spacing:-2.5px;
+    margin-bottom:23px;
 }
 
-.hero h1 span {
-    color: var(--gold-light);
+h1 span{
+    color:var(--gold);
 }
 
-.hero-description {
-    max-width: 780px;
-    color: var(--muted);
-    font-size: 16px;
-    margin-top: 24px;
+.hero-description{
+    max-width:700px;
+    color:var(--muted);
+    font-size:16px;
 }
 
-.hero-line {
-    width: 90px;
-    height: 1px;
-    background: var(--gold);
-    margin-top: 30px;
+.hero-card{
+    background:
+        linear-gradient(145deg,rgba(212,175,55,.09),rgba(255,255,255,.015)),
+        var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px;
+    box-shadow:var(--shadow);
 }
 
-/* =========================================================
-   STATUS BAR
-========================================================= */
-
-.status-bar {
-    border-top: 1px solid var(--line-soft);
-    border-bottom: 1px solid var(--line-soft);
-    background: rgba(255,255,255,.018);
+.hero-card-label{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:12px;
 }
 
-.status-inner {
-    min-height: 58px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+.hero-card h3{
+    font-size:22px;
+    margin-bottom:12px;
 }
 
-.status-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--muted);
-    font-size: 12px;
+.hero-card p{
+    color:var(--muted);
+    font-size:13px;
 }
 
-.status-dot {
-    width: 7px;
-    height: 7px;
-    background: var(--success);
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(119,214,155,.4);
+/* =========================
+   STATUS
+========================= */
+
+.status{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:rgba(255,255,255,.015);
 }
 
-.status-label {
-    color: var(--text);
-    font-weight: 600;
+.status-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
 }
 
-/* =========================================================
+.status-item{
+    padding:20px;
+    border-right:1px solid var(--line);
+}
+
+.status-item:last-child{
+    border-right:none;
+}
+
+.status-label{
+    color:#687483;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    font-size:10px;
+    margin-bottom:5px;
+}
+
+.status-value{
+    color:#d8dde5;
+    font-size:13px;
+}
+
+/* =========================
    SECTION
-========================================================= */
+========================= */
 
-section {
-    padding: 85px 0;
+section{
+    padding:82px 0;
 }
 
-.section-head {
-    margin-bottom: 35px;
+.section-head{
+    max-width:760px;
+    margin-bottom:38px;
 }
 
-.section-kicker {
-    color: var(--gold);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
+.section-number{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:2px;
+    font-weight:700;
+    margin-bottom:9px;
 }
 
-.section-title {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 500;
-    line-height: 1.15;
+.section-title{
+    font-size:34px;
+    line-height:1.15;
+    margin-bottom:12px;
 }
 
-.section-description {
-    color: var(--muted);
-    max-width: 720px;
-    margin-top: 12px;
-    font-size: 14px;
+.section-description{
+    color:var(--muted);
+    font-size:14px;
 }
 
-/* =========================================================
-   MAINTENANCE FUNCTIONS
-========================================================= */
+/* =========================
+   FUNCTION CARDS
+========================= */
 
-.function-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+.function-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
 }
 
-.function-card {
-    position: relative;
-    background:
-        linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012)),
-        var(--panel);
-    border: 1px solid var(--line-soft);
-    padding: 27px;
-    min-height: 210px;
-    transition: .3s ease;
+.function-card{
+    background:linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.008));
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:14px;
+    padding:25px;
+    min-height:185px;
+    transition:.25s;
 }
 
-.function-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--line);
-    box-shadow: var(--shadow);
+.function-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--line);
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
 }
 
-.function-number {
-    color: var(--gold);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .12em;
-    margin-bottom: 18px;
+.function-number{
+    color:var(--gold);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    margin-bottom:16px;
 }
 
-.function-icon {
-    width: 46px;
-    height: 42px;
-    border: 1px solid var(--line);
-    display: grid;
-    place-items: center;
-    color: var(--gold-light);
-    font-size: 10px;
-    font-weight: 800;
-    margin-bottom: 17px;
-    letter-spacing: .03em;
+.function-card h3{
+    font-size:17px;
+    margin-bottom:9px;
 }
 
-.function-card h3 {
-    font-size: 16px;
-    font-weight: 650;
-    margin-bottom: 8px;
+.function-card p{
+    color:var(--muted);
+    font-size:13px;
 }
 
-.function-card p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.65;
+/* =========================
+   CONTROL MATRIX
+========================= */
+
+.matrix{
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--panel);
 }
 
-/* =========================================================
-   MAINTENANCE MATRIX
-========================================================= */
-
-.matrix-wrap {
-    border: 1px solid var(--line-soft);
-    background: var(--panel);
-    overflow: hidden;
+.matrix-row{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    border-bottom:1px solid rgba(255,255,255,.06);
 }
 
-.matrix {
-    width: 100%;
-    border-collapse: collapse;
+.matrix-row:last-child{
+    border-bottom:none;
 }
 
-.matrix th,
-.matrix td {
-    padding: 17px 20px;
-    text-align: left;
-    border-bottom: 1px solid var(--line-soft);
-    font-size: 13px;
+.matrix-row div{
+    padding:16px 20px;
+    font-size:13px;
 }
 
-.matrix th {
-    background: rgba(212,175,55,.045);
-    color: var(--gold-light);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .1em;
+.matrix-row div:first-child{
+    color:var(--gold2);
+    font-weight:600;
+    background:rgba(212,175,55,.025);
 }
 
-.matrix td {
-    color: var(--muted);
+.matrix-row div:last-child{
+    color:var(--muted);
 }
 
-.matrix td:first-child {
-    color: var(--text);
-    font-weight: 600;
+/* =========================
+   CONTROL VIEW
+========================= */
+
+.control-view{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--panel);
 }
 
-.matrix tr:last-child td {
-    border-bottom: none;
+.control-step{
+    min-height:145px;
+    padding:23px 15px;
+    text-align:center;
+    border-right:1px solid rgba(255,255,255,.06);
+    position:relative;
 }
 
-/* =========================================================
-   ASSET FLOW
-========================================================= */
-
-.asset-flow {
-    margin-top: 25px;
-    border: 1px solid var(--line-soft);
-    background:
-        linear-gradient(145deg, rgba(212,175,55,.045), rgba(255,255,255,.015)),
-        var(--panel);
-    padding: 30px;
+.control-step:last-child{
+    border-right:none;
 }
 
-.view-title {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 25px;
-    margin-bottom: 22px;
+.control-step strong{
+    display:block;
+    color:var(--gold);
+    font-size:13px;
+    letter-spacing:1px;
+    margin-bottom:8px;
 }
 
-.flow-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
+.control-step span{
+    color:var(--muted);
+    font-size:11px;
 }
 
-.flow-step {
-    border: 1px solid var(--line-soft);
-    min-height: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 10px;
-    background: rgba(255,255,255,.015);
+/* =========================
+   CYCLE
+========================= */
+
+.cycle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+    flex-wrap:wrap;
 }
 
-.flow-step strong {
-    color: var(--gold-light);
-    font-size: 11px;
-    letter-spacing: .05em;
+.cycle-item{
+    min-width:145px;
+    padding:24px 18px;
+    text-align:center;
+    border:1px solid var(--line);
+    background:var(--panel);
 }
 
-.flow-step span {
-    color: var(--muted);
-    font-size: 10px;
-    margin-top: 4px;
+.cycle-item strong{
+    display:block;
+    color:var(--gold2);
+    font-size:13px;
+    letter-spacing:1px;
 }
 
-/* =========================================================
-   MAINTENANCE CYCLE
-========================================================= */
-
-.cycle {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
+.cycle-item span{
+    color:#687483;
+    font-size:10px;
 }
 
-.cycle-step {
-    position: relative;
-    min-height: 165px;
-    border: 1px solid var(--line-soft);
-    background: var(--panel);
-    padding: 23px;
+.cycle-arrow{
+    color:var(--gold);
+    padding:0 8px;
+    font-size:18px;
 }
 
-.cycle-step:not(:last-child)::after {
-    content: "→";
-    position: absolute;
-    right: -18px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--gold);
-    font-size: 18px;
-    z-index: 2;
-}
-
-.cycle-number {
-    color: var(--gold);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .1em;
-}
-
-.cycle-step h3 {
-    margin-top: 20px;
-    font-size: 14px;
-    color: var(--text);
-}
-
-.cycle-step p {
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 7px;
-}
-
-/* =========================================================
+/* =========================
    RESPONSIBILITY
-========================================================= */
+========================= */
 
-.responsibility-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+.responsibility-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
 }
 
-.responsibility-card {
-    border-left: 2px solid var(--gold);
-    padding: 19px 20px;
-    background: rgba(255,255,255,.025);
+.role{
+    padding:23px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:14px;
+    background:var(--panel2);
 }
 
-.responsibility-card h3 {
-    font-size: 14px;
-    margin-bottom: 6px;
+.role h3{
+    font-size:15px;
+    margin-bottom:7px;
 }
 
-.responsibility-card p {
-    color: var(--muted);
-    font-size: 12px;
+.role p{
+    color:var(--muted);
+    font-size:12px;
 }
 
-/* =========================================================
+/* =========================
    KPI
-========================================================= */
+========================= */
 
-.kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+.kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
 }
 
-.kpi-card {
-    background: var(--panel);
-    border: 1px solid var(--line-soft);
-    padding: 25px;
-    min-height: 140px;
+.kpi{
+    padding:26px;
+    border:1px solid rgba(255,255,255,.07);
+    background:linear-gradient(145deg,var(--panel),var(--panel2));
+    border-radius:14px;
 }
 
-.kpi-label {
-    color: var(--muted);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .1em;
+.kpi-label{
+    color:#7e8997;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1.3px;
+    margin-bottom:10px;
 }
 
-.kpi-value {
-    font-family: Georgia, "Times New Roman", serif;
-    color: var(--gold-light);
-    font-size: 30px;
-    margin-top: 15px;
+.kpi-value{
+    color:var(--gold2);
+    font-size:28px;
+    font-weight:700;
 }
 
-.kpi-unit {
-    color: var(--muted);
-    font-size: 11px;
-    margin-top: 3px;
+.kpi-unit{
+    color:#697482;
+    font-size:11px;
 }
 
-/* =========================================================
+/* =========================
+   MANAGEMENT VIEW
+========================= */
+
+.management-view{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:10px;
+}
+
+.management-box{
+    text-align:center;
+    padding:20px 10px;
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:10px;
+}
+
+.management-box strong{
+    color:var(--gold2);
+    display:block;
+    font-size:12px;
+}
+
+.management-box span{
+    color:#66717e;
+    font-size:10px;
+}
+
+/* =========================
    PRINCIPLES
-========================================================= */
+========================= */
 
-.principles {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+.principles{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
 }
 
-.principle {
-    text-align: center;
-    padding: 30px 18px;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line-soft);
+.principle{
+    padding:25px;
+    border-top:2px solid var(--gold);
+    background:var(--panel);
+    border-radius:0 0 12px 12px;
 }
 
-.principle strong {
-    display: block;
-    color: var(--gold-light);
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 22px;
-    font-weight: 500;
+.principle strong{
+    display:block;
+    color:var(--gold2);
+    font-size:15px;
+    margin-bottom:7px;
 }
 
-.principle span {
-    display: block;
-    color: var(--muted);
-    font-size: 11px;
-    margin-top: 7px;
+.principle span{
+    color:var(--muted);
+    font-size:12px;
 }
 
-/* =========================================================
+/* =========================
    CTA
-========================================================= */
+========================= */
 
-.cta {
-    padding: 70px 0 90px;
-}
-
-.cta-box {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid var(--line);
+.cta{
+    margin:15px 0 75px;
+    padding:52px;
+    text-align:center;
+    border:1px solid var(--line);
+    border-radius:20px;
     background:
-        radial-gradient(circle at 90% 50%, rgba(212,175,55,.09), transparent 30%),
+        radial-gradient(circle at center,rgba(212,175,55,.10),transparent 65%),
         var(--panel);
-    padding: 55px;
-    text-align: center;
 }
 
-.cta-box h2 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(30px, 5vw, 48px);
-    font-weight: 500;
+.cta h2{
+    font-size:32px;
+    margin-bottom:10px;
 }
 
-.cta-box p {
-    color: var(--muted);
-    max-width: 650px;
-    margin: 14px auto 28px;
-    font-size: 14px;
+.cta p{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:25px;
 }
 
-.cta-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 22px;
-    border: 1px solid var(--gold);
-    color: var(--gold-light);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .08em;
-    transition: .25s ease;
+.cta-btn{
+    display:inline-block;
+    padding:12px 24px;
+    border:1px solid var(--gold);
+    border-radius:8px;
+    color:var(--gold2);
+    font-size:13px;
+    font-weight:600;
+    transition:.25s;
 }
 
-.cta-button:hover {
-    background: var(--gold);
-    color: #090c12;
+.cta-btn:hover{
+    background:var(--gold);
+    color:#080b10;
 }
 
-/* =========================================================
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
-footer {
-    border-top: 1px solid var(--line-soft);
-    padding: 28px 0;
-    background: #05080d;
+footer{
+    border-top:1px solid var(--line);
+    padding:30px 0;
+    background:#05080d;
 }
 
-.footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+.footer-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
 
-.footer-brand {
-    color: var(--gold-light);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .12em;
+.footer-brand{
+    color:var(--gold2);
+    font-size:12px;
+    letter-spacing:1.8px;
+    font-weight:700;
 }
 
-.footer-text {
-    color: var(--muted);
-    font-size: 11px;
-    text-align: right;
+.footer-info{
+    color:#596472;
+    font-size:11px;
 }
 
-/* =========================================================
+/* =========================
    RESPONSIVE
-========================================================= */
+========================= */
 
-@media (max-width: 950px) {
+@media(max-width:900px){
 
-    .function-grid {
-        grid-template-columns: repeat(2, 1fr);
+    nav a:not(.home-btn){
+        display:none;
     }
 
-    .flow-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .hero-grid{
+        grid-template-columns:1fr;
     }
 
-    .cycle {
-        grid-template-columns: repeat(2, 1fr);
+    .function-grid,
+    .responsibility-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .cycle-step:not(:last-child)::after {
-        display: none;
+    .control-view{
+        grid-template-columns:repeat(3,1fr);
     }
 
-    .responsibility-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .control-step:nth-child(3){
+        border-right:none;
     }
 
-    .kpi-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .control-step{
+        border-bottom:1px solid rgba(255,255,255,.06);
     }
 
-    .principles {
-        grid-template-columns: repeat(2, 1fr);
+    .kpi-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .management-view{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .principles{
+        grid-template-columns:repeat(2,1fr);
     }
 }
 
-@media (max-width: 680px) {
+@media(max-width:600px){
 
-    .container {
-        width: min(100% - 28px, 1180px);
+    .header-inner{
+        min-height:65px;
     }
 
-    .header-inner {
-        min-height: 64px;
+    .brand-mark{
+        width:36px;
+        height:36px;
     }
 
-    .header-nav a:not(.home-btn) {
-        display: none;
+    .brand-text strong{
+        font-size:13px;
     }
 
-    .hero {
-        padding: 55px 0 45px;
+    .brand-text span{
+        font-size:9px;
     }
 
-    .hero h1 {
-        font-size: 46px;
+    .hero{
+        padding:32px 0 40px;
     }
 
-    .hero-description {
-        font-size: 14px;
+    h1{
+        font-size:43px;
+        letter-spacing:-1.8px;
     }
 
-    section {
-        padding: 65px 0;
+    .hero-description{
+        font-size:14px;
+    }
+
+    .status-grid{
+        grid-template-columns:1fr;
+    }
+
+    .status-item{
+        border-right:none;
+        border-bottom:1px solid var(--line);
+    }
+
+    .status-item:last-child{
+        border-bottom:none;
+    }
+
+    section{
+        padding:60px 0;
+    }
+
+    .section-title{
+        font-size:28px;
     }
 
     .function-grid,
     .responsibility-grid,
-    .kpi-grid {
-        grid-template-columns: 1fr;
+    .kpi-grid{
+        grid-template-columns:1fr;
     }
 
-    .flow-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .matrix-row{
+        grid-template-columns:1fr;
     }
 
-    .cycle {
-        grid-template-columns: 1fr;
+    .matrix-row div:first-child{
+        padding-bottom:5px;
     }
 
-    .principles {
-        grid-template-columns: 1fr 1fr;
+    .matrix-row div:last-child{
+        padding-top:5px;
     }
 
-    .status-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        padding: 12px 0;
+    .control-view{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .matrix-wrap {
-        overflow-x: auto;
+    .control-step:nth-child(3){
+        border-right:1px solid rgba(255,255,255,.06);
     }
 
-    .matrix {
-        min-width: 700px;
+    .control-step:nth-child(even){
+        border-right:none;
     }
 
-    .cta-box {
-        padding: 42px 22px;
+    .cycle{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:8px;
     }
 
-    .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
+    .cycle-item{
+        width:100%;
     }
 
-    .footer-text {
-        text-align: left;
-    }
-}
-
-@media (max-width: 420px) {
-
-    .principles {
-        grid-template-columns: 1fr;
+    .cycle-arrow{
+        display:none;
     }
 
-    .flow-grid {
-        grid-template-columns: 1fr 1fr;
+    .management-view{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .brand-text strong {
-        font-size: 13px;
+    .principles{
+        grid-template-columns:1fr;
+    }
+
+    .cta{
+        padding:38px 22px;
+        margin-bottom:55px;
+    }
+
+    .cta h2{
+        font-size:27px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        align-items:flex-start;
     }
 }
 </style>
@@ -798,121 +802,129 @@ footer {
 
 <body>
 
-<!-- =====================================================
+<!-- =========================
      HEADER
-===================================================== -->
+========================= -->
 
 <header>
     <div class="container header-inner">
 
         <a href="../index.html" class="brand">
-
-            <div class="brand-mark">M</div>
+            <div class="brand-mark">E</div>
 
             <div class="brand-text">
                 <strong>EEMS</strong>
-                <span>MAINTENANCE MANAGEMENT</span>
+                <span>Project Management</span>
             </div>
-
         </a>
 
-        <nav class="header-nav">
-
-            <a href="#functions">
-                Functions
-            </a>
-
-            <a href="#control">
-                Control
-            </a>
-
-            <a href="#cycle">
-                Cycle
-            </a>
-
-            <a href="#kpi">
-                KPI
-            </a>
-
-            <a href="../index.html" class="home-btn">
-                ← EEMS Home
-            </a>
-
+        <nav>
+            <a href="#functions">Functions</a>
+            <a href="#control">Control</a>
+            <a href="#cycle">Cycle</a>
+            <a href="#kpi">KPI</a>
+            <a href="../index.html" class="home-btn">← EEMS Home</a>
         </nav>
 
     </div>
 </header>
 
 
-<!-- =====================================================
+<!-- =========================
      BREADCRUMB
-===================================================== -->
+========================= -->
 
 <div class="container breadcrumb">
-
-    EEMS
-    <span>›</span>
-    Maintenance Management
-
+    EEMS <span>›</span> Project Management
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      HERO
-===================================================== -->
-
-<main>
+========================= -->
 
 <section class="hero">
 
-    <div class="container">
+    <div class="container hero-grid">
 
-        <div class="eyebrow">
-            EEMS · Module 04
+        <div>
+
+            <div class="eyebrow">
+                EEMS · Module 06
+            </div>
+
+            <h1>
+                Project <span>Management</span>
+            </h1>
+
+            <p class="hero-description">
+                Sistem pengelolaan proyek untuk memastikan setiap pekerjaan
+                terencana, terukur, terkendali, aman, sesuai anggaran,
+                memenuhi kualitas, dan selesai dengan dokumentasi serta
+                handover yang lengkap.
+            </p>
+
         </div>
 
-        <h1>
-            Maintenance <span>Management</span>
-        </h1>
+        <div class="hero-card">
 
-        <p class="hero-description">
-            Sistem pengelolaan pemeliharaan aset dan equipment
-            untuk menjaga reliability, availability, safety,
-            performance, dan efisiensi operasi melalui
-            preventive, predictive, dan corrective maintenance.
-        </p>
+            <div class="hero-card-label">
+                Project Control
+            </div>
 
-        <div class="hero-line"></div>
+            <h3>
+                From Plan to Handover
+            </h3>
+
+            <p>
+                Mengintegrasikan scope, schedule, cost, procurement,
+                execution, risk, quality, commissioning dan closeout
+                dalam satu kerangka pengendalian proyek.
+            </p>
+
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      STATUS
-===================================================== -->
+========================= -->
 
-<div class="status-bar">
+<div class="status">
 
-    <div class="container status-inner">
+    <div class="container status-grid">
 
-        <div class="status-group">
+        <div class="status-item">
+            <div class="status-label">
+                Module
+            </div>
 
-            <span class="status-dot"></span>
-
-            <span class="status-label">
-                Maintenance Management Module
-            </span>
-
+            <div class="status-value">
+                Project Management
+            </div>
         </div>
 
-        <div class="status-group">
-            Reliability · Availability · Condition · Asset
+        <div class="status-item">
+            <div class="status-label">
+                Control Area
+            </div>
+
+            <div class="status-value">
+                Scope · Schedule · Cost · Quality · Risk
+            </div>
         </div>
 
-        <div class="status-group">
-            EEMS Version 1.0
+        <div class="status-item">
+            <div class="status-label">
+                System
+            </div>
+
+            <div class="status-value">
+                EEMS Version 1.0
+            </div>
         </div>
 
     </div>
@@ -920,9 +932,9 @@ footer {
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      FUNCTIONS
-===================================================== -->
+========================= -->
 
 <section id="functions">
 
@@ -930,19 +942,17 @@ footer {
 
         <div class="section-head">
 
-            <div class="section-kicker">
-                Maintenance Management Functions
+            <div class="section-number">
+                01 · PROJECT FUNCTIONS
             </div>
 
             <h2 class="section-title">
-                Sembilan fungsi utama
+                Project Management Functions
             </h2>
 
             <p class="section-description">
-                Maintenance Management memastikan equipment
-                tetap berada dalam kondisi yang dapat mendukung
-                operasi secara aman, reliable, efisien, dan
-                terukur.
+                Sembilan fungsi utama untuk mengendalikan proyek sejak
+                inisiasi hingga serah terima dan penutupan.
             </p>
 
         </div>
@@ -950,230 +960,86 @@ footer {
 
         <div class="function-grid">
 
-
-            <!-- 01 -->
-
-            <article class="function-card">
-
-                <div class="function-number">
-                    MNT-01
-                </div>
-
-                <div class="function-icon">
-                    ASSET
-                </div>
-
-                <h3>
-                    Asset & Equipment Management
-                </h3>
-
+            <div class="function-card">
+                <div class="function-number">PM-01</div>
+                <h3>Project Initiation</h3>
                 <p>
-                    Pengelolaan daftar aset, equipment,
-                    lokasi, criticality, status, histori,
-                    dan identitas teknis setiap equipment.
+                    Project charter, objectives, stakeholders,
+                    kebutuhan awal dan dasar pelaksanaan proyek.
                 </p>
+            </div>
 
-            </article>
-
-
-            <!-- 02 -->
-
-            <article class="function-card">
-
-                <div class="function-number">
-                    MNT-02
-                </div>
-
-                <div class="function-icon">
-                    PM
-                </div>
-
-                <h3>
-                    Preventive Maintenance
-                </h3>
-
+            <div class="function-card">
+                <div class="function-number">PM-02</div>
+                <h3>Scope Management</h3>
                 <p>
-                    Perencanaan dan pelaksanaan pemeliharaan
-                    berkala berdasarkan waktu, operating hours,
-                    kondisi, atau rekomendasi teknis.
+                    Menetapkan scope, deliverables, batas pekerjaan
+                    dan pengendalian perubahan scope.
                 </p>
+            </div>
 
-            </article>
-
-
-            <!-- 03 -->
-
-            <article class="function-card">
-
-                <div class="function-number">
-                    MNT-03
-                </div>
-
-                <div class="function-icon">
-                    PdM
-                </div>
-
-                <h3>
-                    Predictive Maintenance
-                </h3>
-
+            <div class="function-card">
+                <div class="function-number">PM-03</div>
+                <h3>Schedule Management</h3>
                 <p>
-                    Pemeliharaan berdasarkan kondisi aktual
-                    equipment melalui monitoring parameter
-                    dan indikasi awal kegagalan.
+                    Mengendalikan aktivitas, milestone, target,
+                    critical path dan progress pekerjaan.
                 </p>
+            </div>
 
-            </article>
-
-
-            <!-- 04 -->
-
-            <article class="function-card">
-
-                <div class="function-number">
-                    MNT-04
-                </div>
-
-                <div class="function-icon">
-                    CM
-                </div>
-
-                <h3>
-                    Corrective Maintenance
-                </h3>
-
+            <div class="function-card">
+                <div class="function-number">PM-04</div>
+                <h3>Cost & Budget</h3>
                 <p>
-                    Penanganan kerusakan, defect, abnormality,
-                    dan failure untuk mengembalikan equipment
-                    ke kondisi operasi yang diperlukan.
+                    Mengendalikan budget, committed cost, actual cost
+                    dan variance proyek.
                 </p>
+            </div>
 
-            </article>
-
-
-            <!-- 05 -->
-
-            <article class="function-card">
-
-                <div class="function-number">
-                    MNT-05
-                </div>
-
-                <div class="function-icon">
-                    COND
-                </div>
-
-                <h3>
-                    Condition Monitoring
-                </h3>
-
+            <div class="function-card">
+                <div class="function-number">PM-05</div>
+                <h3>Procurement</h3>
                 <p>
-                    Pemantauan kondisi equipment melalui
-                    parameter seperti temperatur, vibration,
-                    current, pressure, dan kondisi visual.
+                    Pengendalian material, equipment, vendor,
+                    purchase dan status pengadaan.
                 </p>
+            </div>
 
-            </article>
-
-
-            <!-- 06 -->
-
-            <article class="function-card">
-
-                <div class="function-number">
-                    MNT-06
-                </div>
-
-                <div class="function-icon">
-                    REL
-                </div>
-
-                <h3>
-                    Reliability Management
-                </h3>
-
+            <div class="function-card">
+                <div class="function-number">PM-06</div>
+                <h3>Project Risk</h3>
                 <p>
-                    Pengukuran reliability, failure pattern,
-                    downtime, MTBF, MTTR, dan penyebab
-                    kegagalan equipment.
+                    Risk register, risk assessment, mitigation,
+                    monitoring dan escalation.
                 </p>
+            </div>
 
-            </article>
-
-
-            <!-- 07 -->
-
-            <article class="function-card">
-
-                <div class="function-number">
-                    MNT-07
-                </div>
-
-                <div class="function-icon">
-                    SPARE
-                </div>
-
-                <h3>
-                    Spare Parts Management
-                </h3>
-
+            <div class="function-card">
+                <div class="function-number">PM-07</div>
+                <h3>Execution & Progress</h3>
                 <p>
-                    Pengendalian critical spare parts,
-                    availability, minimum stock, usage,
-                    dan kebutuhan pengadaan.
+                    Pengendalian pekerjaan lapangan, productivity,
+                    progress dan status aktual proyek.
                 </p>
+            </div>
 
-            </article>
-
-
-            <!-- 08 -->
-
-            <article class="function-card">
-
-                <div class="function-number">
-                    MNT-08
-                </div>
-
-                <div class="function-icon">
-                    WO
-                </div>
-
-                <h3>
-                    Work Order Management
-                </h3>
-
+            <div class="function-card">
+                <div class="function-number">PM-08</div>
+                <h3>Quality & Commissioning</h3>
                 <p>
-                    Pengelolaan maintenance request,
-                    work order, teknisi, pekerjaan,
-                    material, waktu, dan status penyelesaian.
+                    Inspection, testing, punch list, commissioning
+                    dan verification sebelum handover.
                 </p>
+            </div>
 
-            </article>
-
-
-            <!-- 09 -->
-
-            <article class="function-card">
-
-                <div class="function-number">
-                    MNT-09
-                </div>
-
-                <div class="function-icon">
-                    HIST
-                </div>
-
-                <h3>
-                    Maintenance History & Reporting
-                </h3>
-
+            <div class="function-card">
+                <div class="function-number">PM-09</div>
+                <h3>Handover & Closeout</h3>
                 <p>
-                    Pencatatan histori pekerjaan, failure,
-                    downtime, biaya, tindakan, dan hasil
-                    maintenance untuk analisis berikutnya.
+                    As-built document, acceptance, final documentation,
+                    lessons learned dan project closeout.
                 </p>
-
-            </article>
+            </div>
 
         </div>
 
@@ -1182,9 +1048,9 @@ footer {
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      CONTROL MATRIX
-===================================================== -->
+========================= -->
 
 <section id="control">
 
@@ -1192,275 +1058,86 @@ footer {
 
         <div class="section-head">
 
-            <div class="section-kicker">
-                Maintenance Control Matrix
+            <div class="section-number">
+                02 · PROJECT CONTROL
             </div>
 
             <h2 class="section-title">
-                Apa yang dikendalikan?
+                What is Controlled?
             </h2>
 
             <p class="section-description">
-                Maintenance Management mengendalikan kondisi
-                aset, pekerjaan pemeliharaan, downtime,
-                reliability, dan sumber daya maintenance.
+                Fokus pengendalian proyek tidak hanya pada progress,
+                tetapi pada keseluruhan parameter yang menentukan
+                keberhasilan proyek.
             </p>
 
         </div>
 
 
-        <div class="matrix-wrap">
-
-            <table class="matrix">
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Parameter
-                        </th>
-
-                        <th>
-                            Unit / Indicator
-                        </th>
-
-                        <th>
-                            Tujuan Pengendalian
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody>
-
-                    <tr>
-
-                        <td>
-                            Asset Availability
-                        </td>
-
-                        <td>
-                            %
-                        </td>
-
-                        <td>
-                            Menjaga ketersediaan equipment
-                            untuk mendukung operasi.
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            Equipment Reliability
-                        </td>
-
-                        <td>
-                            MTBF / %
-                        </td>
-
-                        <td>
-                            Mengurangi frekuensi kegagalan
-                            dan meningkatkan reliability.
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            Maintenance Downtime
-                        </td>
-
-                        <td>
-                            Hours
-                        </td>
-
-                        <td>
-                            Mengendalikan waktu equipment
-                            tidak tersedia akibat maintenance.
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            Preventive Maintenance
-                        </td>
-
-                        <td>
-                            %
-                        </td>
-
-                        <td>
-                            Memastikan pekerjaan preventive
-                            dilakukan sesuai jadwal.
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            Corrective Maintenance
-                        </td>
-
-                        <td>
-                            Count / Hours
-                        </td>
-
-                        <td>
-                            Mengendalikan pekerjaan akibat
-                            breakdown dan defect.
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            MTTR
-                        </td>
-
-                        <td>
-                            Hours
-                        </td>
-
-                        <td>
-                            Mengukur kecepatan pemulihan
-                            equipment setelah failure.
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            Maintenance Cost
-                        </td>
-
-                        <td>
-                            Rp
-                        </td>
-
-                        <td>
-                            Mengendalikan biaya pemeliharaan
-                            terhadap kebutuhan dan performance.
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            Critical Spare Parts
-                        </td>
-
-                        <td>
-                            Stock / Availability
-                        </td>
-
-                        <td>
-                            Memastikan material kritis tersedia
-                            ketika diperlukan.
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-
-        <!-- ASSET MANAGEMENT FLOW -->
-
-        <div class="asset-flow">
-
-            <div class="view-title">
-                Asset Management View
+        <div class="matrix">
+
+            <div class="matrix-row">
+                <div>Scope</div>
+                <div>
+                    Scope pekerjaan, deliverables dan batas tanggung jawab.
+                </div>
             </div>
 
-            <div class="flow-grid">
-
-                <div class="flow-step">
-
-                    <strong>ASSET</strong>
-
-                    <span>
-                        Equipment
-                    </span>
-
+            <div class="matrix-row">
+                <div>Schedule</div>
+                <div>
+                    Milestone, activity, target date, delay dan critical path.
                 </div>
+            </div>
 
-
-                <div class="flow-step">
-
-                    <strong>CONDITION</strong>
-
-                    <span>
-                        Current State
-                    </span>
-
+            <div class="matrix-row">
+                <div>Budget</div>
+                <div>
+                    Approved budget, committed cost, actual cost dan variance.
                 </div>
+            </div>
 
-
-                <div class="flow-step">
-
-                    <strong>RISK</strong>
-
-                    <span>
-                        Criticality
-                    </span>
-
+            <div class="matrix-row">
+                <div>Procurement</div>
+                <div>
+                    Material, equipment, vendor dan status pengadaan.
                 </div>
+            </div>
 
-
-                <div class="flow-step">
-
-                    <strong>PLAN</strong>
-
-                    <span>
-                        Maintenance
-                    </span>
-
+            <div class="matrix-row">
+                <div>Progress</div>
+                <div>
+                    Physical progress, productivity dan pekerjaan aktual.
                 </div>
+            </div>
 
-
-                <div class="flow-step">
-
-                    <strong>EXECUTE</strong>
-
-                    <span>
-                        Work Order
-                    </span>
-
+            <div class="matrix-row">
+                <div>Risk</div>
+                <div>
+                    Project risk, mitigation, owner dan escalation.
                 </div>
+            </div>
 
-
-                <div class="flow-step">
-
-                    <strong>HISTORY</strong>
-
-                    <span>
-                        Records
-                    </span>
-
+            <div class="matrix-row">
+                <div>Quality</div>
+                <div>
+                    Inspection, testing, NCR, punch list dan acceptance.
                 </div>
+            </div>
 
+            <div class="matrix-row">
+                <div>Change</div>
+                <div>
+                    Change request, impact assessment, approval dan implementation.
+                </div>
+            </div>
+
+            <div class="matrix-row">
+                <div>Commissioning / Handover</div>
+                <div>
+                    Testing, commissioning, as-built, documentation dan final acceptance.
+                </div>
             </div>
 
         </div>
@@ -1470,9 +1147,74 @@ footer {
 </section>
 
 
-<!-- =====================================================
-     MAINTENANCE CYCLE
-===================================================== -->
+<!-- =========================
+     PROJECT CONTROL VIEW
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                03 · CONTROL VIEW
+            </div>
+
+            <h2 class="section-title">
+                Project Control View
+            </h2>
+
+            <p class="section-description">
+                Alur pengendalian proyek dari perencanaan sampai
+                penyelesaian pekerjaan.
+            </p>
+
+        </div>
+
+
+        <div class="control-view">
+
+            <div class="control-step">
+                <strong>PLAN</strong>
+                <span>Define objective & scope</span>
+            </div>
+
+            <div class="control-step">
+                <strong>SCHEDULE</strong>
+                <span>Set activities & milestones</span>
+            </div>
+
+            <div class="control-step">
+                <strong>EXECUTE</strong>
+                <span>Perform the work</span>
+            </div>
+
+            <div class="control-step">
+                <strong>MONITOR</strong>
+                <span>Measure actual progress</span>
+            </div>
+
+            <div class="control-step">
+                <strong>CONTROL</strong>
+                <span>Correct variance & change</span>
+            </div>
+
+            <div class="control-step">
+                <strong>CLOSE</strong>
+                <span>Handover & lessons learned</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MANAGEMENT CYCLE
+========================= -->
 
 <section id="cycle">
 
@@ -1480,19 +1222,17 @@ footer {
 
         <div class="section-head">
 
-            <div class="section-kicker">
-                Maintenance Management Cycle
+            <div class="section-number">
+                04 · MANAGEMENT CYCLE
             </div>
 
             <h2 class="section-title">
-                Dari kondisi menuju reliability
+                Project Management Cycle
             </h2>
 
             <p class="section-description">
-                Pemeliharaan yang baik bukan hanya memperbaiki
-                equipment ketika rusak. Sistem harus mampu
-                mengenali kondisi, memprediksi kebutuhan,
-                melakukan tindakan, dan belajar dari histori.
+                Setiap proyek bergerak melalui siklus yang terstruktur,
+                dengan kontrol yang dilakukan sepanjang pelaksanaan.
             </p>
 
         </div>
@@ -1500,94 +1240,37 @@ footer {
 
         <div class="cycle">
 
-
-            <div class="cycle-step">
-
-                <div class="cycle-number">
-                    01
-                </div>
-
-                <h3>
-                    INSPECT
-                </h3>
-
-                <p>
-                    Memeriksa kondisi fisik dan operasional
-                    equipment.
-                </p>
-
+            <div class="cycle-item">
+                <strong>INITIATE</strong>
+                <span>Define the project</span>
             </div>
 
+            <div class="cycle-arrow">→</div>
 
-            <div class="cycle-step">
-
-                <div class="cycle-number">
-                    02
-                </div>
-
-                <h3>
-                    MONITOR
-                </h3>
-
-                <p>
-                    Memantau parameter dan indikasi perubahan
-                    kondisi equipment.
-                </p>
-
+            <div class="cycle-item">
+                <strong>PLAN</strong>
+                <span>Build the project plan</span>
             </div>
 
+            <div class="cycle-arrow">→</div>
 
-            <div class="cycle-step">
-
-                <div class="cycle-number">
-                    03
-                </div>
-
-                <h3>
-                    PLAN
-                </h3>
-
-                <p>
-                    Menentukan pekerjaan, material, tenaga,
-                    waktu, dan prioritas.
-                </p>
-
+            <div class="cycle-item">
+                <strong>EXECUTE</strong>
+                <span>Deliver the work</span>
             </div>
 
+            <div class="cycle-arrow">→</div>
 
-            <div class="cycle-step">
-
-                <div class="cycle-number">
-                    04
-                </div>
-
-                <h3>
-                    EXECUTE
-                </h3>
-
-                <p>
-                    Melaksanakan maintenance dan memastikan
-                    pekerjaan selesai sesuai standar.
-                </p>
-
+            <div class="cycle-item">
+                <strong>CONTROL</strong>
+                <span>Measure & correct</span>
             </div>
 
+            <div class="cycle-arrow">→</div>
 
-            <div class="cycle-step">
-
-                <div class="cycle-number">
-                    05
-                </div>
-
-                <h3>
-                    IMPROVE
-                </h3>
-
-                <p>
-                    Menganalisis histori dan failure untuk
-                    meningkatkan reliability.
-                </p>
-
+            <div class="cycle-item">
+                <strong>CLOSE</strong>
+                <span>Handover & learn</span>
             </div>
 
         </div>
@@ -1597,9 +1280,9 @@ footer {
 </section>
 
 
-<!-- =====================================================
-     RESPONSIBILITY
-===================================================== -->
+<!-- =========================
+     RESPONSIBILITIES
+========================= -->
 
 <section>
 
@@ -1607,19 +1290,18 @@ footer {
 
         <div class="section-head">
 
-            <div class="section-kicker">
-                Responsibility
+            <div class="section-number">
+                05 · RESPONSIBILITY
             </div>
 
             <h2 class="section-title">
-                Siapa yang terlibat?
+                Project Responsibilities
             </h2>
 
             <p class="section-description">
-                Maintenance merupakan fungsi lintas departemen.
-                Reliability equipment dipengaruhi oleh desain,
-                operasi, penggunaan energi, kondisi aset,
-                dan kualitas pemeliharaan.
+                Project Management menghubungkan berbagai fungsi agar
+                keputusan dan pelaksanaan proyek tetap berada dalam
+                satu arah pengendalian.
             </p>
 
         </div>
@@ -1627,93 +1309,76 @@ footer {
 
         <div class="responsibility-grid">
 
-
-            <div class="responsibility-card">
-
-                <h3>
-                    Maintenance Manager
-                </h3>
-
+            <div class="role">
+                <h3>Project Manager</h3>
                 <p>
-                    Mengendalikan strategi maintenance,
-                    reliability, resources, performance,
-                    dan maintenance budget.
+                    Memimpin proyek, mengendalikan scope, schedule,
+                    cost, risk dan keseluruhan delivery.
                 </p>
-
             </div>
 
-
-            <div class="responsibility-card">
-
-                <h3>
-                    Maintenance Engineer
-                </h3>
-
+            <div class="role">
+                <h3>Engineering</h3>
                 <p>
-                    Menganalisis failure, reliability,
-                    maintenance strategy, dan improvement
-                    teknis equipment.
+                    Menyediakan design, technical specification,
+                    engineering review dan technical support.
                 </p>
-
             </div>
 
-
-            <div class="responsibility-card">
-
-                <h3>
-                    Technician
-                </h3>
-
+            <div class="role">
+                <h3>Electrical / Energy</h3>
                 <p>
-                    Melaksanakan inspection, preventive,
-                    corrective, troubleshooting, dan
-                    pekerjaan maintenance.
+                    Memastikan aspek electrical system dan energy
+                    performance sesuai kebutuhan proyek.
                 </p>
-
             </div>
 
-
-            <div class="responsibility-card">
-
-                <h3>
-                    Operations
-                </h3>
-
+            <div class="role">
+                <h3>Maintenance</h3>
                 <p>
-                    Menyediakan informasi kondisi operasi,
-                    abnormality, dan kebutuhan equipment
-                    dalam proses produksi.
+                    Memberikan input maintainability, reliability,
+                    commissioning dan operational readiness.
                 </p>
-
             </div>
 
-
-            <div class="responsibility-card">
-
-                <h3>
-                    Electrical Management
-                </h3>
-
+            <div class="role">
+                <h3>Procurement</h3>
                 <p>
-                    Mendukung reliability sistem listrik,
-                    protection, metering, dan electrical
-                    equipment.
+                    Mengendalikan vendor, purchasing, material,
+                    equipment dan delivery procurement.
                 </p>
-
             </div>
 
-
-            <div class="responsibility-card">
-
-                <h3>
-                    Energy Management
-                </h3>
-
+            <div class="role">
+                <h3>Finance</h3>
                 <p>
-                    Menghubungkan kondisi equipment dengan
-                    konsumsi energi dan peluang efisiensi.
+                    Mengendalikan budget, commitment, actual cost,
+                    payment dan financial reporting.
                 </p>
+            </div>
 
+            <div class="role">
+                <h3>HSE / K3</h3>
+                <p>
+                    Memastikan pekerjaan memenuhi persyaratan
+                    keselamatan, kesehatan dan lingkungan.
+                </p>
+            </div>
+
+            <div class="role">
+                <h3>Contractor / Field Team</h3>
+                <p>
+                    Melaksanakan pekerjaan sesuai scope, schedule,
+                    quality dan safety requirement.
+                </p>
+            </div>
+
+            <div class="role">
+                <h3>Management</h3>
+                <p>
+                    Memberikan direction, approval, escalation decision
+                    dan strategic oversight.
+                </p>
             </div>
 
         </div>
@@ -1723,9 +1388,9 @@ footer {
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      KPI
-===================================================== -->
+========================= -->
 
 <section id="kpi">
 
@@ -1733,18 +1398,17 @@ footer {
 
         <div class="section-head">
 
-            <div class="section-kicker">
-                Maintenance Performance Indicators
+            <div class="section-number">
+                06 · PROJECT KPI
             </div>
 
             <h2 class="section-title">
-                Maintenance KPI
+                Project Performance Indicators
             </h2>
 
             <p class="section-description">
-                Nilai KPI akan berasal dari work order,
-                inspection, maintenance history, asset
-                database, dan data operasional aktual.
+                KPI berikut menjadi indikator utama untuk membaca
+                kesehatan proyek. Nilai aktual diisi dari data proyek.
             </p>
 
         </div>
@@ -1752,106 +1416,52 @@ footer {
 
         <div class="kpi-grid">
 
-
-            <div class="kpi-card">
-
+            <div class="kpi">
                 <div class="kpi-label">
-                    Asset Availability
+                    Project Progress
                 </div>
-
-                <div class="kpi-value">
-                    —
-                </div>
-
-                <div class="kpi-unit">
-                    %
-                </div>
-
+                <div class="kpi-value">—</div>
+                <div class="kpi-unit">%</div>
             </div>
 
-
-            <div class="kpi-card">
-
+            <div class="kpi">
                 <div class="kpi-label">
-                    Preventive Maintenance
+                    Schedule Performance
                 </div>
-
-                <div class="kpi-value">
-                    —
-                </div>
-
-                <div class="kpi-unit">
-                    %
-                </div>
-
+                <div class="kpi-value">—</div>
+                <div class="kpi-unit">%</div>
             </div>
 
-
-            <div class="kpi-card">
-
+            <div class="kpi">
                 <div class="kpi-label">
-                    MTBF
+                    Budget Utilization
                 </div>
-
-                <div class="kpi-value">
-                    —
-                </div>
-
-                <div class="kpi-unit">
-                    Hours
-                </div>
-
+                <div class="kpi-value">—</div>
+                <div class="kpi-unit">%</div>
             </div>
 
-
-            <div class="kpi-card">
-
+            <div class="kpi">
                 <div class="kpi-label">
-                    MTTR
+                    Cost Variance
                 </div>
-
-                <div class="kpi-value">
-                    —
-                </div>
-
-                <div class="kpi-unit">
-                    Hours
-                </div>
-
+                <div class="kpi-value">—</div>
+                <div class="kpi-unit">Rp / %</div>
             </div>
 
-
-            <div class="kpi-card">
-
+            <div class="kpi">
                 <div class="kpi-label">
-                    Maintenance Downtime
+                    Open Project Risk
                 </div>
-
-                <div class="kpi-value">
-                    —
-                </div>
-
-                <div class="kpi-unit">
-                    Hours
-                </div>
-
+                <div class="kpi-value">—</div>
+                <div class="kpi-unit">Count</div>
             </div>
 
-
-            <div class="kpi-card">
-
+            <div class="kpi">
                 <div class="kpi-label">
-                    Maintenance Cost
+                    Quality / Punch List Closure
                 </div>
-
-                <div class="kpi-value">
-                    —
-                </div>
-
-                <div class="kpi-unit">
-                    Rp
-                </div>
-
+                <div class="kpi-value">—</div>
+                <div class="kpi-unit">%</div>
             </div>
 
         </div>
@@ -1861,9 +1471,9 @@ footer {
 </section>
 
 
-<!-- =====================================================
-     PRINCIPLES
-===================================================== -->
+<!-- =========================
+     MANAGEMENT VIEW
+========================= -->
 
 <section>
 
@@ -1871,12 +1481,77 @@ footer {
 
         <div class="section-head">
 
-            <div class="section-kicker">
-                Maintenance Principle
+            <div class="section-number">
+                07 · MANAGEMENT VIEW
             </div>
 
             <h2 class="section-title">
-                Prinsip pemeliharaan
+                Executive Project View
+            </h2>
+
+            <p class="section-description">
+                Management membutuhkan pandangan ringkas terhadap
+                parameter yang paling menentukan keberhasilan proyek.
+            </p>
+
+        </div>
+
+
+        <div class="management-view">
+
+            <div class="management-box">
+                <strong>SCOPE</strong>
+                <span>What to deliver</span>
+            </div>
+
+            <div class="management-box">
+                <strong>SCHEDULE</strong>
+                <span>When to deliver</span>
+            </div>
+
+            <div class="management-box">
+                <strong>COST</strong>
+                <span>How much</span>
+            </div>
+
+            <div class="management-box">
+                <strong>RISK</strong>
+                <span>What can affect</span>
+            </div>
+
+            <div class="management-box">
+                <strong>QUALITY</strong>
+                <span>How well</span>
+            </div>
+
+            <div class="management-box">
+                <strong>HANDOVER</strong>
+                <span>Ready to operate</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRINCIPLES
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                08 · PRINCIPLES
+            </div>
+
+            <h2 class="section-title">
+                Project Control Principles
             </h2>
 
         </div>
@@ -1884,48 +1559,36 @@ footer {
 
         <div class="principles">
 
-
             <div class="principle">
-
-                <strong>Prevent</strong>
-
+                <strong>Plan</strong>
                 <span>
-                    Cegah kegagalan sebelum terjadi.
+                    Pekerjaan dimulai dari tujuan, scope dan rencana
+                    yang jelas.
                 </span>
-
             </div>
 
-
             <div class="principle">
-
-                <strong>Predict</strong>
-
+                <strong>Measure</strong>
                 <span>
-                    Baca kondisi sebelum menjadi failure.
+                    Progress, cost, schedule dan risk harus dapat
+                    diukur secara objektif.
                 </span>
-
             </div>
 
-
             <div class="principle">
-
-                <strong>Restore</strong>
-
+                <strong>Control</strong>
                 <span>
-                    Pulihkan equipment ketika terjadi gangguan.
+                    Setiap variance dan perubahan harus dikendalikan
+                    sebelum menjadi masalah yang lebih besar.
                 </span>
-
             </div>
 
-
             <div class="principle">
-
-                <strong>Improve</strong>
-
+                <strong>Deliver</strong>
                 <span>
-                    Belajar dari failure untuk meningkatkan reliability.
+                    Proyek dianggap selesai ketika hasil, kualitas,
+                    dokumentasi dan handover terpenuhi.
                 </span>
-
             </div>
 
         </div>
@@ -1935,56 +1598,46 @@ footer {
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      CTA
-===================================================== -->
+========================= -->
 
-<section class="cta">
+<div class="container">
 
-    <div class="container">
+    <div class="cta">
 
-        <div class="cta-box">
+        <h2>
+            Plan the Work. Control the Project.
+        </h2>
 
-            <h2>
-                Maintain the Asset.<br>
-                Protect the Performance.
-            </h2>
+        <p>
+            Project Management memastikan perubahan menjadi hasil
+            yang terencana, terkendali dan siap digunakan.
+        </p>
 
-            <p>
-                Equipment yang terpelihara dengan baik menjaga
-                availability, reliability, safety, dan efisiensi
-                energi. Maintenance bukan hanya biaya —
-                maintenance adalah perlindungan terhadap operasi.
-            </p>
-
-            <a href="../index.html" class="cta-button">
-                ← BACK TO EEMS
-            </a>
-
-        </div>
+        <a href="../index.html" class="cta-btn">
+            ← Back to EEMS
+        </a>
 
     </div>
 
-</section>
-
-</main>
+</div>
 
 
-<!-- =====================================================
+<!-- =========================
      FOOTER
-===================================================== -->
+========================= -->
 
 <footer>
 
     <div class="container footer-inner">
 
         <div class="footer-brand">
-            EEMS · MAINTENANCE MANAGEMENT
+            EEMS · PROJECT MANAGEMENT
         </div>
 
-        <div class="footer-text">
-            Electrical Energy Management System<br>
-            Module 04 · Version 1.0
+        <div class="footer-info">
+            Module 06 · Version 1.0
         </div>
 
     </div>
