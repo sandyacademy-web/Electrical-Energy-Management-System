@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Electrical Management | EEMS</title>
+
+    <meta
+        name="description"
+        content="Electrical Management System — Pengelolaan sistem kelistrikan, distribusi, peralatan, metering, power quality, beban, keselamatan dan reliability."
+    >
+
+    <meta name="theme-color" content="#07111f">
+
+    <style>
+
+        /* =========================================================
+           GLOBAL
+           ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(212, 175, 55, 0.08),
+                    transparent 30%
+                ),
+                #07111f;
+
+            color: #f4f6f8;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
+
+
+        /* =========================================================
+           HEADER
+           ========================================================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(7, 17, 31, 0.95);
+            backdrop-filter: blur(14px);
+
+            border-bottom:
+                1px solid rgba(212, 175, 55, 0.18);
+        }
+
+        .nav {
+            min-height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-symbol {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border:
+                1px solid #d4af37;
+
+            border-radius: 10px;
+
+            color: #d4af37;
+
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .brand-text strong {
+            display: block;
+
+            color: #ffffff;
+
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        .brand-text span {
+            display: block;
+
+            color: #8996a5;
+
+            font-size: 10px;
+            letter-spacing: 1.4px;
+
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+
+            color: #aeb9c6;
+
+            font-size: 13px;
+        }
+
+        .nav-links a {
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .back-button {
+            padding: 8px 14px;
+
+            border:
+                1px solid rgba(212,175,55,0.4);
+
+            border-radius: 7px;
+
+            color: #d4af37;
+        }
+
+        .back-button:hover {
+            background: #d4af37;
+            color: #07111f;
+        }
+
+
+        /* =========================================================
+           BREADCRUMB
+           ========================================================= */
+
+        .breadcrumb {
+            padding: 18px 0 0;
+
+            color: #697789;
+
+            font-size: 11px;
+        }
+
+        .breadcrumb a {
+            color: #9ba7b5;
+        }
+
+        .breadcrumb a:hover {
+            color: #d4af37;
+        }
+
+        .breadcrumb span {
+            margin: 0 8px;
+            color: #455366;
+        }
+
+
+        /* =========================================================
+           HERO
+           ========================================================= */
+
+        .hero {
+            min-height: 530px;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 520px;
+            height: 520px;
+
+            right: -170px;
+            top: 20px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(212,175,55,0.12),
+                    transparent 68%
+                );
+        }
+
+        .hero-content {
+            max-width: 850px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+            color: #d4af37;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 2.3px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+
+            width: 32px;
+            height: 1px;
+
+            background: #d4af37;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(38px, 6vw, 68px);
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #d4af37;
+        }
+
+        .hero-description {
+            max-width: 730px;
+
+            color: #a8b3c0;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 12px 20px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            background: #d4af37;
+            color: #07111f;
+        }
+
+        .btn-primary:hover {
+            background: #e3c55b;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border:
+                1px solid #344255;
+
+            color: #dbe2e9;
+        }
+
+        .btn-secondary:hover {
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+
+
+        /* =========================================================
+           STATUS
+           ========================================================= */
+
+        .status-bar {
+            border-top:
+                1px solid rgba(255,255,255,0.06);
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.06);
+
+            background:
+                rgba(255,255,255,0.025);
+        }
+
+        .status-inner {
+            min-height: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            color: #8e9aaa;
+
+            font-size: 11px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #58c78b;
+
+            box-shadow:
+                0 0 10px rgba(88,199,139,0.6);
+        }
+
+
+        /* =========================================================
+           SECTION
+           ========================================================= */
+
+        section {
+            padding: 85px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 38px;
+        }
+
+        .section-label {
+            color: #d4af37;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 9px;
+        }
+
+        .section-heading h2 {
+            font-size:
+                clamp(27px, 4vw, 40px);
+
+            line-height: 1.2;
+
+            margin-bottom: 11px;
+        }
+
+        .section-heading p {
+            max-width: 720px;
+
+            color: #8e9aaa;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           ELECTRICAL FUNCTIONS
+           ========================================================= */
+
+        .functions-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 17px;
+        }
+
+        .function-card {
+            min-height: 225px;
+
+            position: relative;
+            overflow: hidden;
+
+            padding: 27px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.055),
+                    rgba(255,255,255,0.018)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            border-radius: 12px;
+
+            transition:
+                transform 0.25s,
+                border-color 0.25s,
+                background 0.25s;
+        }
+
+        .function-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 130px;
+            height: 130px;
+
+            right: -60px;
+            bottom: -60px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(212,175,55,0.09),
+                    transparent 70%
+                );
+        }
+
+        .function-card:hover {
+            transform: translateY(-4px);
+
+            border-color:
+                rgba(212,175,55,0.45);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(212,175,55,0.08),
+                    rgba(255,255,255,0.02)
+                );
+        }
+
+        .function-number {
+            color: #647286;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+        }
+
+        .function-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 17px 0;
+
+            border:
+                1px solid rgba(212,175,55,0.4);
+
+            border-radius: 10px;
+
+            color: #d4af37;
+
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .function-card h3 {
+            font-size: 17px;
+
+            margin-bottom: 8px;
+        }
+
+        .function-card p {
+            color: #84909e;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           ELECTRICAL CONTROL MATRIX
+           ========================================================= */
+
+        .control-section {
+            background:
+                rgba(0,0,0,0.14);
+        }
+
+        .control-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 13px;
+        }
+
+        .control-item {
+            padding: 22px 18px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            border-radius: 9px;
+        }
+
+        .control-item strong {
+            display: block;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+        }
+
+        .control-item span {
+            color: #7f8c9b;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+           ELECTRICAL MANAGEMENT CYCLE
+           ========================================================= */
+
+        .cycle {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 10px;
+
+            margin-top: 35px;
+        }
+
+        .cycle-item {
+            text-align: center;
+
+            position: relative;
+
+            padding: 25px 12px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            border-radius: 9px;
+        }
+
+        .cycle-item:not(:last-child)::after {
+            content: "→";
+
+            position: absolute;
+
+            right: -18px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #d4af37;
+
+            z-index: 3;
+        }
+
+        .cycle-number {
+            color: #d4af37;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            margin-bottom: 7px;
+        }
+
+        .cycle-item strong {
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           RESPONSIBILITY
+           ========================================================= */
+
+        .responsibility-box {
+            display: grid;
+
+            grid-template-columns:
+                1.15fr 1fr;
+
+            gap: 35px;
+
+            padding: 38px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(212,175,55,0.09),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(212,175,55,0.2);
+
+            border-radius: 13px;
+        }
+
+        .responsibility-box h2 {
+            font-size: 29px;
+
+            margin-bottom: 12px;
+        }
+
+        .responsibility-box p {
+            color: #9ca8b5;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+        .responsibility-list {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+        }
+
+        .responsibility {
+            padding: 16px;
+
+            background:
+                rgba(0,0,0,0.17);
+
+            border:
+                1px solid rgba(255,255,255,0.06);
+
+            border-radius: 8px;
+        }
+
+        .responsibility strong {
+            display: block;
+
+            font-size: 12px;
+
+            margin-bottom: 3px;
+        }
+
+        .responsibility span {
+            color: #7f8b99;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           KPI
+           ========================================================= */
+
+        .kpi-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .kpi-card {
+            padding: 24px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            border-radius: 10px;
+        }
+
+        .kpi-card span {
+            display: block;
+
+            color: #7e8a99;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            margin-bottom: 10px;
+        }
+
+        .kpi-card strong {
+            display: block;
+
+            color: #ffffff;
+
+            font-size: 24px;
+
+            margin-bottom: 4px;
+        }
+
+        .kpi-card small {
+            color: #687687;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           CTA
+           ========================================================= */
+
+        .cta {
+            text-align: center;
+
+            padding: 90px 20px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(212,175,55,0.09),
+                    transparent 60%
+                );
+        }
+
+        .cta h2 {
+            font-size:
+                clamp(30px, 5vw, 46px);
+
+            margin-bottom: 13px;
+        }
+
+        .cta p {
+            max-width: 650px;
+
+            margin:
+                0 auto 28px;
+
+            color: #8d99a8;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+
+        footer {
+            border-top:
+                1px solid rgba(255,255,255,0.07);
+
+            padding: 30px 0;
+
+            color: #697687;
+
+            font-size: 11px;
+        }
+
+        .footer-inner {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .footer-brand {
+            color: #d4af37;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+           ========================================================= */
+
+        @media (max-width: 950px) {
+
+            .nav-links a:not(.back-button) {
+                display: none;
+            }
+
+            .functions-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .control-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .cycle {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .cycle-item:not(:last-child)::after {
+                display: none;
+            }
+
+            .responsibility-box {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .hero {
+                min-height: 500px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .status-inner {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                padding: 17px 0;
+            }
+
+            .functions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .control-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cycle {
+                grid-template-columns: 1fr;
+            }
+
+            .responsibility-box {
+                padding: 25px;
+            }
+
+            .responsibility-list {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =============================================================
+     HEADER
+     ============================================================= -->
+
+<header>
+
+    <div class="container nav">
+
+        <a href="../index.html" class="brand">
+
+            <div class="brand-symbol">
+                ⚡
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    EEMS
+                </strong>
+
+                <span>
+                    Electrical Management
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="#functions">
+                Functions
+            </a>
+
+            <a href="#control">
+                Control
+            </a>
+
+            <a href="#kpi">
+                KPI
+            </a>
+
+            <a
+                href="../index.html"
+                class="back-button"
+            >
+                ← EEMS Home
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =============================================================
+     BREADCRUMB
+     ============================================================= -->
+
+<div class="container breadcrumb">
+
+    <a href="../index.html">
+        EEMS
+    </a>
+
+    <span>›</span>
+
+    Electrical Management
+
+</div>
+
+
+<!-- =============================================================
+     HERO
+     ============================================================= -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                EEMS · Module 02
+            </div>
+
+            <h1>
+                Electrical
+                <span>Management</span>
+            </h1>
+
+            <p class="hero-description">
+                Sistem pengelolaan kelistrikan yang terstruktur
+                untuk memastikan instalasi, distribusi, peralatan,
+                pengukuran, beban, kualitas daya, keselamatan,
+                keandalan, dan kontinuitas operasi berada dalam
+                kondisi terkendali.
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="#functions"
+                    class="btn btn-primary"
+                >
+                    Explore Electrical System
+                </a>
+
+                <a
+                    href="../index.html"
+                    class="btn btn-secondary"
+                >
+                    ← EEMS Main
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     STATUS BAR
+     ============================================================= -->
+
+<div class="status-bar">
+
+    <div class="container status-inner">
+
+        <div class="status-item">
+
+            <span class="status-dot"></span>
+
+            Electrical Management Module
+
+        </div>
+
+        <div class="status-item">
+
+            Asset · Distribution · Metering · Safety
+
+        </div>
+
+        <div class="status-item">
+
+            EEMS Version 1.0
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     MAIN FUNCTIONS
+     ============================================================= -->
+
+<section id="functions">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-label">
+                Electrical Functions
+            </div>
+
+            <h2>
+                Ruang Lingkup Electrical Management
+            </h2>
+
+            <p>
+                Fungsi utama yang membentuk pengelolaan sistem
+                kelistrikan dari sumber sampai ke titik pemakaian.
+            </p>
+
+        </div>
+
+
+        <div class="functions-grid">
+
+
+            <!-- 01 -->
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    EM-01
+                </div>
+
+                <div class="function-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Electrical Asset
+                </h3>
+
+                <p>
+                    Identifikasi dan pengelolaan aset kelistrikan:
+                    transformer, panel, switchgear, generator,
+                    cable, motor, protection device, dan equipment.
+                </p>
+
+            </div>
+
+
+            <!-- 02 -->
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    EM-02
+                </div>
+
+                <div class="function-icon">
+                    D
+                </div>
+
+                <h3>
+                    Electrical Distribution
+                </h3>
+
+                <p>
+                    Pengelolaan jaringan distribusi listrik,
+                    incoming, outgoing, panel, feeder, busbar,
+                    serta aliran energi menuju beban.
+                </p>
+
+            </div>
+
+
+            <!-- 03 -->
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    EM-03
+                </div>
+
+                <div class="function-icon">
+                    M
+                </div>
+
+                <h3>
+                    Metering & Measurement
+                </h3>
+
+                <p>
+                    Pengelolaan titik pengukuran, meter,
+                    parameter listrik, pembacaan energi,
+                    dan validasi data pengukuran.
+                </p>
+
+            </div>
+
+
+            <!-- 04 -->
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    EM-04
+                </div>
+
+                <div class="function-icon">
+                    L
+                </div>
+
+                <h3>
+                    Load Management
+                </h3>
+
+                <p>
+                    Pengendalian beban, load profile, peak load,
+                    load balancing, demand, serta identifikasi
+                    penggunaan listrik yang tidak efisien.
+                </p>
+
+            </div>
+
+
+            <!-- 05 -->
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    EM-05
+                </div>
+
+                <div class="function-icon">
+                    PQ
+                </div>
+
+                <h3>
+                    Power Quality
+                </h3>
+
+                <p>
+                    Pengawasan tegangan, frekuensi, power factor,
+                    harmonics, imbalance, disturbance, dan
+                    kualitas suplai listrik.
+                </p>
+
+            </div>
+
+
+            <!-- 06 -->
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    EM-06
+                </div>
+
+                <div class="function-icon">
+                    P
+                </div>
+
+                <h3>
+                    Protection System
+                </h3>
+
+                <p>
+                    Pengelolaan protective device, breaker,
+                    relay, coordination, trip event, dan
+                    perlindungan terhadap gangguan listrik.
+                </p>
+
+            </div>
+
+
+            <!-- 07 -->
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    EM-07
+                </div>
+
+                <div class="function-icon">
+                    S
+                </div>
+
+                <h3>
+                    Electrical Safety
+                </h3>
+
+                <p>
+                    Pengendalian risiko pekerjaan listrik,
+                    isolation, LOTO, electrical inspection,
+                    authorization, dan safe working practice.
+                </p>
+
+            </div>
+
+
+            <!-- 08 -->
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    EM-08
+                </div>
+
+                <div class="function-icon">
+                    R
+                </div>
+
+                <h3>
+                    Reliability
+                </h3>
+
+                <p>
+                    Pengelolaan reliability dan availability
+                    sistem untuk menjaga kontinuitas suplai
+                    dan mencegah electrical failure.
+                </p>
+
+            </div>
+
+
+            <!-- 09 -->
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    EM-09
+                </div>
+
+                <div class="function-icon">
+                    IR
+                </div>
+
+                <h3>
+                    Inspection & Reporting
+                </h3>
+
+                <p>
+                    Inspeksi berkala, temuan, corrective action,
+                    electrical condition report, dan pelaporan
+                    kondisi sistem kepada manajemen.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     CONTROL MATRIX
+     ============================================================= -->
+
+<section
+    id="control"
+    class="control-section"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-label">
+                Electrical Control
+            </div>
+
+            <h2>
+                Apa yang Dikendalikan?
+            </h2>
+
+            <p>
+                Electrical Management tidak hanya mencatat
+                peralatan, tetapi mengendalikan kondisi dan
+                kinerja sistem secara menyeluruh.
+            </p>
+
+        </div>
+
+
+        <div class="control-grid">
+
+            <div class="control-item">
+
+                <strong>
+                    Voltage
+                </strong>
+
+                <span>
+                    Tegangan sistem dan kestabilannya
+                </span>
+
+            </div>
+
+
+            <div class="control-item">
+
+                <strong>
+                    Current
+                </strong>
+
+                <span>
+                    Arus dan distribusi beban
+                </span>
+
+            </div>
+
+
+            <div class="control-item">
+
+                <strong>
+                    Power Factor
+                </strong>
+
+                <span>
+                    Efisiensi penggunaan daya listrik
+                </span>
+
+            </div>
+
+
+            <div class="control-item">
+
+                <strong>
+                    Frequency
+                </strong>
+
+                <span>
+                    Stabilitas frekuensi sistem
+                </span>
+
+            </div>
+
+
+            <div class="control-item">
+
+                <strong>
+                    Load
+                </strong>
+
+                <span>
+                    Beban aktual dan peak demand
+                </span>
+
+            </div>
+
+
+            <div class="control-item">
+
+                <strong>
+                    Energy
+                </strong>
+
+                <span>
+                    Konsumsi energi listrik
+                </span>
+
+            </div>
+
+
+            <div class="control-item">
+
+                <strong>
+                    Protection
+                </strong>
+
+                <span>
+                    Breaker, relay dan protection system
+                </span>
+
+            </div>
+
+
+            <div class="control-item">
+
+                <strong>
+                    Condition
+                </strong>
+
+                <span>
+                    Kondisi fisik dan operasional equipment
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     MANAGEMENT CYCLE
+     ============================================================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-label">
+                Electrical Management Cycle
+            </div>
+
+            <h2>
+                Siklus Pengelolaan
+            </h2>
+
+            <p>
+                Data kelistrikan harus menghasilkan tindakan,
+                bukan berhenti sebagai angka.
+            </p>
+
+        </div>
+
+
+        <div class="cycle">
+
+            <div class="cycle-item">
+
+                <div class="cycle-number">
+                    01
+                </div>
+
+                <strong>
+                    INSPECT
+                </strong>
+
+            </div>
+
+
+            <div class="cycle-item">
+
+                <div class="cycle-number">
+                    02
+                </div>
+
+                <strong>
+                    MEASURE
+                </strong>
+
+            </div>
+
+
+            <div class="cycle-item">
+
+                <div class="cycle-number">
+                    03
+                </div>
+
+                <strong>
+                    ANALYZE
+                </strong>
+
+            </div>
+
+
+            <div class="cycle-item">
+
+                <div class="cycle-number">
+                    04
+                </div>
+
+                <strong>
+                    CONTROL
+                </strong>
+
+            </div>
+
+
+            <div class="cycle-item">
+
+                <div class="cycle-number">
+                    05
+                </div>
+
+                <strong>
+                    IMPROVE
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     RESPONSIBILITY
+     ============================================================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="responsibility-box">
+
+            <div>
+
+                <div class="section-label">
+                    Electrical Responsibility
+                </div>
+
+                <h2>
+                    Electrical Management
+                    sebagai Pengendali Sistem
+                </h2>
+
+                <p>
+                    Departemen atau fungsi Electrical Management
+                    menjadi penghubung antara kondisi teknis
+                    sistem kelistrikan dengan kebutuhan operasi,
+                    maintenance, HSE, energy management, finance,
+                    project, dan management report.
+                </p>
+
+            </div>
+
+
+            <div class="responsibility-list">
+
+                <div class="responsibility">
+
+                    <strong>
+                        Electrical Engineer
+                    </strong>
+
+                    <span>
+                        Technical control
+                    </span>
+
+                </div>
+
+
+                <div class="responsibility">
+
+                    <strong>
+                        Electrical Technician
+                    </strong>
+
+                    <span>
+                        Field execution
+                    </span>
+
+                </div>
+
+
+                <div class="responsibility">
+
+                    <strong>
+                        Maintenance
+                    </strong>
+
+                    <span>
+                        Reliability & equipment
+                    </span>
+
+                </div>
+
+
+                <div class="responsibility">
+
+                    <strong>
+                        HSE / K3
+                    </strong>
+
+                    <span>
+                        Electrical safety
+                    </span>
+
+                </div>
+
+
+                <div class="responsibility">
+
+                    <strong>
+                        Energy Management
+                    </strong>
+
+                    <span>
+                        Energy performance
+                    </span>
+
+                </div>
+
+
+                <div class="responsibility">
+
+                    <strong>
+                        Management
+                    </strong>
+
+                    <span>
+                        Decision & direction
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     KPI
+     ============================================================= -->
+
+<section id="kpi">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-label">
+                Electrical KPI
+            </div>
+
+            <h2>
+                Key Performance Indicators
+            </h2>
+
+            <p>
+                KPI berikut menjadi kerangka pengukuran.
+                Nilai aktual nantinya dapat dihubungkan
+                dengan data meter dan sistem monitoring.
+            </p>
+
+        </div>
+
+
+        <div class="kpi-grid">
+
+            <div class="kpi-card">
+
+                <span>
+                    System Availability
+                </span>
+
+                <strong>
+                    — %
+                </strong>
+
+                <small>
+                    Electrical system availability
+                </small>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <span>
+                    Power Factor
+                </span>
+
+                <strong>
+                    —
+                </strong>
+
+                <small>
+                    Average power factor
+                </small>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <span>
+                    Peak Load
+                </span>
+
+                <strong>
+                    — kW
+                </strong>
+
+                <small>
+                    Maximum recorded load
+                </small>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <span>
+                    Electrical Incidents
+                </span>
+
+                <strong>
+                    —
+                </strong>
+
+                <small>
+                    Recorded electrical incidents
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     CTA
+     ============================================================= -->
+
+<section class="cta">
+
+    <div class="container">
+
+        <div class="section-label">
+            EEMS · Electrical Management
+        </div>
+
+        <h2>
+            Control the Power.
+            <br>
+            Protect the System.
+        </h2>
+
+        <p>
+            Electrical Management menjadi fondasi teknis
+            untuk memastikan sistem kelistrikan aman,
+            andal, terukur, efisien, dan siap mendukung
+            operasi perusahaan.
+        </p>
+
+        <a
+            href="../index.html"
+            class="btn btn-primary"
+        >
+            ← Back to EEMS
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     FOOTER
+     ============================================================= -->
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div>
+
+            <div class="footer-brand">
+                EEMS
+            </div>
+
+            <div>
+                Electrical Management Module
+            </div>
+
+        </div>
+
+        <div>
+            Electrical Energy Management System · Version 1.0
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
