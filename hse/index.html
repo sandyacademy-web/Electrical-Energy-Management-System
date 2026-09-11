@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HSE / K3 Management | EEMS</title>
+
+<meta name="description"
+content="HSE / K3 Management — pengelolaan keselamatan kerja, risiko, permit, inspeksi, incident management, emergency response dan environmental control dalam EEMS.">
+
+<style>
+:root {
+    --bg: #070b12;
+    --bg-soft: #0c121c;
+    --panel: #101722;
+    --panel-2: #131c28;
+    --gold: #d4af37;
+    --gold-light: #f1d77a;
+    --text: #edf1f7;
+    --muted: #9aa6b5;
+    --line: rgba(212,175,55,.22);
+    --line-soft: rgba(255,255,255,.08);
+    --success: #77d69b;
+    --warning: #e1bd61;
+    --shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+    background:
+        radial-gradient(circle at 80% 0%, rgba(212,175,55,.07), transparent 28%),
+        radial-gradient(circle at 10% 20%, rgba(35,63,100,.13), transparent 30%),
+        var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(18px);
+    background: rgba(7,11,18,.88);
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.header-inner {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-mark {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--gold);
+    display: grid;
+    place-items: center;
+    color: var(--gold-light);
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: .03em;
+    background: rgba(212,175,55,.05);
+}
+
+.brand-text strong {
+    display: block;
+    font-size: 15px;
+    letter-spacing: .14em;
+}
+
+.brand-text span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: .08em;
+    margin-top: 1px;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-nav a {
+    color: var(--muted);
+    font-size: 13px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: .25s ease;
+}
+
+.header-nav a:hover {
+    color: var(--gold-light);
+    background: rgba(212,175,55,.06);
+}
+
+.home-btn {
+    border: 1px solid var(--line);
+    color: var(--gold-light) !important;
+}
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+
+.breadcrumb {
+    padding: 22px 0 8px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.breadcrumb span {
+    color: var(--gold);
+    margin: 0 7px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    padding: 70px 0 55px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    right: -120px;
+    top: 20px;
+    width: 340px;
+    height: 340px;
+    border: 1px solid rgba(212,175,55,.10);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 45px rgba(212,175,55,.025),
+        0 0 0 90px rgba(212,175,55,.015);
+    pointer-events: none;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.hero h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -.035em;
+    max-width: 900px;
+}
+
+.hero h1 span {
+    color: var(--gold-light);
+}
+
+.hero-description {
+    max-width: 800px;
+    color: var(--muted);
+    font-size: 16px;
+    margin-top: 24px;
+}
+
+.hero-line {
+    width: 90px;
+    height: 1px;
+    background: var(--gold);
+    margin-top: 30px;
+}
+
+/* =========================================================
+   STATUS BAR
+========================================================= */
+
+.status-bar {
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+    background: rgba(255,255,255,.018);
+}
+
+.status-inner {
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.status-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(119,214,155,.4);
+}
+
+.status-label {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+section {
+    padding: 85px 0;
+}
+
+.section-head {
+    margin-bottom: 35px;
+}
+
+.section-kicker {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+.section-description {
+    color: var(--muted);
+    max-width: 730px;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+/* =========================================================
+   FUNCTIONS
+========================================================= */
+
+.function-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.function-card {
+    position: relative;
+    background:
+        linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012)),
+        var(--panel);
+    border: 1px solid var(--line-soft);
+    padding: 27px;
+    min-height: 215px;
+    transition: .3s ease;
+}
+
+.function-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--line);
+    box-shadow: var(--shadow);
+}
+
+.function-number {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    margin-bottom: 18px;
+}
+
+.function-icon {
+    width: 48px;
+    height: 42px;
+    border: 1px solid var(--line);
+    display: grid;
+    place-items: center;
+    color: var(--gold-light);
+    font-size: 10px;
+    font-weight: 800;
+    margin-bottom: 17px;
+    letter-spacing: .03em;
+}
+
+.function-card h3 {
+    font-size: 16px;
+    font-weight: 650;
+    margin-bottom: 8px;
+}
+
+.function-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+/* =========================================================
+   CONTROL MATRIX
+========================================================= */
+
+.matrix-wrap {
+    border: 1px solid var(--line-soft);
+    background: var(--panel);
+    overflow: hidden;
+}
+
+.matrix {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.matrix th,
+.matrix td {
+    padding: 17px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 13px;
+}
+
+.matrix th {
+    background: rgba(212,175,55,.045);
+    color: var(--gold-light);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.matrix td {
+    color: var(--muted);
+}
+
+.matrix td:first-child {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.matrix tr:last-child td {
+    border-bottom: none;
+}
+
+/* =========================================================
+   HSE CONTROL VIEW
+========================================================= */
+
+.control-view {
+    margin-top: 25px;
+    border: 1px solid var(--line-soft);
+    background:
+        linear-gradient(145deg, rgba(212,175,55,.045), rgba(255,255,255,.015)),
+        var(--panel);
+    padding: 30px;
+}
+
+.view-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 25px;
+    margin-bottom: 22px;
+}
+
+.control-flow {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.control-step {
+    border: 1px solid var(--line-soft);
+    min-height: 82px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    background: rgba(255,255,255,.015);
+}
+
+.control-step strong {
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: .05em;
+}
+
+.control-step span {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+/* =========================================================
+   HSE CYCLE
+========================================================= */
+
+.cycle {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.cycle-step {
+    position: relative;
+    min-height: 170px;
+    border: 1px solid var(--line-soft);
+    background: var(--panel);
+    padding: 23px;
+}
+
+.cycle-step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 18px;
+    z-index: 2;
+}
+
+.cycle-number {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+.cycle-step h3 {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.cycle-step p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+/* =========================================================
+   RESPONSIBILITY
+========================================================= */
+
+.responsibility-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.responsibility-card {
+    border-left: 2px solid var(--gold);
+    padding: 19px 20px;
+    background: rgba(255,255,255,.025);
+}
+
+.responsibility-card h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.responsibility-card p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* =========================================================
+   KPI
+========================================================= */
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.kpi-card {
+    background: var(--panel);
+    border: 1px solid var(--line-soft);
+    padding: 25px;
+    min-height: 140px;
+}
+
+.kpi-label {
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.kpi-value {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--gold-light);
+    font-size: 30px;
+    margin-top: 15px;
+}
+
+.kpi-unit {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+/* =========================================================
+   PRINCIPLES
+========================================================= */
+
+.principles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.principle {
+    text-align: center;
+    padding: 30px 18px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.principle strong {
+    display: block;
+    color: var(--gold-light);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.principle span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 7px;
+}
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta {
+    padding: 70px 0 90px;
+}
+
+.cta-box {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background:
+        radial-gradient(circle at 90% 50%, rgba(212,175,55,.09), transparent 30%),
+        var(--panel);
+    padding: 55px;
+    text-align: center;
+}
+
+.cta-box h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 500;
+}
+
+.cta-box p {
+    color: var(--muted);
+    max-width: 670px;
+    margin: 14px auto 28px;
+    font-size: 14px;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    transition: .25s ease;
+}
+
+.cta-button:hover {
+    background: var(--gold);
+    color: #090c12;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top: 1px solid var(--line-soft);
+    padding: 28px 0;
+    background: #05080d;
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-brand {
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+}
+
+.footer-text {
+    color: var(--muted);
+    font-size: 11px;
+    text-align: right;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .function-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .control-flow {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cycle {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cycle-step:not(:last-child)::after {
+        display: none;
+    }
+
+    .responsibility-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .principles {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 680px) {
+
+    .container {
+        width: min(100% - 28px, 1180px);
+    }
+
+    .header-inner {
+        min-height: 64px;
+    }
+
+    .header-nav a:not(.home-btn) {
+        display: none;
+    }
+
+    .hero {
+        padding: 55px 0 45px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    section {
+        padding: 65px 0;
+    }
+
+    .function-grid,
+    .responsibility-grid,
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .control-flow {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cycle {
+        grid-template-columns: 1fr;
+    }
+
+    .principles {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .status-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 12px 0;
+    }
+
+    .matrix-wrap {
+        overflow-x: auto;
+    }
+
+    .matrix {
+        min-width: 720px;
+    }
+
+    .cta-box {
+        padding: 42px 22px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-text {
+        text-align: left;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .principles {
+        grid-template-columns: 1fr;
+    }
+
+    .control-flow {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .brand-text strong {
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="container header-inner">
+
+        <a href="../index.html" class="brand">
+
+            <div class="brand-mark">
+                HSE
+            </div>
+
+            <div class="brand-text">
+                <strong>EEMS</strong>
+                <span>HSE / K3 MANAGEMENT</span>
+            </div>
+
+        </a>
+
+
+        <nav class="header-nav">
+
+            <a href="#functions">
+                Functions
+            </a>
+
+            <a href="#control">
+                Control
+            </a>
+
+            <a href="#cycle">
+                Cycle
+            </a>
+
+            <a href="#kpi">
+                KPI
+            </a>
+
+            <a href="../index.html" class="home-btn">
+                ← EEMS Home
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     BREADCRUMB
+===================================================== -->
+
+<div class="container breadcrumb">
+
+    EEMS
+    <span>›</span>
+    HSE / K3 Management
+
+</div>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<main>
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            EEMS · Module 05
+        </div>
+
+        <h1>
+            HSE / K3 <span>Management</span>
+        </h1>
+
+        <p class="hero-description">
+            Sistem pengelolaan keselamatan, kesehatan kerja,
+            lingkungan, dan pengendalian risiko untuk memastikan
+            aktivitas kelistrikan, energi, maintenance, dan
+            operasional berlangsung secara aman dan terkendali.
+        </p>
+
+        <div class="hero-line"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATUS
+===================================================== -->
+
+<div class="status-bar">
+
+    <div class="container status-inner">
+
+        <div class="status-group">
+
+            <span class="status-dot"></span>
+
+            <span class="status-label">
+                HSE / K3 Management Module
+            </span>
+
+        </div>
+
+        <div class="status-group">
+            Safety · Risk · Permit · Incident · Environment
+        </div>
+
+        <div class="status-group">
+            EEMS Version 1.0
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FUNCTIONS
+===================================================== -->
+
+<section id="functions">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-kicker">
+                HSE / K3 Management Functions
+            </div>
+
+            <h2 class="section-title">
+                Sembilan fungsi utama
+            </h2>
+
+            <p class="section-description">
+                HSE / K3 menjadi lapisan pengendalian risiko
+                yang melindungi manusia, aset, proses operasi,
+                dan lingkungan dari konsekuensi aktivitas kerja.
+            </p>
+
+        </div>
+
+
+        <div class="function-grid">
+
+
+            <!-- 01 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    HSE-01
+                </div>
+
+                <div class="function-icon">
+                    RISK
+                </div>
+
+                <h3>
+                    Risk Assessment
+                </h3>
+
+                <p>
+                    Identifikasi hazard, penilaian risiko,
+                    penentuan control, dan pemantauan risiko
+                    pada aktivitas kerja.
+                </p>
+
+            </article>
+
+
+            <!-- 02 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    HSE-02
+                </div>
+
+                <div class="function-icon">
+                    JSA
+                </div>
+
+                <h3>
+                    Job Safety Analysis
+                </h3>
+
+                <p>
+                    Analisis langkah pekerjaan untuk mengenali
+                    potensi bahaya dan menetapkan pengendalian
+                    sebelum pekerjaan dilaksanakan.
+                </p>
+
+            </article>
+
+
+            <!-- 03 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    HSE-03
+                </div>
+
+                <div class="function-icon">
+                    PTW
+                </div>
+
+                <h3>
+                    Permit to Work
+                </h3>
+
+                <p>
+                    Pengendalian pekerjaan berisiko melalui
+                    izin kerja, persyaratan keselamatan,
+                    isolasi, dan otorisasi.
+                </p>
+
+            </article>
+
+
+            <!-- 04 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    HSE-04
+                </div>
+
+                <div class="function-icon">
+                    PPE
+                </div>
+
+                <h3>
+                    Safety & PPE
+                </h3>
+
+                <p>
+                    Pengendalian keselamatan kerja termasuk
+                    prosedur, APD, electrical safety, housekeeping,
+                    dan safe working practice.
+                </p>
+
+            </article>
+
+
+            <!-- 05 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    HSE-05
+                </div>
+
+                <div class="function-icon">
+                    INS
+                </div>
+
+                <h3>
+                    Inspection & Audit
+                </h3>
+
+                <p>
+                    Inspeksi kondisi tempat kerja, equipment,
+                    pekerjaan, dan kepatuhan terhadap persyaratan
+                    keselamatan.
+                </p>
+
+            </article>
+
+
+            <!-- 06 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    HSE-06
+                </div>
+
+                <div class="function-icon">
+                    INC
+                </div>
+
+                <h3>
+                    Incident Management
+                </h3>
+
+                <p>
+                    Pencatatan incident, near miss, unsafe
+                    condition, investigasi, root cause,
+                    dan corrective action.
+                </p>
+
+            </article>
+
+
+            <!-- 07 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    HSE-07
+                </div>
+
+                <div class="function-icon">
+                    ERP
+                </div>
+
+                <h3>
+                    Emergency Response
+                </h3>
+
+                <p>
+                    Pengelolaan kesiapsiagaan menghadapi
+                    keadaan darurat, komunikasi, evakuasi,
+                    dan response procedure.
+                </p>
+
+            </article>
+
+
+            <!-- 08 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    HSE-08
+                </div>
+
+                <div class="function-icon">
+                    ENV
+                </div>
+
+                <h3>
+                    Environmental Control
+                </h3>
+
+                <p>
+                    Pemantauan aspek lingkungan yang relevan
+                    terhadap aktivitas operasi, energi,
+                    maintenance, dan pengelolaan limbah.
+                </p>
+
+            </article>
+
+
+            <!-- 09 -->
+
+            <article class="function-card">
+
+                <div class="function-number">
+                    HSE-09
+                </div>
+
+                <div class="function-icon">
+                    ACT
+                </div>
+
+                <h3>
+                    Corrective Action
+                </h3>
+
+                <p>
+                    Pengelolaan tindakan korektif dan preventif
+                    sampai masalah ditutup dan efektivitas
+                    tindakan diverifikasi.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTROL MATRIX
+===================================================== -->
+
+<section id="control">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-kicker">
+                HSE / K3 Control Matrix
+            </div>
+
+            <h2 class="section-title">
+                Apa yang dikendalikan?
+            </h2>
+
+            <p class="section-description">
+                Fokus HSE adalah mengendalikan hazard dan risiko
+                sebelum berkembang menjadi incident, injury,
+                property damage, environmental impact, atau
+                operational disruption.
+            </p>
+
+        </div>
+
+
+        <div class="matrix-wrap">
+
+            <table class="matrix">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Parameter
+                        </th>
+
+                        <th>
+                            Indicator
+                        </th>
+
+                        <th>
+                            Tujuan Pengendalian
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Risk Level
+                        </td>
+
+                        <td>
+                            Low / Medium / High
+                        </td>
+
+                        <td>
+                            Menentukan prioritas pengendalian
+                            berdasarkan tingkat risiko.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Permit to Work
+                        </td>
+
+                        <td>
+                            Count / Compliance
+                        </td>
+
+                        <td>
+                            Memastikan pekerjaan berisiko
+                            memiliki otorisasi dan control yang sesuai.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Safety Inspection
+                        </td>
+
+                        <td>
+                            Count / %
+                        </td>
+
+                        <td>
+                            Mengidentifikasi unsafe condition
+                            dan unsafe act sebelum terjadi incident.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Incident
+                        </td>
+
+                        <td>
+                            Count
+                        </td>
+
+                        <td>
+                            Mengendalikan kejadian dan mencegah
+                            terulangnya incident.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Near Miss
+                        </td>
+
+                        <td>
+                            Count
+                        </td>
+
+                        <td>
+                            Menangkap peringatan awal sebelum
+                            menghasilkan konsekuensi yang lebih besar.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Corrective Action
+                        </td>
+
+                        <td>
+                            Open / Closed
+                        </td>
+
+                        <td>
+                            Memastikan temuan dan penyebab masalah
+                            ditindaklanjuti sampai selesai.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Safety Training
+                        </td>
+
+                        <td>
+                            Hours / %
+                        </td>
+
+                        <td>
+                            Memastikan kompetensi dan awareness
+                            pekerja sesuai kebutuhan pekerjaan.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Environmental Aspect
+                        </td>
+
+                        <td>
+                            Compliance
+                        </td>
+
+                        <td>
+                            Mengendalikan dampak lingkungan
+                            dari aktivitas operasional.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- HSE CONTROL VIEW -->
+
+        <div class="control-view">
+
+            <div class="view-title">
+                HSE Control View
+            </div>
+
+            <div class="control-flow">
+
+                <div class="control-step">
+
+                    <strong>HAZARD</strong>
+
+                    <span>
+                        Identify
+                    </span>
+
+                </div>
+
+
+                <div class="control-step">
+
+                    <strong>RISK</strong>
+
+                    <span>
+                        Assess
+                    </span>
+
+                </div>
+
+
+                <div class="control-step">
+
+                    <strong>CONTROL</strong>
+
+                    <span>
+                        Mitigate
+                    </span>
+
+                </div>
+
+
+                <div class="control-step">
+
+                    <strong>WORK</strong>
+
+                    <span>
+                        Execute
+                    </span>
+
+                </div>
+
+
+                <div class="control-step">
+
+                    <strong>VERIFY</strong>
+
+                    <span>
+                        Inspect
+                    </span>
+
+                </div>
+
+
+                <div class="control-step">
+
+                    <strong>IMPROVE</strong>
+
+                    <span>
+                        Correct
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HSE CYCLE
+===================================================== -->
+
+<section id="cycle">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-kicker">
+                HSE Management Cycle
+            </div>
+
+            <h2 class="section-title">
+                Dari hazard menuju pengendalian
+            </h2>
+
+            <p class="section-description">
+                Sistem HSE harus bekerja sebelum pekerjaan dimulai,
+                selama pekerjaan berlangsung, dan setelah pekerjaan
+                selesai. Setiap temuan harus menghasilkan tindakan
+                yang dapat diverifikasi.
+            </p>
+
+        </div>
+
+
+        <div class="cycle">
+
+
+            <div class="cycle-step">
+
+                <div class="cycle-number">
+                    01
+                </div>
+
+                <h3>
+                    IDENTIFY
+                </h3>
+
+                <p>
+                    Mengenali hazard dan aspek lingkungan
+                    dari aktivitas kerja.
+                </p>
+
+            </div>
+
+
+            <div class="cycle-step">
+
+                <div class="cycle-number">
+                    02
+                </div>
+
+                <h3>
+                    ASSESS
+                </h3>
+
+                <p>
+                    Menilai risiko dan menentukan prioritas
+                    pengendalian.
+                </p>
+
+            </div>
+
+
+            <div class="cycle-step">
+
+                <div class="cycle-number">
+                    03
+                </div>
+
+                <h3>
+                    CONTROL
+                </h3>
+
+                <p>
+                    Menetapkan engineering, administrative,
+                    PPE, dan control lainnya.
+                </p>
+
+            </div>
+
+
+            <div class="cycle-step">
+
+                <div class="cycle-number">
+                    04
+                </div>
+
+                <h3>
+                    VERIFY
+                </h3>
+
+                <p>
+                    Memeriksa apakah pengendalian berjalan
+                    efektif di lapangan.
+                </p>
+
+            </div>
+
+
+            <div class="cycle-step">
+
+                <div class="cycle-number">
+                    05
+                </div>
+
+                <h3>
+                    IMPROVE
+                </h3>
+
+                <p>
+                    Memperbaiki sistem berdasarkan temuan,
+                    incident, dan pengalaman kerja.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RESPONSIBILITY
+===================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-kicker">
+                Responsibility
+            </div>
+
+            <h2 class="section-title">
+                Siapa yang bertanggung jawab?
+            </h2>
+
+            <p class="section-description">
+                Keselamatan bukan hanya tanggung jawab departemen
+                HSE. Setiap orang yang merencanakan, mengawasi,
+                melaksanakan, atau mengendalikan pekerjaan memiliki
+                peran dalam keselamatan.
+            </p>
+
+        </div>
+
+
+        <div class="responsibility-grid">
+
+
+            <div class="responsibility-card">
+
+                <h3>
+                    HSE Manager
+                </h3>
+
+                <p>
+                    Mengendalikan sistem HSE, risk management,
+                    compliance, audit, incident, dan improvement.
+                </p>
+
+            </div>
+
+
+            <div class="responsibility-card">
+
+                <h3>
+                    Electrical Management
+                </h3>
+
+                <p>
+                    Memastikan pekerjaan dan sistem kelistrikan
+                    dikelola dengan electrical safety yang sesuai.
+                </p>
+
+            </div>
+
+
+            <div class="responsibility-card">
+
+                <h3>
+                    Maintenance
+                </h3>
+
+                <p>
+                    Mengendalikan keselamatan pekerjaan inspection,
+                    repair, shutdown, isolation, dan maintenance.
+                </p>
+
+            </div>
+
+
+            <div class="responsibility-card">
+
+                <h3>
+                    Operations
+                </h3>
+
+                <p>
+                    Memastikan operasi berjalan sesuai procedure,
+                    operating limit, dan safe working practice.
+                </p>
+
+            </div>
+
+
+            <div class="responsibility-card">
+
+                <h3>
+                    Supervisors
+                </h3>
+
+                <p>
+                    Memastikan pekerjaan di lapangan dilaksanakan
+                    sesuai permit, JSA, prosedur, dan control.
+                </p>
+
+            </div>
+
+
+            <div class="responsibility-card">
+
+                <h3>
+                    All Personnel
+                </h3>
+
+                <p>
+                    Mengikuti prosedur keselamatan, menggunakan
+                    control yang ditetapkan, dan melaporkan kondisi
+                    tidak aman.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     KPI
+===================================================== -->
+
+<section id="kpi">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-kicker">
+                HSE Performance Indicators
+            </div>
+
+            <h2 class="section-title">
+                HSE / K3 KPI
+            </h2>
+
+            <p class="section-description">
+                Nilai KPI akan berasal dari inspection,
+                permit, training, incident record,
+                corrective action, dan data HSE aktual.
+            </p>
+
+        </div>
+
+
+        <div class="kpi-grid">
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Recordable Incident
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    Count
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Lost Time Incident
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    Count
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Near Miss
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    Count
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Safety Inspection
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    %
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Corrective Action Closure
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    %
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Safety Training
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    Hours / %
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PRINCIPLES
+===================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-kicker">
+                HSE Principle
+            </div>
+
+            <h2 class="section-title">
+                Prinsip keselamatan
+            </h2>
+
+        </div>
+
+
+        <div class="principles">
+
+
+            <div class="principle">
+
+                <strong>Identify</strong>
+
+                <span>
+                    Kenali hazard sebelum pekerjaan dimulai.
+                </span>
+
+            </div>
+
+
+            <div class="principle">
+
+                <strong>Control</strong>
+
+                <span>
+                    Kendalikan risiko dengan cara yang tepat.
+                </span>
+
+            </div>
+
+
+            <div class="principle">
+
+                <strong>Verify</strong>
+
+                <span>
+                    Pastikan control benar-benar berjalan.
+                </span>
+
+            </div>
+
+
+            <div class="principle">
+
+                <strong>Improve</strong>
+
+                <span>
+                    Belajar dari temuan dan kejadian.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta">
+
+    <div class="container">
+
+        <div class="cta-box">
+
+            <h2>
+                Control the Risk.<br>
+                Protect the People.
+            </h2>
+
+            <p>
+                Sistem energi dan kelistrikan yang baik tidak
+                cukup hanya reliable dan efisien. Semua pekerjaan
+                harus dapat dilakukan dengan aman, terkendali,
+                dan bertanggung jawab terhadap manusia, aset,
+                operasi, dan lingkungan.
+            </p>
+
+            <a href="../index.html" class="cta-button">
+                ← BACK TO EEMS
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div class="footer-brand">
+            EEMS · HSE / K3 MANAGEMENT
+        </div>
+
+        <div class="footer-text">
+            Electrical Energy Management System<br>
+            Module 05 · Version 1.0
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
