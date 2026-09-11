@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>EEMS — Electrical Energy Management System</title>
+    <title>EEMS | Electrical Energy Management System</title>
 
     <meta name="description"
-          content="Electrical Energy Management System — Sistem pengelolaan, pemantauan, analisis dan efisiensi energi listrik secara terintegrasi.">
+          content="Electrical Energy Management System — Integrated Management, Electrical, Energy, Maintenance, HSE, Project, Finance, HR and Management Reporting System.">
 
-    <meta name="theme-color" content="#0b1220">
+    <meta name="theme-color" content="#07111f">
 
     <style>
+
         /* =========================================================
-           EEMS — ELECTRICAL ENERGY MANAGEMENT SYSTEM
-           MAIN LANDING PAGE
+           EEMS — GLOBAL STYLE
            ========================================================= */
 
         * {
@@ -29,14 +29,20 @@
 
         body {
             font-family:
-                Inter,
                 "Segoe UI",
-                Roboto,
                 Arial,
+                Helvetica,
                 sans-serif;
 
-            background: #f4f7fb;
-            color: #182230;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(212, 175, 55, 0.08),
+                    transparent 30%
+                ),
+                #07111f;
+
+            color: #f4f6f8;
             line-height: 1.6;
         }
 
@@ -45,105 +51,104 @@
             color: inherit;
         }
 
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
+
         /* =========================================================
            HEADER
            ========================================================= */
 
-        .header {
-            position: fixed;
+        header {
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
             z-index: 1000;
 
-            background: rgba(11, 18, 32, 0.96);
-            backdrop-filter: blur(12px);
+            background: rgba(7, 17, 31, 0.94);
+            backdrop-filter: blur(14px);
 
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.18);
         }
 
         .nav {
-            max-width: 1200px;
-            margin: auto;
-
             min-height: 72px;
-            padding: 0 24px;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            gap: 30px;
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 13px;
+            gap: 12px;
         }
 
-        .brand-icon {
+        .brand-symbol {
             width: 42px;
             height: 42px;
-
-            border-radius: 10px;
-
-            background: linear-gradient(
-                135deg,
-                #f4c95d,
-                #d89b18
-            );
-
-            color: #101827;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            font-size: 21px;
-            font-weight: 900;
+            border: 1px solid #d4af37;
+            border-radius: 10px;
 
-            box-shadow:
-                0 5px 20px rgba(216,155,24,0.25);
+            color: #d4af37;
+            font-size: 22px;
+            font-weight: 700;
         }
 
         .brand-text strong {
             display: block;
 
             color: #ffffff;
-            font-size: 18px;
+            font-size: 17px;
             letter-spacing: 1px;
         }
 
         .brand-text span {
             display: block;
 
-            color: #9ca9bb;
+            color: #9ba8b7;
             font-size: 10px;
-            letter-spacing: 1.3px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 24px;
+
+            color: #b8c2ce;
+            font-size: 13px;
         }
 
         .nav-links a {
-            color: #c8d1df;
-            font-size: 13px;
             transition: 0.25s;
         }
 
         .nav-links a:hover {
-            color: #f4c95d;
+            color: #d4af37;
         }
 
-        .nav-login {
-            padding: 9px 17px;
-            border: 1px solid rgba(244,201,93,0.55);
+        .nav-button {
+            padding: 9px 16px;
+
+            border: 1px solid rgba(212, 175, 55, 0.5);
             border-radius: 7px;
 
-            color: #f4c95d !important;
+            color: #d4af37;
+        }
+
+        .nav-button:hover {
+            background: #d4af37;
+            color: #07111f;
         }
 
         /* =========================================================
@@ -151,27 +156,10 @@
            ========================================================= */
 
         .hero {
-            min-height: 100vh;
-
-            padding:
-                150px 24px
-                90px;
+            min-height: 650px;
 
             display: flex;
             align-items: center;
-
-            background:
-                radial-gradient(
-                    circle at 80% 20%,
-                    rgba(35,76,126,0.35),
-                    transparent 35%
-                ),
-                linear-gradient(
-                    135deg,
-                    #08101e,
-                    #101c31 60%,
-                    #132945
-                );
 
             position: relative;
             overflow: hidden;
@@ -181,38 +169,24 @@
             content: "";
 
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 520px;
+            height: 520px;
 
             right: -180px;
-            bottom: -180px;
+            top: 40px;
 
             border-radius: 50%;
 
-            border: 1px solid rgba(244,201,93,0.12);
-        }
-
-        .hero::after {
-            content: "";
-
-            position: absolute;
-            width: 700px;
-            height: 700px;
-
-            right: -280px;
-            bottom: -280px;
-
-            border-radius: 50%;
-
-            border: 1px solid rgba(244,201,93,0.07);
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(212, 175, 55, 0.12),
+                    transparent 68%
+                );
         }
 
         .hero-content {
-            width: 100%;
-            max-width: 1200px;
-
-            margin: auto;
-
+            max-width: 850px;
             position: relative;
             z-index: 2;
         }
@@ -220,73 +194,54 @@
         .eyebrow {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-
-            padding: 7px 13px;
-
-            border-radius: 30px;
-
-            background: rgba(244,201,93,0.09);
-            border: 1px solid rgba(244,201,93,0.22);
-
-            color: #f4c95d;
-
-            font-size: 11px;
-            letter-spacing: 1.4px;
-            text-transform: uppercase;
+            gap: 10px;
 
             margin-bottom: 22px;
+
+            color: #d4af37;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
         }
 
         .eyebrow::before {
             content: "";
-            width: 7px;
-            height: 7px;
 
-            border-radius: 50%;
+            width: 34px;
+            height: 1px;
 
-            background: #58d68d;
-
-            box-shadow:
-                0 0 10px rgba(88,214,141,0.8);
+            background: #d4af37;
         }
 
         .hero h1 {
-            max-width: 820px;
-
-            color: #ffffff;
-
-            font-size: clamp(
-                42px,
-                6vw,
-                72px
-            );
-
+            font-size: clamp(40px, 7vw, 76px);
             line-height: 1.04;
 
             letter-spacing: -2px;
 
-            margin-bottom: 25px;
+            margin-bottom: 24px;
         }
 
         .hero h1 span {
-            color: #f4c95d;
+            color: #d4af37;
         }
 
         .hero-description {
-            max-width: 720px;
+            max-width: 700px;
 
-            color: #aebbd0;
+            color: #aeb9c6;
 
-            font-size: 18px;
+            font-size: 17px;
+            line-height: 1.8;
 
-            margin-bottom: 36px;
+            margin-bottom: 35px;
         }
 
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 13px;
+            gap: 14px;
         }
 
         .btn {
@@ -294,69 +249,64 @@
             align-items: center;
             justify-content: center;
 
-            min-height: 48px;
+            padding: 13px 22px;
 
-            padding: 0 23px;
-
-            border-radius: 8px;
+            border-radius: 7px;
 
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 600;
 
-            transition:
-                transform 0.2s,
-                box-shadow 0.2s,
-                background 0.2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
+            transition: 0.25s;
         }
 
         .btn-primary {
-            background: #e5b83f;
-            color: #101827;
-
-            box-shadow:
-                0 10px 30px rgba(229,184,63,0.18);
+            background: #d4af37;
+            color: #07111f;
         }
 
         .btn-primary:hover {
-            background: #f4c95d;
+            background: #e3c55b;
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
-            color: #ffffff;
-
-            border: 1px solid rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.04);
+            border: 1px solid #334355;
+            color: #dce3ea;
         }
 
         .btn-secondary:hover {
-            background: rgba(255,255,255,0.09);
+            border-color: #d4af37;
+            color: #d4af37;
         }
 
         /* =========================================================
-           HERO STATUS
+           SYSTEM STATUS
            ========================================================= */
 
-        .system-status {
-            margin-top: 55px;
+        .status-bar {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+
+            background: rgba(255,255,255,0.025);
+        }
+
+        .status-inner {
+            min-height: 72px;
 
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
 
-            gap: 28px;
-
-            color: #8f9db1;
-
-            font-size: 11px;
+            gap: 20px;
         }
 
         .status-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 9px;
+
+            color: #9da9b6;
+            font-size: 12px;
         }
 
         .status-dot {
@@ -364,8 +314,9 @@
             height: 8px;
 
             border-radius: 50%;
+            background: #58c78b;
 
-            background: #58d68d;
+            box-shadow: 0 0 10px rgba(88,199,139,0.6);
         }
 
         /* =========================================================
@@ -373,26 +324,20 @@
            ========================================================= */
 
         section {
-            padding: 90px 24px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
+            padding: 90px 0;
         }
 
         .section-heading {
-            max-width: 720px;
-            margin-bottom: 45px;
+            margin-bottom: 42px;
         }
 
         .section-label {
-            color: #c49320;
+            color: #d4af37;
 
             font-size: 11px;
-            font-weight: 800;
+            font-weight: 700;
 
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             text-transform: uppercase;
 
             margin-bottom: 10px;
@@ -400,116 +345,221 @@
 
         .section-heading h2 {
             font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.2;
 
-            line-height: 1.15;
-
-            color: #172235;
-
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .section-heading p {
-            color: #69778a;
-            font-size: 15px;
+            max-width: 720px;
+
+            color: #8f9baa;
+            font-size: 14px;
         }
 
         /* =========================================================
-           MODULES
+           MODULE GRID
            ========================================================= */
 
-        .modules {
-            background: #ffffff;
-        }
-
-        .module-grid {
+        .modules-grid {
             display: grid;
 
             grid-template-columns:
-                repeat(3, 1fr);
+                repeat(3, minmax(0, 1fr));
 
             gap: 18px;
         }
 
-        .module {
+        .module-card {
+            min-height: 235px;
+
+            position: relative;
+            overflow: hidden;
+
             padding: 28px;
 
-            border-radius: 13px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.055),
+                    rgba(255,255,255,0.018)
+                );
 
-            background: #f8fafc;
+            border:
+                1px solid rgba(255,255,255,0.08);
 
-            border: 1px solid #e4e9f0;
+            border-radius: 12px;
 
             transition:
                 transform 0.25s,
-                box-shadow 0.25s,
-                border 0.25s;
+                border-color 0.25s,
+                background 0.25s;
         }
 
-        .module:hover {
+        .module-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+            height: 120px;
+
+            right: -50px;
+            bottom: -50px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(212,175,55,0.08),
+                    transparent 70%
+                );
+        }
+
+        .module-card:hover {
             transform: translateY(-5px);
 
-            border-color: #d8b44e;
+            border-color:
+                rgba(212,175,55,0.5);
 
-            box-shadow:
-                0 18px 40px rgba(22,34,52,0.08);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(212,175,55,0.09),
+                    rgba(255,255,255,0.025)
+                );
+        }
+
+        .module-number {
+            color: #657386;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
         }
 
         .module-icon {
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
+            margin: 18px 0;
+
+            border:
+                1px solid rgba(212,175,55,0.4);
+
             border-radius: 10px;
 
-            background: #edf2f8;
-
-            color: #b08215;
+            color: #d4af37;
 
             font-size: 21px;
-
-            margin-bottom: 20px;
         }
 
-        .module h3 {
-            font-size: 17px;
-            margin-bottom: 8px;
+        .module-card h3 {
+            font-size: 18px;
+            margin-bottom: 9px;
         }
 
-        .module p {
-            color: #718096;
+        .module-card p {
+            color: #8996a5;
+
             font-size: 13px;
+            line-height: 1.7;
+
             margin-bottom: 18px;
         }
 
         .module-link {
-            color: #a57710;
+            color: #d4af37;
 
             font-size: 12px;
-            font-weight: 800;
+            font-weight: 700;
+
+            letter-spacing: 0.8px;
         }
 
         /* =========================================================
-           SYSTEM ARCHITECTURE
+           MANAGEMENT SYSTEM
+           ========================================================= */
+
+        .management-box {
+            display: grid;
+
+            grid-template-columns:
+                1.2fr 1fr;
+
+            gap: 35px;
+
+            padding: 40px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(212,175,55,0.10),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(212,175,55,0.22);
+
+            border-radius: 14px;
+        }
+
+        .management-box h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .management-box p {
+            color: #a4afbc;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .management-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .feature {
+            padding: 17px;
+
+            background: rgba(0,0,0,0.16);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            border-radius: 8px;
+        }
+
+        .feature strong {
+            display: block;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            margin-bottom: 4px;
+        }
+
+        .feature span {
+            color: #7f8b99;
+            font-size: 11px;
+        }
+
+        /* =========================================================
+           ARCHITECTURE
            ========================================================= */
 
         .architecture {
-            background: #f4f7fb;
-        }
-
-        .architecture-box {
-            padding: 35px;
-
-            border-radius: 16px;
-
-            background: #101b2d;
-
-            color: white;
-
-            box-shadow:
-                0 20px 50px rgba(16,27,45,0.15);
+            background:
+                rgba(0,0,0,0.14);
         }
 
         .architecture-flow {
@@ -520,40 +570,53 @@
 
             gap: 10px;
 
-            align-items: center;
+            margin-top: 40px;
         }
 
         .flow-item {
-            padding: 20px 10px;
+            position: relative;
 
             text-align: center;
 
-            border:
-                1px solid
-                rgba(255,255,255,0.1);
-
-            border-radius: 9px;
+            padding: 25px 15px;
 
             background:
                 rgba(255,255,255,0.035);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            border-radius: 10px;
+        }
+
+        .flow-item:not(:last-child)::after {
+            content: "→";
+
+            position: absolute;
+
+            right: -18px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #d4af37;
+
+            font-size: 18px;
+
+            z-index: 2;
         }
 
         .flow-number {
-            color: #f4c95d;
+            color: #d4af37;
 
             font-size: 11px;
-
-            margin-bottom: 6px;
-        }
-
-        .flow-title {
-            font-size: 12px;
             font-weight: 700;
+
+            margin-bottom: 8px;
         }
 
-        .flow-arrow {
-            text-align: center;
-            color: #65758b;
+        .flow-item strong {
+            font-size: 14px;
         }
 
         /* =========================================================
@@ -561,41 +624,31 @@
            ========================================================= */
 
         .principles {
-            background: #ffffff;
-        }
-
-        .principle-grid {
             display: grid;
 
             grid-template-columns:
                 repeat(4, 1fr);
 
-            gap: 16px;
+            gap: 15px;
         }
 
         .principle {
-            padding: 25px;
+            padding: 25px 20px;
 
-            border-top:
-                3px solid #d4a72c;
+            border-left:
+                2px solid #d4af37;
 
-            background: #f8fafc;
-
-            border-radius:
-                0 0 10px 10px;
+            background:
+                rgba(255,255,255,0.025);
         }
 
-        .principle strong {
-            display: block;
-
-            margin-bottom: 8px;
-
-            font-size: 15px;
+        .principle h3 {
+            font-size: 17px;
+            margin-bottom: 7px;
         }
 
-        .principle span {
-            color: #718096;
-
+        .principle p {
+            color: #84909f;
             font-size: 12px;
         }
 
@@ -604,34 +657,31 @@
            ========================================================= */
 
         .cta {
-            padding: 80px 24px;
+            text-align: center;
+
+            padding: 100px 20px;
 
             background:
-                linear-gradient(
-                    135deg,
-                    #101a2b,
-                    #162b49
+                radial-gradient(
+                    circle at center,
+                    rgba(212,175,55,0.09),
+                    transparent 60%
                 );
-
-            text-align: center;
         }
 
         .cta h2 {
-            color: #ffffff;
+            font-size: clamp(30px, 5vw, 48px);
 
-            font-size:
-                clamp(28px, 4vw, 43px);
-
-            margin-bottom: 14px;
+            margin-bottom: 15px;
         }
 
         .cta p {
-            color: #aebbd0;
-
             max-width: 650px;
 
-            margin:
-                0 auto 28px;
+            margin: 0 auto 30px;
+
+            color: #919dab;
+            font-size: 14px;
         }
 
         /* =========================================================
@@ -639,90 +689,32 @@
            ========================================================= */
 
         footer {
-            background: #080f1b;
-            color: #8795a9;
-        }
-
-        .footer-main {
-            max-width: 1200px;
-
-            margin: auto;
-
-            padding: 55px 24px 35px;
-
-            display: grid;
-
-            grid-template-columns:
-                2fr 1fr 1fr;
-
-            gap: 45px;
-        }
-
-        .footer-brand strong {
-            display: block;
-
-            color: white;
-
-            font-size: 18px;
-
-            margin-bottom: 9px;
-        }
-
-        .footer-brand p {
-            max-width: 400px;
-
-            font-size: 12px;
-
-            line-height: 1.8;
-        }
-
-        .footer-column h4 {
-            color: #ffffff;
-
-            font-size: 12px;
-
-            margin-bottom: 15px;
-        }
-
-        .footer-column a {
-            display: block;
-
-            font-size: 12px;
-
-            margin-bottom: 9px;
-
-            transition: 0.2s;
-        }
-
-        .footer-column a:hover {
-            color: #f4c95d;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-
-            margin: auto;
-
-            padding:
-                18px 24px;
-
             border-top:
-                1px solid
-                rgba(255,255,255,0.07);
+                1px solid rgba(255,255,255,0.07);
 
+            padding: 30px 0;
+
+            color: #6f7c8b;
+            font-size: 11px;
+        }
+
+        .footer-inner {
             display: flex;
-
+            align-items: center;
             justify-content: space-between;
 
-            flex-wrap: wrap;
+            gap: 20px;
+        }
 
-            gap: 10px;
+        .footer-brand {
+            color: #d4af37;
 
-            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         /* =========================================================
-           MOBILE
+           RESPONSIVE
            ========================================================= */
 
         @media (max-width: 900px) {
@@ -731,682 +723,113 @@
                 display: none;
             }
 
-            .module-grid {
+            .modules-grid {
                 grid-template-columns:
-                    repeat(2, 1fr);
+                    repeat(2, minmax(0, 1fr));
             }
 
-            .principle-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
+            .management-box {
+                grid-template-columns: 1fr;
             }
 
             .architecture-flow {
                 grid-template-columns:
-                    1fr;
+                    repeat(2, 1fr);
             }
 
-            .flow-arrow {
-                transform: rotate(90deg);
+            .flow-item:not(:last-child)::after {
+                display: none;
             }
 
-            .footer-main {
+            .principles {
                 grid-template-columns:
-                    1fr 1fr;
-            }
-
-            .footer-brand {
-                grid-column: 1 / -1;
+                    repeat(2, 1fr);
             }
         }
 
         @media (max-width: 600px) {
 
-            .nav {
-                min-height: 64px;
-                padding: 0 17px;
-            }
-
-            .brand-icon {
-                width: 37px;
-                height: 37px;
-            }
-
-            .brand-text strong {
-                font-size: 15px;
-            }
-
             .hero {
-                padding:
-                    125px 20px
-                    70px;
+                min-height: 570px;
+            }
+
+            section {
+                padding: 65px 0;
             }
 
             .hero h1 {
-                font-size: 43px;
-                letter-spacing: -1.5px;
+                letter-spacing: -1px;
             }
 
             .hero-description {
                 font-size: 15px;
             }
 
-            section {
-                padding:
-                    65px 20px;
-            }
-
-            .module-grid,
-            .principle-grid {
-                grid-template-columns:
-                    1fr;
-            }
-
-            .architecture-box {
-                padding: 22px;
-            }
-
-            .footer-main {
-                grid-template-columns:
-                    1fr;
-            }
-
-            .footer-brand {
-                grid-column: auto;
-            }
-
-            .footer-bottom {
+            .status-inner {
                 flex-direction: column;
+                align-items: flex-start;
+
+                padding: 18px 0;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .management-box {
+                padding: 25px;
+            }
+
+            .management-features {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture-flow {
+                grid-template-columns: 1fr;
+            }
+
+            .principles {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
+
     </style>
 </head>
 
 <body>
 
-<!-- =========================================================
+<!-- =============================================================
      HEADER
-     ========================================================= -->
+     ============================================================= -->
 
-<header class="header">
+<header>
 
-    <nav class="nav">
+    <div class="container nav">
 
         <a href="index.html" class="brand">
 
-            <div class="brand-icon">
-                ⚡
+            <div class="brand-symbol">
+                E
             </div>
 
             <div class="brand-text">
+
                 <strong>EEMS</strong>
-                <span>Electrical Energy Management System</span>
+
+                <span>
+                    Electrical Energy Management System
+                </span>
+
             </div>
 
         </a>
 
-        <div class="nav-links">
-
-            <a href="#system">
-                Sistem
-            </a>
-
-            <a href="#modules">
-                Modul
-            </a>
-
-            <a href="#architecture">
-                Arsitektur
-            </a>
-
-            <a href="#principles">
-                Prinsip
-            </a>
-
-            <a href="management/master-document.html"
-               class="nav-login">
-                Masuk Sistem
-            </a>
-
-        </div>
-
-    </nav>
-
-</header>
-
-
-<!-- =========================================================
-     HERO / MAIN GATE
-     ========================================================= -->
-
-<main>
-
-<section class="hero" id="system">
-
-    <div class="hero-content">
-
-        <div class="eyebrow">
-            Integrated Energy Management Platform
-        </div>
-
-        <h1>
-            Electrical Energy
-            <span>Management System</span>
-        </h1>
-
-        <p class="hero-description">
-            Platform terintegrasi untuk mengelola,
-            memantau, menganalisis, mendokumentasikan,
-            dan meningkatkan efisiensi penggunaan energi
-            listrik secara sistematis.
-        </p>
-
-        <div class="hero-actions">
-
-            <a
-                href="management/master-document.html"
-                class="btn btn-primary">
-                Masuk ke Sistem
-            </a>
-
-            <a
-                href="#modules"
-                class="btn btn-secondary">
-                Jelajahi Modul
-            </a>
-
-        </div>
-
-        <div class="system-status">
-
-            <div class="status-item">
-                <span class="status-dot"></span>
-                System Architecture Active
-            </div>
-
-            <div class="status-item">
-                <span class="status-dot"></span>
-                Modular Platform
-            </div>
-
-            <div class="status-item">
-                <span class="status-dot"></span>
-                Energy Management Ready
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     MODULES
-     ========================================================= -->
-
-<section class="modules" id="modules">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div class="section-label">
-                EEMS Platform
-            </div>
-
-            <h2>
-                Satu Sistem.
-                Seluruh Pengelolaan Energi.
-            </h2>
-
-            <p>
-                EEMS dibangun secara modular agar setiap
-                fungsi pengelolaan energi dapat dikembangkan
-                tanpa mengganggu struktur sistem utama.
-            </p>
-
-        </div>
-
-
-        <div class="module-grid">
-
-            <!-- MANAGEMENT -->
-
-            <a
-                href="management/master-document.html"
-                class="module">
-
-                <div class="module-icon">
-                    ◈
-                </div>
-
-                <h3>
-                    Energy Management
-                </h3>
-
-                <p>
-                    Pengelolaan dokumen, kebijakan,
-                    prosedur dan struktur manajemen energi.
-                </p>
-
-                <span class="module-link">
-                    Buka Management →
-                </span>
-
-            </a>
-
-
-            <!-- CORPORATE -->
-
-            <a
-                href="corporate/company-policy.html"
-                class="module">
-
-                <div class="module-icon">
-                    ▣
-                </div>
-
-                <h3>
-                    Corporate
-                </h3>
-
-                <p>
-                    Kebijakan perusahaan, tata kelola,
-                    tanggung jawab dan komitmen energi.
-                </p>
-
-                <span class="module-link">
-                    Buka Corporate →
-                </span>
-
-            </a>
-
-
-            <!-- MONITORING -->
-
-            <a
-                href="monitoring/index.html"
-                class="module">
-
-                <div class="module-icon">
-                    ◉
-                </div>
-
-                <h3>
-                    Monitoring
-                </h3>
-
-                <p>
-                    Pemantauan penggunaan energi,
-                    konsumsi listrik dan kondisi sistem.
-                </p>
-
-                <span class="module-link">
-                    Buka Monitoring →
-                </span>
-
-            </a>
-
-
-            <!-- ANALYTICS -->
-
-            <a
-                href="analytics/index.html"
-                class="module">
-
-                <div class="module-icon">
-                    ◫
-                </div>
-
-                <h3>
-                    Energy Analytics
-                </h3>
-
-                <p>
-                    Analisis data energi untuk menemukan
-                    pola konsumsi, pemborosan dan peluang efisiensi.
-                </p>
-
-                <span class="module-link">
-                    Buka Analytics →
-                </span>
-
-            </a>
-
-
-            <!-- REPORTS -->
-
-            <a
-                href="reports/index.html"
-                class="module">
-
-                <div class="module-icon">
-                    ▤
-                </div>
-
-                <h3>
-                    Reports
-                </h3>
-
-                <p>
-                    Penyusunan laporan energi,
-                    evaluasi kinerja dan dokumentasi manajemen.
-                </p>
-
-                <span class="module-link">
-                    Buka Reports →
-                </span>
-
-            </a>
-
-
-            <!-- SYSTEM -->
-
-            <a
-                href="system/index.html"
-                class="module">
-
-                <div class="module-icon">
-                    ⚙
-                </div>
-
-                <h3>
-                    System Control
-                </h3>
-
-                <p>
-                    Konfigurasi sistem, struktur pengguna,
-                    keamanan dan pengaturan platform.
-                </p>
-
-                <span class="module-link">
-                    Buka System →
-                </span>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     ARCHITECTURE
-     ========================================================= -->
-
-<section class="architecture" id="architecture">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div class="section-label">
-                System Architecture
-            </div>
-
-            <h2>
-                Dari Data Menjadi Keputusan
-            </h2>
-
-            <p>
-                EEMS menghubungkan proses pengelolaan energi
-                dari pengumpulan data sampai pengambilan keputusan.
-            </p>
-
-        </div>
-
-
-        <div class="architecture-box">
-
-            <div class="architecture-flow">
-
-                <div class="flow-item">
-
-                    <div class="flow-number">
-                        01
-                    </div>
-
-                    <div class="flow-title">
-                        DATA
-                    </div>
-
-                </div>
-
-
-                <div class="flow-arrow">
-                    →
-                </div>
-
-
-                <div class="flow-item">
-
-                    <div class="flow-number">
-                        02
-                    </div>
-
-                    <div class="flow-title">
-                        MONITORING
-                    </div>
-
-                </div>
-
-
-                <div class="flow-arrow">
-                    →
-                </div>
-
-
-                <div class="flow-item">
-
-                    <div class="flow-number">
-                        03
-                    </div>
-
-                    <div class="flow-title">
-                        ANALYSIS
-                    </div>
-
-                </div>
-
-
-                <div class="flow-arrow">
-                    →
-                </div>
-
-
-                <div class="flow-item">
-
-                    <div class="flow-number">
-                        04
-                    </div>
-
-                    <div class="flow-title">
-                        ACTION
-                    </div>
-
-                </div>
-
-
-                <div class="flow-arrow">
-                    →
-                </div>
-
-
-                <div class="flow-item">
-
-                    <div class="flow-number">
-                        05
-                    </div>
-
-                    <div class="flow-title">
-                        IMPROVEMENT
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     PRINCIPLES
-     ========================================================= -->
-
-<section class="principles" id="principles">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div class="section-label">
-                Core Principles
-            </div>
-
-            <h2>
-                Prinsip Dasar EEMS
-            </h2>
-
-            <p>
-                Sistem dibangun berdasarkan prinsip bahwa
-                energi harus dapat diukur, dipahami,
-                dikendalikan dan terus ditingkatkan.
-            </p>
-
-        </div>
-
-
-        <div class="principle-grid">
-
-            <div class="principle">
-
-                <strong>
-                    Measure
-                </strong>
-
-                <span>
-                    Apa yang tidak diukur
-                    tidak dapat dikelola dengan baik.
-                </span>
-
-            </div>
-
-
-            <div class="principle">
-
-                <strong>
-                    Understand
-                </strong>
-
-                <span>
-                    Data energi harus diterjemahkan
-                    menjadi informasi yang bermakna.
-                </span>
-
-            </div>
-
-
-            <div class="principle">
-
-                <strong>
-                    Control
-                </strong>
-
-                <span>
-                    Penggunaan energi harus dapat
-                    dikendalikan berdasarkan kondisi nyata.
-                </span>
-
-            </div>
-
-
-            <div class="principle">
-
-                <strong>
-                    Improve
-                </strong>
-
-                <span>
-                    Efisiensi bukan proyek sekali jalan,
-                    tetapi proses perbaikan berkelanjutan.
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     CTA
-     ========================================================= -->
-
-<section class="cta">
-
-    <div class="container">
-
-        <h2>
-            Mulai Mengelola Energi
-            Secara Sistematis
-        </h2>
-
-        <p>
-            Masuk ke EEMS untuk mengakses struktur
-            pengelolaan energi dan seluruh modul sistem.
-        </p>
-
-        <a
-            href="management/master-document.html"
-            class="btn btn-primary">
-            Masuk ke EEMS
-        </a>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- =========================================================
-     FOOTER
-     ========================================================= -->
-
-<footer>
-
-    <div class="footer-main">
-
-        <div class="footer-brand">
-
-            <strong>
-                EEMS
-            </strong>
-
-            <p>
-                Electrical Energy Management System.
-                Platform terintegrasi untuk pengelolaan,
-                pemantauan, analisis dan peningkatan
-                kinerja energi listrik.
-            </p>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h4>
-                PLATFORM
-            </h4>
+        <nav class="nav-links">
 
             <a href="#modules">
                 Modules
@@ -1420,88 +843,787 @@
                 Principles
             </a>
 
-        </div>
-
-
-        <div class="footer-column">
-
-            <h4>
-                SYSTEM
-            </h4>
-
-            <a href="management/master-document.html">
-                Management
+            <a
+                href="management/master-document.html"
+                class="nav-button"
+            >
+                Master Document
             </a>
 
-            <a href="corporate/company-policy.html">
-                Corporate
-            </a>
+        </nav>
 
-            <a href="system/index.html">
-                System Control
-            </a>
+    </div>
+
+</header>
+
+
+<!-- =============================================================
+     HERO
+     ============================================================= -->
+
+<main>
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                Integrated Management System
+            </div>
+
+            <h1>
+                Electrical Energy
+                <span>Management System</span>
+            </h1>
+
+            <p class="hero-description">
+                Sistem pengelolaan kelistrikan dan energi yang
+                terintegrasi untuk menghubungkan pengendalian
+                operasional, pemeliharaan, keselamatan, proyek,
+                sumber daya manusia, keuangan, dan pelaporan
+                manajemen dalam satu arsitektur sistem.
+            </p>
+
+            <div class="hero-actions">
+
+                <a
+                    href="#modules"
+                    class="btn btn-primary"
+                >
+                    Masuk ke Sistem
+                </a>
+
+                <a
+                    href="management/master-document.html"
+                    class="btn btn-secondary"
+                >
+                    Master Document
+                </a>
+
+            </div>
 
         </div>
 
     </div>
 
+</section>
 
-    <div class="footer-bottom">
 
-        <span>
-            © 2026 EEMS — Electrical Energy Management System
-        </span>
+<!-- =============================================================
+     SYSTEM STATUS
+     ============================================================= -->
 
-        <span>
-            Integrated Energy Management Platform
-        </span>
+<div class="status-bar">
+
+    <div class="container status-inner">
+
+        <div class="status-item">
+
+            <span class="status-dot"></span>
+
+            <span>
+                EEMS SYSTEM STRUCTURE
+            </span>
+
+        </div>
+
+        <div class="status-item">
+
+            <span>
+                Integrated Management Architecture
+            </span>
+
+        </div>
+
+        <div class="status-item">
+
+            <span>
+                Version 1.0
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     MODULES
+     ============================================================= -->
+
+<section id="modules">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-label">
+                Main Structure
+            </div>
+
+            <h2>
+                9 Departemen & Modul Utama
+            </h2>
+
+            <p>
+                Seluruh aktivitas utama perusahaan dikelompokkan
+                dalam sembilan fungsi yang saling terhubung
+                melalui EEMS.
+            </p>
+
+        </div>
+
+
+        <div class="modules-grid">
+
+
+            <!-- 01 -->
+
+            <a
+                href="corporate/company-policy.html"
+                class="module-card"
+            >
+
+                <div class="module-number">
+                    01 / CORPORATE
+                </div>
+
+                <div class="module-icon">
+                    C
+                </div>
+
+                <h3>
+                    Corporate Management
+                </h3>
+
+                <p>
+                    Kebijakan perusahaan, arah organisasi,
+                    governance, aturan internal, dan dasar
+                    pengelolaan perusahaan.
+                </p>
+
+                <span class="module-link">
+                    OPEN MODULE →
+                </span>
+
+            </a>
+
+
+            <!-- 02 -->
+
+            <a
+                href="electrical/index.html"
+                class="module-card"
+            >
+
+                <div class="module-number">
+                    02 / ELECTRICAL
+                </div>
+
+                <div class="module-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Electrical Management
+                </h3>
+
+                <p>
+                    Pengelolaan sistem kelistrikan, distribusi,
+                    panel, peralatan listrik, metering, dan
+                    pengendalian beban.
+                </p>
+
+                <span class="module-link">
+                    OPEN MODULE →
+                </span>
+
+            </a>
+
+
+            <!-- 03 -->
+
+            <a
+                href="energy/index.html"
+                class="module-card"
+            >
+
+                <div class="module-number">
+                    03 / ENERGY
+                </div>
+
+                <div class="module-icon">
+                    E
+                </div>
+
+                <h3>
+                    Energy Management
+                </h3>
+
+                <p>
+                    Monitoring konsumsi energi, analisis penggunaan,
+                    efisiensi energi, KPI, dan program improvement.
+                </p>
+
+                <span class="module-link">
+                    OPEN MODULE →
+                </span>
+
+            </a>
+
+
+            <!-- 04 -->
+
+            <a
+                href="maintenance/index.html"
+                class="module-card"
+            >
+
+                <div class="module-number">
+                    04 / MAINTENANCE
+                </div>
+
+                <div class="module-icon">
+                    M
+                </div>
+
+                <h3>
+                    Maintenance
+                </h3>
+
+                <p>
+                    Preventive maintenance, corrective maintenance,
+                    inspeksi, equipment history, dan reliability.
+                </p>
+
+                <span class="module-link">
+                    OPEN MODULE →
+                </span>
+
+            </a>
+
+
+            <!-- 05 -->
+
+            <a
+                href="hse/index.html"
+                class="module-card"
+            >
+
+                <div class="module-number">
+                    05 / HSE
+                </div>
+
+                <div class="module-icon">
+                    H
+                </div>
+
+                <h3>
+                    HSE / K3
+                </h3>
+
+                <p>
+                    Keselamatan dan kesehatan kerja, electrical
+                    safety, permit, inspeksi, incident, dan
+                    pengendalian risiko.
+                </p>
+
+                <span class="module-link">
+                    OPEN MODULE →
+                </span>
+
+            </a>
+
+
+            <!-- 06 -->
+
+            <a
+                href="project/index.html"
+                class="module-card"
+            >
+
+                <div class="module-number">
+                    06 / PROJECT
+                </div>
+
+                <div class="module-icon">
+                    P
+                </div>
+
+                <h3>
+                    Project Management
+                </h3>
+
+                <p>
+                    Perencanaan proyek, engineering, procurement,
+                    construction, progress, cost control, dan
+                    commissioning.
+                </p>
+
+                <span class="module-link">
+                    OPEN MODULE →
+                </span>
+
+            </a>
+
+
+            <!-- 07 -->
+
+            <a
+                href="finance/index.html"
+                class="module-card"
+            >
+
+                <div class="module-number">
+                    07 / FINANCE
+                </div>
+
+                <div class="module-icon">
+                    F
+                </div>
+
+                <h3>
+                    Finance
+                </h3>
+
+                <p>
+                    Budget, cost monitoring, purchasing,
+                    expenditure, financial control, dan
+                    evaluasi biaya energi.
+                </p>
+
+                <span class="module-link">
+                    OPEN MODULE →
+                </span>
+
+            </a>
+
+
+            <!-- 08 -->
+
+            <a
+                href="hr/index.html"
+                class="module-card"
+            >
+
+                <div class="module-number">
+                    08 / HUMAN RESOURCES
+                </div>
+
+                <div class="module-icon">
+                    HR
+                </div>
+
+                <h3>
+                    Human Resources
+                </h3>
+
+                <p>
+                    Struktur organisasi, kompetensi, training,
+                    authorization, manpower, dan pengembangan
+                    sumber daya manusia.
+                </p>
+
+                <span class="module-link">
+                    OPEN MODULE →
+                </span>
+
+            </a>
+
+
+            <!-- 09 -->
+
+            <a
+                href="reports/index.html"
+                class="module-card"
+            >
+
+                <div class="module-number">
+                    09 / REPORTING
+                </div>
+
+                <div class="module-icon">
+                    R
+                </div>
+
+                <h3>
+                    Management Report
+                </h3>
+
+                <p>
+                    Konsolidasi data, KPI, performance report,
+                    management dashboard, analisis, dan
+                    rekomendasi keputusan.
+                </p>
+
+                <span class="module-link">
+                    OPEN MODULE →
+                </span>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     MANAGEMENT SYSTEM
+     ============================================================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="management-box">
+
+            <div>
+
+                <div class="section-label">
+                    System Foundation
+                </div>
+
+                <h2>
+                    Management System
+                </h2>
+
+                <p>
+                    Seluruh sembilan modul EEMS bekerja di atas
+                    satu fondasi dokumentasi dan pengendalian
+                    sistem. Master Document menjadi referensi
+                    utama untuk struktur, prosedur, standar,
+                    kebijakan, formulir, dan rekaman sistem.
+                </p>
+
+                <br>
+
+                <a
+                    href="management/master-document.html"
+                    class="btn btn-primary"
+                >
+                    Open Master Document
+                </a>
+
+            </div>
+
+
+            <div class="management-features">
+
+                <div class="feature">
+                    <strong>
+                        Document Control
+                    </strong>
+
+                    <span>
+                        Pengendalian dokumen dan revisi
+                    </span>
+                </div>
+
+                <div class="feature">
+                    <strong>
+                        Policy
+                    </strong>
+
+                    <span>
+                        Kebijakan dan arah perusahaan
+                    </span>
+                </div>
+
+                <div class="feature">
+                    <strong>
+                        Procedure
+                    </strong>
+
+                    <span>
+                        Prosedur operasional terstruktur
+                    </span>
+                </div>
+
+                <div class="feature">
+                    <strong>
+                        Records
+                    </strong>
+
+                    <span>
+                        Rekaman dan bukti pelaksanaan
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     ARCHITECTURE
+     ============================================================= -->
+
+<section
+    id="architecture"
+    class="architecture"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-label">
+                EEMS Architecture
+            </div>
+
+            <h2>
+                Dari Data Menjadi Keputusan
+            </h2>
+
+            <p>
+                EEMS dirancang bukan sekadar sebagai kumpulan
+                halaman, tetapi sebagai alur manajemen yang
+                mengubah data operasional menjadi tindakan
+                perbaikan dan keputusan manajemen.
+            </p>
+
+        </div>
+
+
+        <div class="architecture-flow">
+
+            <div class="flow-item">
+
+                <div class="flow-number">
+                    01
+                </div>
+
+                <strong>
+                    DATA
+                </strong>
+
+            </div>
+
+
+            <div class="flow-item">
+
+                <div class="flow-number">
+                    02
+                </div>
+
+                <strong>
+                    MONITORING
+                </strong>
+
+            </div>
+
+
+            <div class="flow-item">
+
+                <div class="flow-number">
+                    03
+                </div>
+
+                <strong>
+                    ANALYSIS
+                </strong>
+
+            </div>
+
+
+            <div class="flow-item">
+
+                <div class="flow-number">
+                    04
+                </div>
+
+                <strong>
+                    ACTION
+                </strong>
+
+            </div>
+
+
+            <div class="flow-item">
+
+                <div class="flow-number">
+                    05
+                </div>
+
+                <strong>
+                    IMPROVEMENT
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     PRINCIPLES
+     ============================================================= -->
+
+<section id="principles">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-label">
+                Management Principles
+            </div>
+
+            <h2>
+                Prinsip Dasar EEMS
+            </h2>
+
+            <p>
+                Empat prinsip sederhana yang menjadi dasar
+                pengelolaan energi dan kelistrikan.
+            </p>
+
+        </div>
+
+
+        <div class="principles">
+
+            <div class="principle">
+
+                <h3>
+                    Measure
+                </h3>
+
+                <p>
+                    Ukur kondisi dan penggunaan energi
+                    berdasarkan data.
+                </p>
+
+            </div>
+
+
+            <div class="principle">
+
+                <h3>
+                    Understand
+                </h3>
+
+                <p>
+                    Pahami pola, penyebab, risiko,
+                    dan kebutuhan sistem.
+                </p>
+
+            </div>
+
+
+            <div class="principle">
+
+                <h3>
+                    Control
+                </h3>
+
+                <p>
+                    Kendalikan penggunaan energi,
+                    biaya, risiko, dan aset.
+                </p>
+
+            </div>
+
+
+            <div class="principle">
+
+                <h3>
+                    Improve
+                </h3>
+
+                <p>
+                    Lakukan perbaikan berkelanjutan
+                    berdasarkan hasil evaluasi.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     CTA
+     ============================================================= -->
+
+<section class="cta">
+
+    <div class="container">
+
+        <div class="section-label">
+            Electrical Energy Management System
+        </div>
+
+        <h2>
+            One System.
+            <br>
+            One Management View.
+        </h2>
+
+        <p>
+            Satu arsitektur untuk menghubungkan kelistrikan,
+            energi, manusia, aset, keselamatan, proyek,
+            keuangan, dan keputusan manajemen.
+        </p>
+
+        <a
+            href="#modules"
+            class="btn btn-primary"
+        >
+            Explore EEMS
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =============================================================
+     FOOTER
+     ============================================================= -->
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div>
+
+            <div class="footer-brand">
+                EEMS
+            </div>
+
+            <div>
+                Electrical Energy Management System
+            </div>
+
+        </div>
+
+        <div>
+            Integrated Management Architecture · Version 1.0
+        </div>
 
     </div>
 
 </footer>
 
-
-<!-- =========================================================
-     SIMPLE JS
-     ========================================================= -->
-
-<script>
-
-    /*
-     * EEMS Main Landing Page
-     * No framework required.
-     */
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
-
-            const header =
-                document.querySelector(".header");
-
-            window.addEventListener(
-                "scroll",
-                function () {
-
-                    if (window.scrollY > 20) {
-
-                        header.style.boxShadow =
-                            "0 8px 30px rgba(0,0,0,0.18)";
-
-                    } else {
-
-                        header.style.boxShadow =
-                            "none";
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-</script>
 
 </body>
 </html>
