@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Finance Management | EEMS</title>
+
+<meta name="description"
+content="EEMS Finance Management — pengelolaan budget, cost, energy cost, procurement, financial control, variance dan reporting.">
+
+<style>
+:root{
+    --bg:#070b12;
+    --bg2:#0b111b;
+    --panel:#101722;
+    --panel2:#0d141f;
+    --line:rgba(212,175,55,.20);
+    --gold:#d4af37;
+    --gold2:#f0d477;
+    --text:#edf1f7;
+    --muted:#8f9baa;
+    --shadow:0 18px 50px rgba(0,0,0,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+    background:
+        radial-gradient(circle at 80% 0%,rgba(212,175,55,.08),transparent 30%),
+        radial-gradient(circle at 0% 30%,rgba(36,70,110,.10),transparent 35%),
+        var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(7,11,18,.90);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+}
+
+.header-inner{
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.brand-mark{
+    width:40px;
+    height:40px;
+    border:1px solid var(--gold);
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold2);
+    font-weight:800;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+.brand-text strong{
+    display:block;
+    font-size:15px;
+    letter-spacing:2px;
+}
+
+.brand-text span{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+nav a{
+    color:#b9c1cc;
+    font-size:13px;
+    padding:8px 11px;
+    border-radius:7px;
+    transition:.25s;
+}
+
+nav a:hover{
+    color:var(--gold2);
+    background:rgba(212,175,55,.07);
+}
+
+.home-btn{
+    border:1px solid var(--line);
+    color:var(--gold2)!important;
+}
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb{
+    padding:24px 0 10px;
+    color:#707b89;
+    font-size:12px;
+}
+
+.breadcrumb span{
+    color:var(--gold);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:45px 0 55px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:45px;
+    align-items:center;
+}
+
+.eyebrow{
+    color:var(--gold);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    margin-bottom:17px;
+}
+
+h1{
+    font-size:clamp(42px,6vw,70px);
+    line-height:1.02;
+    letter-spacing:-2.5px;
+    margin-bottom:23px;
+}
+
+h1 span{
+    color:var(--gold);
+}
+
+.hero-description{
+    max-width:700px;
+    color:var(--muted);
+    font-size:16px;
+}
+
+.hero-card{
+    background:
+        linear-gradient(145deg,rgba(212,175,55,.09),rgba(255,255,255,.015)),
+        var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px;
+    box-shadow:var(--shadow);
+}
+
+.hero-card-label{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.hero-card h3{
+    font-size:22px;
+    margin-bottom:12px;
+}
+
+.hero-card p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:rgba(255,255,255,.015);
+}
+
+.status-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+}
+
+.status-item{
+    padding:20px;
+    border-right:1px solid var(--line);
+}
+
+.status-item:last-child{
+    border-right:none;
+}
+
+.status-label{
+    color:#687483;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    font-size:10px;
+    margin-bottom:5px;
+}
+
+.status-value{
+    color:#d8dde5;
+    font-size:13px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    padding:82px 0;
+}
+
+.section-head{
+    max-width:760px;
+    margin-bottom:38px;
+}
+
+.section-number{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:2px;
+    font-weight:700;
+    margin-bottom:9px;
+}
+
+.section-title{
+    font-size:34px;
+    line-height:1.15;
+    margin-bottom:12px;
+}
+
+.section-description{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* =========================
+   FUNCTION CARDS
+========================= */
+
+.function-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.function-card{
+    background:linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.008));
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:14px;
+    padding:25px;
+    min-height:185px;
+    transition:.25s;
+}
+
+.function-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--line);
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.function-number{
+    color:var(--gold);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    margin-bottom:16px;
+}
+
+.function-card h3{
+    font-size:17px;
+    margin-bottom:9px;
+}
+
+.function-card p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* =========================
+   CONTROL MATRIX
+========================= */
+
+.matrix{
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--panel);
+}
+
+.matrix-row{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.matrix-row:last-child{
+    border-bottom:none;
+}
+
+.matrix-row div{
+    padding:16px 20px;
+    font-size:13px;
+}
+
+.matrix-row div:first-child{
+    color:var(--gold2);
+    font-weight:600;
+    background:rgba(212,175,55,.025);
+}
+
+.matrix-row div:last-child{
+    color:var(--muted);
+}
+
+/* =========================
+   FINANCE CONTROL VIEW
+========================= */
+
+.control-view{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--panel);
+}
+
+.control-step{
+    min-height:145px;
+    padding:23px 15px;
+    text-align:center;
+    border-right:1px solid rgba(255,255,255,.06);
+}
+
+.control-step:last-child{
+    border-right:none;
+}
+
+.control-step strong{
+    display:block;
+    color:var(--gold);
+    font-size:13px;
+    letter-spacing:1px;
+    margin-bottom:8px;
+}
+
+.control-step span{
+    color:var(--muted);
+    font-size:11px;
+}
+
+/* =========================
+   CYCLE
+========================= */
+
+.cycle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+    flex-wrap:wrap;
+}
+
+.cycle-item{
+    min-width:145px;
+    padding:24px 18px;
+    text-align:center;
+    border:1px solid var(--line);
+    background:var(--panel);
+}
+
+.cycle-item strong{
+    display:block;
+    color:var(--gold2);
+    font-size:13px;
+    letter-spacing:1px;
+}
+
+.cycle-item span{
+    color:#687483;
+    font-size:10px;
+}
+
+.cycle-arrow{
+    color:var(--gold);
+    padding:0 8px;
+    font-size:18px;
+}
+
+/* =========================
+   RESPONSIBILITY
+========================= */
+
+.responsibility-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.role{
+    padding:23px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:14px;
+    background:var(--panel2);
+}
+
+.role h3{
+    font-size:15px;
+    margin-bottom:7px;
+}
+
+.role p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* =========================
+   KPI
+========================= */
+
+.kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.kpi{
+    padding:26px;
+    border:1px solid rgba(255,255,255,.07);
+    background:linear-gradient(145deg,var(--panel),var(--panel2));
+    border-radius:14px;
+}
+
+.kpi-label{
+    color:#7e8997;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1.3px;
+    margin-bottom:10px;
+}
+
+.kpi-value{
+    color:var(--gold2);
+    font-size:28px;
+    font-weight:700;
+}
+
+.kpi-unit{
+    color:#697482;
+    font-size:11px;
+}
+
+/* =========================
+   FINANCIAL VIEW
+========================= */
+
+.financial-view{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:10px;
+}
+
+.financial-box{
+    text-align:center;
+    padding:20px 10px;
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:10px;
+}
+
+.financial-box strong{
+    color:var(--gold2);
+    display:block;
+    font-size:12px;
+}
+
+.financial-box span{
+    color:#66717e;
+    font-size:10px;
+}
+
+/* =========================
+   PRINCIPLES
+========================= */
+
+.principles{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.principle{
+    padding:25px;
+    border-top:2px solid var(--gold);
+    background:var(--panel);
+    border-radius:0 0 12px 12px;
+}
+
+.principle strong{
+    display:block;
+    color:var(--gold2);
+    font-size:15px;
+    margin-bottom:7px;
+}
+
+.principle span{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    margin:15px 0 75px;
+    padding:52px;
+    text-align:center;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:
+        radial-gradient(circle at center,rgba(212,175,55,.10),transparent 65%),
+        var(--panel);
+}
+
+.cta h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.cta p{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.cta-btn{
+    display:inline-block;
+    padding:12px 24px;
+    border:1px solid var(--gold);
+    border-radius:8px;
+    color:var(--gold2);
+    font-size:13px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.cta-btn:hover{
+    background:var(--gold);
+    color:#080b10;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:30px 0;
+    background:#05080d;
+}
+
+.footer-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.footer-brand{
+    color:var(--gold2);
+    font-size:12px;
+    letter-spacing:1.8px;
+    font-weight:700;
+}
+
+.footer-info{
+    color:#596472;
+    font-size:11px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    nav a:not(.home-btn){
+        display:none;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .function-grid,
+    .responsibility-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .control-view{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .control-step:nth-child(3){
+        border-right:none;
+    }
+
+    .control-step{
+        border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .kpi-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .financial-view{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .principles{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .header-inner{
+        min-height:65px;
+    }
+
+    .brand-mark{
+        width:36px;
+        height:36px;
+    }
+
+    .brand-text strong{
+        font-size:13px;
+    }
+
+    .brand-text span{
+        font-size:9px;
+    }
+
+    .hero{
+        padding:32px 0 40px;
+    }
+
+    h1{
+        font-size:43px;
+        letter-spacing:-1.8px;
+    }
+
+    .hero-description{
+        font-size:14px;
+    }
+
+    .status-grid{
+        grid-template-columns:1fr;
+    }
+
+    .status-item{
+        border-right:none;
+        border-bottom:1px solid var(--line);
+    }
+
+    .status-item:last-child{
+        border-bottom:none;
+    }
+
+    section{
+        padding:60px 0;
+    }
+
+    .section-title{
+        font-size:28px;
+    }
+
+    .function-grid,
+    .responsibility-grid,
+    .kpi-grid{
+        grid-template-columns:1fr;
+    }
+
+    .matrix-row{
+        grid-template-columns:1fr;
+    }
+
+    .matrix-row div:first-child{
+        padding-bottom:5px;
+    }
+
+    .matrix-row div:last-child{
+        padding-top:5px;
+    }
+
+    .control-view{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .control-step:nth-child(3){
+        border-right:1px solid rgba(255,255,255,.06);
+    }
+
+    .control-step:nth-child(even){
+        border-right:none;
+    }
+
+    .cycle{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:8px;
+    }
+
+    .cycle-item{
+        width:100%;
+    }
+
+    .cycle-arrow{
+        display:none;
+    }
+
+    .financial-view{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .principles{
+        grid-template-columns:1fr;
+    }
+
+    .cta{
+        padding:38px 22px;
+        margin-bottom:55px;
+    }
+
+    .cta h2{
+        font-size:27px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+    <div class="container header-inner">
+
+        <a href="../index.html" class="brand">
+
+            <div class="brand-mark">
+                E
+            </div>
+
+            <div class="brand-text">
+                <strong>EEMS</strong>
+                <span>Finance Management</span>
+            </div>
+
+        </a>
+
+        <nav>
+            <a href="#functions">Functions</a>
+            <a href="#control">Control</a>
+            <a href="#cycle">Cycle</a>
+            <a href="#kpi">KPI</a>
+            <a href="../index.html" class="home-btn">
+                ← EEMS Home
+            </a>
+        </nav>
+
+    </div>
+</header>
+
+
+<!-- =========================
+     BREADCRUMB
+========================= -->
+
+<div class="container breadcrumb">
+
+    EEMS <span>›</span> Finance Management
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+        <div>
+
+            <div class="eyebrow">
+                EEMS · Module 07
+            </div>
+
+            <h1>
+                Finance <span>Management</span>
+            </h1>
+
+            <p class="hero-description">
+                Sistem pengelolaan keuangan untuk mengendalikan budget,
+                biaya aktual, procurement, energy cost, financial variance,
+                cash requirement dan pelaporan keuangan yang mendukung
+                pengambilan keputusan manajemen.
+            </p>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="hero-card-label">
+                Financial Control
+            </div>
+
+            <h3>
+                Control the Cost.
+            </h3>
+
+            <p>
+                Menghubungkan perencanaan anggaran, komitmen biaya,
+                pengeluaran aktual dan analisis variance agar setiap
+                penggunaan sumber daya dapat dipertanggungjawabkan.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STATUS
+========================= -->
+
+<div class="status">
+
+    <div class="container status-grid">
+
+        <div class="status-item">
+
+            <div class="status-label">
+                Module
+            </div>
+
+            <div class="status-value">
+                Finance Management
+            </div>
+
+        </div>
+
+
+        <div class="status-item">
+
+            <div class="status-label">
+                Control Area
+            </div>
+
+            <div class="status-value">
+                Budget · Cost · Procurement · Variance · Reporting
+            </div>
+
+        </div>
+
+
+        <div class="status-item">
+
+            <div class="status-label">
+                System
+            </div>
+
+            <div class="status-value">
+                EEMS Version 1.0
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FUNCTIONS
+========================= -->
+
+<section id="functions">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                01 · FINANCE FUNCTIONS
+            </div>
+
+            <h2 class="section-title">
+                Finance Management Functions
+            </h2>
+
+            <p class="section-description">
+                Fungsi utama untuk mengendalikan sumber daya keuangan
+                dari perencanaan sampai evaluasi dan pelaporan.
+            </p>
+
+        </div>
+
+
+        <div class="function-grid">
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    FM-01
+                </div>
+
+                <h3>
+                    Budget Planning
+                </h3>
+
+                <p>
+                    Menetapkan rencana anggaran berdasarkan kebutuhan
+                    operasional, proyek, maintenance dan energy.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    FM-02
+                </div>
+
+                <h3>
+                    Cost Management
+                </h3>
+
+                <p>
+                    Mengendalikan biaya aktual, committed cost,
+                    outstanding cost dan penggunaan anggaran.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    FM-03
+                </div>
+
+                <h3>
+                    Procurement Cost
+                </h3>
+
+                <p>
+                    Memantau nilai pengadaan, purchase order,
+                    vendor cost dan komitmen pembelian.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    FM-04
+                </div>
+
+                <h3>
+                    Energy Cost
+                </h3>
+
+                <p>
+                    Menghubungkan konsumsi energi dengan biaya listrik,
+                    demand dan kinerja energi.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    FM-05
+                </div>
+
+                <h3>
+                    Financial Variance
+                </h3>
+
+                <p>
+                    Membandingkan budget, commitment dan actual cost
+                    untuk menemukan penyimpangan.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    FM-06
+                </div>
+
+                <h3>
+                    Cash Requirement
+                </h3>
+
+                <p>
+                    Memantau kebutuhan pembayaran dan kebutuhan dana
+                    berdasarkan kewajiban yang telah direncanakan.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    FM-07
+                </div>
+
+                <h3>
+                    Invoice & Payment
+                </h3>
+
+                <p>
+                    Pengendalian invoice, verification, approval
+                    dan status pembayaran.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    FM-08
+                </div>
+
+                <h3>
+                    Financial Analysis
+                </h3>
+
+                <p>
+                    Analisis cost trend, variance, efficiency
+                    dan financial performance.
+                </p>
+
+            </div>
+
+
+            <div class="function-card">
+
+                <div class="function-number">
+                    FM-09
+                </div>
+
+                <h3>
+                    Financial Reporting
+                </h3>
+
+                <p>
+                    Menyediakan laporan keuangan dan management report
+                    untuk mendukung keputusan manajemen.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTROL MATRIX
+========================= -->
+
+<section id="control">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                02 · FINANCIAL CONTROL
+            </div>
+
+            <h2 class="section-title">
+                What is Controlled?
+            </h2>
+
+            <p class="section-description">
+                Finance Management memastikan setiap biaya memiliki
+                dasar, tujuan, otorisasi dan dapat dibandingkan
+                terhadap anggaran.
+            </p>
+
+        </div>
+
+
+        <div class="matrix">
+
+            <div class="matrix-row">
+
+                <div>
+                    Budget
+                </div>
+
+                <div>
+                    Approved budget, allocation dan budget availability.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Commitment
+                </div>
+
+                <div>
+                    Purchase order, contract commitment dan outstanding obligation.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Actual Cost
+                </div>
+
+                <div>
+                    Biaya aktual yang telah terjadi dan tercatat.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Cost Variance
+                </div>
+
+                <div>
+                    Perbedaan antara budget, commitment dan actual.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Procurement
+                </div>
+
+                <div>
+                    Nilai pengadaan, vendor, PO dan status pembayaran.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Energy Cost
+                </div>
+
+                <div>
+                    Biaya listrik dan energi terhadap konsumsi serta performance.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Invoice
+                </div>
+
+                <div>
+                    Verification, approval, outstanding invoice dan payment status.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Cash Requirement
+                </div>
+
+                <div>
+                    Kebutuhan dana berdasarkan kewajiban dan rencana pembayaran.
+                </div>
+
+            </div>
+
+
+            <div class="matrix-row">
+
+                <div>
+                    Financial Report
+                </div>
+
+                <div>
+                    Reporting period, financial performance dan management information.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINANCE CONTROL VIEW
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                03 · CONTROL VIEW
+            </div>
+
+            <h2 class="section-title">
+                Financial Control View
+            </h2>
+
+            <p class="section-description">
+                Alur dasar pengendalian keuangan dari anggaran sampai
+                evaluasi dan tindakan koreksi.
+            </p>
+
+        </div>
+
+
+        <div class="control-view">
+
+            <div class="control-step">
+
+                <strong>PLAN</strong>
+
+                <span>
+                    Set budget
+                </span>
+
+            </div>
+
+
+            <div class="control-step">
+
+                <strong>COMMIT</strong>
+
+                <span>
+                    Record obligation
+                </span>
+
+            </div>
+
+
+            <div class="control-step">
+
+                <strong>SPEND</strong>
+
+                <span>
+                    Execute cost
+                </span>
+
+            </div>
+
+
+            <div class="control-step">
+
+                <strong>MONITOR</strong>
+
+                <span>
+                    Track actual
+                </span>
+
+            </div>
+
+
+            <div class="control-step">
+
+                <strong>ANALYZE</strong>
+
+                <span>
+                    Review variance
+                </span>
+
+            </div>
+
+
+            <div class="control-step">
+
+                <strong>IMPROVE</strong>
+
+                <span>
+                    Correct & optimize
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINANCE CYCLE
+========================= -->
+
+<section id="cycle">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                04 · MANAGEMENT CYCLE
+            </div>
+
+            <h2 class="section-title">
+                Finance Management Cycle
+            </h2>
+
+            <p class="section-description">
+                Siklus pengelolaan keuangan yang menghubungkan
+                perencanaan, penggunaan dan evaluasi biaya.
+            </p>
+
+        </div>
+
+
+        <div class="cycle">
+
+            <div class="cycle-item">
+
+                <strong>BUDGET</strong>
+
+                <span>
+                    Plan the resources
+                </span>
+
+            </div>
+
+
+            <div class="cycle-arrow">
+                →
+            </div>
+
+
+            <div class="cycle-item">
+
+                <strong>COMMIT</strong>
+
+                <span>
+                    Reserve the cost
+                </span>
+
+            </div>
+
+
+            <div class="cycle-arrow">
+                →
+            </div>
+
+
+            <div class="cycle-item">
+
+                <strong>ACTUAL</strong>
+
+                <span>
+                    Record the spending
+                </span>
+
+            </div>
+
+
+            <div class="cycle-arrow">
+                →
+            </div>
+
+
+            <div class="cycle-item">
+
+                <strong>ANALYZE</strong>
+
+                <span>
+                    Review performance
+                </span>
+
+            </div>
+
+
+            <div class="cycle-arrow">
+                →
+            </div>
+
+
+            <div class="cycle-item">
+
+                <strong>IMPROVE</strong>
+
+                <span>
+                    Control future cost
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RESPONSIBILITY
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                05 · RESPONSIBILITY
+            </div>
+
+            <h2 class="section-title">
+                Finance Responsibilities
+            </h2>
+
+            <p class="section-description">
+                Financial control merupakan tanggung jawab bersama
+                antara Finance dan fungsi yang menggunakan sumber daya.
+            </p>
+
+        </div>
+
+
+        <div class="responsibility-grid">
+
+            <div class="role">
+
+                <h3>
+                    Finance
+                </h3>
+
+                <p>
+                    Budget control, accounting, financial analysis,
+                    payment, reporting dan financial governance.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Management
+                </h3>
+
+                <p>
+                    Memberikan approval, financial direction,
+                    authorization dan strategic oversight.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Project Management
+                </h3>
+
+                <p>
+                    Mengendalikan project budget, commitment,
+                    cost progress dan financial variance.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Procurement
+                </h3>
+
+                <p>
+                    Mengendalikan purchase, vendor, PO,
+                    quotation dan procurement commitment.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Energy Management
+                </h3>
+
+                <p>
+                    Menghubungkan konsumsi energi, efficiency,
+                    energy cost dan saving performance.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Maintenance
+                </h3>
+
+                <p>
+                    Menyediakan kebutuhan maintenance cost,
+                    spare parts dan maintenance budget.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Electrical Management
+                </h3>
+
+                <p>
+                    Menyediakan kebutuhan electrical operation,
+                    equipment dan improvement cost.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    HSE / K3
+                </h3>
+
+                <p>
+                    Mengendalikan kebutuhan biaya keselamatan,
+                    environmental control dan compliance.
+                </p>
+
+            </div>
+
+
+            <div class="role">
+
+                <h3>
+                    Operations
+                </h3>
+
+                <p>
+                    Menggunakan sumber daya sesuai budget,
+                    prosedur dan kebutuhan operasional.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     KPI
+========================= -->
+
+<section id="kpi">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                06 · FINANCE KPI
+            </div>
+
+            <h2 class="section-title">
+                Financial Performance Indicators
+            </h2>
+
+            <p class="section-description">
+                KPI keuangan digunakan untuk melihat apakah penggunaan
+                sumber daya berjalan sesuai rencana.
+            </p>
+
+        </div>
+
+
+        <div class="kpi-grid">
+
+            <div class="kpi">
+
+                <div class="kpi-label">
+                    Budget Utilization
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    %
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-label">
+                    Cost Variance
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    Rp / %
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-label">
+                    Committed Cost
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    Rp
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-label">
+                    Actual Cost
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    Rp
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-label">
+                    Energy Cost
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    Rp
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-label">
+                    Outstanding Invoice
+                </div>
+
+                <div class="kpi-value">
+                    —
+                </div>
+
+                <div class="kpi-unit">
+                    Rp / Count
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINANCIAL VIEW
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                07 · MANAGEMENT VIEW
+            </div>
+
+            <h2 class="section-title">
+                Executive Financial View
+            </h2>
+
+            <p class="section-description">
+                Management dapat melihat posisi keuangan melalui
+                hubungan antara budget, commitment, actual dan variance.
+            </p>
+
+        </div>
+
+
+        <div class="financial-view">
+
+            <div class="financial-box">
+
+                <strong>
+                    BUDGET
+                </strong>
+
+                <span>
+                    Approved
+                </span>
+
+            </div>
+
+
+            <div class="financial-box">
+
+                <strong>
+                    COMMITMENT
+                </strong>
+
+                <span>
+                    Obligated
+                </span>
+
+            </div>
+
+
+            <div class="financial-box">
+
+                <strong>
+                    ACTUAL
+                </strong>
+
+                <span>
+                    Spent
+                </span>
+
+            </div>
+
+
+            <div class="financial-box">
+
+                <strong>
+                    VARIANCE
+                </strong>
+
+                <span>
+                    Difference
+                </span>
+
+            </div>
+
+
+            <div class="financial-box">
+
+                <strong>
+                    FORECAST
+                </strong>
+
+                <span>
+                    Expected
+                </span>
+
+            </div>
+
+
+            <div class="financial-box">
+
+                <strong>
+                    ACTION
+                </strong>
+
+                <span>
+                    Correct
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRINCIPLES
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div class="section-number">
+                08 · PRINCIPLES
+            </div>
+
+            <h2 class="section-title">
+                Financial Control Principles
+            </h2>
+
+        </div>
+
+
+        <div class="principles">
+
+            <div class="principle">
+
+                <strong>
+                    Plan
+                </strong>
+
+                <span>
+                    Setiap penggunaan sumber daya dimulai dengan
+                    perencanaan dan anggaran yang jelas.
+                </span>
+
+            </div>
+
+
+            <div class="principle">
+
+                <strong>
+                    Authorize
+                </strong>
+
+                <span>
+                    Pengeluaran harus memiliki dasar, otorisasi
+                    dan tanggung jawab yang jelas.
+                </span>
+
+            </div>
+
+
+            <div class="principle">
+
+                <strong>
+                    Control
+                </strong>
+
+                <span>
+                    Actual cost harus dibandingkan dengan budget
+                    dan commitment secara berkala.
+                </span>
+
+            </div>
+
+
+            <div class="principle">
+
+                <strong>
+                    Improve
+                </strong>
+
+                <span>
+                    Variance menjadi dasar untuk melakukan koreksi
+                    dan meningkatkan efisiensi penggunaan biaya.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<div class="container">
+
+    <div class="cta">
+
+        <h2>
+            Control the Cost. Protect the Value.
+        </h2>
+
+        <p>
+            Finance Management memastikan setiap sumber daya
+            digunakan secara terencana, terkendali dan dapat
+            dipertanggungjawabkan.
+        </p>
+
+        <a href="../index.html" class="cta-btn">
+            ← Back to EEMS
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div class="footer-brand">
+            EEMS · FINANCE MANAGEMENT
+        </div>
+
+        <div class="footer-info">
+            Module 07 · Version 1.0
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
