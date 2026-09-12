@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EEMS | Kendali Dokumen</title>
+
+<meta name="description"
+content="EEMS System Control Layer — Kendali Dokumen untuk memastikan kebijakan, prosedur, formulir, rekaman, revisi, persetujuan, distribusi, dan status dokumen EEMS terkendali.">
+
+<style>
+:root{
+    --bg:#070b12;
+    --panel:#0d1420;
+    --panel2:#111b29;
+    --line:#263346;
+    --gold:#d6b15e;
+    --gold2:#f0d48a;
+    --text:#f2f4f7;
+    --muted:#9ca8b8;
+    --soft:#cbd3df;
+    --green:#78c69b;
+    --red:#d98585;
+    --blue:#7ea9d8;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top right, rgba(214,177,94,.08), transparent 35%),
+        linear-gradient(180deg,#070b12 0%,#090e16 100%);
+    color:var(--text);
+    line-height:1.6;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(7,11,18,.94);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(214,177,94,.18);
+}
+
+.header-inner{
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand-mark{
+    width:42px;
+    height:42px;
+    border:1px solid var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold2);
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.brand-text strong{
+    display:block;
+    font-size:18px;
+    letter-spacing:2px;
+}
+
+.brand-text span{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+nav a{
+    color:var(--muted);
+    font-size:13px;
+    transition:.2s;
+}
+
+nav a:hover{
+    color:var(--gold2);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:78px 0 55px;
+    border-bottom:1px solid var(--line);
+}
+
+.breadcrumb{
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:24px;
+}
+
+.breadcrumb span{
+    color:var(--gold);
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.5fr .8fr;
+    gap:50px;
+    align-items:end;
+}
+
+.eyebrow{
+    color:var(--gold);
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:15px;
+}
+
+h1{
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:clamp(42px,6vw,72px);
+    line-height:1.05;
+    font-weight:normal;
+    margin-bottom:22px;
+}
+
+.hero-description{
+    max-width:720px;
+    color:var(--soft);
+    font-size:17px;
+}
+
+.hero-card{
+    background:linear-gradient(145deg,var(--panel2),var(--panel));
+    border:1px solid rgba(214,177,94,.28);
+    padding:30px;
+}
+
+.hero-card .label{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.hero-card h2{
+    font-family:Georgia,serif;
+    font-weight:normal;
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.hero-card p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status-bar{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-bottom:1px solid var(--line);
+}
+
+.status-item{
+    padding:20px;
+    border-right:1px solid var(--line);
+}
+
+.status-item:last-child{
+    border-right:none;
+}
+
+.status-item small{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+    margin-bottom:5px;
+}
+
+.status-item strong{
+    font-size:14px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    padding:72px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.section-head{
+    margin-bottom:32px;
+}
+
+.section-head .number{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:8px;
+}
+
+.section-head h2{
+    font-family:Georgia,serif;
+    font-size:34px;
+    font-weight:normal;
+}
+
+.section-head p{
+    max-width:700px;
+    color:var(--muted);
+    margin-top:10px;
+}
+
+/* =========================
+   FUNCTIONS
+========================= */
+
+.function-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.function-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:25px;
+    min-height:190px;
+    transition:.25s;
+}
+
+.function-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(214,177,94,.55);
+}
+
+.function-code{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:1px;
+    margin-bottom:18px;
+}
+
+.function-card h3{
+    font-size:17px;
+    margin-bottom:9px;
+}
+
+.function-card p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* =========================
+   MATRIX
+========================= */
+
+.matrix{
+    border:1px solid var(--line);
+    overflow:hidden;
+}
+
+.matrix-row{
+    display:grid;
+    grid-template-columns:1.1fr 1.4fr 1fr;
+    border-bottom:1px solid var(--line);
+}
+
+.matrix-row:last-child{
+    border-bottom:none;
+}
+
+.matrix-row > div{
+    padding:15px 18px;
+    border-right:1px solid var(--line);
+    font-size:13px;
+}
+
+.matrix-row > div:last-child{
+    border-right:none;
+}
+
+.matrix-head{
+    background:#121b28;
+    color:var(--gold2);
+    font-size:11px !important;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.matrix-row:not(.matrix-head) > div:first-child{
+    color:var(--text);
+    font-weight:bold;
+}
+
+.matrix-row:not(.matrix-head) > div:nth-child(2),
+.matrix-row:not(.matrix-head) > div:nth-child(3){
+    color:var(--muted);
+}
+
+/* =========================
+   FLOW
+========================= */
+
+.flow{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:8px;
+}
+
+.flow-step{
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:22px 10px;
+    text-align:center;
+    position:relative;
+}
+
+.flow-step:not(:last-child)::after{
+    content:"›";
+    position:absolute;
+    right:-9px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--gold);
+    font-size:22px;
+    z-index:2;
+}
+
+.flow-step strong{
+    display:block;
+    color:var(--gold2);
+    font-size:12px;
+    letter-spacing:.5px;
+}
+
+/* =========================
+   KPI
+========================= */
+
+.kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.kpi{
+    background:linear-gradient(145deg,#101a28,#0b121d);
+    border:1px solid var(--line);
+    padding:26px;
+}
+
+.kpi-label{
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:12px;
+}
+
+.kpi-value{
+    color:var(--gold2);
+    font-family:Georgia,serif;
+    font-size:34px;
+}
+
+.kpi-unit{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:4px;
+}
+
+/* =========================
+   RESPONSIBILITY
+========================= */
+
+.responsibility{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.role{
+    border-left:2px solid var(--gold);
+    background:var(--panel);
+    padding:18px 20px;
+}
+
+.role strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.role span{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* =========================
+   PRINCIPLES
+========================= */
+
+.principles{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.principle{
+    text-align:center;
+    padding:28px 15px;
+    border:1px solid var(--line);
+    background:var(--panel);
+}
+
+.principle strong{
+    color:var(--gold2);
+    display:block;
+    margin-bottom:7px;
+}
+
+.principle span{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    padding:75px 0;
+    text-align:center;
+}
+
+.cta h2{
+    font-family:Georgia,serif;
+    font-size:38px;
+    font-weight:normal;
+    margin-bottom:12px;
+}
+
+.cta p{
+    color:var(--muted);
+    max-width:650px;
+    margin:0 auto 25px;
+}
+
+.btn{
+    display:inline-block;
+    border:1px solid var(--gold);
+    color:var(--gold2);
+    padding:12px 24px;
+    font-size:12px;
+    letter-spacing:1px;
+    transition:.2s;
+}
+
+.btn:hover{
+    background:var(--gold);
+    color:#070b12;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:30px 0;
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    color:var(--muted);
+    font-size:11px;
+    letter-spacing:.5px;
+}
+
+.footer-brand{
+    color:var(--gold2);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .function-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .flow{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .flow-step:not(:last-child)::after{
+        display:none;
+    }
+
+    .kpi-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .responsibility{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .principles{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:650px){
+
+    .header-inner{
+        padding:12px 0;
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    nav{
+        gap:12px;
+    }
+
+    .hero{
+        padding:50px 0 40px;
+    }
+
+    h1{
+        font-size:45px;
+    }
+
+    .hero-description{
+        font-size:15px;
+    }
+
+    .status-bar{
+        grid-template-columns:1fr;
+    }
+
+    .status-item{
+        border-right:none;
+        border-bottom:1px solid var(--line);
+    }
+
+    .function-grid,
+    .kpi-grid,
+    .responsibility,
+    .principles{
+        grid-template-columns:1fr;
+    }
+
+    .flow{
+        grid-template-columns:1fr;
+    }
+
+    .matrix{
+        overflow-x:auto;
+    }
+
+    .matrix-row{
+        min-width:680px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+    }
+
+    section{
+        padding:55px 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container header-inner">
+
+    <a href="../index.html" class="brand">
+        <div class="brand-mark">E</div>
+        <div class="brand-text">
+            <strong>EEMS</strong>
+            <span>Kendali Dokumen</span>
+        </div>
+    </a>
+
+    <nav>
+        <a href="#fungsi">Fungsi</a>
+        <a href="#control">Pengendalian</a>
+        <a href="#flow">Siklus</a>
+        <a href="#kpi">KPI</a>
+        <a href="../index.html">← EEMS Home</a>
+    </nav>
+
+</div>
+</header>
+
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+
+<div class="container">
+
+    <div class="breadcrumb">
+        EEMS <span>›</span> System Control Layer <span>›</span> Kendali Dokumen
+    </div>
+
+    <div class="hero-grid">
+
+        <div>
+            <div class="eyebrow">System Control Layer · 01</div>
+
+            <h1>Kendali<br>Dokumen</h1>
+
+            <p class="hero-description">
+                Sistem untuk memastikan seluruh kebijakan, prosedur, formulir,
+                rekaman, revisi, persetujuan, distribusi, dan status dokumen
+                EEMS terkendali, terlacak, dan tersedia pada versi yang benar.
+            </p>
+        </div>
+
+        <div class="hero-card">
+            <div class="label">Prinsip Pengendalian</div>
+            <h2>Dokumen yang Terkendali. Sistem yang Terintegrasi.</h2>
+            <p>
+                Setiap dokumen memiliki identitas, pemilik, status,
+                revisi, persetujuan, masa berlaku, dan riwayat pengendalian.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- STATUS -->
+<div class="container">
+
+<div class="status-bar">
+
+    <div class="status-item">
+        <small>Layer</small>
+        <strong>System Control Layer</strong>
+    </div>
+
+    <div class="status-item">
+        <small>Area Pengendalian</small>
+        <strong>Dokumen · Revisi · Approval · Distribusi</strong>
+    </div>
+
+    <div class="status-item">
+        <small>Sistem</small>
+        <strong>EEMS Versi 1.0</strong>
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- FUNCTIONS -->
+<section id="fungsi">
+
+<div class="container">
+
+    <div class="section-head">
+        <div class="number">01 · Document Control Functions</div>
+        <h2>Fungsi Kendali Dokumen</h2>
+        <p>
+            Pengendalian dimulai sejak dokumen dibuat sampai dokumen
+            direvisi, ditarik dari penggunaan, atau diarsipkan.
+        </p>
+    </div>
+
+    <div class="function-grid">
+
+        <article class="function-card">
+            <div class="function-code">DC-01</div>
+            <h3>Identifikasi Dokumen</h3>
+            <p>
+                Menetapkan identitas unik, judul, jenis, pemilik,
+                departemen, dan klasifikasi setiap dokumen.
+            </p>
+        </article>
+
+        <article class="function-card">
+            <div class="function-code">DC-02</div>
+            <h3>Penomoran & Kode</h3>
+            <p>
+                Mengatur sistem nomor dokumen, kode fungsi,
+                kategori, dan struktur identifikasi EEMS.
+            </p>
+        </article>
+
+        <article class="function-card">
+            <div class="function-code">DC-03</div>
+            <h3>Penyusunan & Review</h3>
+            <p>
+                Memastikan dokumen disusun oleh pihak yang kompeten
+                dan diperiksa sebelum diajukan untuk persetujuan.
+            </p>
+        </article>
+
+        <article class="function-card">
+            <div class="function-code">DC-04</div>
+            <h3>Persetujuan Dokumen</h3>
+            <p>
+                Mengendalikan otorisasi dokumen sebelum diterbitkan
+                dan digunakan sebagai dokumen resmi.
+            </p>
+        </article>
+
+        <article class="function-card">
+            <div class="function-code">DC-05</div>
+            <h3>Pengendalian Revisi</h3>
+            <p>
+                Mencatat perubahan, nomor revisi, tanggal perubahan,
+                alasan perubahan, dan pihak yang menyetujui.
+            </p>
+        </article>
+
+        <article class="function-card">
+            <div class="function-code">DC-06</div>
+            <h3>Distribusi & Akses</h3>
+            <p>
+                Memastikan dokumen tersedia bagi pengguna yang tepat
+                dan terlindungi dari penggunaan versi yang tidak sah.
+            </p>
+        </article>
+
+        <article class="function-card">
+            <div class="function-code">DC-07</div>
+            <h3>Dokumen Eksternal</h3>
+            <p>
+                Mengendalikan standar, regulasi, manual vendor,
+                spesifikasi, dan referensi eksternal yang digunakan.
+            </p>
+        </article>
+
+        <article class="function-card">
+            <div class="function-code">DC-08</div>
+            <h3>Dokumen Kedaluwarsa</h3>
+            <p>
+                Mengidentifikasi, menarik, menandai, dan mengarsipkan
+                dokumen yang sudah tidak berlaku.
+            </p>
+        </article>
+
+        <article class="function-card">
+            <div class="function-code">DC-09</div>
+            <h3>Rekaman & Retensi</h3>
+            <p>
+                Mengendalikan rekaman sebagai bukti pelaksanaan,
+                termasuk penyimpanan, akses, masa retensi, dan arsip.
+            </p>
+        </article>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- CONTROL MATRIX -->
+<section id="control">
+
+<div class="container">
+
+    <div class="section-head">
+        <div class="number">02 · Document Control Matrix</div>
+        <h2>Matriks Pengendalian</h2>
+        <p>
+            Setiap dokumen harus dapat diketahui identitas, status,
+            tanggung jawab, dan riwayat pengendaliannya.
+        </p>
+    </div>
+
+    <div class="matrix">
+
+        <div class="matrix-row matrix-head">
+            <div>Parameter</div>
+            <div>Pengendalian</div>
+            <div>Status</div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Document ID</div>
+            <div>Nomor dan kode unik dokumen</div>
+            <div>Terkendali</div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Version / Revision</div>
+            <div>Nomor revisi dan riwayat perubahan</div>
+            <div>Terlacak</div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Status</div>
+            <div>Draft · Review · Approved · Active · Obsolete</div>
+            <div>Terkendali</div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Document Owner</div>
+            <div>Pihak yang bertanggung jawab terhadap isi dokumen</div>
+            <div>Ditentukan</div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Approval</div>
+            <div>Review dan persetujuan sesuai kewenangan</div>
+            <div>Terotorisasi</div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Effective Date</div>
+            <div>Tanggal mulai berlakunya dokumen</div>
+            <div>Tercatat</div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Distribution</div>
+            <div>Pengguna dan lokasi distribusi</div>
+            <div>Terkendali</div>
+        </div>
+
+        <div class="matrix-row">
+            <div>Retention</div>
+            <div>Masa penyimpanan dan pengarsipan rekaman</div>
+            <div>Tetap tersedia</div>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- FLOW -->
+<section id="flow">
+
+<div class="container">
+
+    <div class="section-head">
+        <div class="number">03 · Document Lifecycle</div>
+        <h2>Siklus Kendali Dokumen</h2>
+        <p>
+            Dokumen bergerak melalui siklus pengendalian yang jelas
+            dari pembuatan sampai pengarsipan.
+        </p>
+    </div>
+
+    <div class="flow">
+
+        <div class="flow-step">
+            <strong>CREATE</strong>
+        </div>
+
+        <div class="flow-step">
+            <strong>REVIEW</strong>
+        </div>
+
+        <div class="flow-step">
+            <strong>APPROVE</strong>
+        </div>
+
+        <div class="flow-step">
+            <strong>ISSUE</strong>
+        </div>
+
+        <div class="flow-step">
+            <strong>CONTROL</strong>
+        </div>
+
+        <div class="flow-step">
+            <strong>REVISE</strong>
+        </div>
+
+        <div class="flow-step">
+            <strong>ARCHIVE</strong>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- RESPONSIBILITY -->
+<section>
+
+<div class="container">
+
+    <div class="section-head">
+        <div class="number">04 · Responsibility</div>
+        <h2>Tanggung Jawab</h2>
+        <p>
+            Kendali dokumen merupakan tanggung jawab lintas fungsi,
+            bukan hanya tugas administrasi.
+        </p>
+    </div>
+
+    <div class="responsibility">
+
+        <div class="role">
+            <strong>Management</strong>
+            <span>Menetapkan kewenangan, persetujuan, dan arah pengendalian.</span>
+        </div>
+
+        <div class="role">
+            <strong>Document Controller</strong>
+            <span>Mengelola identifikasi, revisi, distribusi, dan status dokumen.</span>
+        </div>
+
+        <div class="role">
+            <strong>Document Owner</strong>
+            <span>Menjamin isi dokumen tetap benar, relevan, dan diperbarui.</span>
+        </div>
+
+        <div class="role">
+            <strong>Reviewer</strong>
+            <span>Memeriksa kecukupan teknis dan kesesuaian dokumen.</span>
+        </div>
+
+        <div class="role">
+            <strong>Department / Function</strong>
+            <span>Menggunakan dokumen sesuai versi dan status yang berlaku.</span>
+        </div>
+
+        <div class="role">
+            <strong>All Personnel</strong>
+            <span>Memastikan dokumen yang digunakan berasal dari sumber terkendali.</span>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- KPI -->
+<section id="kpi">
+
+<div class="container">
+
+    <div class="section-head">
+        <div class="number">05 · Document Control KPI</div>
+        <h2>KPI Kendali Dokumen</h2>
+        <p>
+            Nilai KPI akan terisi ketika sistem EEMS terhubung
+            dengan data dokumen aktual.
+        </p>
+    </div>
+
+    <div class="kpi-grid">
+
+        <div class="kpi">
+            <div class="kpi-label">Dokumen Aktif</div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">Jumlah dokumen</div>
+        </div>
+
+        <div class="kpi">
+            <div class="kpi-label">Menunggu Review</div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">Jumlah dokumen</div>
+        </div>
+
+        <div class="kpi">
+            <div class="kpi-label">Kepatuhan Review</div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">%</div>
+        </div>
+
+        <div class="kpi">
+            <div class="kpi-label">Dokumen Kedaluwarsa</div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">Jumlah dokumen</div>
+        </div>
+
+        <div class="kpi">
+            <div class="kpi-label">Dokumen Terkendali</div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">%</div>
+        </div>
+
+        <div class="kpi">
+            <div class="kpi-label">Rekaman Tersedia</div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-unit">%</div>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- PRINCIPLES -->
+<section>
+
+<div class="container">
+
+    <div class="section-head">
+        <div class="number">06 · Control Principles</div>
+        <h2>Prinsip Kendali Dokumen</h2>
+    </div>
+
+    <div class="principles">
+
+        <div class="principle">
+            <strong>IDENTIFIED</strong>
+            <span>Setiap dokumen memiliki identitas yang jelas.</span>
+        </div>
+
+        <div class="principle">
+            <strong>AUTHORIZED</strong>
+            <span>Dokumen diterbitkan melalui kewenangan yang sah.</span>
+        </div>
+
+        <div class="principle">
+            <strong>CONTROLLED</strong>
+            <span>Versi dan distribusi selalu terkendali.</span>
+        </div>
+
+        <div class="principle">
+            <strong>TRACEABLE</strong>
+            <span>Setiap perubahan dapat ditelusuri.</span>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- CTA -->
+<div class="cta">
+
+<div class="container">
+
+    <h2>Kendalikan Dokumen.<br>Jaga Integritas Sistem.</h2>
+
+    <p>
+        Dokumen yang benar, pada versi yang benar, digunakan oleh
+        orang yang benar, pada waktu yang benar.
+    </p>
+
+    <a class="btn" href="../index.html">
+        ← KEMBALI KE EEMS
+    </a>
+
+</div>
+
+</div>
+
+</main>
+
+
+<footer>
+
+<div class="container footer-inner">
+
+    <div class="footer-brand">
+        EEMS · SYSTEM CONTROL LAYER
+    </div>
+
+    <div>
+        Kendali Dokumen · System Control Layer 01 · Versi 1.0
+    </div>
+
+</div>
+
+</footer>
+
+</body>
+</html>
