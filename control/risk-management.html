@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EEMS | Risk Management</title>
+
+    <meta
+        name="description"
+        content="EEMS Risk Management — sistem identifikasi, penilaian, pengendalian, monitoring, dan eskalasi risiko."
+    >
+
+    <style>
+        :root {
+            --bg: #070b12;
+            --bg-soft: #0c121d;
+            --panel: #101824;
+            --panel-2: #131d2b;
+            --line: rgba(212, 175, 55, 0.22);
+            --gold: #d4af37;
+            --gold-light: #f0d878;
+            --text: #eef2f7;
+            --muted: #9ba7b7;
+            --muted-2: #6f7b8c;
+            --danger: #d96b6b;
+            --success: #70b88a;
+            --warning: #d6a84f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(
+                    circle at 80% 10%,
+                    rgba(212, 175, 55, 0.08),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    180deg,
+                    #080d15 0%,
+                    #070b12 100%
+                );
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(7, 11, 18, 0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .brand-mark {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--gold);
+            display: grid;
+            place-items: center;
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .brand-text span {
+            display: block;
+        }
+
+        .brand-main {
+            color: var(--gold-light);
+            font-size: 15px;
+        }
+
+        .brand-sub {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 2px;
+            letter-spacing: 0.8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .nav-links a {
+            transition: 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .home-link {
+            color: var(--gold-light) !important;
+        }
+
+        /* =========================
+           BREADCRUMB
+        ========================= */
+
+        .breadcrumb-wrap {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .breadcrumb {
+            padding: 18px 0;
+            font-size: 12px;
+            color: var(--muted-2);
+        }
+
+        .breadcrumb span {
+            color: var(--gold);
+            margin: 0 7px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            padding: 82px 0 65px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 0.6fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 1.02;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        .hero-description {
+            max-width: 720px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .hero-card {
+            border: 1px solid var(--line);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(212,175,55,0.10),
+                    rgba(16,24,36,0.8)
+                );
+            padding: 34px;
+            min-height: 230px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-card-label {
+            font-size: 11px;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .hero-card-title {
+            font-size: 27px;
+            line-height: 1.25;
+            margin-bottom: 12px;
+        }
+
+        .hero-card-text {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status-bar {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: rgba(255,255,255,0.015);
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .status-item {
+            padding: 20px 24px;
+            border-right: 1px solid var(--line);
+        }
+
+        .status-item:last-child {
+            border-right: none;
+        }
+
+        .status-label {
+            display: block;
+            color: var(--muted-2);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 5px;
+        }
+
+        .status-value {
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        section {
+            padding: 78px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 38px;
+        }
+
+        .section-number {
+            color: var(--gold);
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: clamp(29px, 4vw, 43px);
+            line-height: 1.15;
+            letter-spacing: -0.8px;
+            margin-bottom: 13px;
+        }
+
+        .section-description {
+            max-width: 760px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* =========================
+           FUNCTIONS
+        ========================= */
+
+        .function-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .function-card {
+            position: relative;
+            background: var(--panel);
+            border: 1px solid rgba(255,255,255,0.07);
+            padding: 27px;
+            min-height: 180px;
+            transition: 0.3s ease;
+        }
+
+        .function-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--line);
+            background: var(--panel-2);
+        }
+
+        .function-code {
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 22px;
+        }
+
+        .function-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .function-card p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =========================
+           MATRIX
+        ========================= */
+
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: var(--panel);
+        }
+
+        table {
+            width: 100%;
+            min-width: 950px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 17px 18px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            font-size: 12px;
+        }
+
+        th {
+            color: var(--gold-light);
+            background: rgba(212,175,55,0.06);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        td {
+            color: var(--muted);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* =========================
+           CONTROL VIEW
+        ========================= */
+
+        .control-view {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            border: 1px solid var(--line);
+            background: var(--panel);
+        }
+
+        .control-step {
+            position: relative;
+            padding: 30px 18px;
+            text-align: center;
+            border-right: 1px solid var(--line);
+        }
+
+        .control-step:last-child {
+            border-right: none;
+        }
+
+        .control-number {
+            display: block;
+            color: var(--gold);
+            font-size: 10px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .control-step strong {
+            display: block;
+            font-size: 12px;
+            letter-spacing: 0.7px;
+        }
+
+        .control-arrow {
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            background: var(--panel);
+            padding: 2px;
+            z-index: 2;
+        }
+
+        /* =========================
+           RISK LEVEL
+        ========================= */
+
+        .risk-levels {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .risk-level {
+            padding: 26px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: var(--panel);
+        }
+
+        .risk-level-code {
+            font-size: 10px;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .risk-level h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .risk-level p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .risk-low {
+            border-top: 2px solid var(--success);
+        }
+
+        .risk-medium {
+            border-top: 2px solid var(--warning);
+        }
+
+        .risk-high {
+            border-top: 2px solid #c88954;
+        }
+
+        .risk-critical {
+            border-top: 2px solid var(--danger);
+        }
+
+        /* =========================
+           RESPONSIBILITIES
+        ========================= */
+
+        .responsibility-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .responsibility {
+            padding: 25px;
+            background: var(--panel);
+            border-left: 2px solid var(--gold);
+        }
+
+        .responsibility h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .responsibility p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =========================
+           KPI
+        ========================= */
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .kpi-card {
+            background: var(--panel);
+            border: 1px solid rgba(255,255,255,0.07);
+            padding: 28px;
+        }
+
+        .kpi-label {
+            color: var(--muted-2);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .kpi-value {
+            font-size: 31px;
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-bottom: 7px;
+        }
+
+        .kpi-unit {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* =========================
+           MANAGEMENT VIEW
+        ========================= */
+
+        .management-view {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .management-card {
+            padding: 27px;
+            background: var(--panel);
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .management-card span {
+            display: block;
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .management-card h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .management-card p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =========================
+           PRINCIPLES
+        ========================= */
+
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .principle {
+            border: 1px solid var(--line);
+            padding: 25px 15px;
+            text-align: center;
+            background: rgba(212,175,55,0.025);
+        }
+
+        .principle strong {
+            display: block;
+            color: var(--gold-light);
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            padding: 80px 0 90px;
+        }
+
+        .cta-box {
+            border: 1px solid var(--line);
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(212,175,55,0.10),
+                    rgba(16,24,36,0.7)
+                );
+            padding: 55px;
+            text-align: center;
+        }
+
+        .cta-box h2 {
+            margin-bottom: 14px;
+        }
+
+        .cta-box p {
+            max-width: 650px;
+            margin: 0 auto 28px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 23px;
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: 0.25s ease;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: #070b12;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 28px 0;
+            background: #060910;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            color: var(--gold-light);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .footer-info {
+            color: var(--muted-2);
+            font-size: 11px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .function-grid,
+            .responsibility-grid,
+            .management-view {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .risk-levels {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .principles {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .control-view {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .control-step:nth-child(3) {
+                border-right: none;
+            }
+
+            .control-step:nth-child(-n+3) {
+                border-bottom: 1px solid var(--line);
+            }
+
+            .control-arrow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 680px) {
+
+            .nav {
+                min-height: 64px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 58px 0 45px;
+            }
+
+            section {
+                padding: 58px 0;
+            }
+
+            h1 {
+                font-size: 43px;
+                letter-spacing: -1.5px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-item {
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .status-item:last-child {
+                border-bottom: none;
+            }
+
+            .function-grid,
+            .responsibility-grid,
+            .management-view,
+            .kpi-grid,
+            .risk-levels {
+                grid-template-columns: 1fr;
+            }
+
+            .control-view {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .control-step {
+                border-bottom: 1px solid var(--line);
+                border-right: 1px solid var(--line);
+            }
+
+            .control-step:nth-child(even) {
+                border-right: none;
+            }
+
+            .control-step:nth-last-child(-n+2) {
+                border-bottom: none;
+            }
+
+            .principles {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cta-box {
+                padding: 38px 22px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+
+        <a href="../index.html" class="brand">
+            <div class="brand-mark">EE</div>
+
+            <div class="brand-text">
+                <span class="brand-main">EEMS</span>
+                <span class="brand-sub">Risk Management</span>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#functions">Functions</a>
+            <a href="#control">Control</a>
+            <a href="#risk-level">Risk Level</a>
+            <a href="#kpi">KPI</a>
+            <a href="../index.html" class="home-link">
+                ← Beranda EEMS
+            </a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- =========================
+         BREADCRUMB
+    ========================== -->
+
+    <div class="breadcrumb-wrap">
+        <div class="container breadcrumb">
+            EEMS
+            <span>›</span>
+            System Control Layer
+            <span>›</span>
+            Risk Management
+        </div>
+    </div>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="container hero-grid">
+
+            <div>
+                <div class="eyebrow">
+                    System Control Layer · 03
+                </div>
+
+                <h1>
+                    Risk<br>
+                    Management
+                </h1>
+
+                <p class="hero-description">
+                    Sistem pengendalian risiko untuk mengidentifikasi,
+                    menilai, menangani, memantau, dan mengevaluasi risiko
+                    yang dapat memengaruhi keselamatan, keandalan,
+                    energi, proyek, keuangan, SDM, kepatuhan, dan
+                    keberlangsungan bisnis.
+                </p>
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="hero-card-label">
+                    Risk Management Principle
+                </div>
+
+                <div class="hero-card-title">
+                    Know the Risk.<br>
+                    Control the Consequence.
+                </div>
+
+                <div class="hero-card-text">
+                    Risiko bukan hanya dicatat. Risiko harus dipahami,
+                    memiliki pemilik, memiliki tindakan pengendalian,
+                    dan dipantau sampai tingkat risikonya dapat diterima.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         STATUS
+    ========================== -->
+
+    <div class="status-bar">
+
+        <div class="container status-grid">
+
+            <div class="status-item">
+                <span class="status-label">
+                    Modul
+                </span>
+
+                <span class="status-value">
+                    Risk Management
+                </span>
+            </div>
+
+            <div class="status-item">
+                <span class="status-label">
+                    Area Pengendalian
+                </span>
+
+                <span class="status-value">
+                    Risk Register · Assessment · Treatment · Monitoring
+                </span>
+            </div>
+
+            <div class="status-item">
+                <span class="status-label">
+                    Sistem
+                </span>
+
+                <span class="status-value">
+                    EEMS Versi 1.0
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FUNCTIONS
+    ========================== -->
+
+    <section id="functions">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    RM · FUNCTIONS
+                </div>
+
+                <h2>
+                    Risk Management Functions
+                </h2>
+
+                <p class="section-description">
+                    Fungsi utama untuk memastikan setiap risiko
+                    dikenali, dinilai secara konsisten, memiliki
+                    pengendalian, serta ditindaklanjuti oleh pihak
+                    yang bertanggung jawab.
+                </p>
+
+            </div>
+
+
+            <div class="function-grid">
+
+                <article class="function-card">
+                    <div class="function-code">RM-01</div>
+                    <h3>Risk Identification</h3>
+                    <p>
+                        Mengidentifikasi sumber, kondisi, kejadian,
+                        dan faktor yang dapat menimbulkan risiko.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="function-code">RM-02</div>
+                    <h3>Risk Register</h3>
+                    <p>
+                        Menyimpan dan mengendalikan seluruh risiko
+                        dalam register yang terstruktur dan dapat
+                        ditelusuri.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="function-code">RM-03</div>
+                    <h3>Risk Assessment</h3>
+                    <p>
+                        Menilai kemungkinan terjadinya risiko dan
+                        dampaknya terhadap tujuan organisasi.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="function-code">RM-04</div>
+                    <h3>Risk Matrix</h3>
+                    <p>
+                        Mengklasifikasikan tingkat risiko berdasarkan
+                        kombinasi likelihood dan impact.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="function-code">RM-05</div>
+                    <h3>Risk Treatment</h3>
+                    <p>
+                        Menentukan strategi untuk menghindari,
+                        mengurangi, mentransfer, atau menerima risiko.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="function-code">RM-06</div>
+                    <h3>Mitigation & Control</h3>
+                    <p>
+                        Menetapkan tindakan mitigasi dan kontrol
+                        untuk menurunkan likelihood atau impact.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="function-code">RM-07</div>
+                    <h3>Risk Owner & Accountability</h3>
+                    <p>
+                        Menetapkan pemilik risiko dan pihak yang
+                        bertanggung jawab terhadap tindakan pengendalian.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="function-code">RM-08</div>
+                    <h3>Monitoring & Review</h3>
+                    <p>
+                        Memantau perubahan kondisi risiko dan
+                        melakukan review secara berkala.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="function-code">RM-09</div>
+                    <h3>Risk Reporting & Escalation</h3>
+                    <p>
+                        Melaporkan risiko signifikan dan melakukan
+                        eskalasi apabila diperlukan keputusan manajemen.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         RISK REGISTER MATRIX
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    RM · RISK REGISTER
+                </div>
+
+                <h2>
+                    Risk Control Matrix
+                </h2>
+
+                <p class="section-description">
+                    Struktur minimum data risiko yang memungkinkan
+                    risiko ditelusuri dari sumber masalah sampai
+                    pengendalian dan residual risk.
+                </p>
+
+            </div>
+
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Risk ID</th>
+                            <th>Risk Category</th>
+                            <th>Cause</th>
+                            <th>Consequence</th>
+                            <th>Likelihood</th>
+                            <th>Impact</th>
+                            <th>Risk Rating</th>
+                            <th>Existing Control</th>
+                            <th>Treatment</th>
+                            <th>Risk Owner</th>
+                            <th>Due Date</th>
+                            <th>Residual Risk</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>RM-RISK-001</td>
+                            <td>Operational</td>
+                            <td>Identified Cause</td>
+                            <td>Business Impact</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Existing Control</td>
+                            <td>Mitigation</td>
+                            <td>Assigned Owner</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <td>RM-RISK-002</td>
+                            <td>Electrical</td>
+                            <td>Identified Cause</td>
+                            <td>System Impact</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Existing Control</td>
+                            <td>Mitigation</td>
+                            <td>Assigned Owner</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <td>RM-RISK-003</td>
+                            <td>Energy</td>
+                            <td>Identified Cause</td>
+                            <td>Performance Impact</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Existing Control</td>
+                            <td>Mitigation</td>
+                            <td>Assigned Owner</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTROL VIEW
+    ========================== -->
+
+    <section id="control">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    RM · CONTROL VIEW
+                </div>
+
+                <h2>
+                    Risk Control View
+                </h2>
+
+                <p class="section-description">
+                    Risk Management berjalan sebagai siklus pengendalian,
+                    bukan sekadar daftar risiko.
+                </p>
+
+            </div>
+
+
+            <div class="control-view">
+
+                <div class="control-step">
+                    <span class="control-number">01</span>
+                    <strong>IDENTIFY</strong>
+                    <span class="control-arrow">›</span>
+                </div>
+
+                <div class="control-step">
+                    <span class="control-number">02</span>
+                    <strong>ASSESS</strong>
+                    <span class="control-arrow">›</span>
+                </div>
+
+                <div class="control-step">
+                    <span class="control-number">03</span>
+                    <strong>TREAT</strong>
+                    <span class="control-arrow">›</span>
+                </div>
+
+                <div class="control-step">
+                    <span class="control-number">04</span>
+                    <strong>MONITOR</strong>
+                    <span class="control-arrow">›</span>
+                </div>
+
+                <div class="control-step">
+                    <span class="control-number">05</span>
+                    <strong>REVIEW</strong>
+                    <span class="control-arrow">›</span>
+                </div>
+
+                <div class="control-step">
+                    <span class="control-number">06</span>
+                    <strong>IMPROVE</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         RISK LEVEL
+    ========================== -->
+
+    <section id="risk-level">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    RM · CLASSIFICATION
+                </div>
+
+                <h2>
+                    Risk Classification
+                </h2>
+
+                <p class="section-description">
+                    Klasifikasi tingkat risiko menjadi dasar
+                    prioritas pengendalian, monitoring, dan eskalasi.
+                </p>
+
+            </div>
+
+
+            <div class="risk-levels">
+
+                <article class="risk-level risk-low">
+                    <div class="risk-level-code">LEVEL 01</div>
+                    <h3>LOW</h3>
+                    <p>
+                        Risiko rendah. Dikelola melalui kontrol
+                        rutin dan monitoring normal.
+                    </p>
+                </article>
+
+
+                <article class="risk-level risk-medium">
+                    <div class="risk-level-code">LEVEL 02</div>
+                    <h3>MEDIUM</h3>
+                    <p>
+                        Risiko menengah. Membutuhkan tindakan
+                        pengendalian dan monitoring terjadwal.
+                    </p>
+                </article>
+
+
+                <article class="risk-level risk-high">
+                    <div class="risk-level-code">LEVEL 03</div>
+                    <h3>HIGH</h3>
+                    <p>
+                        Risiko tinggi. Membutuhkan prioritas
+                        tindakan dan perhatian manajemen.
+                    </p>
+                </article>
+
+
+                <article class="risk-level risk-critical">
+                    <div class="risk-level-code">LEVEL 04</div>
+                    <h3>CRITICAL</h3>
+                    <p>
+                        Risiko kritis. Membutuhkan eskalasi,
+                        keputusan manajemen, dan tindakan segera.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         RESPONSIBILITIES
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    RM · RESPONSIBILITY
+                </div>
+
+                <h2>
+                    Risk Responsibilities
+                </h2>
+
+                <p class="section-description">
+                    Pengendalian risiko merupakan tanggung jawab
+                    lintas fungsi dalam EEMS.
+                </p>
+
+            </div>
+
+
+            <div class="responsibility-grid">
+
+                <article class="responsibility">
+                    <h3>Management</h3>
+                    <p>
+                        Menetapkan risk appetite, prioritas,
+                        keputusan, dan eskalasi risiko strategis.
+                    </p>
+                </article>
+
+
+                <article class="responsibility">
+                    <h3>Risk Owner</h3>
+                    <p>
+                        Bertanggung jawab atas risiko, treatment,
+                        monitoring, dan efektivitas pengendalian.
+                    </p>
+                </article>
+
+
+                <article class="responsibility">
+                    <h3>Process Owner</h3>
+                    <p>
+                        Mengendalikan risiko yang melekat pada
+                        proses bisnis dan operasional.
+                    </p>
+                </article>
+
+
+                <article class="responsibility">
+                    <h3>HSE / K3</h3>
+                    <p>
+                        Mengelola risiko keselamatan, kesehatan,
+                        lingkungan, dan pekerjaan berisiko.
+                    </p>
+                </article>
+
+
+                <article class="responsibility">
+                    <h3>Electrical & Energy</h3>
+                    <p>
+                        Mengendalikan risiko sistem kelistrikan,
+                        energi, reliability, dan performance.
+                    </p>
+                </article>
+
+
+                <article class="responsibility">
+                    <h3>Maintenance</h3>
+                    <p>
+                        Mengendalikan risiko kegagalan aset,
+                        backlog, reliability, dan kondisi peralatan.
+                    </p>
+                </article>
+
+
+                <article class="responsibility">
+                    <h3>Project</h3>
+                    <p>
+                        Mengendalikan risiko scope, schedule,
+                        cost, procurement, quality, dan execution.
+                    </p>
+                </article>
+
+
+                <article class="responsibility">
+                    <h3>Finance</h3>
+                    <p>
+                        Mengendalikan risiko biaya, anggaran,
+                        cash flow, dan dampak finansial.
+                    </p>
+                </article>
+
+
+                <article class="responsibility">
+                    <h3>HR & Compliance</h3>
+                    <p>
+                        Mengendalikan risiko kompetensi, personel,
+                        authorization, serta kepatuhan sistem.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         KPI
+    ========================== -->
+
+    <section id="kpi">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    RM · KPI
+                </div>
+
+                <h2>
+                    Risk Management KPI
+                </h2>
+
+                <p class="section-description">
+                    KPI berikut menjadi indikator kesiapan dan
+                    efektivitas pengendalian risiko. Nilai akan
+                    terhubung dengan data aktual pada tahap
+                    implementasi sistem.
+                </p>
+
+            </div>
+
+
+            <div class="kpi-grid">
+
+                <article class="kpi-card">
+                    <div class="kpi-label">
+                        Total Risk Register
+                    </div>
+
+                    <div class="kpi-value">—</div>
+
+                    <div class="kpi-unit">
+                        Count
+                    </div>
+                </article>
+
+
+                <article class="kpi-card">
+                    <div class="kpi-label">
+                        High / Critical Risk
+                    </div>
+
+                    <div class="kpi-value">—</div>
+
+                    <div class="kpi-unit">
+                        Count
+                    </div>
+                </article>
+
+
+                <article class="kpi-card">
+                    <div class="kpi-label">
+                        Open Risk Treatment
+                    </div>
+
+                    <div class="kpi-value">—</div>
+
+                    <div class="kpi-unit">
+                        Count
+                    </div>
+                </article>
+
+
+                <article class="kpi-card">
+                    <div class="kpi-label">
+                        Overdue Risk Action
+                    </div>
+
+                    <div class="kpi-value">—</div>
+
+                    <div class="kpi-unit">
+                        Count
+                    </div>
+                </article>
+
+
+                <article class="kpi-card">
+                    <div class="kpi-label">
+                        Residual Risk
+                    </div>
+
+                    <div class="kpi-value">—</div>
+
+                    <div class="kpi-unit">
+                        Rating / Count
+                    </div>
+                </article>
+
+
+                <article class="kpi-card">
+                    <div class="kpi-label">
+                        Risk Review Compliance
+                    </div>
+
+                    <div class="kpi-value">—</div>
+
+                    <div class="kpi-unit">
+                        %
+                    </div>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MANAGEMENT RISK VIEW
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    RM · MANAGEMENT VIEW
+                </div>
+
+                <h2>
+                    Enterprise Risk View
+                </h2>
+
+                <p class="section-description">
+                    Risiko dilihat sebagai satu kesatuan enterprise,
+                    bukan sebagai risiko yang berdiri sendiri di
+                    masing-masing departemen.
+                </p>
+
+            </div>
+
+
+            <div class="management-view">
+
+                <article class="management-card">
+                    <span>RISK · 01</span>
+                    <h3>Operational</h3>
+                    <p>
+                        Risiko terhadap kegiatan operasi,
+                        kontinuitas, produktivitas, dan pelayanan.
+                    </p>
+                </article>
+
+
+                <article class="management-card">
+                    <span>RISK · 02</span>
+                    <h3>Electrical</h3>
+                    <p>
+                        Risiko kegagalan sistem, protection,
+                        power quality, dan reliability.
+                    </p>
+                </article>
+
+
+                <article class="management-card">
+                    <span>RISK · 03</span>
+                    <h3>Energy</h3>
+                    <p>
+                        Risiko konsumsi, biaya energi,
+                        demand, efficiency, dan performance.
+                    </p>
+                </article>
+
+
+                <article class="management-card">
+                    <span>RISK · 04</span>
+                    <h3>Maintenance</h3>
+                    <p>
+                        Risiko asset failure, deterioration,
+                        backlog, dan availability.
+                    </p>
+                </article>
+
+
+                <article class="management-card">
+                    <span>RISK · 05</span>
+                    <h3>HSE / K3</h3>
+                    <p>
+                        Risiko keselamatan manusia, kesehatan,
+                        lingkungan, dan emergency.
+                    </p>
+                </article>
+
+
+                <article class="management-card">
+                    <span>RISK · 06</span>
+                    <h3>Project</h3>
+                    <p>
+                        Risiko scope, schedule, cost, procurement,
+                        quality, dan commissioning.
+                    </p>
+                </article>
+
+
+                <article class="management-card">
+                    <span>RISK · 07</span>
+                    <h3>Financial</h3>
+                    <p>
+                        Risiko budget, cost variance,
+                        financial exposure, dan cash flow.
+                    </p>
+                </article>
+
+
+                <article class="management-card">
+                    <span>RISK · 08</span>
+                    <h3>People & Competence</h3>
+                    <p>
+                        Risiko manpower, kompetensi,
+                        authorization, training, dan availability.
+                    </p>
+                </article>
+
+
+                <article class="management-card">
+                    <span>RISK · 09</span>
+                    <h3>Compliance</h3>
+                    <p>
+                        Risiko ketidaksesuaian terhadap kebijakan,
+                        prosedur, regulasi, dan persyaratan sistem.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRINCIPLES
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    RM · PRINCIPLES
+                </div>
+
+                <h2>
+                    Risk Management Principles
+                </h2>
+
+            </div>
+
+
+            <div class="principles">
+
+                <div class="principle">
+                    <strong>IDENTIFY</strong>
+                </div>
+
+                <div class="principle">
+                    <strong>ASSESS</strong>
+                </div>
+
+                <div class="principle">
+                    <strong>CONTROL</strong>
+                </div>
+
+                <div class="principle">
+                    <strong>MONITOR</strong>
+                </div>
+
+                <div class="principle">
+                    <strong>IMPROVE</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
+
+    <section class="cta">
+
+        <div class="container">
+
+            <div class="cta-box">
+
+                <h2>
+                    Identify the Risk.
+                    Protect the Business.
+                </h2>
+
+                <p>
+                    Risiko yang tidak dikenali dapat menjadi kejadian.
+                    Risiko yang dikenali tetapi tidak dikendalikan
+                    dapat menjadi kerugian. EEMS menjadikan risiko
+                    sebagai bagian dari pengambilan keputusan.
+                </p>
+
+                <a href="../index.html" class="btn">
+                    ← KEMBALI KE EEMS
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div class="footer-brand">
+            EEMS · RISK MANAGEMENT
+        </div>
+
+        <div class="footer-info">
+            System Control Layer · 03 · Versi 1.0
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
