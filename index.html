@@ -56,6 +56,7 @@
             margin: auto;
         }
 
+
         /* =========================================================
            HEADER
            ========================================================= */
@@ -68,7 +69,8 @@
             background: rgba(7, 17, 31, 0.94);
             backdrop-filter: blur(14px);
 
-            border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+            border-bottom:
+                1px solid rgba(212, 175, 55, 0.18);
         }
 
         .nav {
@@ -123,7 +125,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 20px;
 
             color: #b8c2ce;
             font-size: 13px;
@@ -150,6 +152,7 @@
             background: #d4af37;
             color: #07111f;
         }
+
 
         /* =========================================================
            HERO
@@ -187,6 +190,7 @@
 
         .hero-content {
             max-width: 850px;
+
             position: relative;
             z-index: 2;
         }
@@ -279,15 +283,20 @@
             color: #d4af37;
         }
 
+
         /* =========================================================
            SYSTEM STATUS
            ========================================================= */
 
         .status-bar {
-            border-top: 1px solid rgba(255,255,255,0.06);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-top:
+                1px solid rgba(255,255,255,0.06);
 
-            background: rgba(255,255,255,0.025);
+            border-bottom:
+                1px solid rgba(255,255,255,0.06);
+
+            background:
+                rgba(255,255,255,0.025);
         }
 
         .status-inner {
@@ -314,10 +323,13 @@
             height: 8px;
 
             border-radius: 50%;
+
             background: #58c78b;
 
-            box-shadow: 0 0 10px rgba(88,199,139,0.6);
+            box-shadow:
+                0 0 10px rgba(88,199,139,0.6);
         }
+
 
         /* =========================================================
            SECTION
@@ -356,6 +368,7 @@
             color: #8f9baa;
             font-size: 14px;
         }
+
 
         /* =========================================================
            MODULE GRID
@@ -483,6 +496,7 @@
             letter-spacing: 0.8px;
         }
 
+
         /* =========================================================
            MANAGEMENT SYSTEM
            ========================================================= */
@@ -523,14 +537,18 @@
 
         .management-features {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                1fr 1fr;
+
             gap: 12px;
         }
 
         .feature {
             padding: 17px;
 
-            background: rgba(0,0,0,0.16);
+            background:
+                rgba(0,0,0,0.16);
 
             border:
                 1px solid rgba(255,255,255,0.07);
@@ -552,6 +570,234 @@
             color: #7f8b99;
             font-size: 11px;
         }
+
+
+        /* =========================================================
+           SYSTEM CONTROL LAYER
+           ========================================================= */
+
+        .control-layer {
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(212,175,55,0.025),
+                    rgba(0,0,0,0.16)
+                );
+        }
+
+        .control-layer-box {
+            padding: 40px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.045),
+                    rgba(212,175,55,0.055)
+                );
+
+            border:
+                1px solid rgba(212,175,55,0.25);
+
+            border-radius: 14px;
+        }
+
+        .control-layer-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            gap: 30px;
+
+            margin-bottom: 35px;
+        }
+
+        .control-layer-header h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .control-layer-header p {
+            max-width: 700px;
+
+            color: #9da9b6;
+
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .control-layer-badge {
+            flex-shrink: 0;
+
+            padding: 10px 14px;
+
+            border:
+                1px solid rgba(212,175,55,0.4);
+
+            border-radius: 7px;
+
+            color: #d4af37;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .control-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 18px;
+        }
+
+        .control-card {
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+
+            min-height: 235px;
+
+            padding: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.055),
+                    rgba(255,255,255,0.018)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            border-radius: 12px;
+
+            transition:
+                transform 0.25s,
+                border-color 0.25s,
+                background 0.25s;
+        }
+
+        .control-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            right: -70px;
+            bottom: -70px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(212,175,55,0.10),
+                    transparent 70%
+                );
+        }
+
+        .control-card:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(212,175,55,0.55);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(212,175,55,0.10),
+                    rgba(255,255,255,0.025)
+                );
+        }
+
+        .control-number {
+            color: #657386;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+        }
+
+        .control-icon {
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 18px 0;
+
+            border:
+                1px solid rgba(212,175,55,0.45);
+
+            border-radius: 10px;
+
+            color: #d4af37;
+
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .control-card h3 {
+            font-size: 19px;
+
+            margin-bottom: 9px;
+        }
+
+        .control-card p {
+            color: #8996a5;
+
+            font-size: 13px;
+            line-height: 1.7;
+
+            margin-bottom: 20px;
+        }
+
+        .control-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-top: auto;
+
+            color: #d4af37;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 0.8px;
+        }
+
+        .control-link span {
+            transition: transform 0.25s;
+        }
+
+        .control-card:hover .control-link span {
+            transform: translateX(5px);
+        }
+
+        .control-note {
+            margin-top: 22px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid rgba(255,255,255,0.07);
+
+            color: #6f7c8b;
+
+            font-size: 11px;
+        }
+
 
         /* =========================================================
            ARCHITECTURE
@@ -619,6 +865,7 @@
             font-size: 14px;
         }
 
+
         /* =========================================================
            PRINCIPLES
            ========================================================= */
@@ -652,6 +899,7 @@
             font-size: 12px;
         }
 
+
         /* =========================================================
            CTA
            ========================================================= */
@@ -670,7 +918,8 @@
         }
 
         .cta h2 {
-            font-size: clamp(30px, 5vw, 48px);
+            font-size:
+                clamp(30px, 5vw, 48px);
 
             margin-bottom: 15px;
         }
@@ -683,6 +932,7 @@
             color: #919dab;
             font-size: 14px;
         }
+
 
         /* =========================================================
            FOOTER
@@ -713,9 +963,21 @@
             letter-spacing: 1px;
         }
 
+
         /* =========================================================
            RESPONSIVE
            ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .nav-links {
+                gap: 13px;
+            }
+
+            .control-layer-header {
+                flex-direction: column;
+            }
+        }
 
         @media (max-width: 900px) {
 
@@ -729,6 +991,10 @@
             }
 
             .management-box {
+                grid-template-columns: 1fr;
+            }
+
+            .control-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -784,6 +1050,18 @@
                 grid-template-columns: 1fr;
             }
 
+            .control-layer-box {
+                padding: 25px;
+            }
+
+            .control-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .control-card {
+                min-height: 220px;
+            }
+
             .architecture-flow {
                 grid-template-columns: 1fr;
             }
@@ -801,7 +1079,9 @@
     </style>
 </head>
 
+
 <body>
+
 
 <!-- =============================================================
      HEADER
@@ -829,10 +1109,15 @@
 
         </a>
 
+
         <nav class="nav-links">
 
             <a href="#modules">
                 Modules
+            </a>
+
+            <a href="#control-layer">
+                Control Layer
             </a>
 
             <a href="#architecture">
@@ -1316,6 +1601,7 @@
             <div class="management-features">
 
                 <div class="feature">
+
                     <strong>
                         Document Control
                     </strong>
@@ -1323,9 +1609,12 @@
                     <span>
                         Pengendalian dokumen dan revisi
                     </span>
+
                 </div>
 
+
                 <div class="feature">
+
                     <strong>
                         Policy
                     </strong>
@@ -1333,9 +1622,12 @@
                     <span>
                         Kebijakan dan arah perusahaan
                     </span>
+
                 </div>
 
+
                 <div class="feature">
+
                     <strong>
                         Procedure
                     </strong>
@@ -1343,9 +1635,12 @@
                     <span>
                         Prosedur operasional terstruktur
                     </span>
+
                 </div>
 
+
                 <div class="feature">
+
                     <strong>
                         Records
                     </strong>
@@ -1353,8 +1648,141 @@
                     <span>
                         Rekaman dan bukti pelaksanaan
                     </span>
+
                 </div>
 
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     SYSTEM CONTROL LAYER
+     ============================================================= -->
+
+<section
+    id="control-layer"
+    class="control-layer"
+>
+
+    <div class="container">
+
+        <div class="control-layer-box">
+
+
+            <div class="control-layer-header">
+
+                <div>
+
+                    <div class="section-label">
+                        Cross-Functional System Layer
+                    </div>
+
+                    <h2>
+                        System Control Layer
+                    </h2>
+
+                    <p>
+                        Lapisan pengendalian yang menjaga agar
+                        seluruh modul EEMS bekerja secara
+                        terdokumentasi, dapat diaudit, dapat
+                        ditelusuri, dan sesuai dengan kebijakan
+                        serta persyaratan sistem.
+                    </p>
+
+                </div>
+
+
+                <div class="control-layer-badge">
+                    System Control
+                </div>
+
+            </div>
+
+
+            <div class="control-grid">
+
+
+                <!-- DOCUMENT CONTROL -->
+
+                <a
+                    href="control/document-control.html"
+                    class="control-card"
+                >
+
+                    <div class="control-number">
+                        CONTROL · 01
+                    </div>
+
+                    <div class="control-icon">
+                        DC
+                    </div>
+
+                    <h3>
+                        Document Control
+                    </h3>
+
+                    <p>
+                        Kendali identifikasi dokumen, penomoran,
+                        review, approval, revisi, distribusi,
+                        dokumen eksternal, kedaluwarsa, dan
+                        rekaman sistem.
+                    </p>
+
+                    <span class="control-link">
+                        OPEN DOCUMENT CONTROL
+                        <span>→</span>
+                    </span>
+
+                </a>
+
+
+                <!-- AUDIT & COMPLIANCE -->
+
+                <a
+                    href="control/audit-compliance.html"
+                    class="control-card"
+                >
+
+                    <div class="control-number">
+                        CONTROL · 02
+                    </div>
+
+                    <div class="control-icon">
+                        AC
+                    </div>
+
+                    <h3>
+                        Audit & Compliance
+                    </h3>
+
+                    <p>
+                        Pengendalian program audit, kriteria,
+                        evidence, temuan, kepatuhan, tindakan
+                        korektif, verifikasi efektivitas, dan
+                        pelaporan audit.
+                    </p>
+
+                    <span class="control-link">
+                        OPEN AUDIT & COMPLIANCE
+                        <span>→</span>
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
+            <div class="control-note">
+                System Control Layer bukan departemen tambahan.
+                Lapisan ini bekerja lintas fungsi untuk menjaga
+                integritas, kepatuhan, dan keterlacakan seluruh
+                sistem EEMS.
             </div>
 
         </div>
@@ -1396,6 +1824,7 @@
 
 
         <div class="architecture-flow">
+
 
             <div class="flow-item">
 
@@ -1461,6 +1890,7 @@
 
             </div>
 
+
         </div>
 
     </div>
@@ -1495,6 +1925,7 @@
 
 
         <div class="principles">
+
 
             <div class="principle">
 
@@ -1551,6 +1982,7 @@
 
             </div>
 
+
         </div>
 
     </div>
@@ -1593,6 +2025,7 @@
 
 </section>
 
+
 </main>
 
 
@@ -1615,6 +2048,7 @@
             </div>
 
         </div>
+
 
         <div>
             Integrated Management Architecture · Version 1.0
