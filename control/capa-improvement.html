@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>EEMS | Risk Management</title>
+    <title>EEMS | CAPA & Improvement</title>
 
     <meta
         name="description"
-        content="EEMS Risk Management — sistem identifikasi, penilaian, pengendalian, monitoring, dan eskalasi risiko."
+        content="EEMS CAPA & Improvement — sistem corrective action, preventive action, root cause analysis, verification, dan continuous improvement."
     >
 
     <style>
@@ -23,7 +23,6 @@
             --text: #eef2f7;
             --muted: #9ba7b7;
             --muted-2: #6f7b8c;
-            --danger: #d96b6b;
             --success: #70b88a;
             --warning: #d6a84f;
         }
@@ -67,7 +66,7 @@
 
         /* =========================
            HEADER
-        ========================= */
+        ========================== */
 
         header {
             position: sticky;
@@ -106,16 +105,14 @@
             letter-spacing: 0;
         }
 
-        .brand-text span {
-            display: block;
-        }
-
         .brand-main {
+            display: block;
             color: var(--gold-light);
             font-size: 15px;
         }
 
         .brand-sub {
+            display: block;
             color: var(--muted);
             font-size: 11px;
             margin-top: 2px;
@@ -144,7 +141,7 @@
 
         /* =========================
            BREADCRUMB
-        ========================= */
+        ========================== */
 
         .breadcrumb-wrap {
             border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -163,7 +160,7 @@
 
         /* =========================
            HERO
-        ========================= */
+        ========================== */
 
         .hero {
             padding: 82px 0 65px;
@@ -235,7 +232,7 @@
 
         /* =========================
            STATUS
-        ========================= */
+        ========================== */
 
         .status-bar {
             border-top: 1px solid var(--line);
@@ -273,8 +270,8 @@
         }
 
         /* =========================
-           SECTION
-        ========================= */
+           SECTIONS
+        ========================== */
 
         section {
             padding: 78px 0;
@@ -307,7 +304,7 @@
 
         /* =========================
            FUNCTIONS
-        ========================= */
+        ========================== */
 
         .function-grid {
             display: grid;
@@ -316,7 +313,6 @@
         }
 
         .function-card {
-            position: relative;
             background: var(--panel);
             border: 1px solid rgba(255,255,255,0.07);
             padding: 27px;
@@ -349,8 +345,8 @@
         }
 
         /* =========================
-           MATRIX
-        ========================= */
+           CAPA MATRIX
+        ========================== */
 
         .table-wrap {
             overflow-x: auto;
@@ -360,7 +356,7 @@
 
         table {
             width: 100%;
-            min-width: 950px;
+            min-width: 1050px;
             border-collapse: collapse;
         }
 
@@ -390,18 +386,18 @@
 
         /* =========================
            CONTROL VIEW
-        ========================= */
+        ========================== */
 
         .control-view {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(7, 1fr);
             border: 1px solid var(--line);
             background: var(--panel);
         }
 
         .control-step {
             position: relative;
-            padding: 30px 18px;
+            padding: 30px 13px;
             text-align: center;
             border-right: 1px solid var(--line);
         }
@@ -420,8 +416,8 @@
 
         .control-step strong {
             display: block;
-            font-size: 12px;
-            letter-spacing: 0.7px;
+            font-size: 11px;
+            letter-spacing: 0.5px;
         }
 
         .control-arrow {
@@ -436,58 +432,57 @@
         }
 
         /* =========================
-           RISK LEVEL
-        ========================= */
+           CAPA TYPES
+        ========================== */
 
-        .risk-levels {
+        .capa-types {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 14px;
-            margin-top: 30px;
         }
 
-        .risk-level {
-            padding: 26px;
-            border: 1px solid rgba(255,255,255,0.08);
+        .capa-type {
+            padding: 27px;
             background: var(--panel);
+            border: 1px solid rgba(255,255,255,0.07);
         }
 
-        .risk-level-code {
-            font-size: 10px;
+        .capa-type-code {
             color: var(--gold);
+            font-size: 10px;
             letter-spacing: 1.5px;
-            margin-bottom: 12px;
+            margin-bottom: 13px;
         }
 
-        .risk-level h3 {
+        .capa-type h3 {
             font-size: 17px;
-            margin-bottom: 8px;
+            margin-bottom: 9px;
         }
 
-        .risk-level p {
+        .capa-type p {
             color: var(--muted);
             font-size: 12px;
         }
 
-        .risk-low {
-            border-top: 2px solid var(--success);
-        }
-
-        .risk-medium {
+        .type-corrective {
             border-top: 2px solid var(--warning);
         }
 
-        .risk-high {
-            border-top: 2px solid #c88954;
+        .type-preventive {
+            border-top: 2px solid var(--success);
         }
 
-        .risk-critical {
-            border-top: 2px solid var(--danger);
+        .type-improvement {
+            border-top: 2px solid var(--gold);
+        }
+
+        .type-containment {
+            border-top: 2px solid #8b9bb2;
         }
 
         /* =========================
            RESPONSIBILITIES
-        ========================= */
+        ========================== */
 
         .responsibility-grid {
             display: grid;
@@ -513,7 +508,7 @@
 
         /* =========================
            KPI
-        ========================= */
+        ========================== */
 
         .kpi-grid {
             display: grid;
@@ -549,7 +544,7 @@
 
         /* =========================
            MANAGEMENT VIEW
-        ========================= */
+        ========================== */
 
         .management-view {
             display: grid;
@@ -583,7 +578,7 @@
 
         /* =========================
            PRINCIPLES
-        ========================= */
+        ========================== */
 
         .principles {
             display: grid;
@@ -607,7 +602,7 @@
 
         /* =========================
            CTA
-        ========================= */
+        ========================== */
 
         .cta {
             padding: 80px 0 90px;
@@ -654,7 +649,7 @@
 
         /* =========================
            FOOTER
-        ========================= */
+        ========================== */
 
         footer {
             border-top: 1px solid var(--line);
@@ -683,7 +678,26 @@
 
         /* =========================
            RESPONSIVE
-        ========================= */
+        ========================== */
+
+        @media (max-width: 1000px) {
+
+            .control-view {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .control-step:nth-child(4) {
+                border-right: none;
+            }
+
+            .control-step:nth-child(-n+4) {
+                border-bottom: 1px solid var(--line);
+            }
+
+            .control-arrow {
+                display: none;
+            }
+        }
 
         @media (max-width: 900px) {
 
@@ -701,28 +715,12 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .risk-levels {
+            .capa-types {
                 grid-template-columns: repeat(2, 1fr);
             }
 
             .principles {
                 grid-template-columns: repeat(3, 1fr);
-            }
-
-            .control-view {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .control-step:nth-child(3) {
-                border-right: none;
-            }
-
-            .control-step:nth-child(-n+3) {
-                border-bottom: 1px solid var(--line);
-            }
-
-            .control-arrow {
-                display: none;
             }
         }
 
@@ -770,7 +768,7 @@
             .responsibility-grid,
             .management-view,
             .kpi-grid,
-            .risk-levels {
+            .capa-types {
                 grid-template-columns: 1fr;
             }
 
@@ -813,19 +811,29 @@
     <div class="container nav">
 
         <a href="../index.html" class="brand">
-            <div class="brand-mark">EE</div>
 
-            <div class="brand-text">
-                <span class="brand-main">EEMS</span>
-                <span class="brand-sub">Risk Management</span>
+            <div class="brand-mark">
+                EE
             </div>
+
+            <div>
+                <span class="brand-main">
+                    EEMS
+                </span>
+
+                <span class="brand-sub">
+                    CAPA & Improvement
+                </span>
+            </div>
+
         </a>
 
         <nav class="nav-links">
             <a href="#functions">Functions</a>
             <a href="#control">Control</a>
-            <a href="#risk-level">Risk Level</a>
+            <a href="#capa-type">CAPA</a>
             <a href="#kpi">KPI</a>
+
             <a href="../index.html" class="home-link">
                 ← Beranda EEMS
             </a>
@@ -842,13 +850,17 @@
     ========================== -->
 
     <div class="breadcrumb-wrap">
+
         <div class="container breadcrumb">
+
             EEMS
             <span>›</span>
             System Control Layer
             <span>›</span>
-            Risk Management
+            CAPA & Improvement
+
         </div>
+
     </div>
 
 
@@ -861,40 +873,44 @@
         <div class="container hero-grid">
 
             <div>
+
                 <div class="eyebrow">
-                    System Control Layer · 03
+                    System Control Layer · 04
                 </div>
 
                 <h1>
-                    Risk<br>
-                    Management
+                    CAPA &<br>
+                    Improvement
                 </h1>
 
                 <p class="hero-description">
-                    Sistem pengendalian risiko untuk mengidentifikasi,
-                    menilai, menangani, memantau, dan mengevaluasi risiko
-                    yang dapat memengaruhi keselamatan, keandalan,
-                    energi, proyek, keuangan, SDM, kepatuhan, dan
-                    keberlangsungan bisnis.
+                    Sistem pengendalian tindakan korektif,
+                    tindakan preventif, analisis akar masalah,
+                    verifikasi efektivitas, dan peningkatan
+                    berkelanjutan untuk memastikan setiap temuan
+                    dan masalah menghasilkan perbaikan nyata
+                    terhadap sistem EEMS.
                 </p>
+
             </div>
 
 
             <div class="hero-card">
 
                 <div class="hero-card-label">
-                    Risk Management Principle
+                    Improvement Principle
                 </div>
 
                 <div class="hero-card-title">
-                    Know the Risk.<br>
-                    Control the Consequence.
+                    Fix the Cause.<br>
+                    Improve the System.
                 </div>
 
                 <div class="hero-card-text">
-                    Risiko bukan hanya dicatat. Risiko harus dipahami,
-                    memiliki pemilik, memiliki tindakan pengendalian,
-                    dan dipantau sampai tingkat risikonya dapat diterima.
+                    CAPA tidak berhenti pada penyelesaian masalah.
+                    Fokus utamanya adalah menghilangkan akar penyebab,
+                    mencegah pengulangan, dan memastikan tindakan
+                    benar-benar efektif.
                 </div>
 
             </div>
@@ -913,26 +929,33 @@
         <div class="container status-grid">
 
             <div class="status-item">
+
                 <span class="status-label">
                     Modul
                 </span>
 
                 <span class="status-value">
-                    Risk Management
+                    CAPA & Improvement
                 </span>
+
             </div>
 
+
             <div class="status-item">
+
                 <span class="status-label">
                     Area Pengendalian
                 </span>
 
                 <span class="status-value">
-                    Risk Register · Assessment · Treatment · Monitoring
+                    Corrective Action · Root Cause · Verification · Improvement
                 </span>
+
             </div>
 
+
             <div class="status-item">
+
                 <span class="status-label">
                     Sistem
                 </span>
@@ -940,6 +963,7 @@
                 <span class="status-value">
                     EEMS Versi 1.0
                 </span>
+
             </div>
 
         </div>
@@ -958,18 +982,18 @@
             <div class="section-heading">
 
                 <div class="section-number">
-                    RM · FUNCTIONS
+                    CAPA · FUNCTIONS
                 </div>
 
                 <h2>
-                    Risk Management Functions
+                    CAPA & Improvement Functions
                 </h2>
 
                 <p class="section-description">
-                    Fungsi utama untuk memastikan setiap risiko
-                    dikenali, dinilai secara konsisten, memiliki
-                    pengendalian, serta ditindaklanjuti oleh pihak
-                    yang bertanggung jawab.
+                    Fungsi utama untuk memastikan setiap
+                    ketidaksesuaian, temuan, insiden, risiko,
+                    dan peluang peningkatan ditindaklanjuti
+                    secara sistematis.
                 </p>
 
             </div>
@@ -978,93 +1002,173 @@
             <div class="function-grid">
 
                 <article class="function-card">
-                    <div class="function-code">RM-01</div>
-                    <h3>Risk Identification</h3>
+
+                    <div class="function-code">
+                        CI-01
+                    </div>
+
+                    <h3>
+                        Issue & Finding Identification
+                    </h3>
+
                     <p>
-                        Mengidentifikasi sumber, kondisi, kejadian,
-                        dan faktor yang dapat menimbulkan risiko.
+                        Mengidentifikasi sumber tindakan dari audit,
+                        insiden, risiko, inspeksi, keluhan,
+                        deviasi, dan hasil monitoring.
                     </p>
+
                 </article>
 
 
                 <article class="function-card">
-                    <div class="function-code">RM-02</div>
-                    <h3>Risk Register</h3>
+
+                    <div class="function-code">
+                        CI-02
+                    </div>
+
+                    <h3>
+                        Containment Action
+                    </h3>
+
                     <p>
-                        Menyimpan dan mengendalikan seluruh risiko
-                        dalam register yang terstruktur dan dapat
-                        ditelusuri.
+                        Menetapkan tindakan sementara untuk
+                        membatasi dampak masalah sebelum akar
+                        penyebab diperbaiki.
                     </p>
+
                 </article>
 
 
                 <article class="function-card">
-                    <div class="function-code">RM-03</div>
-                    <h3>Risk Assessment</h3>
+
+                    <div class="function-code">
+                        CI-03
+                    </div>
+
+                    <h3>
+                        Root Cause Analysis
+                    </h3>
+
                     <p>
-                        Menilai kemungkinan terjadinya risiko dan
-                        dampaknya terhadap tujuan organisasi.
+                        Menganalisis akar penyebab menggunakan
+                        pendekatan yang sesuai terhadap sifat
+                        dan kompleksitas masalah.
                     </p>
+
                 </article>
 
 
                 <article class="function-card">
-                    <div class="function-code">RM-04</div>
-                    <h3>Risk Matrix</h3>
+
+                    <div class="function-code">
+                        CI-04
+                    </div>
+
+                    <h3>
+                        Corrective Action
+                    </h3>
+
                     <p>
-                        Mengklasifikasikan tingkat risiko berdasarkan
-                        kombinasi likelihood dan impact.
+                        Menetapkan tindakan untuk menghilangkan
+                        penyebab ketidaksesuaian dan mencegah
+                        masalah yang sama terulang kembali.
                     </p>
+
                 </article>
 
 
                 <article class="function-card">
-                    <div class="function-code">RM-05</div>
-                    <h3>Risk Treatment</h3>
+
+                    <div class="function-code">
+                        CI-05
+                    </div>
+
+                    <h3>
+                        Preventive Action
+                    </h3>
+
                     <p>
-                        Menentukan strategi untuk menghindari,
-                        mengurangi, mentransfer, atau menerima risiko.
+                        Mengantisipasi potensi masalah dan
+                        menetapkan tindakan sebelum kejadian
+                        benar-benar terjadi.
                     </p>
+
                 </article>
 
 
                 <article class="function-card">
-                    <div class="function-code">RM-06</div>
-                    <h3>Mitigation & Control</h3>
+
+                    <div class="function-code">
+                        CI-06
+                    </div>
+
+                    <h3>
+                        Action Ownership
+                    </h3>
+
                     <p>
-                        Menetapkan tindakan mitigasi dan kontrol
-                        untuk menurunkan likelihood atau impact.
+                        Menetapkan action owner, target date,
+                        prioritas, sumber daya, dan status
+                        penyelesaian tindakan.
                     </p>
+
                 </article>
 
 
                 <article class="function-card">
-                    <div class="function-code">RM-07</div>
-                    <h3>Risk Owner & Accountability</h3>
+
+                    <div class="function-code">
+                        CI-07
+                    </div>
+
+                    <h3>
+                        Effectiveness Verification
+                    </h3>
+
                     <p>
-                        Menetapkan pemilik risiko dan pihak yang
-                        bertanggung jawab terhadap tindakan pengendalian.
+                        Memverifikasi apakah tindakan yang
+                        dilakukan benar-benar efektif dan
+                        menghilangkan penyebab masalah.
                     </p>
+
                 </article>
 
 
                 <article class="function-card">
-                    <div class="function-code">RM-08</div>
-                    <h3>Monitoring & Review</h3>
+
+                    <div class="function-code">
+                        CI-08
+                    </div>
+
+                    <h3>
+                        Improvement Program
+                    </h3>
+
                     <p>
-                        Memantau perubahan kondisi risiko dan
-                        melakukan review secara berkala.
+                        Mengubah hasil evaluasi, data, dan temuan
+                        menjadi program peningkatan sistem dan
+                        kinerja.
                     </p>
+
                 </article>
 
 
                 <article class="function-card">
-                    <div class="function-code">RM-09</div>
-                    <h3>Risk Reporting & Escalation</h3>
+
+                    <div class="function-code">
+                        CI-09
+                    </div>
+
+                    <h3>
+                        Lessons Learned
+                    </h3>
+
                     <p>
-                        Melaporkan risiko signifikan dan melakukan
-                        eskalasi apabila diperlukan keputusan manajemen.
+                        Menangkap pembelajaran dan memastikan
+                        pengetahuan hasil perbaikan dapat diterapkan
+                        pada proses lain yang relevan.
                     </p>
+
                 </article>
 
             </div>
@@ -1075,7 +1179,7 @@
 
 
     <!-- =========================
-         RISK REGISTER MATRIX
+         CAPA MATRIX
     ========================== -->
 
     <section>
@@ -1085,17 +1189,17 @@
             <div class="section-heading">
 
                 <div class="section-number">
-                    RM · RISK REGISTER
+                    CAPA · ACTION REGISTER
                 </div>
 
                 <h2>
-                    Risk Control Matrix
+                    CAPA Control Matrix
                 </h2>
 
                 <p class="section-description">
-                    Struktur minimum data risiko yang memungkinkan
-                    risiko ditelusuri dari sumber masalah sampai
-                    pengendalian dan residual risk.
+                    Struktur data tindakan untuk menjaga
+                    keterlacakan mulai dari temuan hingga
+                    verifikasi efektivitas.
                 </p>
 
             </div>
@@ -1106,65 +1210,70 @@
                 <table>
 
                     <thead>
+
                         <tr>
-                            <th>Risk ID</th>
-                            <th>Risk Category</th>
-                            <th>Cause</th>
-                            <th>Consequence</th>
-                            <th>Likelihood</th>
-                            <th>Impact</th>
-                            <th>Risk Rating</th>
-                            <th>Existing Control</th>
-                            <th>Treatment</th>
-                            <th>Risk Owner</th>
+                            <th>Action ID</th>
+                            <th>Source</th>
+                            <th>Issue / Finding</th>
+                            <th>Containment</th>
+                            <th>Root Cause</th>
+                            <th>Action</th>
+                            <th>Action Owner</th>
+                            <th>Priority</th>
                             <th>Due Date</th>
-                            <th>Residual Risk</th>
+                            <th>Status</th>
+                            <th>Effectiveness</th>
+                            <th>Closure</th>
                         </tr>
+
                     </thead>
+
 
                     <tbody>
 
                         <tr>
-                            <td>RM-RISK-001</td>
-                            <td>Operational</td>
-                            <td>Identified Cause</td>
-                            <td>Business Impact</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>Existing Control</td>
-                            <td>Mitigation</td>
+                            <td>CAPA-001</td>
+                            <td>Audit</td>
+                            <td>Identified Finding</td>
+                            <td>Immediate Control</td>
+                            <td>Root Cause</td>
+                            <td>Corrective Action</td>
                             <td>Assigned Owner</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Open</td>
                             <td>—</td>
                             <td>—</td>
                         </tr>
 
+
                         <tr>
-                            <td>RM-RISK-002</td>
-                            <td>Electrical</td>
-                            <td>Identified Cause</td>
-                            <td>System Impact</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>Existing Control</td>
-                            <td>Mitigation</td>
+                            <td>CAPA-002</td>
+                            <td>Incident</td>
+                            <td>Identified Issue</td>
+                            <td>Immediate Control</td>
+                            <td>Root Cause</td>
+                            <td>Preventive Action</td>
                             <td>Assigned Owner</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Open</td>
                             <td>—</td>
                             <td>—</td>
                         </tr>
 
+
                         <tr>
-                            <td>RM-RISK-003</td>
-                            <td>Energy</td>
-                            <td>Identified Cause</td>
-                            <td>Performance Impact</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>Existing Control</td>
-                            <td>Mitigation</td>
+                            <td>CAPA-003</td>
+                            <td>Risk</td>
+                            <td>Improvement Opportunity</td>
+                            <td>Temporary Control</td>
+                            <td>Cause Analysis</td>
+                            <td>Improvement</td>
                             <td>Assigned Owner</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>Open</td>
                             <td>—</td>
                             <td>—</td>
                         </tr>
@@ -1191,16 +1300,16 @@
             <div class="section-heading">
 
                 <div class="section-number">
-                    RM · CONTROL VIEW
+                    CAPA · CONTROL VIEW
                 </div>
 
                 <h2>
-                    Risk Control View
+                    Improvement Control View
                 </h2>
 
                 <p class="section-description">
-                    Risk Management berjalan sebagai siklus pengendalian,
-                    bukan sekadar daftar risiko.
+                    Setiap masalah harus bergerak dari identifikasi
+                    menuju perbaikan sistem yang dapat diverifikasi.
                 </p>
 
             </div>
@@ -1209,38 +1318,117 @@
             <div class="control-view">
 
                 <div class="control-step">
-                    <span class="control-number">01</span>
-                    <strong>IDENTIFY</strong>
-                    <span class="control-arrow">›</span>
+
+                    <span class="control-number">
+                        01
+                    </span>
+
+                    <strong>
+                        IDENTIFY
+                    </strong>
+
+                    <span class="control-arrow">
+                        ›
+                    </span>
+
                 </div>
 
-                <div class="control-step">
-                    <span class="control-number">02</span>
-                    <strong>ASSESS</strong>
-                    <span class="control-arrow">›</span>
-                </div>
 
                 <div class="control-step">
-                    <span class="control-number">03</span>
-                    <strong>TREAT</strong>
-                    <span class="control-arrow">›</span>
+
+                    <span class="control-number">
+                        02
+                    </span>
+
+                    <strong>
+                        CONTAIN
+                    </strong>
+
+                    <span class="control-arrow">
+                        ›
+                    </span>
+
                 </div>
 
-                <div class="control-step">
-                    <span class="control-number">04</span>
-                    <strong>MONITOR</strong>
-                    <span class="control-arrow">›</span>
-                </div>
 
                 <div class="control-step">
-                    <span class="control-number">05</span>
-                    <strong>REVIEW</strong>
-                    <span class="control-arrow">›</span>
+
+                    <span class="control-number">
+                        03
+                    </span>
+
+                    <strong>
+                        ANALYZE
+                    </strong>
+
+                    <span class="control-arrow">
+                        ›
+                    </span>
+
                 </div>
 
+
                 <div class="control-step">
-                    <span class="control-number">06</span>
-                    <strong>IMPROVE</strong>
+
+                    <span class="control-number">
+                        04
+                    </span>
+
+                    <strong>
+                        CORRECT
+                    </strong>
+
+                    <span class="control-arrow">
+                        ›
+                    </span>
+
+                </div>
+
+
+                <div class="control-step">
+
+                    <span class="control-number">
+                        05
+                    </span>
+
+                    <strong>
+                        VERIFY
+                    </strong>
+
+                    <span class="control-arrow">
+                        ›
+                    </span>
+
+                </div>
+
+
+                <div class="control-step">
+
+                    <span class="control-number">
+                        06
+                    </span>
+
+                    <strong>
+                        PREVENT
+                    </strong>
+
+                    <span class="control-arrow">
+                        ›
+                    </span>
+
+                </div>
+
+
+                <div class="control-step">
+
+                    <span class="control-number">
+                        07
+                    </span>
+
+                    <strong>
+                        IMPROVE
+                    </strong>
+
                 </div>
 
             </div>
@@ -1251,70 +1439,105 @@
 
 
     <!-- =========================
-         RISK LEVEL
+         CAPA TYPES
     ========================== -->
 
-    <section id="risk-level">
+    <section id="capa-type">
 
         <div class="container">
 
             <div class="section-heading">
 
                 <div class="section-number">
-                    RM · CLASSIFICATION
+                    CAPA · CLASSIFICATION
                 </div>
 
                 <h2>
-                    Risk Classification
+                    Action Classification
                 </h2>
 
                 <p class="section-description">
-                    Klasifikasi tingkat risiko menjadi dasar
-                    prioritas pengendalian, monitoring, dan eskalasi.
+                    Tidak semua tindakan memiliki tujuan yang sama.
+                    EEMS membedakan containment, corrective,
+                    preventive, dan improvement agar tindakan
+                    tepat sasaran.
                 </p>
 
             </div>
 
 
-            <div class="risk-levels">
+            <div class="capa-types">
 
-                <article class="risk-level risk-low">
-                    <div class="risk-level-code">LEVEL 01</div>
-                    <h3>LOW</h3>
+                <article class="capa-type type-containment">
+
+                    <div class="capa-type-code">
+                        TYPE · 01
+                    </div>
+
+                    <h3>
+                        Containment
+                    </h3>
+
                     <p>
-                        Risiko rendah. Dikelola melalui kontrol
-                        rutin dan monitoring normal.
+                        Tindakan segera untuk membatasi dampak
+                        masalah dan menjaga kondisi tetap terkendali.
                     </p>
+
                 </article>
 
 
-                <article class="risk-level risk-medium">
-                    <div class="risk-level-code">LEVEL 02</div>
-                    <h3>MEDIUM</h3>
+                <article class="capa-type type-corrective">
+
+                    <div class="capa-type-code">
+                        TYPE · 02
+                    </div>
+
+                    <h3>
+                        Corrective Action
+                    </h3>
+
                     <p>
-                        Risiko menengah. Membutuhkan tindakan
-                        pengendalian dan monitoring terjadwal.
+                        Tindakan untuk menghilangkan akar penyebab
+                        ketidaksesuaian yang telah terjadi.
                     </p>
+
                 </article>
 
 
-                <article class="risk-level risk-high">
-                    <div class="risk-level-code">LEVEL 03</div>
-                    <h3>HIGH</h3>
+                <article class="capa-type type-preventive">
+
+                    <div class="capa-type-code">
+                        TYPE · 03
+                    </div>
+
+                    <h3>
+                        Preventive Action
+                    </h3>
+
                     <p>
-                        Risiko tinggi. Membutuhkan prioritas
-                        tindakan dan perhatian manajemen.
+                        Tindakan untuk mengurangi kemungkinan
+                        terjadinya masalah yang belum terjadi.
                     </p>
+
                 </article>
 
 
-                <article class="risk-level risk-critical">
-                    <div class="risk-level-code">LEVEL 04</div>
-                    <h3>CRITICAL</h3>
+                <article class="capa-type type-improvement">
+
+                    <div class="capa-type-code">
+                        TYPE · 04
+                    </div>
+
+                    <h3>
+                        Improvement
+                    </h3>
+
                     <p>
-                        Risiko kritis. Membutuhkan eskalasi,
-                        keputusan manajemen, dan tindakan segera.
+                        Peningkatan sistem, proses, teknologi,
+                        kompetensi, atau kinerja berdasarkan
+                        pembelajaran dan evaluasi.
                     </p>
+
                 </article>
 
             </div>
@@ -1335,16 +1558,16 @@
             <div class="section-heading">
 
                 <div class="section-number">
-                    RM · RESPONSIBILITY
+                    CAPA · RESPONSIBILITY
                 </div>
 
                 <h2>
-                    Risk Responsibilities
+                    Improvement Responsibilities
                 </h2>
 
                 <p class="section-description">
-                    Pengendalian risiko merupakan tanggung jawab
-                    lintas fungsi dalam EEMS.
+                    CAPA membutuhkan kepemilikan yang jelas dari
+                    tingkat manajemen sampai pemilik proses.
                 </p>
 
             </div>
@@ -1353,83 +1576,136 @@
             <div class="responsibility-grid">
 
                 <article class="responsibility">
-                    <h3>Management</h3>
+
+                    <h3>
+                        Management
+                    </h3>
+
                     <p>
-                        Menetapkan risk appetite, prioritas,
-                        keputusan, dan eskalasi risiko strategis.
+                        Menetapkan prioritas peningkatan, menyediakan
+                        sumber daya, mengambil keputusan, dan meninjau
+                        efektivitas tindakan strategis.
                     </p>
+
                 </article>
 
 
                 <article class="responsibility">
-                    <h3>Risk Owner</h3>
+
+                    <h3>
+                        Process Owner
+                    </h3>
+
                     <p>
-                        Bertanggung jawab atas risiko, treatment,
-                        monitoring, dan efektivitas pengendalian.
+                        Memastikan akar penyebab proses dianalisis
+                        dan tindakan perbaikan diterapkan pada
+                        proses yang menjadi tanggung jawabnya.
                     </p>
+
                 </article>
 
 
                 <article class="responsibility">
-                    <h3>Process Owner</h3>
+
+                    <h3>
+                        Action Owner
+                    </h3>
+
                     <p>
-                        Mengendalikan risiko yang melekat pada
-                        proses bisnis dan operasional.
+                        Bertanggung jawab menyelesaikan tindakan
+                        sesuai target, bukti pelaksanaan, dan
+                        persyaratan yang ditetapkan.
                     </p>
+
                 </article>
 
 
                 <article class="responsibility">
-                    <h3>HSE / K3</h3>
+
+                    <h3>
+                        Audit & Compliance
+                    </h3>
+
                     <p>
-                        Mengelola risiko keselamatan, kesehatan,
-                        lingkungan, dan pekerjaan berisiko.
+                        Memantau tindak lanjut temuan dan memastikan
+                        penutupan tindakan dapat diverifikasi.
                     </p>
+
                 </article>
 
 
                 <article class="responsibility">
-                    <h3>Electrical & Energy</h3>
+
+                    <h3>
+                        HSE / K3
+                    </h3>
+
                     <p>
-                        Mengendalikan risiko sistem kelistrikan,
-                        energi, reliability, dan performance.
+                        Mengendalikan tindakan perbaikan terkait
+                        keselamatan, kesehatan, lingkungan,
+                        incident, dan risk control.
                     </p>
+
                 </article>
 
 
                 <article class="responsibility">
-                    <h3>Maintenance</h3>
+
+                    <h3>
+                        Electrical & Energy
+                    </h3>
+
                     <p>
-                        Mengendalikan risiko kegagalan aset,
-                        backlog, reliability, dan kondisi peralatan.
+                        Mengembangkan tindakan peningkatan terhadap
+                        reliability, efficiency, electrical safety,
+                        dan energy performance.
                     </p>
+
                 </article>
 
 
                 <article class="responsibility">
-                    <h3>Project</h3>
+
+                    <h3>
+                        Maintenance
+                    </h3>
+
                     <p>
-                        Mengendalikan risiko scope, schedule,
-                        cost, procurement, quality, dan execution.
+                        Menindaklanjuti kegagalan aset, reliability,
+                        backlog, inspection findings, dan
+                        maintenance improvement.
                     </p>
+
                 </article>
 
 
                 <article class="responsibility">
-                    <h3>Finance</h3>
+
+                    <h3>
+                        Project
+                    </h3>
+
                     <p>
-                        Mengendalikan risiko biaya, anggaran,
-                        cash flow, dan dampak finansial.
+                        Mengintegrasikan lessons learned,
+                        corrective action, quality improvement,
+                        dan perubahan desain.
                     </p>
+
                 </article>
 
 
                 <article class="responsibility">
-                    <h3>HR & Compliance</h3>
+
+                    <h3>
+                        HR & Competence
+                    </h3>
+
                     <p>
-                        Mengendalikan risiko kompetensi, personel,
-                        authorization, serta kepatuhan sistem.
+                        Mengembangkan tindakan terkait kompetensi,
+                        training, authorization, dan kebutuhan
+                        pengembangan personel.
                     </p>
+
                 </article>
 
             </div>
@@ -1450,18 +1726,17 @@
             <div class="section-heading">
 
                 <div class="section-number">
-                    RM · KPI
+                    CAPA · KPI
                 </div>
 
                 <h2>
-                    Risk Management KPI
+                    CAPA & Improvement KPI
                 </h2>
 
                 <p class="section-description">
-                    KPI berikut menjadi indikator kesiapan dan
-                    efektivitas pengendalian risiko. Nilai akan
-                    terhubung dengan data aktual pada tahap
-                    implementasi sistem.
+                    KPI menunjukkan kemampuan organisasi dalam
+                    menyelesaikan tindakan dan memastikan bahwa
+                    perbaikan benar-benar efektif.
                 </p>
 
             </div>
@@ -1470,80 +1745,104 @@
             <div class="kpi-grid">
 
                 <article class="kpi-card">
+
                     <div class="kpi-label">
-                        Total Risk Register
+                        Open CAPA
                     </div>
 
-                    <div class="kpi-value">—</div>
+                    <div class="kpi-value">
+                        —
+                    </div>
 
                     <div class="kpi-unit">
                         Count
                     </div>
+
                 </article>
 
 
                 <article class="kpi-card">
+
                     <div class="kpi-label">
-                        High / Critical Risk
+                        Overdue Actions
                     </div>
 
-                    <div class="kpi-value">—</div>
+                    <div class="kpi-value">
+                        —
+                    </div>
 
                     <div class="kpi-unit">
                         Count
                     </div>
+
                 </article>
 
 
                 <article class="kpi-card">
+
                     <div class="kpi-label">
-                        Open Risk Treatment
+                        CAPA Closure
                     </div>
 
-                    <div class="kpi-value">—</div>
-
-                    <div class="kpi-unit">
-                        Count
+                    <div class="kpi-value">
+                        —
                     </div>
-                </article>
-
-
-                <article class="kpi-card">
-                    <div class="kpi-label">
-                        Overdue Risk Action
-                    </div>
-
-                    <div class="kpi-value">—</div>
-
-                    <div class="kpi-unit">
-                        Count
-                    </div>
-                </article>
-
-
-                <article class="kpi-card">
-                    <div class="kpi-label">
-                        Residual Risk
-                    </div>
-
-                    <div class="kpi-value">—</div>
-
-                    <div class="kpi-unit">
-                        Rating / Count
-                    </div>
-                </article>
-
-
-                <article class="kpi-card">
-                    <div class="kpi-label">
-                        Risk Review Compliance
-                    </div>
-
-                    <div class="kpi-value">—</div>
 
                     <div class="kpi-unit">
                         %
                     </div>
+
+                </article>
+
+
+                <article class="kpi-card">
+
+                    <div class="kpi-label">
+                        Effectiveness Verified
+                    </div>
+
+                    <div class="kpi-value">
+                        —
+                    </div>
+
+                    <div class="kpi-unit">
+                        %
+                    </div>
+
+                </article>
+
+
+                <article class="kpi-card">
+
+                    <div class="kpi-label">
+                        Repeat Findings
+                    </div>
+
+                    <div class="kpi-value">
+                        —
+                    </div>
+
+                    <div class="kpi-unit">
+                        Count
+                    </div>
+
+                </article>
+
+
+                <article class="kpi-card">
+
+                    <div class="kpi-label">
+                        Improvement Programs
+                    </div>
+
+                    <div class="kpi-value">
+                        —
+                    </div>
+
+                    <div class="kpi-unit">
+                        Count
+                    </div>
+
                 </article>
 
             </div>
@@ -1554,7 +1853,7 @@
 
 
     <!-- =========================
-         MANAGEMENT RISK VIEW
+         MANAGEMENT VIEW
     ========================== -->
 
     <section>
@@ -1564,17 +1863,17 @@
             <div class="section-heading">
 
                 <div class="section-number">
-                    RM · MANAGEMENT VIEW
+                    CAPA · MANAGEMENT VIEW
                 </div>
 
                 <h2>
-                    Enterprise Risk View
+                    Improvement Management View
                 </h2>
 
                 <p class="section-description">
-                    Risiko dilihat sebagai satu kesatuan enterprise,
-                    bukan sebagai risiko yang berdiri sendiri di
-                    masing-masing departemen.
+                    Setiap bagian EEMS dapat menghasilkan temuan,
+                    tindakan, dan peluang peningkatan yang harus
+                    dikonsolidasikan dalam satu sistem.
                 </p>
 
             </div>
@@ -1583,92 +1882,165 @@
             <div class="management-view">
 
                 <article class="management-card">
-                    <span>RISK · 01</span>
-                    <h3>Operational</h3>
+
+                    <span>
+                        IMPROVEMENT · 01
+                    </span>
+
+                    <h3>
+                        Electrical
+                    </h3>
+
                     <p>
-                        Risiko terhadap kegiatan operasi,
-                        kontinuitas, produktivitas, dan pelayanan.
+                        Reliability, protection, power quality,
+                        electrical safety, dan system performance.
                     </p>
+
                 </article>
 
 
                 <article class="management-card">
-                    <span>RISK · 02</span>
-                    <h3>Electrical</h3>
+
+                    <span>
+                        IMPROVEMENT · 02
+                    </span>
+
+                    <h3>
+                        Energy
+                    </h3>
+
                     <p>
-                        Risiko kegagalan sistem, protection,
-                        power quality, dan reliability.
+                        Efficiency, consumption, demand,
+                        energy cost, dan energy performance.
                     </p>
+
                 </article>
 
 
                 <article class="management-card">
-                    <span>RISK · 03</span>
-                    <h3>Energy</h3>
+
+                    <span>
+                        IMPROVEMENT · 03
+                    </span>
+
+                    <h3>
+                        Maintenance
+                    </h3>
+
                     <p>
-                        Risiko konsumsi, biaya energi,
-                        demand, efficiency, dan performance.
+                        Asset reliability, failure elimination,
+                        preventive maintenance, dan backlog.
                     </p>
+
                 </article>
 
 
                 <article class="management-card">
-                    <span>RISK · 04</span>
-                    <h3>Maintenance</h3>
+
+                    <span>
+                        IMPROVEMENT · 04
+                    </span>
+
+                    <h3>
+                        HSE / K3
+                    </h3>
+
                     <p>
-                        Risiko asset failure, deterioration,
-                        backlog, dan availability.
+                        Incident prevention, risk control,
+                        safety compliance, dan emergency readiness.
                     </p>
+
                 </article>
 
 
                 <article class="management-card">
-                    <span>RISK · 05</span>
-                    <h3>HSE / K3</h3>
+
+                    <span>
+                        IMPROVEMENT · 05
+                    </span>
+
+                    <h3>
+                        Project
+                    </h3>
+
                     <p>
-                        Risiko keselamatan manusia, kesehatan,
-                        lingkungan, dan emergency.
+                        Quality improvement, lessons learned,
+                        change control, commissioning, dan closeout.
                     </p>
+
                 </article>
 
 
                 <article class="management-card">
-                    <span>RISK · 06</span>
-                    <h3>Project</h3>
+
+                    <span>
+                        IMPROVEMENT · 06
+                    </span>
+
+                    <h3>
+                        Finance
+                    </h3>
+
                     <p>
-                        Risiko scope, schedule, cost, procurement,
-                        quality, dan commissioning.
+                        Cost optimization, budget control,
+                        variance reduction, dan financial efficiency.
                     </p>
+
                 </article>
 
 
                 <article class="management-card">
-                    <span>RISK · 07</span>
-                    <h3>Financial</h3>
+
+                    <span>
+                        IMPROVEMENT · 07
+                    </span>
+
+                    <h3>
+                        HR
+                    </h3>
+
                     <p>
-                        Risiko budget, cost variance,
-                        financial exposure, dan cash flow.
+                        Competency development, training,
+                        authorization, workforce capability,
+                        dan performance.
                     </p>
+
                 </article>
 
 
                 <article class="management-card">
-                    <span>RISK · 08</span>
-                    <h3>People & Competence</h3>
+
+                    <span>
+                        IMPROVEMENT · 08
+                    </span>
+
+                    <h3>
+                        Corporate
+                    </h3>
+
                     <p>
-                        Risiko manpower, kompetensi,
-                        authorization, training, dan availability.
+                        Policy, governance, strategic alignment,
+                        management review, dan organizational control.
                     </p>
+
                 </article>
 
 
                 <article class="management-card">
-                    <span>RISK · 09</span>
-                    <h3>Compliance</h3>
+
+                    <span>
+                        IMPROVEMENT · 09
+                    </span>
+
+                    <h3>
+                        System Control
+                    </h3>
+
                     <p>
-                        Risiko ketidaksesuaian terhadap kebijakan,
-                        prosedur, regulasi, dan persyaratan sistem.
+                        Document Control, Audit, Risk, CAPA,
+                        Master Data, dan System Administration.
                     </p>
+
                 </article>
 
             </div>
@@ -1689,11 +2061,11 @@
             <div class="section-heading">
 
                 <div class="section-number">
-                    RM · PRINCIPLES
+                    CAPA · PRINCIPLES
                 </div>
 
                 <h2>
-                    Risk Management Principles
+                    Improvement Principles
                 </h2>
 
             </div>
@@ -1706,15 +2078,15 @@
                 </div>
 
                 <div class="principle">
-                    <strong>ASSESS</strong>
+                    <strong>ANALYZE</strong>
                 </div>
 
                 <div class="principle">
-                    <strong>CONTROL</strong>
+                    <strong>CORRECT</strong>
                 </div>
 
                 <div class="principle">
-                    <strong>MONITOR</strong>
+                    <strong>VERIFY</strong>
                 </div>
 
                 <div class="principle">
@@ -1739,15 +2111,15 @@
             <div class="cta-box">
 
                 <h2>
-                    Identify the Risk.
-                    Protect the Business.
+                    Correct the Cause.
+                    Improve the System.
                 </h2>
 
                 <p>
-                    Risiko yang tidak dikenali dapat menjadi kejadian.
-                    Risiko yang dikenali tetapi tidak dikendalikan
-                    dapat menjadi kerugian. EEMS menjadikan risiko
-                    sebagai bagian dari pengambilan keputusan.
+                    Setiap temuan harus menghasilkan pembelajaran.
+                    Setiap tindakan harus dapat diverifikasi.
+                    Dan setiap perbaikan harus memperkuat sistem
+                    agar masalah yang sama tidak kembali terjadi.
                 </p>
 
                 <a href="../index.html" class="btn">
@@ -1768,11 +2140,11 @@
     <div class="container footer-inner">
 
         <div class="footer-brand">
-            EEMS · RISK MANAGEMENT
+            EEMS · CAPA & IMPROVEMENT
         </div>
 
         <div class="footer-info">
-            System Control Layer · 03 · Versi 1.0
+            System Control Layer · 04 · Versi 1.0
         </div>
 
     </div>
