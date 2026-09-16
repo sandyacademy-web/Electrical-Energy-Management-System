@@ -1,0 +1,2351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EEMS | Data Center</title>
+
+    <meta
+        name="description"
+        content="EEMS Data Center — pusat pengumpulan, validasi, integrasi, pengolahan data, KPI, monitoring, dan informasi manajemen."
+    >
+
+    <style>
+        :root {
+            --navy: #07111f;
+            --navy-2: #0b1728;
+            --navy-3: #101f33;
+            --gold: #d4af37;
+            --gold-light: #ead58a;
+            --text: #eef2f6;
+            --muted: #9caabd;
+            --line: rgba(212,175,55,.22);
+            --panel: rgba(255,255,255,.035);
+            --panel-hover: rgba(255,255,255,.06);
+            --shadow: 0 18px 50px rgba(0,0,0,.28);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(212,175,55,.08),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    180deg,
+                    #07111f 0%,
+                    #081321 45%,
+                    #050c16 100%
+                );
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: 0 auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5,12,22,.92);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(212,175,55,.14);
+        }
+
+        .nav {
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            min-width: 190px;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--gold);
+            display: grid;
+            place-items: center;
+            color: var(--gold);
+            font-weight: 800;
+            letter-spacing: .08em;
+            font-size: 13px;
+            border-radius: 8px;
+        }
+
+        .brand-text strong {
+            display: block;
+            color: var(--gold-light);
+            font-size: 15px;
+            letter-spacing: .16em;
+        }
+
+        .brand-text span {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #c5ceda;
+            font-size: 13px;
+            transition: .25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-home {
+            border: 1px solid rgba(212,175,55,.35);
+            padding: 9px 15px;
+            border-radius: 6px;
+            color: var(--gold-light) !important;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            padding: 88px 0 65px;
+        }
+
+        .breadcrumb {
+            color: #7f8da0;
+            font-size: 12px;
+            margin-bottom: 27px;
+            letter-spacing: .04em;
+        }
+
+        .breadcrumb span {
+            color: var(--gold);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.45fr .75fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--gold);
+            font-size: 11px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            margin-bottom: 17px;
+        }
+
+        h1 {
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+            font-weight: 500;
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 1.08;
+            letter-spacing: -.025em;
+            margin-bottom: 25px;
+        }
+
+        .hero-copy {
+            max-width: 720px;
+            color: #b5c0ce;
+            font-size: 17px;
+        }
+
+        .hero-card {
+            border: 1px solid var(--line);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(212,175,55,.10),
+                    rgba(255,255,255,.025)
+                );
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-card .label {
+            color: var(--gold);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            margin-bottom: 12px;
+        }
+
+        .hero-card h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-weight: 500;
+            font-size: 29px;
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+
+        .hero-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status-bar {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: rgba(255,255,255,.018);
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .status-item {
+            padding: 22px 25px;
+            border-right: 1px solid rgba(212,175,55,.13);
+        }
+
+        .status-item:last-child {
+            border-right: 0;
+        }
+
+        .status-label {
+            display: block;
+            color: #718096;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .13em;
+            margin-bottom: 5px;
+        }
+
+        .status-value {
+            color: #dfe5ec;
+            font-size: 13px;
+        }
+
+        /* =========================
+           GENERAL SECTION
+        ========================= */
+
+        section {
+            padding: 85px 0;
+        }
+
+        .section-heading {
+            max-width: 720px;
+            margin-bottom: 42px;
+        }
+
+        .section-heading .number {
+            color: var(--gold);
+            font-size: 11px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(30px, 4vw, 44px);
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 13px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        /* =========================
+           DATA FLOW
+        ========================= */
+
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            align-items: stretch;
+        }
+
+        .flow-item {
+            min-height: 125px;
+            border: 1px solid rgba(212,175,55,.18);
+            background: var(--panel);
+            border-radius: 9px;
+            padding: 20px 13px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .flow-item:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -17px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            z-index: 2;
+        }
+
+        .flow-code {
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: .12em;
+            margin-bottom: 8px;
+        }
+
+        .flow-item strong {
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        /* =========================
+           DATA SOURCES
+        ========================= */
+
+        .source-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
+        }
+
+        .source-card {
+            border: 1px solid rgba(212,175,55,.15);
+            background: var(--panel);
+            border-radius: 10px;
+            padding: 25px;
+            transition: .25s ease;
+        }
+
+        .source-card:hover {
+            transform: translateY(-3px);
+            background: var(--panel-hover);
+            border-color: rgba(212,175,55,.34);
+        }
+
+        .source-code {
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: .13em;
+            margin-bottom: 9px;
+        }
+
+        .source-card h3 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 23px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .source-card p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 13px;
+        }
+
+        .source-list {
+            list-style: none;
+            border-top: 1px solid rgba(255,255,255,.07);
+            padding-top: 12px;
+        }
+
+        .source-list li {
+            color: #b8c2cf;
+            font-size: 12px;
+            padding: 3px 0;
+        }
+
+        .source-list li::before {
+            content: "•";
+            color: var(--gold);
+            margin-right: 7px;
+        }
+
+        /* =========================
+           FUNCTIONS
+        ========================= */
+
+        .function-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
+        }
+
+        .function-card {
+            border: 1px solid rgba(212,175,55,.15);
+            padding: 26px;
+            border-radius: 10px;
+            background: linear-gradient(
+                145deg,
+                rgba(255,255,255,.035),
+                rgba(255,255,255,.015)
+            );
+        }
+
+        .function-card .code {
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: .13em;
+            margin-bottom: 10px;
+        }
+
+        .function-card h3 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 21px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .function-card p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =========================
+           DATA CONTROL MATRIX
+        ========================= */
+
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid rgba(212,175,55,.16);
+            border-radius: 10px;
+            background: rgba(255,255,255,.02);
+        }
+
+        table {
+            width: 100%;
+            min-width: 760px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 16px 18px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,.07);
+            font-size: 12px;
+        }
+
+        th {
+            color: var(--gold-light);
+            background: rgba(212,175,55,.06);
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        td {
+            color: #b9c3d0;
+        }
+
+        tr:last-child td {
+            border-bottom: 0;
+        }
+
+        /* =========================
+           PROCESS
+        ========================= */
+
+        .process {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+        }
+
+        .process-item {
+            border-left: 2px solid var(--gold);
+            padding: 18px;
+            background: rgba(255,255,255,.025);
+            min-height: 130px;
+        }
+
+        .process-number {
+            color: var(--gold);
+            font-size: 11px;
+            letter-spacing: .1em;
+            margin-bottom: 8px;
+        }
+
+        .process-item h3 {
+            font-size: 15px;
+            margin-bottom: 7px;
+        }
+
+        .process-item p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        /* =========================
+           KPI
+        ========================= */
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
+        }
+
+        .kpi-card {
+            border: 1px solid rgba(212,175,55,.16);
+            border-radius: 10px;
+            padding: 25px;
+            background: var(--panel);
+        }
+
+        .kpi-card span {
+            display: block;
+            color: #7e8b9c;
+            font-size: 10px;
+            letter-spacing: .11em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .kpi-value {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 33px;
+            color: var(--gold-light);
+            line-height: 1.15;
+        }
+
+        .kpi-unit {
+            color: #8e9bab;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        /* =========================
+           MONITORING
+        ========================= */
+
+        .monitor-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .monitor-panel {
+            border: 1px solid rgba(212,175,55,.16);
+            border-radius: 10px;
+            background: var(--panel);
+            padding: 28px;
+        }
+
+        .monitor-panel h3 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 25px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .monitor-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(255,255,255,.07);
+        }
+
+        .monitor-row:last-child {
+            border-bottom: 0;
+        }
+
+        .monitor-row span:first-child {
+            color: #bdc6d1;
+            font-size: 13px;
+        }
+
+        .status-pending {
+            color: #8794a5;
+            font-size: 11px;
+            border: 1px solid rgba(135,148,165,.28);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        /* =========================
+           INFORMATION OUTPUT
+        ========================= */
+
+        .output-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .output-card {
+            text-align: center;
+            padding: 28px 18px;
+            border: 1px solid rgba(212,175,55,.16);
+            border-radius: 9px;
+            background: rgba(255,255,255,.025);
+        }
+
+        .output-card .icon {
+            color: var(--gold);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .output-card h3 {
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .output-card p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =========================
+           ARCHITECTURE
+        ========================= */
+
+        .architecture {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 35px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(212,175,55,.07),
+                    rgba(255,255,255,.018)
+                );
+        }
+
+        .architecture-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            align-items: center;
+        }
+
+        .architecture-box {
+            border: 1px solid rgba(212,175,55,.22);
+            min-height: 100px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            border-radius: 8px;
+            background: rgba(5,12,22,.55);
+        }
+
+        .architecture-box strong {
+            color: var(--gold-light);
+            font-size: 13px;
+        }
+
+        .architecture-box span {
+            color: #8794a5;
+            font-size: 10px;
+            margin-top: 5px;
+        }
+
+        .architecture-arrow {
+            text-align: center;
+            color: var(--gold);
+            font-size: 22px;
+        }
+
+        /* =========================
+           RESPONSIBILITIES
+        ========================= */
+
+        .responsibility-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
+        }
+
+        .responsibility-card {
+            padding: 23px;
+            border: 1px solid rgba(212,175,55,.14);
+            border-radius: 9px;
+            background: var(--panel);
+        }
+
+        .responsibility-card h3 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-weight: 500;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .responsibility-card p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =========================
+           PRINCIPLES
+        ========================= */
+
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .principle {
+            padding: 24px;
+            border-top: 1px solid var(--gold);
+            background: rgba(255,255,255,.025);
+        }
+
+        .principle strong {
+            display: block;
+            color: var(--gold-light);
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .principle span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            padding: 70px 0 95px;
+        }
+
+        .cta-box {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 55px;
+            text-align: center;
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(212,175,55,.09),
+                    transparent 60%
+                ),
+                rgba(255,255,255,.02);
+        }
+
+        .cta-box h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-weight: 500;
+            font-size: clamp(30px, 4vw, 46px);
+            margin-bottom: 13px;
+        }
+
+        .cta-box p {
+            color: var(--muted);
+            max-width: 680px;
+            margin: 0 auto 27px;
+            font-size: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            padding: 12px 21px;
+            border-radius: 6px;
+            font-size: 12px;
+            letter-spacing: .08em;
+            transition: .25s ease;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid rgba(212,175,55,.14);
+            padding: 27px 0;
+            background: rgba(0,0,0,.18);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            color: var(--gold-light);
+            font-size: 12px;
+            letter-spacing: .12em;
+        }
+
+        .footer-meta {
+            color: #6f7b8b;
+            font-size: 11px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1050px) {
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .flow-item:not(:last-child)::after {
+                display: none;
+            }
+
+            .process {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .architecture-row {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        @media (max-width: 800px) {
+
+            .nav {
+                min-height: 68px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 65px;
+            }
+
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-item {
+                border-right: 0;
+                border-bottom: 1px solid rgba(212,175,55,.13);
+            }
+
+            .status-item:last-child {
+                border-bottom: 0;
+            }
+
+            .source-grid,
+            .function-grid,
+            .kpi-grid,
+            .responsibility-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .monitor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .output-grid,
+            .principles {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .flow {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+        }
+
+        @media (max-width: 560px) {
+
+            .brand-text span {
+                display: none;
+            }
+
+            h1 {
+                font-size: 43px;
+            }
+
+            .hero-copy {
+                font-size: 15px;
+            }
+
+            .hero-card {
+                padding: 24px;
+            }
+
+            .source-grid,
+            .function-grid,
+            .kpi-grid,
+            .responsibility-grid,
+            .output-grid,
+            .principles,
+            .process {
+                grid-template-columns: 1fr;
+            }
+
+            .flow {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-item {
+                min-height: 95px;
+            }
+
+            .architecture {
+                padding: 22px;
+            }
+
+            .cta-box {
+                padding: 38px 22px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+
+        <a href="../index.html" class="brand">
+            <div class="brand-mark">E</div>
+
+            <div class="brand-text">
+                <strong>EEMS</strong>
+                <span>Data Center</span>
+            </div>
+        </a>
+
+        <ul class="nav-links">
+            <li>
+                <a href="#overview">Overview</a>
+            </li>
+
+            <li>
+                <a href="#sources">Data Sources</a>
+            </li>
+
+            <li>
+                <a href="#kpi">KPI</a>
+            </li>
+
+            <li>
+                <a href="#monitoring">Monitoring</a>
+            </li>
+
+            <li>
+                <a href="#architecture">Architecture</a>
+            </li>
+
+            <li>
+                <a href="../dashboard/index.html">Dashboard</a>
+            </li>
+
+            <li>
+                <a href="../index.html" class="nav-home">
+                    ← EEMS
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="overview">
+
+        <div class="container">
+
+            <div class="breadcrumb">
+                EEMS <span>›</span> Data Center
+            </div>
+
+            <div class="hero-grid">
+
+                <div>
+
+                    <div class="eyebrow">
+                        EEMS · Information Layer
+                    </div>
+
+                    <h1>
+                        Data Center
+                    </h1>
+
+                    <p class="hero-copy">
+                        Pusat pengumpulan, validasi, integrasi, pengolahan,
+                        dan konsolidasi data dari seluruh modul EEMS menjadi
+                        informasi yang dapat digunakan untuk KPI, monitoring,
+                        analisis, dan Management Report.
+                    </p>
+
+                </div>
+
+
+                <div class="hero-card">
+
+                    <div class="label">
+                        Prinsip Data
+                    </div>
+
+                    <h2>
+                        Dari Data Menjadi Informasi.
+                    </h2>
+
+                    <p>
+                        Data Center menjadi lapisan penghubung antara
+                        aktivitas operasional dan kebutuhan informasi
+                        manajemen.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         STATUS
+    ========================== -->
+
+    <div class="status-bar">
+
+        <div class="container status-grid">
+
+            <div class="status-item">
+                <span class="status-label">
+                    System Layer
+                </span>
+
+                <span class="status-value">
+                    Data Center & Information Management
+                </span>
+            </div>
+
+            <div class="status-item">
+                <span class="status-label">
+                    Area Pengendalian
+                </span>
+
+                <span class="status-value">
+                    Data · KPI · Monitoring · Information
+                </span>
+            </div>
+
+            <div class="status-item">
+                <span class="status-label">
+                    Sistem
+                </span>
+
+                <span class="status-value">
+                    EEMS Versi 1.0
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INFORMATION FLOW
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="number">
+                    01 · Information Flow
+                </div>
+
+                <h2>
+                    Alur Data EEMS
+                </h2>
+
+                <p>
+                    Data dari setiap modul tidak langsung menjadi laporan.
+                    Data harus dikumpulkan, divalidasi, diintegrasikan,
+                    diproses, dan dikonsolidasikan sebelum menjadi
+                    informasi manajemen.
+                </p>
+
+            </div>
+
+
+            <div class="flow">
+
+                <div class="flow-item">
+                    <div class="flow-code">01</div>
+                    <strong>DATA</strong>
+                </div>
+
+                <div class="flow-item">
+                    <div class="flow-code">02</div>
+                    <strong>VALIDASI</strong>
+                </div>
+
+                <div class="flow-item">
+                    <div class="flow-code">03</div>
+                    <strong>INTEGRASI</strong>
+                </div>
+
+                <div class="flow-item">
+                    <div class="flow-code">04</div>
+                    <strong>PROCESSING</strong>
+                </div>
+
+                <div class="flow-item">
+                    <div class="flow-code">05</div>
+                    <strong>KPI</strong>
+                </div>
+
+                <div class="flow-item">
+                    <div class="flow-code">06</div>
+                    <strong>MONITORING</strong>
+                </div>
+
+                <div class="flow-item">
+                    <div class="flow-code">07</div>
+                    <strong>INFORMATION</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DATA SOURCES
+    ========================== -->
+
+    <section id="sources">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="number">
+                    02 · Data Sources
+                </div>
+
+                <h2>
+                    Sumber Data EEMS
+                </h2>
+
+                <p>
+                    Data Center menerima data dari modul-modul utama
+                    EEMS serta sumber data sistem yang telah dikendalikan.
+                </p>
+
+            </div>
+
+
+            <div class="source-grid">
+
+                <article class="source-card">
+
+                    <div class="source-code">
+                        MODULE · 01
+                    </div>
+
+                    <h3>
+                        Corporate
+                    </h3>
+
+                    <p>
+                        Data kebijakan, organisasi, sasaran, dan
+                        informasi pengelolaan perusahaan.
+                    </p>
+
+                    <ul class="source-list">
+                        <li>Organization</li>
+                        <li>Policy</li>
+                        <li>Management Requirement</li>
+                    </ul>
+
+                </article>
+
+
+                <article class="source-card">
+
+                    <div class="source-code">
+                        MODULE · 02
+                    </div>
+
+                    <h3>
+                        Electrical
+                    </h3>
+
+                    <p>
+                        Data kondisi, pengukuran, beban, keandalan,
+                        dan status sistem kelistrikan.
+                    </p>
+
+                    <ul class="source-list">
+                        <li>Voltage / Current</li>
+                        <li>Load / Power</li>
+                        <li>Availability</li>
+                    </ul>
+
+                </article>
+
+
+                <article class="source-card">
+
+                    <div class="source-code">
+                        MODULE · 03
+                    </div>
+
+                    <h3>
+                        Energy
+                    </h3>
+
+                    <p>
+                        Data konsumsi, performa, efisiensi,
+                        biaya, dan penghematan energi.
+                    </p>
+
+                    <ul class="source-list">
+                        <li>Energy Consumption</li>
+                        <li>Energy Cost</li>
+                        <li>Energy Performance</li>
+                    </ul>
+
+                </article>
+
+
+                <article class="source-card">
+
+                    <div class="source-code">
+                        MODULE · 04
+                    </div>
+
+                    <h3>
+                        Maintenance
+                    </h3>
+
+                    <p>
+                        Data pemeliharaan, pekerjaan, kondisi aset,
+                        backlog, dan keandalan.
+                    </p>
+
+                    <ul class="source-list">
+                        <li>Work Order</li>
+                        <li>Maintenance Status</li>
+                        <li>Asset Reliability</li>
+                    </ul>
+
+                </article>
+
+
+                <article class="source-card">
+
+                    <div class="source-code">
+                        MODULE · 05
+                    </div>
+
+                    <h3>
+                        HSE / K3
+                    </h3>
+
+                    <p>
+                        Data risiko, keselamatan, inspeksi,
+                        insiden, dan tindakan korektif.
+                    </p>
+
+                    <ul class="source-list">
+                        <li>Risk</li>
+                        <li>Incident / Near Miss</li>
+                        <li>Corrective Action</li>
+                    </ul>
+
+                </article>
+
+
+                <article class="source-card">
+
+                    <div class="source-code">
+                        MODULE · 06
+                    </div>
+
+                    <h3>
+                        Project
+                    </h3>
+
+                    <p>
+                        Data lingkup, jadwal, biaya, progress,
+                        risiko, kualitas, dan penyelesaian proyek.
+                    </p>
+
+                    <ul class="source-list">
+                        <li>Progress</li>
+                        <li>Schedule</li>
+                        <li>Budget / Cost</li>
+                    </ul>
+
+                </article>
+
+
+                <article class="source-card">
+
+                    <div class="source-code">
+                        MODULE · 07
+                    </div>
+
+                    <h3>
+                        Finance
+                    </h3>
+
+                    <p>
+                        Data anggaran, biaya aktual, komitmen,
+                        invoice, dan penyimpangan biaya.
+                    </p>
+
+                    <ul class="source-list">
+                        <li>Budget</li>
+                        <li>Actual Cost</li>
+                        <li>Variance</li>
+                    </ul>
+
+                </article>
+
+
+                <article class="source-card">
+
+                    <div class="source-code">
+                        MODULE · 08
+                    </div>
+
+                    <h3>
+                        Human Resources
+                    </h3>
+
+                    <p>
+                        Data personel, kompetensi, pelatihan,
+                        otorisasi, dan kinerja.
+                    </p>
+
+                    <ul class="source-list">
+                        <li>Manpower</li>
+                        <li>Competency</li>
+                        <li>Training / Authorization</li>
+                    </ul>
+
+                </article>
+
+
+                <article class="source-card">
+
+                    <div class="source-code">
+                        CONTROL · 05
+                    </div>
+
+                    <h3>
+                        Master Data
+                    </h3>
+
+                    <p>
+                        Data referensi utama yang memastikan
+                        konsistensi objek di seluruh sistem EEMS.
+                    </p>
+
+                    <ul class="source-list">
+                        <li>Asset</li>
+                        <li>People / Location</li>
+                        <li>Vendor / Parameter</li>
+                    </ul>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FUNCTIONS
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="number">
+                    03 · Data Center Functions
+                </div>
+
+                <h2>
+                    Fungsi Data Center
+                </h2>
+
+                <p>
+                    Data Center mengendalikan perjalanan data dari sumber
+                    sampai menjadi informasi yang dapat digunakan.
+                </p>
+
+            </div>
+
+
+            <div class="function-grid">
+
+                <article class="function-card">
+                    <div class="code">DC-01</div>
+                    <h3>Data Collection</h3>
+                    <p>
+                        Mengumpulkan data dari modul, sistem,
+                        perangkat pengukuran, dan sumber data
+                        yang telah ditetapkan.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="code">DC-02</div>
+                    <h3>Data Validation</h3>
+                    <p>
+                        Memeriksa kelengkapan, format, validitas,
+                        konsistensi, dan kewajaran data.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="code">DC-03</div>
+                    <h3>Data Integration</h3>
+                    <p>
+                        Menghubungkan data antar-modul sehingga
+                        informasi tidak berdiri sendiri.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="code">DC-04</div>
+                    <h3>Data Processing</h3>
+                    <p>
+                        Mengolah data menjadi agregasi, tren,
+                        indikator, perbandingan, dan informasi.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="code">DC-05</div>
+                    <h3>KPI Engine</h3>
+                    <p>
+                        Mengelola definisi, sumber, formula,
+                        target, actual, variance, dan status KPI.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="code">DC-06</div>
+                    <h3>Monitoring Engine</h3>
+                    <p>
+                        Menyediakan status kondisi, exception,
+                        indikator perhatian, dan informasi monitoring.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="code">DC-07</div>
+                    <h3>Data Quality</h3>
+                    <p>
+                        Mengendalikan kualitas data agar informasi
+                        yang dihasilkan dapat dipercaya.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="code">DC-08</div>
+                    <h3>Information Consolidation</h3>
+                    <p>
+                        Mengonsolidasikan informasi lintas fungsi
+                        untuk kebutuhan manajemen.
+                    </p>
+                </article>
+
+
+                <article class="function-card">
+                    <div class="code">DC-09</div>
+                    <h3>Information Output</h3>
+                    <p>
+                        Menyalurkan informasi menuju Dashboard,
+                        Management Report, dan kebutuhan analisis.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DATA CONTROL MATRIX
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="number">
+                    04 · Data Control
+                </div>
+
+                <h2>
+                    Data Control Matrix
+                </h2>
+
+                <p>
+                    Setiap data yang digunakan oleh EEMS perlu memiliki
+                    identitas, sumber, pemilik, status, dan jejak perubahan.
+                </p>
+
+            </div>
+
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Data Object</th>
+                            <th>Source</th>
+                            <th>Owner</th>
+                            <th>Validation</th>
+                            <th>Status</th>
+                            <th>Traceability</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Electrical Data</td>
+                            <td>Electrical Module</td>
+                            <td>Electrical Management</td>
+                            <td>Required</td>
+                            <td>—</td>
+                            <td>Required</td>
+                        </tr>
+
+                        <tr>
+                            <td>Energy Data</td>
+                            <td>Energy Module</td>
+                            <td>Energy Management</td>
+                            <td>Required</td>
+                            <td>—</td>
+                            <td>Required</td>
+                        </tr>
+
+                        <tr>
+                            <td>Maintenance Data</td>
+                            <td>Maintenance Module</td>
+                            <td>Maintenance</td>
+                            <td>Required</td>
+                            <td>—</td>
+                            <td>Required</td>
+                        </tr>
+
+                        <tr>
+                            <td>HSE Data</td>
+                            <td>HSE / K3 Module</td>
+                            <td>HSE Management</td>
+                            <td>Required</td>
+                            <td>—</td>
+                            <td>Required</td>
+                        </tr>
+
+                        <tr>
+                            <td>Project Data</td>
+                            <td>Project Module</td>
+                            <td>Project Management</td>
+                            <td>Required</td>
+                            <td>—</td>
+                            <td>Required</td>
+                        </tr>
+
+                        <tr>
+                            <td>Financial Data</td>
+                            <td>Finance Module</td>
+                            <td>Finance</td>
+                            <td>Required</td>
+                            <td>—</td>
+                            <td>Required</td>
+                        </tr>
+
+                        <tr>
+                            <td>People Data</td>
+                            <td>HR Module</td>
+                            <td>HR Management</td>
+                            <td>Required</td>
+                            <td>—</td>
+                            <td>Required</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROCESS
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="number">
+                    05 · Data Processing
+                </div>
+
+                <h2>
+                    Siklus Pengolahan Data
+                </h2>
+
+                <p>
+                    Pengolahan data dilakukan secara berurutan agar
+                    informasi yang keluar memiliki dasar yang jelas.
+                </p>
+
+            </div>
+
+
+            <div class="process">
+
+                <div class="process-item">
+                    <div class="process-number">01</div>
+                    <h3>Collect</h3>
+                    <p>
+                        Data dikumpulkan dari sumber yang ditetapkan.
+                    </p>
+                </div>
+
+                <div class="process-item">
+                    <div class="process-number">02</div>
+                    <h3>Validate</h3>
+                    <p>
+                        Data diperiksa sebelum digunakan.
+                    </p>
+                </div>
+
+                <div class="process-item">
+                    <div class="process-number">03</div>
+                    <h3>Integrate</h3>
+                    <p>
+                        Data dikaitkan antar fungsi dan objek.
+                    </p>
+                </div>
+
+                <div class="process-item">
+                    <div class="process-number">04</div>
+                    <h3>Process</h3>
+                    <p>
+                        Data diolah menjadi indikator dan informasi.
+                    </p>
+                </div>
+
+                <div class="process-item">
+                    <div class="process-number">05</div>
+                    <h3>Analyze</h3>
+                    <p>
+                        Informasi dianalisis untuk melihat kondisi,
+                        tren, dan penyimpangan.
+                    </p>
+                </div>
+
+                <div class="process-item">
+                    <div class="process-number">06</div>
+                    <h3>Report</h3>
+                    <p>
+                        Informasi disalurkan menuju dashboard dan laporan.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         KPI
+    ========================== -->
+
+    <section id="kpi">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="number">
+                    06 · KPI Engine
+                </div>
+
+                <h2>
+                    Data Quality & KPI
+                </h2>
+
+                <p>
+                    Data Center menyediakan fondasi bagi perhitungan KPI.
+                    Nilai berikut akan terisi setelah sumber data
+                    dihubungkan ke sistem.
+                </p>
+
+            </div>
+
+
+            <div class="kpi-grid">
+
+                <div class="kpi-card">
+                    <span>Data Completeness</span>
+                    <div class="kpi-value">—</div>
+                    <div class="kpi-unit">%</div>
+                </div>
+
+                <div class="kpi-card">
+                    <span>Data Validation</span>
+                    <div class="kpi-value">—</div>
+                    <div class="kpi-unit">%</div>
+                </div>
+
+                <div class="kpi-card">
+                    <span>Data Integration</span>
+                    <div class="kpi-value">—</div>
+                    <div class="kpi-unit">%</div>
+                </div>
+
+                <div class="kpi-card">
+                    <span>Data Exceptions</span>
+                    <div class="kpi-value">—</div>
+                    <div class="kpi-unit">Jumlah</div>
+                </div>
+
+                <div class="kpi-card">
+                    <span>KPI Availability</span>
+                    <div class="kpi-value">—</div>
+                    <div class="kpi-unit">%</div>
+                </div>
+
+                <div class="kpi-card">
+                    <span>Reporting Readiness</span>
+                    <div class="kpi-value">—</div>
+                    <div class="kpi-unit">%</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MONITORING
+    ========================== -->
+
+    <section id="monitoring">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="number">
+                    07 · Monitoring
+                </div>
+
+                <h2>
+                    Enterprise Monitoring
+                </h2>
+
+                <p>
+                    Monitoring memberikan gambaran lintas fungsi mengenai
+                    kondisi sistem dan area yang membutuhkan perhatian.
+                </p>
+
+            </div>
+
+
+            <div class="monitor-grid">
+
+                <div class="monitor-panel">
+
+                    <h3>
+                        Module Status
+                    </h3>
+
+                    <div class="monitor-row">
+                        <span>Electrical</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                    <div class="monitor-row">
+                        <span>Energy</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                    <div class="monitor-row">
+                        <span>Maintenance</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                    <div class="monitor-row">
+                        <span>HSE / K3</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                    <div class="monitor-row">
+                        <span>Project</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                    <div class="monitor-row">
+                        <span>Finance</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                    <div class="monitor-row">
+                        <span>Human Resources</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                </div>
+
+
+                <div class="monitor-panel">
+
+                    <h3>
+                        Exception Monitoring
+                    </h3>
+
+                    <div class="monitor-row">
+                        <span>Data Exception</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                    <div class="monitor-row">
+                        <span>KPI Deviation</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                    <div class="monitor-row">
+                        <span>Overdue Action</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                    <div class="monitor-row">
+                        <span>High Risk</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                    <div class="monitor-row">
+                        <span>Critical Maintenance</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                    <div class="monitor-row">
+                        <span>Schedule Variance</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                    <div class="monitor-row">
+                        <span>Budget Variance</span>
+                        <span class="status-pending">—</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INFORMATION OUTPUT
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="number">
+                    08 · Information Output
+                </div>
+
+                <h2>
+                    Keluaran Data Center
+                </h2>
+
+                <p>
+                    Data yang telah diproses dapat digunakan oleh beberapa
+                    lapisan informasi EEMS.
+                </p>
+
+            </div>
+
+
+            <div class="output-grid">
+
+                <div class="output-card">
+                    <div class="icon">01</div>
+                    <h3>Dashboard</h3>
+                    <p>
+                        Informasi visual untuk monitoring.
+                    </p>
+                </div>
+
+                <div class="output-card">
+                    <div class="icon">02</div>
+                    <h3>KPI</h3>
+                    <p>
+                        Indikator kinerja dan pencapaian.
+                    </p>
+                </div>
+
+                <div class="output-card">
+                    <div class="icon">03</div>
+                    <h3>Analysis</h3>
+                    <p>
+                        Tren, variance, exception, dan insight.
+                    </p>
+                </div>
+
+                <div class="output-card">
+                    <div class="icon">04</div>
+                    <h3>Management Report</h3>
+                    <p>
+                        Informasi terintegrasi untuk manajemen.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ARCHITECTURE
+    ========================== -->
+
+    <section id="architecture">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="number">
+                    09 · System Architecture
+                </div>
+
+                <h2>
+                    Dari Modul Menuju Keputusan
+                </h2>
+
+                <p>
+                    Data Center menjadi titik tengah antara aktivitas
+                    operasional EEMS dan informasi yang digunakan manajemen.
+                </p>
+
+            </div>
+
+
+            <div class="architecture">
+
+                <div class="architecture-row">
+
+                    <div class="architecture-box">
+                        <strong>MODULES</strong>
+                        <span>Operational Data</span>
+                    </div>
+
+                    <div class="architecture-arrow">
+                        →
+                    </div>
+
+                    <div class="architecture-box">
+                        <strong>DATA CENTER</strong>
+                        <span>Integration & Processing</span>
+                    </div>
+
+                    <div class="architecture-arrow">
+                        →
+                    </div>
+
+                    <div class="architecture-box">
+                        <strong>DASHBOARD</strong>
+                        <span>Monitoring & Information</span>
+                    </div>
+
+                </div>
+
+                <div
+                    style="
+                        text-align:center;
+                        color:#d4af37;
+                        font-size:22px;
+                        margin:20px 0;
+                    "
+                >
+                    ↓
+                </div>
+
+                <div class="architecture-row">
+
+                    <div class="architecture-box">
+                        <strong>KPI</strong>
+                        <span>Performance Indicators</span>
+                    </div>
+
+                    <div class="architecture-arrow">
+                        →
+                    </div>
+
+                    <div class="architecture-box">
+                        <strong>MANAGEMENT REPORT</strong>
+                        <span>Consolidated Information</span>
+                    </div>
+
+                    <div class="architecture-arrow">
+                        →
+                    </div>
+
+                    <div class="architecture-box">
+                        <strong>DECISION</strong>
+                        <span>Management Action</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         RESPONSIBILITIES
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="number">
+                    10 · Responsibilities
+                </div>
+
+                <h2>
+                    Tanggung Jawab Data
+                </h2>
+
+                <p>
+                    Data Center tidak menggantikan pemilik data.
+                    Setiap fungsi tetap bertanggung jawab atas data
+                    yang dihasilkan dan kualitasnya.
+                </p>
+
+            </div>
+
+
+            <div class="responsibility-grid">
+
+                <div class="responsibility-card">
+                    <h3>Data Owner</h3>
+                    <p>
+                        Bertanggung jawab atas kebenaran dan substansi
+                        data pada fungsi masing-masing.
+                    </p>
+                </div>
+
+                <div class="responsibility-card">
+                    <h3>Data Controller</h3>
+                    <p>
+                        Mengendalikan validasi, kualitas, status,
+                        dan konsistensi data.
+                    </p>
+                </div>
+
+                <div class="responsibility-card">
+                    <h3>Data Administrator</h3>
+                    <p>
+                        Mengelola struktur, akses, konfigurasi,
+                        dan administrasi data sistem.
+                    </p>
+                </div>
+
+                <div class="responsibility-card">
+                    <h3>KPI Owner</h3>
+                    <p>
+                        Bertanggung jawab atas definisi, target,
+                        interpretasi, dan penggunaan KPI.
+                    </p>
+                </div>
+
+                <div class="responsibility-card">
+                    <h3>Management</h3>
+                    <p>
+                        Menggunakan informasi sebagai dasar evaluasi,
+                        keputusan, dan tindakan manajemen.
+                    </p>
+                </div>
+
+                <div class="responsibility-card">
+                    <h3>System Control</h3>
+                    <p>
+                        Menjaga integritas proses pengendalian,
+                        traceability, dan kepatuhan sistem.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRINCIPLES
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="number">
+                    11 · Data Principles
+                </div>
+
+                <h2>
+                    Prinsip Data EEMS
+                </h2>
+
+            </div>
+
+
+            <div class="principles">
+
+                <div class="principle">
+                    <strong>ACCURATE</strong>
+                    <span>
+                        Data harus benar dan dapat dipertanggungjawabkan.
+                    </span>
+                </div>
+
+                <div class="principle">
+                    <strong>VALID</strong>
+                    <span>
+                        Data harus memenuhi aturan dan kriteria validasi.
+                    </span>
+                </div>
+
+                <div class="principle">
+                    <strong>CONSISTENT</strong>
+                    <span>
+                        Data harus konsisten antar fungsi dan periode.
+                    </span>
+                </div>
+
+                <div class="principle">
+                    <strong>TRACEABLE</strong>
+                    <span>
+                        Data harus dapat ditelusuri ke sumbernya.
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
+
+    <section class="cta">
+
+        <div class="container">
+
+            <div class="cta-box">
+
+                <h2>
+                    Data Menjadi Informasi.
+                </h2>
+
+                <p>
+                    Data Center menyediakan fondasi informasi yang
+                    menghubungkan seluruh modul EEMS dengan Dashboard,
+                    KPI, Monitoring, dan Management Report.
+                </p>
+
+                <a
+                    href="../dashboard/index.html"
+                    class="btn"
+                >
+                    BUKA DASHBOARD →
+                </a>
+
+                <br><br>
+
+                <a
+                    href="../index.html"
+                    class="btn"
+                >
+                    ← KEMBALI KE EEMS
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div class="footer-brand">
+            EEMS · DATA CENTER
+        </div>
+
+        <div class="footer-meta">
+            Information Layer · Versi 1.0
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
