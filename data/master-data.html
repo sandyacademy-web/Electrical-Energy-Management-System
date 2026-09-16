@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EEMS | Master Data</title>
+
+<meta name="description"
+content="EEMS Master Data — pengelolaan data referensi utama untuk aset, personel, lokasi, vendor, parameter, dan struktur organisasi.">
+
+<style>
+
+:root{
+    --bg:#070b12;
+    --bg-soft:#0b111a;
+    --panel:#101824;
+    --panel-2:#131e2b;
+    --border:rgba(212,175,55,.22);
+    --gold:#d4af37;
+    --gold-light:#f0d878;
+    --text:#f4f1e8;
+    --muted:#aeb6c2;
+    --white:#ffffff;
+    --shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+    background:
+        radial-gradient(circle at top right,rgba(212,175,55,.08),transparent 30%),
+        linear-gradient(180deg,#070b12 0%,#09101a 100%);
+    color:var(--text);
+    line-height:1.7;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(7,11,18,.94);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+}
+
+.navbar{
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand-mark{
+    width:42px;
+    height:42px;
+    border:1px solid var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold);
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.brand-text strong{
+    display:block;
+    color:var(--white);
+    letter-spacing:1px;
+    font-size:16px;
+}
+
+.brand-text span{
+    display:block;
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.nav{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    font-size:13px;
+    color:var(--muted);
+}
+
+.nav a:hover{
+    color:var(--gold-light);
+}
+
+.nav-home{
+    color:var(--gold);
+}
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb{
+    padding:28px 0 10px;
+    font-size:12px;
+    color:var(--muted);
+}
+
+.breadcrumb span{
+    color:var(--gold);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:55px 0 70px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.4fr .8fr;
+    gap:50px;
+    align-items:center;
+}
+
+.eyebrow{
+    color:var(--gold);
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+
+h1{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(42px,6vw,72px);
+    line-height:1.05;
+    font-weight:500;
+    margin-bottom:25px;
+}
+
+.hero p{
+    max-width:720px;
+    color:var(--muted);
+    font-size:17px;
+}
+
+.hero-card{
+    background:
+        linear-gradient(145deg,rgba(212,175,55,.10),rgba(16,24,36,.95));
+    border:1px solid var(--border);
+    padding:34px;
+    box-shadow:var(--shadow);
+}
+
+.hero-card .label{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.hero-card h2{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:28px;
+    font-weight:500;
+    margin-bottom:16px;
+}
+
+.hero-card p{
+    font-size:14px;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status-bar{
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    background:rgba(16,24,36,.65);
+}
+
+.status-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+}
+
+.status-item{
+    padding:22px 25px;
+    border-right:1px solid var(--border);
+}
+
+.status-item:last-child{
+    border-right:none;
+}
+
+.status-label{
+    color:var(--muted);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    margin-bottom:5px;
+}
+
+.status-value{
+    color:var(--white);
+    font-size:14px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    padding:80px 0;
+}
+
+.section-heading{
+    margin-bottom:40px;
+}
+
+.section-heading .eyebrow{
+    margin-bottom:10px;
+}
+
+.section-heading h2{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:38px;
+    font-weight:500;
+    margin-bottom:12px;
+}
+
+.section-heading p{
+    max-width:760px;
+    color:var(--muted);
+}
+
+/* =========================
+   FUNCTION CARDS
+========================= */
+
+.function-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.function-card{
+    background:var(--panel);
+    border:1px solid rgba(255,255,255,.07);
+    padding:28px;
+    transition:.25s ease;
+}
+
+.function-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--gold);
+}
+
+.function-code{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:2px;
+    margin-bottom:14px;
+}
+
+.function-card h3{
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.function-card p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* =========================
+   MATRIX
+========================= */
+
+.matrix{
+    overflow-x:auto;
+    background:var(--panel);
+    border:1px solid var(--border);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:760px;
+}
+
+th,
+td{
+    padding:17px 18px;
+    text-align:left;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    font-size:13px;
+}
+
+th{
+    color:var(--gold-light);
+    background:var(--panel-2);
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+td{
+    color:var(--muted);
+}
+
+td strong{
+    color:var(--text);
+}
+
+/* =========================
+   CONTROL VIEW
+========================= */
+
+.control-view{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:10px;
+}
+
+.control-step{
+    position:relative;
+    padding:25px 15px;
+    background:var(--panel);
+    border:1px solid rgba(255,255,255,.07);
+    text-align:center;
+}
+
+.control-step:not(:last-child)::after{
+    content:"→";
+    position:absolute;
+    right:-13px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--gold);
+    z-index:2;
+}
+
+.control-step span{
+    display:block;
+    color:var(--gold);
+    font-size:10px;
+    letter-spacing:1px;
+    margin-bottom:8px;
+}
+
+.control-step strong{
+    font-size:13px;
+}
+
+/* =========================
+   DATA DOMAINS
+========================= */
+
+.domain-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.domain-card{
+    padding:28px;
+    background:linear-gradient(145deg,var(--panel-2),var(--panel));
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.domain-card h3{
+    color:var(--gold-light);
+    font-size:17px;
+    margin-bottom:9px;
+}
+
+.domain-card p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* =========================
+   KPI
+========================= */
+
+.kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:14px;
+}
+
+.kpi{
+    background:var(--panel);
+    border:1px solid rgba(255,255,255,.07);
+    padding:22px 18px;
+}
+
+.kpi-label{
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.4;
+    margin-bottom:14px;
+}
+
+.kpi-value{
+    color:var(--gold-light);
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:26px;
+}
+
+/* =========================
+   PRINCIPLES
+========================= */
+
+.principles{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.principle{
+    text-align:center;
+    padding:30px 20px;
+    border:1px solid var(--border);
+    background:rgba(16,24,36,.55);
+}
+
+.principle strong{
+    display:block;
+    color:var(--gold);
+    letter-spacing:2px;
+    font-size:12px;
+    margin-bottom:8px;
+}
+
+.principle span{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    padding:80px 0 100px;
+}
+
+.cta-box{
+    text-align:center;
+    padding:65px 30px;
+    border:1px solid var(--border);
+    background:
+        radial-gradient(circle at center,rgba(212,175,55,.10),transparent 60%),
+        var(--panel);
+}
+
+.cta-box h2{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:38px;
+    font-weight:500;
+    margin-bottom:15px;
+}
+
+.cta-box p{
+    max-width:700px;
+    margin:0 auto 28px;
+    color:var(--muted);
+}
+
+.btn{
+    display:inline-block;
+    padding:13px 23px;
+    border:1px solid var(--gold);
+    color:var(--gold-light);
+    font-size:12px;
+    letter-spacing:1.5px;
+    transition:.2s ease;
+}
+
+.btn:hover{
+    background:var(--gold);
+    color:#080b10;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid var(--border);
+    padding:28px 0;
+    background:#060a10;
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.footer-left{
+    color:var(--gold);
+    font-size:12px;
+    letter-spacing:1.5px;
+}
+
+.footer-right{
+    color:var(--muted);
+    font-size:11px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+        gap:35px;
+    }
+
+    .function-grid,
+    .domain-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .kpi-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .control-view{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .control-step:not(:last-child)::after{
+        display:none;
+    }
+
+    .principles{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px){
+
+    .navbar{
+        min-height:68px;
+    }
+
+    .nav{
+        display:none;
+    }
+
+    .hero{
+        padding:40px 0 55px;
+    }
+
+    section{
+        padding:60px 0;
+    }
+
+    h1{
+        font-size:45px;
+    }
+
+    .status-grid{
+        grid-template-columns:1fr;
+    }
+
+    .status-item{
+        border-right:none;
+        border-bottom:1px solid var(--border);
+    }
+
+    .status-item:last-child{
+        border-bottom:none;
+    }
+
+    .function-grid,
+    .domain-grid,
+    .kpi-grid,
+    .control-view,
+    .principles{
+        grid-template-columns:1fr;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+<div class="container navbar">
+
+    <a href="../index.html" class="brand">
+
+        <div class="brand-mark">
+            E
+        </div>
+
+        <div class="brand-text">
+            <strong>EEMS</strong>
+            <span>Master Data</span>
+        </div>
+
+    </a>
+
+    <nav class="nav">
+
+        <a href="#functions">Functions</a>
+        <a href="#matrix">Control</a>
+        <a href="#domains">Data Domain</a>
+        <a href="#kpi">KPI</a>
+        <a href="../index.html" class="nav-home">
+            ← EEMS Home
+        </a>
+
+    </nav>
+
+</div>
+
+</header>
+
+
+<!-- =========================
+     BREADCRUMB
+========================= -->
+
+<div class="container breadcrumb">
+
+    <span>EEMS</span>
+    ›
+    System Control Layer
+    ›
+    Master Data
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<main>
+
+<section class="hero">
+
+<div class="container hero-grid">
+
+    <div>
+
+        <div class="eyebrow">
+            System Control Layer · 05
+        </div>
+
+        <h1>
+            Master Data
+        </h1>
+
+        <p>
+            Master Data merupakan sumber data referensi utama
+            yang menjaga konsistensi identitas aset, personel,
+            lokasi, vendor, organisasi, parameter, dan objek
+            pengelolaan di seluruh sistem EEMS.
+        </p>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <div class="label">
+            System Foundation
+        </div>
+
+        <h2>
+            One Source of Truth.
+        </h2>
+
+        <p>
+            Data yang terstruktur, konsisten, unik, dan
+            dapat ditelusuri menjadi fondasi bagi monitoring,
+            analisis, laporan manajemen, dan pengambilan keputusan.
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     STATUS
+========================= -->
+
+<div class="status-bar">
+
+<div class="container status-grid">
+
+    <div class="status-item">
+
+        <div class="status-label">
+            Control Layer
+        </div>
+
+        <div class="status-value">
+            Master Data
+        </div>
+
+    </div>
+
+
+    <div class="status-item">
+
+        <div class="status-label">
+            Area Pengendalian
+        </div>
+
+        <div class="status-value">
+            Asset · People · Location · Vendor · Parameter
+        </div>
+
+    </div>
+
+
+    <div class="status-item">
+
+        <div class="status-label">
+            Sistem
+        </div>
+
+        <div class="status-value">
+            EEMS Versi 1.0
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     FUNCTIONS
+========================= -->
+
+<section id="functions">
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            Master Data Functions
+        </div>
+
+        <h2>
+            Fungsi Pengendalian Data
+        </h2>
+
+        <p>
+            Master Data mengatur bagaimana objek utama EEMS
+            diidentifikasi, dibuat, divalidasi, dipelihara,
+            digunakan, dan dinonaktifkan.
+        </p>
+
+    </div>
+
+
+    <div class="function-grid">
+
+
+        <div class="function-card">
+
+            <div class="function-code">
+                MD-01
+            </div>
+
+            <h3>
+                Asset Master
+            </h3>
+
+            <p>
+                Data aset kelistrikan, energi, fasilitas,
+                peralatan, panel, meter, dan equipment.
+            </p>
+
+        </div>
+
+
+        <div class="function-card">
+
+            <div class="function-code">
+                MD-02
+            </div>
+
+            <h3>
+                Location Master
+            </h3>
+
+            <p>
+                Struktur lokasi, area, gedung, ruang,
+                plant, site, dan titik instalasi.
+            </p>
+
+        </div>
+
+
+        <div class="function-card">
+
+            <div class="function-code">
+                MD-03
+            </div>
+
+            <h3>
+                Personnel Master
+            </h3>
+
+            <p>
+                Identitas personel, jabatan, fungsi,
+                kompetensi, dan status kepegawaian.
+            </p>
+
+        </div>
+
+
+        <div class="function-card">
+
+            <div class="function-code">
+                MD-04
+            </div>
+
+            <h3>
+                Vendor & Contractor
+            </h3>
+
+            <p>
+                Data vendor, kontraktor, supplier,
+                service provider, dan mitra kerja.
+            </p>
+
+        </div>
+
+
+        <div class="function-card">
+
+            <div class="function-code">
+                MD-05
+            </div>
+
+            <h3>
+                Organization Master
+            </h3>
+
+            <p>
+                Struktur organisasi, departemen,
+                fungsi, cost center, dan ownership.
+            </p>
+
+        </div>
+
+
+        <div class="function-card">
+
+            <div class="function-code">
+                MD-06
+            </div>
+
+            <h3>
+                Parameter Master
+            </h3>
+
+            <p>
+                Satuan, kategori, klasifikasi,
+                parameter teknis, status, dan kode referensi.
+            </p>
+
+        </div>
+
+
+        <div class="function-card">
+
+            <div class="function-code">
+                MD-07
+            </div>
+
+            <h3>
+                Data Classification
+            </h3>
+
+            <p>
+                Pengelompokan data berdasarkan jenis,
+                fungsi, kritikalitas, dan penggunaannya.
+            </p>
+
+        </div>
+
+
+        <div class="function-card">
+
+            <div class="function-code">
+                MD-08
+            </div>
+
+            <h3>
+                Data Validation
+            </h3>
+
+            <p>
+                Validasi kelengkapan, keunikan, konsistensi,
+                format, dan integritas data.
+            </p>
+
+        </div>
+
+
+        <div class="function-card">
+
+            <div class="function-code">
+                MD-09
+            </div>
+
+            <h3>
+                Data Lifecycle
+            </h3>
+
+            <p>
+                Pengelolaan data sejak dibuat, digunakan,
+                diperbarui, dinonaktifkan, hingga diarsipkan.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CONTROL MATRIX
+========================= -->
+
+<section id="matrix">
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            Master Data Control
+        </div>
+
+        <h2>
+            Data Control Matrix
+        </h2>
+
+        <p>
+            Setiap master data harus memiliki identitas,
+            ownership, status, validasi, dan riwayat perubahan
+            yang dapat ditelusuri.
+        </p>
+
+    </div>
+
+
+    <div class="matrix">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Data Object</th>
+                    <th>Unique ID</th>
+                    <th>Owner</th>
+                    <th>Status</th>
+                    <th>Validation</th>
+                    <th>Change History</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><strong>Asset</strong></td>
+                    <td>Asset ID</td>
+                    <td>Asset Owner</td>
+                    <td>Active / Inactive</td>
+                    <td>Required</td>
+                    <td>Required</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Location</strong></td>
+                    <td>Location ID</td>
+                    <td>Location Owner</td>
+                    <td>Active / Inactive</td>
+                    <td>Required</td>
+                    <td>Required</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Personnel</strong></td>
+                    <td>Personnel ID</td>
+                    <td>HR</td>
+                    <td>Active / Inactive</td>
+                    <td>Required</td>
+                    <td>Required</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Vendor</strong></td>
+                    <td>Vendor ID</td>
+                    <td>Procurement</td>
+                    <td>Active / Inactive</td>
+                    <td>Required</td>
+                    <td>Required</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Organization</strong></td>
+                    <td>Org ID</td>
+                    <td>Corporate / HR</td>
+                    <td>Active / Inactive</td>
+                    <td>Required</td>
+                    <td>Required</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Parameter</strong></td>
+                    <td>Parameter ID</td>
+                    <td>System Owner</td>
+                    <td>Active / Inactive</td>
+                    <td>Required</td>
+                    <td>Required</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CONTROL VIEW
+========================= -->
+
+<section>
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            Data Control View
+        </div>
+
+        <h2>
+            Master Data Lifecycle
+        </h2>
+
+        <p>
+            Data tidak hanya disimpan. Data harus dikendalikan
+            sepanjang siklus hidupnya agar informasi yang
+            dihasilkan EEMS tetap dapat dipercaya.
+        </p>
+
+    </div>
+
+
+    <div class="control-view">
+
+        <div class="control-step">
+            <span>01</span>
+            <strong>CREATE</strong>
+        </div>
+
+        <div class="control-step">
+            <span>02</span>
+            <strong>VALIDATE</strong>
+        </div>
+
+        <div class="control-step">
+            <span>03</span>
+            <strong>APPROVE</strong>
+        </div>
+
+        <div class="control-step">
+            <span>04</span>
+            <strong>USE</strong>
+        </div>
+
+        <div class="control-step">
+            <span>05</span>
+            <strong>UPDATE</strong>
+        </div>
+
+        <div class="control-step">
+            <span>06</span>
+            <strong>ARCHIVE</strong>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DATA DOMAINS
+========================= -->
+
+<section id="domains">
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            Enterprise Data Domain
+        </div>
+
+        <h2>
+            Data yang Dikendalikan
+        </h2>
+
+        <p>
+            Master Data menjadi referensi bersama yang digunakan
+            oleh seluruh modul EEMS.
+        </p>
+
+    </div>
+
+
+    <div class="domain-grid">
+
+
+        <div class="domain-card">
+
+            <h3>
+                Electrical Assets
+            </h3>
+
+            <p>
+                Panel, transformer, generator, motor,
+                protection, meter, cable, dan equipment.
+            </p>
+
+        </div>
+
+
+        <div class="domain-card">
+
+            <h3>
+                Energy Assets
+            </h3>
+
+            <p>
+                Meter energi, titik konsumsi,
+                energy source, dan energy performance object.
+            </p>
+
+        </div>
+
+
+        <div class="domain-card">
+
+            <h3>
+                Maintenance Assets
+            </h3>
+
+            <p>
+                Equipment hierarchy, maintenance object,
+                spare part reference, dan asset criticality.
+            </p>
+
+        </div>
+
+
+        <div class="domain-card">
+
+            <h3>
+                People
+            </h3>
+
+            <p>
+                Personel, jabatan, kompetensi,
+                authorization, dan organizational assignment.
+            </p>
+
+        </div>
+
+
+        <div class="domain-card">
+
+            <h3>
+                Locations
+            </h3>
+
+            <p>
+                Site, plant, building, area, room,
+                equipment location, dan work location.
+            </p>
+
+        </div>
+
+
+        <div class="domain-card">
+
+            <h3>
+                Business Partners
+            </h3>
+
+            <p>
+                Vendor, supplier, contractor,
+                service provider, dan pihak terkait.
+            </p>
+
+        </div>
+
+
+        <div class="domain-card">
+
+            <h3>
+                Organization
+            </h3>
+
+            <p>
+                Company, department, function,
+                cost center, dan ownership.
+            </p>
+
+        </div>
+
+
+        <div class="domain-card">
+
+            <h3>
+                Reference Parameters
+            </h3>
+
+            <p>
+                Satuan, kategori, status, klasifikasi,
+                kode, dan parameter sistem.
+            </p>
+
+        </div>
+
+
+        <div class="domain-card">
+
+            <h3>
+                System Objects
+            </h3>
+
+            <p>
+                User, role, workflow, permission,
+                configuration, dan system reference.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     KPI
+========================= -->
+
+<section id="kpi">
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            Master Data KPI
+        </div>
+
+        <h2>
+            Data Quality Dashboard
+        </h2>
+
+        <p>
+            KPI berikut menjadi indikator kualitas dan
+            kesehatan Master Data EEMS.
+        </p>
+
+    </div>
+
+
+    <div class="kpi-grid">
+
+        <div class="kpi">
+            <div class="kpi-label">
+                Total Master Data
+            </div>
+            <div class="kpi-value">—</div>
+        </div>
+
+        <div class="kpi">
+            <div class="kpi-label">
+                Active Records
+            </div>
+            <div class="kpi-value">—</div>
+        </div>
+
+        <div class="kpi">
+            <div class="kpi-label">
+                Data Completeness
+            </div>
+            <div class="kpi-value">—</div>
+        </div>
+
+        <div class="kpi">
+            <div class="kpi-label">
+                Validation Compliance
+            </div>
+            <div class="kpi-value">—</div>
+        </div>
+
+        <div class="kpi">
+            <div class="kpi-label">
+                Duplicate Records
+            </div>
+            <div class="kpi-value">—</div>
+        </div>
+
+        <div class="kpi">
+            <div class="kpi-label">
+                Data Review Due
+            </div>
+            <div class="kpi-value">—</div>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PRINCIPLES
+========================= -->
+
+<section>
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            Master Data Principles
+        </div>
+
+        <h2>
+            Prinsip Pengendalian Data
+        </h2>
+
+    </div>
+
+
+    <div class="principles">
+
+        <div class="principle">
+            <strong>UNIQUE</strong>
+            <span>Setiap objek memiliki identitas yang jelas.</span>
+        </div>
+
+        <div class="principle">
+            <strong>VALID</strong>
+            <span>Data harus memenuhi aturan dan persyaratan.</span>
+        </div>
+
+        <div class="principle">
+            <strong>CONSISTENT</strong>
+            <span>Data digunakan secara konsisten lintas modul.</span>
+        </div>
+
+        <div class="principle">
+            <strong>TRACEABLE</strong>
+            <span>Perubahan data dapat ditelusuri.</span>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<div class="container cta">
+
+    <div class="cta-box">
+
+        <h2>
+            Control the Data. Trust the Information.
+        </h2>
+
+        <p>
+            Master Data yang terkendali menjadi fondasi
+            bagi monitoring, analisis, KPI, laporan manajemen,
+            dan keputusan berbasis data dalam EEMS.
+        </p>
+
+        <a href="../index.html" class="btn">
+            ← KEMBALI KE EEMS
+        </a>
+
+    </div>
+
+</div>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<div class="container footer-inner">
+
+    <div class="footer-left">
+        EEMS · MASTER DATA
+    </div>
+
+    <div class="footer-right">
+        System Control Layer · 05 · Versi 1.0
+    </div>
+
+</div>
+
+</footer>
+
+</body>
+</html>
