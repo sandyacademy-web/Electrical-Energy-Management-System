@@ -1,0 +1,3567 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EEMS | Data Dictionary</title>
+
+<meta name="description"
+content="EEMS Data Dictionary — kamus resmi struktur data, field, tipe data, sumber, validasi, dan penggunaan data EEMS Versi 1.0.">
+
+<style>
+
+:root{
+    --bg:#07111f;
+    --bg-soft:#0a1626;
+    --panel:#0d1b2d;
+    --panel-2:#101f33;
+    --gold:#d4af37;
+    --gold-soft:#f0d77a;
+    --text:#f3f5f7;
+    --muted:#9da9b7;
+    --muted-2:#718093;
+    --line:rgba(212,175,55,.22);
+    --white:#ffffff;
+    --radius:16px;
+    --max:1240px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 80% 0%,
+            rgba(212,175,55,.08),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #07111f 0%,
+            #081321 50%,
+            #060d17 100%
+        );
+
+    color:var(--text);
+    line-height:1.6;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(92%,var(--max));
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:rgba(7,17,31,.95);
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid var(--line);
+}
+
+.nav{
+    min-height:72px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:24px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.logo-mark{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid var(--gold);
+    color:var(--gold);
+
+    font-size:13px;
+}
+
+.logo-main{
+    display:block;
+    color:var(--white);
+    font-size:14px;
+}
+
+.logo-sub{
+    display:block;
+
+    color:var(--gold);
+    font-size:9px;
+
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:22px;
+
+    color:var(--muted);
+    font-size:11px;
+}
+
+.nav-links a:hover{
+    color:var(--gold-soft);
+}
+
+.nav-button{
+    padding:9px 14px;
+
+    border:1px solid var(--line);
+    border-radius:8px;
+
+    color:var(--gold-soft);
+}
+
+@media(max-width:850px){
+
+    .nav-links{
+        display:none;
+    }
+
+}
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb{
+    padding:28px 0 10px;
+
+    color:var(--muted-2);
+    font-size:11px;
+}
+
+.breadcrumb span{
+    margin:0 8px;
+    color:var(--gold);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:42px 0 55px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:35px;
+}
+
+.eyebrow{
+    margin-bottom:15px;
+
+    color:var(--gold);
+
+    font-size:10px;
+    font-weight:700;
+
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+h1{
+    margin-bottom:20px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:clamp(38px,6vw,66px);
+    line-height:1.05;
+    font-weight:500;
+}
+
+.hero-copy{
+    max-width:730px;
+
+    color:var(--muted);
+    font-size:15px;
+}
+
+.hero-card{
+    padding:30px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212,175,55,.08),
+            rgba(255,255,255,.015)
+        );
+}
+
+.hero-card .mini{
+    margin-bottom:12px;
+
+    color:var(--gold);
+
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.hero-card h2{
+    margin-bottom:12px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:27px;
+    line-height:1.2;
+    font-weight:500;
+}
+
+.hero-card p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+@media(max-width:850px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+/* =========================
+   STATUS BAR
+========================= */
+
+.status-bar{
+    margin-bottom:60px;
+
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+
+    padding:15px 0;
+}
+
+.status-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:15px;
+    flex-wrap:wrap;
+
+    color:var(--muted);
+
+    font-size:10px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.status-inner strong{
+    color:var(--gold);
+}
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    padding:25px 0 65px;
+}
+
+.section-heading{
+    margin-bottom:28px;
+}
+
+.section-label{
+    margin-bottom:8px;
+
+    color:var(--gold);
+
+    font-size:10px;
+    font-weight:700;
+
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+}
+
+.section-heading h2{
+    margin-bottom:8px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:32px;
+    font-weight:500;
+}
+
+.section-heading p{
+    max-width:800px;
+
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* =========================
+   PRINCIPLE CARDS
+========================= */
+
+.principle-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.principle-card{
+    padding:22px;
+
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:var(--radius);
+
+    background:var(--panel);
+}
+
+.principle-card strong{
+    display:block;
+
+    margin-bottom:7px;
+
+    color:var(--gold-soft);
+
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+.principle-card span{
+    color:var(--muted);
+    font-size:11px;
+}
+
+@media(max-width:850px){
+
+    .principle-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:550px){
+
+    .principle-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+/* =========================
+   DATA GROUP
+========================= */
+
+.data-group{
+    margin-bottom:30px;
+
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:var(--radius);
+
+    overflow:hidden;
+
+    background:var(--panel);
+}
+
+.group-head{
+    padding:21px 23px;
+
+    border-bottom:1px solid rgba(255,255,255,.07);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(212,175,55,.07),
+            transparent
+        );
+}
+
+.group-code{
+    margin-bottom:5px;
+
+    color:var(--gold);
+
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.group-head h3{
+    margin-bottom:4px;
+
+    font-size:18px;
+}
+
+.group-head p{
+    color:var(--muted);
+    font-size:11px;
+}
+
+/* =========================
+   FIELD TABLE
+========================= */
+
+.table-wrap{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    min-width:900px;
+
+    border-collapse:collapse;
+}
+
+th{
+    padding:13px 15px;
+
+    background:#0a1727;
+
+    color:var(--gold-soft);
+
+    text-align:left;
+
+    font-size:9px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+
+    border-bottom:1px solid var(--line);
+}
+
+td{
+    padding:13px 15px;
+
+    color:#dce1e7;
+
+    font-size:11px;
+
+    vertical-align:top;
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+tr:last-child td{
+    border-bottom:0;
+}
+
+td:first-child{
+    color:var(--gold-soft);
+    font-weight:600;
+    white-space:nowrap;
+}
+
+.type{
+    color:#b8c2ce;
+}
+
+.required{
+    color:var(--gold-soft);
+}
+
+.optional{
+    color:var(--muted-2);
+}
+
+.description{
+    color:var(--muted);
+}
+
+/* =========================
+   RELATION
+========================= */
+
+.relation-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.relation-card{
+    padding:24px;
+
+    border:1px solid rgba(212,175,55,.15);
+    border-radius:var(--radius);
+
+    background:var(--panel);
+}
+
+.relation-code{
+    margin-bottom:10px;
+
+    color:var(--gold);
+
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.relation-card h3{
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+.relation-card p{
+    color:var(--muted);
+    font-size:11px;
+}
+
+.relation-line{
+    margin-top:16px;
+
+    padding:12px;
+
+    border-left:2px solid var(--gold);
+
+    background:rgba(212,175,55,.045);
+
+    color:#dce1e7;
+
+    font-size:11px;
+}
+
+@media(max-width:800px){
+
+    .relation-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+/* =========================
+   STATUS FLOW
+========================= */
+
+.flow{
+    display:flex;
+
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+
+    overflow:hidden;
+}
+
+.flow-item{
+    flex:1;
+
+    position:relative;
+
+    padding:19px 10px;
+
+    text-align:center;
+
+    background:var(--panel);
+}
+
+.flow-item:not(:last-child)::after{
+    content:"→";
+
+    position:absolute;
+    right:-8px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    z-index:2;
+
+    padding:0 3px;
+
+    background:var(--bg);
+
+    color:var(--gold);
+}
+
+.flow-number{
+    display:block;
+
+    margin-bottom:5px;
+
+    color:var(--gold);
+
+    font-size:9px;
+}
+
+.flow-item strong{
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+@media(max-width:700px){
+
+    .flow{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .flow-item:not(:last-child)::after{
+        display:none;
+    }
+
+}
+
+/* =========================
+   DATA QUALITY
+========================= */
+
+.quality-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+}
+
+.quality-card{
+    padding:20px;
+
+    border-top:2px solid var(--gold);
+
+    background:var(--panel);
+}
+
+.quality-card strong{
+    display:block;
+
+    margin-bottom:6px;
+
+    color:var(--gold-soft);
+
+    font-size:11px;
+    letter-spacing:1px;
+}
+
+.quality-card span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+@media(max-width:950px){
+
+    .quality-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .quality-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+/* =========================
+   KPI MAPPING
+========================= */
+
+.kpi-map{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.kpi-map-card{
+    padding:22px;
+
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:var(--radius);
+
+    background:var(--panel);
+}
+
+.kpi-map-card .kpi{
+    color:var(--gold);
+
+    font-size:9px;
+    letter-spacing:1.8px;
+    text-transform:uppercase;
+}
+
+.kpi-map-card h3{
+    margin:9px 0;
+
+    font-size:14px;
+}
+
+.kpi-map-card p{
+    color:var(--muted);
+    font-size:11px;
+}
+
+.kpi-source{
+    margin-top:13px;
+
+    color:var(--gold-soft);
+
+    font-size:10px;
+}
+
+@media(max-width:800px){
+
+    .kpi-map{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:550px){
+
+    .kpi-map{
+        grid-template-columns:1fr;
+    }
+
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    margin:10px 0 70px;
+
+    padding:45px;
+
+    text-align:center;
+
+    border:1px solid var(--line);
+    border-radius:20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(212,175,55,.08),
+            transparent 60%
+        ),
+        var(--panel);
+}
+
+.cta-label{
+    margin-bottom:12px;
+
+    color:var(--gold);
+
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.cta h2{
+    margin-bottom:10px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:34px;
+    font-weight:500;
+}
+
+.cta p{
+    max-width:700px;
+
+    margin:0 auto 25px;
+
+    color:var(--muted);
+    font-size:13px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+
+    padding:12px 20px;
+
+    border:1px solid var(--gold);
+    border-radius:8px;
+
+    font-size:11px;
+}
+
+.btn-primary{
+    background:var(--gold);
+    color:#07111f;
+    font-weight:700;
+}
+
+.btn-secondary{
+    color:var(--gold-soft);
+}
+
+.btn-secondary:hover{
+    background:rgba(212,175,55,.08);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:28px 0;
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+
+    color:var(--muted-2);
+
+    font-size:10px;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+}
+
+.footer-inner strong{
+    color:var(--gold);
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+<div class="container nav">
+
+<a href="../index.html" class="logo">
+
+    <div class="logo-mark">E</div>
+
+    <div>
+        <span class="logo-main">EEMS</span>
+        <span class="logo-sub">Data Architecture</span>
+    </div>
+
+</a>
+
+
+<nav class="nav-links">
+
+    <a href="#master">Master Data</a>
+    <a href="#transaction">Transaction</a>
+    <a href="#control">Control</a>
+    <a href="#kpi">KPI</a>
+
+    <a href="master-data.html" class="nav-button">
+        Master Data
+    </a>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<main>
+
+<div class="container">
+
+
+<!-- =========================
+     BREADCRUMB
+========================= -->
+
+<div class="breadcrumb">
+
+    EEMS
+    <span>›</span>
+    Data
+    <span>›</span>
+    Data Dictionary
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+<div class="hero-grid">
+
+    <div>
+
+        <div class="eyebrow">
+            EEMS · Data Architecture
+        </div>
+
+        <h1>
+            Data<br>
+            Dictionary
+        </h1>
+
+        <p class="hero-copy">
+            Kamus resmi struktur data EEMS yang mendefinisikan
+            identitas field, tipe data, kewajiban pengisian,
+            sumber data, hubungan antar-objek, validasi,
+            dan penggunaan data dalam proses EEMS.
+        </p>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <div class="mini">
+            Data Governance
+        </div>
+
+        <h2>
+            One Definition.<br>
+            One System.
+        </h2>
+
+        <p>
+            Setiap data harus memiliki identitas, definisi,
+            sumber, pemilik, aturan validasi, dan hubungan
+            yang jelas sebelum digunakan sebagai informasi
+            manajemen.
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     STATUS
+========================= -->
+
+<div class="status-bar">
+
+<div class="status-inner">
+
+    <span>
+        <strong>Data Dictionary</strong>
+    </span>
+
+    <span>
+        Field · Type · Source · Validation · Relation
+    </span>
+
+    <span>
+        EEMS Versi 1.0
+    </span>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     PURPOSE
+========================= -->
+
+<section>
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Data Governance
+    </div>
+
+    <h2>
+        Fungsi Data Dictionary
+    </h2>
+
+    <p>
+        Data Dictionary menjadi referensi bersama bagi
+        pengembang sistem, Data Center, pemilik proses,
+        pemilik KPI, dan manajemen.
+    </p>
+
+</div>
+
+
+<div class="principle-grid">
+
+    <div class="principle-card">
+        <strong>STANDARD</strong>
+        <span>
+            Menetapkan nama dan definisi field yang konsisten.
+        </span>
+    </div>
+
+    <div class="principle-card">
+        <strong>TRACEABILITY</strong>
+        <span>
+            Menentukan sumber dan asal data.
+        </span>
+    </div>
+
+    <div class="principle-card">
+        <strong>VALIDATION</strong>
+        <span>
+            Menentukan aturan pemeriksaan nilai data.
+        </span>
+    </div>
+
+    <div class="principle-card">
+        <strong>INTEGRATION</strong>
+        <span>
+            Menentukan hubungan data antar-modul EEMS.
+        </span>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     MASTER DATA
+========================= -->
+
+<section id="master">
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Master Data
+    </div>
+
+    <h2>
+        Kamus Master Data
+    </h2>
+
+    <p>
+        Master Data menyediakan identitas dasar yang digunakan
+        oleh seluruh transaksi dan modul EEMS.
+    </p>
+
+</div>
+
+
+<!-- ASSET -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        MD-01
+    </div>
+
+    <h3>Asset</h3>
+
+    <p>
+        Identitas seluruh aset yang dikelola dalam EEMS.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>asset_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas unik aset.</td>
+</tr>
+
+<tr>
+<td>asset_name</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Nama aset.</td>
+</tr>
+
+<tr>
+<td>asset_type</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Jenis utama aset.</td>
+</tr>
+
+<tr>
+<td>asset_category</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Kategori aset.</td>
+</tr>
+
+<tr>
+<td>location_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Referensi lokasi aset.</td>
+</tr>
+
+<tr>
+<td>manufacturer</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Produsen aset.</td>
+</tr>
+
+<tr>
+<td>model</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Model atau tipe produk.</td>
+</tr>
+
+<tr>
+<td>serial_number</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Nomor seri aset.</td>
+</tr>
+
+<tr>
+<td>installation_date</td>
+<td class="type">DATE</td>
+<td class="optional">Optional</td>
+<td class="description">Tanggal pemasangan.</td>
+</tr>
+
+<tr>
+<td>commission_date</td>
+<td class="type">DATE</td>
+<td class="optional">Optional</td>
+<td class="description">Tanggal aset mulai beroperasi.</td>
+</tr>
+
+<tr>
+<td>criticality</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Tingkat kritikalitas aset.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status aset dalam sistem.</td>
+</tr>
+
+<tr>
+<td>owner_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Pemilik atau penanggung jawab aset.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- PERSON -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        MD-02
+    </div>
+
+    <h3>Person</h3>
+
+    <p>
+        Identitas personel yang berhubungan dengan proses EEMS.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>person_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas unik personel.</td>
+</tr>
+
+<tr>
+<td>name</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Nama personel.</td>
+</tr>
+
+<tr>
+<td>organization_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Organisasi atau unit personel.</td>
+</tr>
+
+<tr>
+<td>position</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Jabatan personel.</td>
+</tr>
+
+<tr>
+<td>department</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Departemen atau fungsi kerja.</td>
+</tr>
+
+<tr>
+<td>competency</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Daftar kompetensi personel.</td>
+</tr>
+
+<tr>
+<td>qualification</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Kualifikasi personel.</td>
+</tr>
+
+<tr>
+<td>authorization</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Otorisasi yang dimiliki.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status personel.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- LOCATION -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        MD-03
+    </div>
+
+    <h3>Location</h3>
+
+    <p>
+        Struktur lokasi tempat aset, pekerjaan, personel,
+        dan aktivitas EEMS berada.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>location_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas unik lokasi.</td>
+</tr>
+
+<tr>
+<td>location_name</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Nama lokasi.</td>
+</tr>
+
+<tr>
+<td>site</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Nama site atau kawasan.</td>
+</tr>
+
+<tr>
+<td>building</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Nama bangunan.</td>
+</tr>
+
+<tr>
+<td>area</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Area dalam bangunan atau site.</td>
+</tr>
+
+<tr>
+<td>room</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Ruangan atau titik lokasi.</td>
+</tr>
+
+<tr>
+<td>parent_location_id</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Referensi lokasi induk.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status lokasi.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- VENDOR -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        MD-04
+    </div>
+
+    <h3>Vendor / Business Partner</h3>
+
+    <p>
+        Identitas pemasok, kontraktor, penyedia jasa,
+        dan mitra bisnis.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>partner_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas unik business partner.</td>
+</tr>
+
+<tr>
+<td>partner_name</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Nama vendor atau mitra.</td>
+</tr>
+
+<tr>
+<td>partner_type</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Jenis business partner.</td>
+</tr>
+
+<tr>
+<td>contact</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Informasi kontak.</td>
+</tr>
+
+<tr>
+<td>address</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Alamat partner.</td>
+</tr>
+
+<tr>
+<td>service_category</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Kategori layanan atau barang.</td>
+</tr>
+
+<tr>
+<td>qualification</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Kualifikasi partner.</td>
+</tr>
+
+<tr>
+<td>contract_status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status kontrak atau kerja sama.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ORGANIZATION -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        MD-05
+    </div>
+
+    <h3>Organization</h3>
+
+    <p>
+        Struktur organisasi yang digunakan dalam EEMS.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>organization_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas unik organisasi.</td>
+</tr>
+
+<tr>
+<td>organization_name</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Nama organisasi atau unit.</td>
+</tr>
+
+<tr>
+<td>department</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Departemen.</td>
+</tr>
+
+<tr>
+<td>section</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Seksi atau sub-unit.</td>
+</tr>
+
+<tr>
+<td>manager_id</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Referensi personel manajer.</td>
+</tr>
+
+<tr>
+<td>parent_organization_id</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Organisasi induk.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status organisasi.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- PARAMETER -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        MD-06
+    </div>
+
+    <h3>Parameter</h3>
+
+    <p>
+        Nilai referensi dan batas kendali yang digunakan sistem.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>parameter_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas unik parameter.</td>
+</tr>
+
+<tr>
+<td>parameter_name</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Nama parameter.</td>
+</tr>
+
+<tr>
+<td>parameter_type</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Jenis data parameter.</td>
+</tr>
+
+<tr>
+<td>unit</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Satuan parameter.</td>
+</tr>
+
+<tr>
+<td>minimum_value</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Nilai batas minimum.</td>
+</tr>
+
+<tr>
+<td>maximum_value</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Nilai batas maksimum.</td>
+</tr>
+
+<tr>
+<td>target_value</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Nilai target.</td>
+</tr>
+
+<tr>
+<td>reference</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Referensi atau dasar parameter.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status parameter.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     TRANSACTION DATA
+========================= -->
+
+<section id="transaction">
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Transaction Data
+    </div>
+
+    <h2>
+        Kamus Data Transaksi
+    </h2>
+
+    <p>
+        Data transaksi mencatat pengukuran, aktivitas,
+        kejadian, pekerjaan, biaya, risiko, dan perubahan
+        yang terjadi dalam operasi EEMS.
+    </p>
+
+</div>
+
+
+<!-- ELECTRICAL MEASUREMENT -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        EL-01
+    </div>
+
+    <h3>Electrical Measurement</h3>
+
+    <p>
+        Data pengukuran parameter kelistrikan.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>measurement_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas unik pengukuran.</td>
+</tr>
+
+<tr>
+<td>date_time</td>
+<td class="type">DATETIME</td>
+<td class="required">Required</td>
+<td class="description">Waktu pengukuran.</td>
+</tr>
+
+<tr>
+<td>asset_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Aset yang diukur.</td>
+</tr>
+
+<tr>
+<td>location_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Lokasi pengukuran.</td>
+</tr>
+
+<tr>
+<td>voltage</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Nilai tegangan.</td>
+</tr>
+
+<tr>
+<td>current</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Nilai arus.</td>
+</tr>
+
+<tr>
+<td>power</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Daya listrik.</td>
+</tr>
+
+<tr>
+<td>power_factor</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Faktor daya.</td>
+</tr>
+
+<tr>
+<td>frequency</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Frekuensi listrik.</td>
+</tr>
+
+<tr>
+<td>energy</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Energi terukur.</td>
+</tr>
+
+<tr>
+<td>meter_id</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Identitas meter.</td>
+</tr>
+
+<tr>
+<td>operator_id</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Personel pencatat pengukuran.</td>
+</tr>
+
+<tr>
+<td>data_status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status validasi data.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ENERGY -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        EN-01
+    </div>
+
+    <h3>Energy Consumption</h3>
+
+    <p>
+        Data konsumsi dan demand energi berdasarkan periode.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>energy_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas unik data energi.</td>
+</tr>
+
+<tr>
+<td>date_time</td>
+<td class="type">DATETIME</td>
+<td class="required">Required</td>
+<td class="description">Waktu pencatatan.</td>
+</tr>
+
+<tr>
+<td>meter_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas meter energi.</td>
+</tr>
+
+<tr>
+<td>location_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Lokasi konsumsi energi.</td>
+</tr>
+
+<tr>
+<td>energy_type</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Jenis energi.</td>
+</tr>
+
+<tr>
+<td>consumption_kwh</td>
+<td class="type">DECIMAL</td>
+<td class="required">Required</td>
+<td class="description">Konsumsi energi dalam kWh.</td>
+</tr>
+
+<tr>
+<td>demand_kw</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Demand atau beban dalam kW.</td>
+</tr>
+
+<tr>
+<td>cost</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Biaya energi.</td>
+</tr>
+
+<tr>
+<td>period</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Periode pelaporan.</td>
+</tr>
+
+<tr>
+<td>data_status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status validasi data.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- MAINTENANCE -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        MT-01
+    </div>
+
+    <h3>Maintenance Work Order</h3>
+
+    <p>
+        Perintah kerja pemeliharaan aset.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>wo_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas work order.</td>
+</tr>
+
+<tr>
+<td>asset_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Aset yang dikerjakan.</td>
+</tr>
+
+<tr>
+<td>work_type</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Jenis pekerjaan pemeliharaan.</td>
+</tr>
+
+<tr>
+<td>priority</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Prioritas pekerjaan.</td>
+</tr>
+
+<tr>
+<td>request_date</td>
+<td class="type">DATE</td>
+<td class="required">Required</td>
+<td class="description">Tanggal permintaan pekerjaan.</td>
+</tr>
+
+<tr>
+<td>planned_date</td>
+<td class="type">DATE</td>
+<td class="optional">Optional</td>
+<td class="description">Tanggal pekerjaan direncanakan.</td>
+</tr>
+
+<tr>
+<td>actual_date</td>
+<td class="type">DATE</td>
+<td class="optional">Optional</td>
+<td class="description">Tanggal pekerjaan selesai.</td>
+</tr>
+
+<tr>
+<td>technician_id</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Teknisi pelaksana.</td>
+</tr>
+
+<tr>
+<td>work_description</td>
+<td class="type">TEXT</td>
+<td class="required">Required</td>
+<td class="description">Uraian pekerjaan.</td>
+</tr>
+
+<tr>
+<td>finding</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Temuan pekerjaan.</td>
+</tr>
+
+<tr>
+<td>action</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Tindakan yang dilakukan.</td>
+</tr>
+
+<tr>
+<td>cost</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Biaya pekerjaan.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status work order.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- HSE RISK -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        HS-01
+    </div>
+
+    <h3>Risk</h3>
+
+    <p>
+        Data identifikasi, penilaian, dan pengendalian risiko.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>risk_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas unik risiko.</td>
+</tr>
+
+<tr>
+<td>process</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Proses yang memiliki risiko.</td>
+</tr>
+
+<tr>
+<td>location_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Lokasi risiko.</td>
+</tr>
+
+<tr>
+<td>hazard</td>
+<td class="type">TEXT</td>
+<td class="required">Required</td>
+<td class="description">Bahaya yang diidentifikasi.</td>
+</tr>
+
+<tr>
+<td>cause</td>
+<td class="type">TEXT</td>
+<td class="required">Required</td>
+<td class="description">Penyebab risiko.</td>
+</tr>
+
+<tr>
+<td>consequence</td>
+<td class="type">TEXT</td>
+<td class="required">Required</td>
+<td class="description">Konsekuensi risiko.</td>
+</tr>
+
+<tr>
+<td>likelihood</td>
+<td class="type">INTEGER</td>
+<td class="required">Required</td>
+<td class="description">Nilai kemungkinan.</td>
+</tr>
+
+<tr>
+<td>impact</td>
+<td class="type">INTEGER</td>
+<td class="required">Required</td>
+<td class="description">Nilai dampak.</td>
+</tr>
+
+<tr>
+<td>risk_rating</td>
+<td class="type">INTEGER</td>
+<td class="required">Required</td>
+<td class="description">Nilai hasil penilaian risiko.</td>
+</tr>
+
+<tr>
+<td>existing_control</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Pengendalian yang sudah ada.</td>
+</tr>
+
+<tr>
+<td>treatment</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Rencana perlakuan risiko.</td>
+</tr>
+
+<tr>
+<td>risk_owner_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Penanggung jawab risiko.</td>
+</tr>
+
+<tr>
+<td>due_date</td>
+<td class="type">DATE</td>
+<td class="optional">Optional</td>
+<td class="description">Batas waktu pengendalian.</td>
+</tr>
+
+<tr>
+<td>residual_risk</td>
+<td class="type">INTEGER</td>
+<td class="optional">Optional</td>
+<td class="description">Nilai risiko setelah pengendalian.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status risiko.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- PROJECT -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        PR-01
+    </div>
+
+    <h3>Project</h3>
+
+    <p>
+        Data utama proyek yang dikelola EEMS.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>project_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas unik proyek.</td>
+</tr>
+
+<tr>
+<td>project_name</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Nama proyek.</td>
+</tr>
+
+<tr>
+<td>project_manager_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Manajer proyek.</td>
+</tr>
+
+<tr>
+<td>start_date</td>
+<td class="type">DATE</td>
+<td class="required">Required</td>
+<td class="description">Tanggal mulai proyek.</td>
+</tr>
+
+<tr>
+<td>target_date</td>
+<td class="type">DATE</td>
+<td class="required">Required</td>
+<td class="description">Target penyelesaian.</td>
+</tr>
+
+<tr>
+<td>budget</td>
+<td class="type">DECIMAL</td>
+<td class="required">Required</td>
+<td class="description">Anggaran proyek.</td>
+</tr>
+
+<tr>
+<td>actual_cost</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Biaya aktual.</td>
+</tr>
+
+<tr>
+<td>progress</td>
+<td class="type">DECIMAL</td>
+<td class="required">Required</td>
+<td class="description">Persentase kemajuan proyek.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status proyek.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- FINANCE -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        FN-01
+    </div>
+
+    <h3>Budget</h3>
+
+    <p>
+        Data anggaran dan realisasi biaya.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>budget_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas anggaran.</td>
+</tr>
+
+<tr>
+<td>period</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Periode anggaran.</td>
+</tr>
+
+<tr>
+<td>cost_center</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Pusat biaya.</td>
+</tr>
+
+<tr>
+<td>category</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Kategori biaya.</td>
+</tr>
+
+<tr>
+<td>budget_amount</td>
+<td class="type">DECIMAL</td>
+<td class="required">Required</td>
+<td class="description">Nilai anggaran.</td>
+</tr>
+
+<tr>
+<td>revised_budget</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Anggaran setelah revisi.</td>
+</tr>
+
+<tr>
+<td>actual_cost</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Biaya aktual.</td>
+</tr>
+
+<tr>
+<td>commitment</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Komitmen biaya.</td>
+</tr>
+
+<tr>
+<td>variance</td>
+<td class="type">DECIMAL</td>
+<td class="optional">Optional</td>
+<td class="description">Selisih terhadap anggaran.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status data anggaran.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- HR COMPETENCY -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        HR-01
+    </div>
+
+    <h3>Competency</h3>
+
+    <p>
+        Data kompetensi dan kesesuaian kualifikasi personel.
+    </p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>competency_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas kompetensi.</td>
+</tr>
+
+<tr>
+<td>person_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Personel pemilik kompetensi.</td>
+</tr>
+
+<tr>
+<td>competency</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Nama kompetensi.</td>
+</tr>
+
+<tr>
+<td>required_level</td>
+<td class="type">INTEGER</td>
+<td class="required">Required</td>
+<td class="description">Level kompetensi yang dipersyaratkan.</td>
+</tr>
+
+<tr>
+<td>actual_level</td>
+<td class="type">INTEGER</td>
+<td class="optional">Optional</td>
+<td class="description">Level kompetensi aktual.</td>
+</tr>
+
+<tr>
+<td>qualification</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Kualifikasi pendukung.</td>
+</tr>
+
+<tr>
+<td>expiry_date</td>
+<td class="type">DATE</td>
+<td class="optional">Optional</td>
+<td class="description">Tanggal kedaluwarsa sertifikasi bila ada.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status kompetensi.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CONTROL DATA
+========================= -->
+
+<section id="control">
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Control Layer Data
+    </div>
+
+    <h2>
+        Kamus Data Pengendalian
+    </h2>
+
+    <p>
+        Data Control Layer memastikan dokumen, audit,
+        risiko, dan tindakan perbaikan dapat dikendalikan
+        serta ditelusuri.
+    </p>
+
+</div>
+
+
+<!-- DOCUMENT -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        DC
+    </div>
+
+    <h3>Document Control</h3>
+
+    <p>
+        Identitas dan status dokumen terkendali.
+    </p>
+
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>document_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas unik dokumen.</td>
+</tr>
+
+<tr>
+<td>document_number</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Nomor resmi dokumen.</td>
+</tr>
+
+<tr>
+<td>title</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Judul dokumen.</td>
+</tr>
+
+<tr>
+<td>document_type</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Jenis dokumen.</td>
+</tr>
+
+<tr>
+<td>revision</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Nomor revisi dokumen.</td>
+</tr>
+
+<tr>
+<td>owner_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Pemilik dokumen.</td>
+</tr>
+
+<tr>
+<td>approval</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status persetujuan.</td>
+</tr>
+
+<tr>
+<td>issue_date</td>
+<td class="type">DATE</td>
+<td class="required">Required</td>
+<td class="description">Tanggal penerbitan.</td>
+</tr>
+
+<tr>
+<td>review_date</td>
+<td class="type">DATE</td>
+<td class="optional">Optional</td>
+<td class="description">Tanggal review berikutnya.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status dokumen.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- AUDIT -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        AC
+    </div>
+
+    <h3>Audit</h3>
+
+    <p>
+        Data pelaksanaan audit dan hasil temuan.
+    </p>
+
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>audit_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas audit.</td>
+</tr>
+
+<tr>
+<td>audit_program</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Program audit.</td>
+</tr>
+
+<tr>
+<td>scope</td>
+<td class="type">TEXT</td>
+<td class="required">Required</td>
+<td class="description">Ruang lingkup audit.</td>
+</tr>
+
+<tr>
+<td>criteria</td>
+<td class="type">TEXT</td>
+<td class="required">Required</td>
+<td class="description">Kriteria audit.</td>
+</tr>
+
+<tr>
+<td>finding</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Temuan audit.</td>
+</tr>
+
+<tr>
+<td>classification</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Klasifikasi temuan.</td>
+</tr>
+
+<tr>
+<td>owner_id</td>
+<td class="type">VARCHAR</td>
+<td class="optional">Optional</td>
+<td class="description">Pemilik tindakan atas temuan.</td>
+</tr>
+
+<tr>
+<td>due_date</td>
+<td class="type">DATE</td>
+<td class="optional">Optional</td>
+<td class="description">Batas penyelesaian.</td>
+</tr>
+
+<tr>
+<td>effectiveness</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Hasil verifikasi efektivitas.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status audit.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- CAPA -->
+
+<div class="data-group">
+
+<div class="group-head">
+
+    <div class="group-code">
+        CI
+    </div>
+
+    <h3>Corrective Action / Improvement</h3>
+
+    <p>
+        Data tindakan korektif, preventif, dan peningkatan.
+    </p>
+
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+    <th>Field</th>
+    <th>Tipe</th>
+    <th>Status</th>
+    <th>Definisi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>action_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Identitas tindakan.</td>
+</tr>
+
+<tr>
+<td>source</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Sumber tindakan atau temuan.</td>
+</tr>
+
+<tr>
+<td>finding</td>
+<td class="type">TEXT</td>
+<td class="required">Required</td>
+<td class="description">Masalah atau temuan yang menjadi dasar tindakan.</td>
+</tr>
+
+<tr>
+<td>action_type</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Jenis tindakan.</td>
+</tr>
+
+<tr>
+<td>root_cause</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Akar penyebab.</td>
+</tr>
+
+<tr>
+<td>action</td>
+<td class="type">TEXT</td>
+<td class="required">Required</td>
+<td class="description">Tindakan yang harus dilakukan.</td>
+</tr>
+
+<tr>
+<td>owner_id</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Penanggung jawab tindakan.</td>
+</tr>
+
+<tr>
+<td>due_date</td>
+<td class="type">DATE</td>
+<td class="required">Required</td>
+<td class="description">Batas waktu penyelesaian.</td>
+</tr>
+
+<tr>
+<td>verification</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Hasil verifikasi.</td>
+</tr>
+
+<tr>
+<td>effectiveness</td>
+<td class="type">TEXT</td>
+<td class="optional">Optional</td>
+<td class="description">Evaluasi efektivitas tindakan.</td>
+</tr>
+
+<tr>
+<td>status</td>
+<td class="type">VARCHAR</td>
+<td class="required">Required</td>
+<td class="description">Status tindakan.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DATA RELATION
+========================= -->
+
+<section>
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Data Relationship
+    </div>
+
+    <h2>
+        Hubungan Antar Data
+    </h2>
+
+    <p>
+        Relasi menggunakan ID sebagai penghubung utama
+        agar data antar-modul dapat diintegrasikan.
+    </p>
+
+</div>
+
+
+<div class="relation-grid">
+
+<div class="relation-card">
+
+    <div class="relation-code">
+        REL · 01
+    </div>
+
+    <h3>Asset → Maintenance</h3>
+
+    <p>
+        Setiap pekerjaan pemeliharaan harus dapat
+        ditelusuri kembali ke aset yang dikerjakan.
+    </p>
+
+    <div class="relation-line">
+        asset_id → work_order.asset_id
+    </div>
+
+</div>
+
+
+<div class="relation-card">
+
+    <div class="relation-code">
+        REL · 02
+    </div>
+
+    <h3>Asset → Electrical</h3>
+
+    <p>
+        Pengukuran kelistrikan harus mengacu pada
+        aset atau meter yang teridentifikasi.
+    </p>
+
+    <div class="relation-line">
+        asset_id → measurement.asset_id
+    </div>
+
+</div>
+
+
+<div class="relation-card">
+
+    <div class="relation-code">
+        REL · 03
+    </div>
+
+    <h3>Location → Asset</h3>
+
+    <p>
+        Aset memiliki lokasi yang dapat digunakan
+        untuk analisis berdasarkan area.
+    </p>
+
+    <div class="relation-line">
+        location_id → asset.location_id
+    </div>
+
+</div>
+
+
+<div class="relation-card">
+
+    <div class="relation-code">
+        REL · 04
+    </div>
+
+    <h3>Person → HR</h3>
+
+    <p>
+        Kompetensi dan pelatihan harus dapat ditelusuri
+        kepada personel tertentu.
+    </p>
+
+    <div class="relation-line">
+        person_id → competency.person_id
+    </div>
+
+</div>
+
+
+<div class="relation-card">
+
+    <div class="relation-code">
+        REL · 05
+    </div>
+
+    <h3>Project → Finance</h3>
+
+    <p>
+        Biaya proyek dapat dikaitkan dengan
+        identitas proyek dan anggarannya.
+    </p>
+
+    <div class="relation-line">
+        project_id → cost_transaction.project_id
+    </div>
+
+</div>
+
+
+<div class="relation-card">
+
+    <div class="relation-code">
+        REL · 06
+    </div>
+
+    <h3>Finding → CAPA</h3>
+
+    <p>
+        Temuan audit atau kejadian dapat menjadi
+        sumber tindakan korektif.
+    </p>
+
+    <div class="relation-line">
+        finding → action.source
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DATA STATUS
+========================= -->
+
+<section>
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Data Lifecycle
+    </div>
+
+    <h2>
+        Status Siklus Data
+    </h2>
+
+    <p>
+        Status menunjukkan tingkat kesiapan data sebelum
+        digunakan oleh Data Center dan KPI Engine.
+    </p>
+
+</div>
+
+
+<div class="flow">
+
+    <div class="flow-item">
+        <span class="flow-number">01</span>
+        <strong>DRAFT</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">02</span>
+        <strong>SUBMITTED</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">03</span>
+        <strong>VALIDATED</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">04</span>
+        <strong>APPROVED</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">05</span>
+        <strong>ACTIVE</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">06</span>
+        <strong>CLOSED</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">07</span>
+        <strong>ARCHIVED</strong>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DATA QUALITY
+========================= -->
+
+<section>
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Data Quality
+    </div>
+
+    <h2>
+        Standar Kualitas Data
+    </h2>
+
+    <p>
+        Data hanya dapat menjadi informasi yang dapat dipercaya
+        apabila memenuhi prinsip kualitas berikut.
+    </p>
+
+</div>
+
+
+<div class="quality-grid">
+
+<div class="quality-card">
+    <strong>COMPLETENESS</strong>
+    <span>
+        Field penting terisi sesuai persyaratan.
+    </span>
+</div>
+
+<div class="quality-card">
+    <strong>VALIDITY</strong>
+    <span>
+        Nilai berada dalam format dan batas yang valid.
+    </span>
+</div>
+
+<div class="quality-card">
+    <strong>CONSISTENCY</strong>
+    <span>
+        Nilai konsisten antar data dan modul.
+    </span>
+</div>
+
+<div class="quality-card">
+    <strong>UNIQUENESS</strong>
+    <span>
+        Tidak terdapat duplikasi identitas.
+    </span>
+</div>
+
+<div class="quality-card">
+    <strong>TRACEABILITY</strong>
+    <span>
+        Sumber dan perubahan data dapat ditelusuri.
+    </span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     KPI MAPPING
+========================= -->
+
+<section id="kpi">
+
+<div class="section-heading">
+
+    <div class="section-label">
+        KPI Data Mapping
+    </div>
+
+    <h2>
+        Hubungan Data dengan KPI
+    </h2>
+
+    <p>
+        KPI Dashboard harus mempunyai sumber data yang jelas.
+        Tidak ada KPI yang boleh muncul tanpa definisi dan
+        sumber data yang dapat ditelusuri.
+    </p>
+
+</div>
+
+
+<div class="kpi-map">
+
+<div class="kpi-map-card">
+    <div class="kpi">KPI · 01</div>
+    <h3>Total Konsumsi Energi</h3>
+    <p>
+        Total konsumsi energi pada periode yang dipilih.
+    </p>
+    <div class="kpi-source">
+        Source: EN-01
+    </div>
+</div>
+
+
+<div class="kpi-map-card">
+    <div class="kpi">KPI · 02</div>
+    <h3>Beban Puncak</h3>
+    <p>
+        Nilai demand atau beban puncak dalam periode.
+    </p>
+    <div class="kpi-source">
+        Source: EL-01 / EN-01
+    </div>
+</div>
+
+
+<div class="kpi-map-card">
+    <div class="kpi">KPI · 03</div>
+    <h3>Ketersediaan Sistem</h3>
+    <p>
+        Indikator availability berdasarkan kondisi
+        sistem dan pemeliharaan.
+    </p>
+    <div class="kpi-source">
+        Source: EL-01 / MT-01
+    </div>
+</div>
+
+
+<div class="kpi-map-card">
+    <div class="kpi">KPI · 04</div>
+    <h3>Backlog Pemeliharaan</h3>
+    <p>
+        Jumlah pekerjaan pemeliharaan yang masih terbuka
+        dan memenuhi kriteria backlog.
+    </p>
+    <div class="kpi-source">
+        Source: MT-01
+    </div>
+</div>
+
+
+<div class="kpi-map-card">
+    <div class="kpi">KPI · 05</div>
+    <h3>Insiden HSE / K3</h3>
+    <p>
+        Jumlah insiden yang tercatat dalam periode.
+    </p>
+    <div class="kpi-source">
+        Source: HS-02
+    </div>
+</div>
+
+
+<div class="kpi-map-card">
+    <div class="kpi">KPI · 06</div>
+    <h3>Kemajuan Proyek</h3>
+    <p>
+        Persentase progress proyek berdasarkan
+        data proyek yang tervalidasi.
+    </p>
+    <div class="kpi-source">
+        Source: PR-01 / PR-02
+    </div>
+</div>
+
+
+<div class="kpi-map-card">
+    <div class="kpi">KPI · 07</div>
+    <h3>Penyimpangan Anggaran</h3>
+    <p>
+        Selisih antara anggaran, revisi, aktual,
+        dan commitment sesuai periode.
+    </p>
+    <div class="kpi-source">
+        Source: FN-01
+    </div>
+</div>
+
+
+<div class="kpi-map-card">
+    <div class="kpi">KPI · 08</div>
+    <h3>Kepatuhan Kompetensi</h3>
+    <p>
+        Perbandingan kompetensi yang dipersyaratkan
+        dengan kompetensi aktual.
+    </p>
+    <div class="kpi-source">
+        Source: HR-01
+    </div>
+</div>
+
+
+<div class="kpi-map-card">
+    <div class="kpi">KPI · 09</div>
+    <h3>Tindakan Korektif Terbuka</h3>
+    <p>
+        Jumlah tindakan korektif yang belum ditutup
+        dan diverifikasi efektivitasnya.
+    </p>
+    <div class="kpi-source">
+        Source: CI
+    </div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DATA FLOW
+========================= -->
+
+<section>
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Information Architecture
+    </div>
+
+    <h2>
+        Dari Field Menjadi Informasi
+    </h2>
+
+    <p>
+        Data Dictionary menjadi penghubung antara data mentah,
+        proses validasi, KPI, dan informasi manajemen.
+    </p>
+
+</div>
+
+
+<div class="flow">
+
+    <div class="flow-item">
+        <span class="flow-number">01</span>
+        <strong>FIELD</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">02</span>
+        <strong>DATA</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">03</span>
+        <strong>VALIDATE</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">04</span>
+        <strong>INTEGRATE</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">05</span>
+        <strong>KPI</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">06</span>
+        <strong>DASHBOARD</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">07</span>
+        <strong>DECISION</strong>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<div class="cta">
+
+    <div class="cta-label">
+        EEMS · Data Architecture
+    </div>
+
+    <h2>
+        One Definition. One Source of Truth.
+    </h2>
+
+    <p>
+        Data Dictionary menjadi referensi resmi sebelum
+        EEMS dikembangkan menuju database, API, form input,
+        KPI Engine, dan integrasi Dashboard.
+    </p>
+
+    <div class="buttons">
+
+        <a
+            href="master-data.html"
+            class="btn btn-primary">
+            Master Data
+        </a>
+
+        <a
+            href="../datacenter/index.html"
+            class="btn btn-secondary">
+            Data Center
+        </a>
+
+        <a
+            href="../dashboard/index.html"
+            class="btn btn-secondary">
+            Dashboard
+        </a>
+
+        <a
+            href="../index.html"
+            class="btn btn-secondary">
+            EEMS Main System
+        </a>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<div class="container footer-inner">
+
+    <div>
+        <strong>EEMS · DATA DICTIONARY</strong>
+    </div>
+
+    <div>
+        Data Architecture · Versi 1.0
+    </div>
+
+</div>
+
+</footer>
+
+
+</body>
+</html>
