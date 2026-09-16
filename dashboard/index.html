@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EEMS | Executive Dashboard</title>
+
+<meta name="description"
+content="Executive Dashboard Electrical Energy Management System — monitoring KPI, kinerja, risiko, biaya, proyek, pemeliharaan, HSE, dan kompetensi.">
+
+<style>
+
+:root{
+    --bg:#07111f;
+    --bg-soft:#0b1728;
+    --panel:#0d1b2d;
+    --panel-2:#101f33;
+    --line:rgba(212,175,55,.22);
+    --gold:#d4af37;
+    --gold-soft:#f0d77a;
+    --text:#f3f5f7;
+    --muted:#9da9b7;
+    --muted-2:#718093;
+    --white:#ffffff;
+    --success:#7fbf9b;
+    --warning:#d9b86c;
+    --danger:#d47b7b;
+    --radius:16px;
+    --max:1240px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    background:
+        radial-gradient(circle at 80% 0%, rgba(212,175,55,.08), transparent 30%),
+        linear-gradient(180deg,#07111f 0%,#081321 45%,#060d17 100%);
+    color:var(--text);
+    line-height:1.6;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(92%,var(--max));
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(7,17,31,.94);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+}
+
+.nav{
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.logo-mark{
+    width:38px;
+    height:38px;
+    border:1px solid var(--gold);
+    display:grid;
+    place-items:center;
+    color:var(--gold);
+    font-size:13px;
+    letter-spacing:0;
+}
+
+.logo-text span{
+    display:block;
+}
+
+.logo-main{
+    color:var(--white);
+    font-size:14px;
+}
+
+.logo-sub{
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    font-size:12px;
+    color:var(--muted);
+}
+
+.nav-links a{
+    transition:.2s ease;
+}
+
+.nav-links a:hover{
+    color:var(--gold-soft);
+}
+
+.nav-button{
+    border:1px solid var(--line);
+    padding:9px 15px;
+    color:var(--gold-soft);
+    border-radius:8px;
+}
+
+@media(max-width:850px){
+    .nav{
+        padding:14px 0;
+    }
+
+    .nav-links{
+        display:none;
+    }
+}
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb{
+    padding:28px 0 12px;
+    font-size:11px;
+    color:var(--muted-2);
+}
+
+.breadcrumb span{
+    color:var(--gold);
+    margin:0 8px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:42px 0 55px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:35px;
+    align-items:stretch;
+}
+
+.eyebrow{
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:11px;
+    font-weight:700;
+    margin-bottom:16px;
+}
+
+h1{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(38px,6vw,68px);
+    line-height:1.05;
+    font-weight:500;
+    margin-bottom:22px;
+}
+
+.hero-copy{
+    max-width:720px;
+    color:var(--muted);
+    font-size:16px;
+}
+
+.hero-card{
+    border:1px solid var(--line);
+    background:
+        linear-gradient(145deg,rgba(212,175,55,.08),rgba(255,255,255,.015));
+    border-radius:var(--radius);
+    padding:30px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.hero-card .mini{
+    color:var(--gold);
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:13px;
+}
+
+.hero-card h2{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:27px;
+    font-weight:500;
+    margin-bottom:12px;
+}
+
+.hero-card p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+@media(max-width:850px){
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
+   STATUS BAR
+========================= */
+
+.status-bar{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:15px 0;
+    margin-bottom:65px;
+}
+
+.status-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:var(--muted);
+}
+
+.status-inner strong{
+    color:var(--gold);
+    font-weight:600;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    padding:30px 0 75px;
+}
+
+.section-heading{
+    margin-bottom:30px;
+}
+
+.section-label{
+    color:var(--gold);
+    font-size:10px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:9px;
+}
+
+.section-heading h2{
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:500;
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.section-heading p{
+    color:var(--muted);
+    max-width:760px;
+    font-size:14px;
+}
+
+/* =========================
+   KPI
+========================= */
+
+.kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.kpi-card{
+    position:relative;
+    background:linear-gradient(145deg,var(--panel),rgba(13,27,45,.65));
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:var(--radius);
+    padding:22px;
+    min-height:155px;
+    overflow:hidden;
+}
+
+.kpi-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:55px;
+    height:2px;
+    background:var(--gold);
+}
+
+.kpi-code{
+    font-size:9px;
+    letter-spacing:2px;
+    color:var(--muted-2);
+    margin-bottom:12px;
+}
+
+.kpi-card h3{
+    font-size:13px;
+    font-weight:500;
+    color:#dce1e7;
+    margin-bottom:17px;
+}
+
+.kpi-value{
+    font-size:29px;
+    font-weight:600;
+    color:var(--gold-soft);
+    line-height:1;
+}
+
+.kpi-unit{
+    font-size:10px;
+    color:var(--muted);
+    margin-top:8px;
+}
+
+@media(max-width:850px){
+    .kpi-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:550px){
+    .kpi-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
+   MODULE STATUS
+========================= */
+
+.module-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.module-card{
+    border:1px solid rgba(255,255,255,.07);
+    background:var(--panel);
+    border-radius:var(--radius);
+    padding:22px;
+}
+
+.module-number{
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.module-card h3{
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:5px;
+}
+
+.module-card p{
+    color:var(--muted);
+    font-size:11px;
+    min-height:38px;
+}
+
+.module-status{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:20px;
+    padding-top:13px;
+    border-top:1px solid rgba(255,255,255,.06);
+    font-size:10px;
+    color:var(--muted);
+}
+
+.status-value{
+    color:var(--gold-soft);
+}
+
+@media(max-width:950px){
+    .module-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:550px){
+    .module-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
+   MONITORING
+========================= */
+
+.monitor-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.panel{
+    border:1px solid rgba(255,255,255,.07);
+    background:var(--panel);
+    border-radius:var(--radius);
+    overflow:hidden;
+}
+
+.panel-head{
+    padding:20px 22px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.panel-head h3{
+    font-size:15px;
+    font-weight:600;
+}
+
+.panel-head p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:3px;
+}
+
+.monitor-list{
+    padding:8px 22px 15px;
+}
+
+.monitor-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    padding:15px 0;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.monitor-row:last-child{
+    border-bottom:0;
+}
+
+.monitor-name{
+    font-size:12px;
+    color:#d8dde3;
+}
+
+.monitor-value{
+    min-width:45px;
+    text-align:right;
+    color:var(--gold-soft);
+    font-weight:600;
+}
+
+@media(max-width:800px){
+    .monitor-layout{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
+   TREND
+========================= */
+
+.trend-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.trend-card{
+    background:var(--panel);
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:var(--radius);
+    padding:22px;
+}
+
+.trend-period{
+    color:var(--muted-2);
+    font-size:9px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.trend-card h3{
+    font-size:14px;
+    margin:12px 0 15px;
+}
+
+.trend-value{
+    color:var(--gold-soft);
+    font-size:25px;
+    font-weight:600;
+}
+
+.trend-note{
+    margin-top:8px;
+    font-size:10px;
+    color:var(--muted);
+}
+
+@media(max-width:900px){
+    .trend-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:550px){
+    .trend-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
+   MANAGEMENT VIEW
+========================= */
+
+.management-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.management-card{
+    padding:23px;
+    background:
+        linear-gradient(145deg,#0c1a2c,#091522);
+    border:1px solid rgba(212,175,55,.14);
+    border-radius:var(--radius);
+}
+
+.management-card .index{
+    color:var(--gold);
+    font-size:10px;
+    margin-bottom:15px;
+}
+
+.management-card h3{
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.management-card p{
+    font-size:11px;
+    color:var(--muted);
+}
+
+@media(max-width:950px){
+    .management-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:550px){
+    .management-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
+   DECISION FLOW
+========================= */
+
+.flow{
+    display:flex;
+    align-items:stretch;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+}
+
+.flow-item{
+    flex:1;
+    padding:20px 12px;
+    text-align:center;
+    background:var(--panel);
+    position:relative;
+}
+
+.flow-item:not(:last-child)::after{
+    content:"→";
+    position:absolute;
+    right:-9px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--gold);
+    background:var(--bg);
+    padding:0 3px;
+    z-index:2;
+}
+
+.flow-number{
+    display:block;
+    color:var(--gold);
+    font-size:9px;
+    margin-bottom:7px;
+}
+
+.flow-item strong{
+    font-size:11px;
+    letter-spacing:1px;
+}
+
+@media(max-width:750px){
+    .flow{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .flow-item:not(:last-child)::after{
+        display:none;
+    }
+}
+
+/* =========================
+   OUTPUT
+========================= */
+
+.output-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.output-card{
+    border:1px solid rgba(212,175,55,.18);
+    border-radius:var(--radius);
+    background:var(--panel);
+    padding:26px;
+    transition:.2s ease;
+}
+
+.output-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(212,175,55,.45);
+}
+
+.output-code{
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:2px;
+    margin-bottom:12px;
+}
+
+.output-card h3{
+    font-size:17px;
+    margin-bottom:8px;
+}
+
+.output-card p{
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:18px;
+}
+
+.output-link{
+    color:var(--gold-soft);
+    font-size:11px;
+}
+
+@media(max-width:750px){
+    .output-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
+   RESPONSIBILITIES
+========================= */
+
+.responsibility-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+}
+
+.responsibility{
+    border-left:2px solid var(--gold);
+    background:var(--panel);
+    padding:18px;
+}
+
+.responsibility strong{
+    display:block;
+    font-size:12px;
+    margin-bottom:5px;
+}
+
+.responsibility span{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+}
+
+@media(max-width:900px){
+    .responsibility-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:500px){
+    .responsibility-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
+   PRINCIPLES
+========================= */
+
+.principles{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+}
+
+.principle{
+    padding:27px 20px;
+    text-align:center;
+    background:rgba(13,27,45,.7);
+}
+
+.principle:not(:last-child){
+    border-right:1px solid var(--line);
+}
+
+.principle strong{
+    display:block;
+    color:var(--gold-soft);
+    letter-spacing:1.5px;
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.principle span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+@media(max-width:700px){
+    .principles{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .principle:nth-child(2){
+        border-right:0;
+    }
+
+    .principle:nth-child(-n+2){
+        border-bottom:1px solid var(--line);
+    }
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    margin:10px 0 70px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:45px;
+    text-align:center;
+    background:
+        radial-gradient(circle at center,rgba(212,175,55,.08),transparent 60%),
+        var(--panel);
+}
+
+.cta .label{
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:10px;
+    margin-bottom:12px;
+}
+
+.cta h2{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:34px;
+    font-weight:500;
+    margin-bottom:10px;
+}
+
+.cta p{
+    max-width:650px;
+    margin:0 auto 25px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 20px;
+    border-radius:8px;
+    border:1px solid var(--gold);
+    font-size:11px;
+    letter-spacing:.5px;
+    transition:.2s ease;
+}
+
+.btn-primary{
+    background:var(--gold);
+    color:#08111d;
+    font-weight:700;
+}
+
+.btn-primary:hover{
+    background:var(--gold-soft);
+}
+
+.btn-secondary{
+    color:var(--gold-soft);
+}
+
+.btn-secondary:hover{
+    background:rgba(212,175,55,.08);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:28px 0;
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+    color:var(--muted-2);
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+}
+
+.footer-inner strong{
+    color:var(--gold);
+    font-weight:600;
+}
+
+/* =========================
+   UTILITY
+========================= */
+
+.gold{
+    color:var(--gold);
+}
+
+.muted{
+    color:var(--muted);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+<div class="container nav">
+
+<a href="../index.html" class="logo">
+
+    <div class="logo-mark">E</div>
+
+    <div class="logo-text">
+        <span class="logo-main">EEMS</span>
+        <span class="logo-sub">Executive Information</span>
+    </div>
+
+</a>
+
+<nav class="nav-links">
+
+    <a href="#kpi">KPI</a>
+    <a href="#monitoring">Monitoring</a>
+    <a href="#trend">Trend</a>
+    <a href="#management">Management</a>
+    <a href="../reports/index.html" class="nav-button">
+        Management Report
+    </a>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<main>
+
+<div class="container">
+
+<!-- =========================
+     BREADCRUMB
+========================= -->
+
+<div class="breadcrumb">
+    EEMS <span>›</span> Dashboard
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+<div class="hero-grid">
+
+    <div>
+
+        <div class="eyebrow">
+            EEMS · Executive Information
+        </div>
+
+        <h1>
+            Executive<br>
+            Dashboard
+        </h1>
+
+        <p class="hero-copy">
+            Tampilan informasi manajemen yang mengonsolidasikan
+            data dari seluruh modul EEMS menjadi KPI, status,
+            tren, pengecualian, dan informasi yang mendukung
+            pengambilan keputusan manajemen.
+        </p>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <div class="mini">
+            Management Perspective
+        </div>
+
+        <h2>
+            Lihat Sistem.<br>
+            Kendalikan Kinerja.
+        </h2>
+
+        <p>
+            Dashboard bukan sumber data utama.
+            Dashboard membaca informasi terintegrasi
+            dari Data Center untuk memberikan gambaran
+            kondisi sistem secara menyeluruh.
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     STATUS BAR
+========================= -->
+
+<div class="status-bar">
+
+<div class="status-inner">
+
+    <span>
+        <strong>Dashboard</strong>
+    </span>
+
+    <span>
+        KPI · Monitoring · Trend · Exception
+    </span>
+
+    <span>
+        EEMS Versi 1.0
+    </span>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     EXECUTIVE KPI
+========================= -->
+
+<section id="kpi">
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Executive KPI
+    </div>
+
+    <h2>
+        Indikator Kinerja Utama
+    </h2>
+
+    <p>
+        Ringkasan indikator strategis dari seluruh area
+        EEMS. Nilai ditampilkan setelah sumber data
+        terhubung dan tervalidasi.
+    </p>
+
+</div>
+
+
+<div class="kpi-grid">
+
+    <div class="kpi-card">
+        <div class="kpi-code">KPI · 01</div>
+        <h3>Total Konsumsi Energi</h3>
+        <div class="kpi-value">—</div>
+        <div class="kpi-unit">kWh</div>
+    </div>
+
+
+    <div class="kpi-card">
+        <div class="kpi-code">KPI · 02</div>
+        <h3>Beban Puncak</h3>
+        <div class="kpi-value">—</div>
+        <div class="kpi-unit">kW</div>
+    </div>
+
+
+    <div class="kpi-card">
+        <div class="kpi-code">KPI · 03</div>
+        <h3>Ketersediaan Sistem</h3>
+        <div class="kpi-value">—</div>
+        <div class="kpi-unit">%</div>
+    </div>
+
+
+    <div class="kpi-card">
+        <div class="kpi-code">KPI · 04</div>
+        <h3>Backlog Pemeliharaan</h3>
+        <div class="kpi-value">—</div>
+        <div class="kpi-unit">Jumlah</div>
+    </div>
+
+
+    <div class="kpi-card">
+        <div class="kpi-code">KPI · 05</div>
+        <h3>Insiden HSE / K3</h3>
+        <div class="kpi-value">—</div>
+        <div class="kpi-unit">Jumlah</div>
+    </div>
+
+
+    <div class="kpi-card">
+        <div class="kpi-code">KPI · 06</div>
+        <h3>Kemajuan Proyek</h3>
+        <div class="kpi-value">—</div>
+        <div class="kpi-unit">%</div>
+    </div>
+
+
+    <div class="kpi-card">
+        <div class="kpi-code">KPI · 07</div>
+        <h3>Penyimpangan Anggaran</h3>
+        <div class="kpi-value">—</div>
+        <div class="kpi-unit">Rp / %</div>
+    </div>
+
+
+    <div class="kpi-card">
+        <div class="kpi-code">KPI · 08</div>
+        <h3>Kepatuhan Kompetensi</h3>
+        <div class="kpi-value">—</div>
+        <div class="kpi-unit">%</div>
+    </div>
+
+
+    <div class="kpi-card">
+        <div class="kpi-code">KPI · 09</div>
+        <h3>Tindakan Korektif Terbuka</h3>
+        <div class="kpi-value">—</div>
+        <div class="kpi-unit">Jumlah</div>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     MODULE STATUS
+========================= -->
+
+<section>
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Module Performance
+    </div>
+
+    <h2>
+        Status Modul EEMS
+    </h2>
+
+    <p>
+        Gambaran ringkas status kinerja masing-masing
+        fungsi utama yang terintegrasi dalam sistem.
+    </p>
+
+</div>
+
+
+<div class="module-grid">
+
+    <div class="module-card">
+        <div class="module-number">MODULE · 01</div>
+        <h3>Electrical</h3>
+        <p>Kondisi, distribusi, metering, proteksi, dan keandalan sistem kelistrikan.</p>
+        <div class="module-status">
+            <span>Status</span>
+            <strong class="status-value">—</strong>
+        </div>
+    </div>
+
+
+    <div class="module-card">
+        <div class="module-number">MODULE · 02</div>
+        <h3>Energy</h3>
+        <p>Konsumsi, efisiensi, performa energi, demand, biaya, dan improvement.</p>
+        <div class="module-status">
+            <span>Status</span>
+            <strong class="status-value">—</strong>
+        </div>
+    </div>
+
+
+    <div class="module-card">
+        <div class="module-number">MODULE · 03</div>
+        <h3>Maintenance</h3>
+        <p>Kondisi aset, pekerjaan pemeliharaan, backlog, reliability, dan availability.</p>
+        <div class="module-status">
+            <span>Status</span>
+            <strong class="status-value">—</strong>
+        </div>
+    </div>
+
+
+    <div class="module-card">
+        <div class="module-number">MODULE · 04</div>
+        <h3>HSE / K3</h3>
+        <p>Risiko, keselamatan kerja, insiden, inspeksi, dan tindakan pengendalian.</p>
+        <div class="module-status">
+            <span>Status</span>
+            <strong class="status-value">—</strong>
+        </div>
+    </div>
+
+
+    <div class="module-card">
+        <div class="module-number">MODULE · 05</div>
+        <h3>Project</h3>
+        <p>Scope, schedule, biaya, progres, risiko, kualitas, dan closeout proyek.</p>
+        <div class="module-status">
+            <span>Status</span>
+            <strong class="status-value">—</strong>
+        </div>
+    </div>
+
+
+    <div class="module-card">
+        <div class="module-number">MODULE · 06</div>
+        <h3>Finance</h3>
+        <p>Anggaran, biaya, procurement, commitment, variance, dan laporan keuangan.</p>
+        <div class="module-status">
+            <span>Status</span>
+            <strong class="status-value">—</strong>
+        </div>
+    </div>
+
+
+    <div class="module-card">
+        <div class="module-number">MODULE · 07</div>
+        <h3>Human Resources</h3>
+        <p>Manpower, kompetensi, pelatihan, otorisasi, performa, dan pengembangan.</p>
+        <div class="module-status">
+            <span>Status</span>
+            <strong class="status-value">—</strong>
+        </div>
+    </div>
+
+
+    <div class="module-card">
+        <div class="module-number">CORPORATE</div>
+        <h3>Corporate</h3>
+        <p>Kebijakan, arah organisasi, governance, dan keputusan manajemen.</p>
+        <div class="module-status">
+            <span>Status</span>
+            <strong class="status-value">—</strong>
+        </div>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     MONITORING / EXCEPTION
+========================= -->
+
+<section id="monitoring">
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Monitoring & Exception
+    </div>
+
+    <h2>
+        Apa yang Perlu Diperhatikan?
+    </h2>
+
+    <p>
+        Dashboard membantu manajemen melihat penyimpangan,
+        kondisi kritis, keterlambatan, dan tindakan yang
+        membutuhkan perhatian.
+    </p>
+
+</div>
+
+
+<div class="monitor-layout">
+
+
+    <div class="panel">
+
+        <div class="panel-head">
+
+            <h3>
+                Performance Monitoring
+            </h3>
+
+            <p>
+                Indikator yang menyimpang dari target atau batas kendali.
+            </p>
+
+        </div>
+
+
+        <div class="monitor-list">
+
+            <div class="monitor-row">
+                <span class="monitor-name">
+                    KPI Deviation
+                </span>
+                <strong class="monitor-value">—</strong>
+            </div>
+
+            <div class="monitor-row">
+                <span class="monitor-name">
+                    High / Critical Risk
+                </span>
+                <strong class="monitor-value">—</strong>
+            </div>
+
+            <div class="monitor-row">
+                <span class="monitor-name">
+                    Overdue Maintenance
+                </span>
+                <strong class="monitor-value">—</strong>
+            </div>
+
+            <div class="monitor-row">
+                <span class="monitor-name">
+                    Overdue Corrective Action
+                </span>
+                <strong class="monitor-value">—</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="panel-head">
+
+            <h3>
+                Management Exception
+            </h3>
+
+            <p>
+                Kondisi yang berpotensi memerlukan keputusan atau tindakan.
+            </p>
+
+        </div>
+
+
+        <div class="monitor-list">
+
+            <div class="monitor-row">
+                <span class="monitor-name">
+                    Schedule Variance
+                </span>
+                <strong class="monitor-value">—</strong>
+            </div>
+
+            <div class="monitor-row">
+                <span class="monitor-name">
+                    Budget Variance
+                </span>
+                <strong class="monitor-value">—</strong>
+            </div>
+
+            <div class="monitor-row">
+                <span class="monitor-name">
+                    Data Quality Exception
+                </span>
+                <strong class="monitor-value">—</strong>
+            </div>
+
+            <div class="monitor-row">
+                <span class="monitor-name">
+                    Critical System Condition
+                </span>
+                <strong class="monitor-value">—</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     TREND
+========================= -->
+
+<section id="trend">
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Performance Trend
+    </div>
+
+    <h2>
+        Tren Kinerja
+    </h2>
+
+    <p>
+        Tren digunakan untuk melihat arah perubahan kinerja
+        dari waktu ke waktu setelah data historis tersedia.
+    </p>
+
+</div>
+
+
+<div class="trend-grid">
+
+    <div class="trend-card">
+        <div class="trend-period">
+            Periode · —
+        </div>
+        <h3>Energy Performance</h3>
+        <div class="trend-value">—</div>
+        <div class="trend-note">
+            Tren konsumsi dan efisiensi energi.
+        </div>
+    </div>
+
+
+    <div class="trend-card">
+        <div class="trend-period">
+            Periode · —
+        </div>
+        <h3>System Availability</h3>
+        <div class="trend-value">—</div>
+        <div class="trend-note">
+            Tren ketersediaan sistem dan aset.
+        </div>
+    </div>
+
+
+    <div class="trend-card">
+        <div class="trend-period">
+            Periode · —
+        </div>
+        <h3>Maintenance Reliability</h3>
+        <div class="trend-value">—</div>
+        <div class="trend-note">
+            Tren reliability dan backlog pemeliharaan.
+        </div>
+    </div>
+
+
+    <div class="trend-card">
+        <div class="trend-period">
+            Periode · —
+        </div>
+        <h3>HSE Performance</h3>
+        <div class="trend-value">—</div>
+        <div class="trend-note">
+            Tren keselamatan, insiden, dan tindakan.
+        </div>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     MANAGEMENT PERSPECTIVE
+========================= -->
+
+<section id="management">
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Management Perspective
+    </div>
+
+    <h2>
+        Perspektif Manajemen
+    </h2>
+
+    <p>
+        Dashboard mengubah data operasional menjadi sudut
+        pandang manajemen berdasarkan fungsi dan tujuan
+        pengendalian organisasi.
+    </p>
+
+</div>
+
+
+<div class="management-grid">
+
+    <div class="management-card">
+        <div class="index">01 · ELECTRICAL</div>
+        <h3>Condition & Reliability</h3>
+        <p>
+            Bagaimana kondisi dan keandalan sistem kelistrikan?
+        </p>
+    </div>
+
+
+    <div class="management-card">
+        <div class="index">02 · ENERGY</div>
+        <h3>Consumption & Efficiency</h3>
+        <p>
+            Bagaimana konsumsi energi dan tingkat efisiensinya?
+        </p>
+    </div>
+
+
+    <div class="management-card">
+        <div class="index">03 · MAINTENANCE</div>
+        <h3>Asset Reliability</h3>
+        <p>
+            Apakah aset terpelihara dan tersedia sesuai kebutuhan?
+        </p>
+    </div>
+
+
+    <div class="management-card">
+        <div class="index">04 · HSE</div>
+        <h3>Risk & Safety</h3>
+        <p>
+            Risiko apa yang membutuhkan pengendalian?
+        </p>
+    </div>
+
+
+    <div class="management-card">
+        <div class="index">05 · PROJECT</div>
+        <h3>Progress & Delivery</h3>
+        <p>
+            Apakah proyek berjalan sesuai scope, jadwal, dan biaya?
+        </p>
+    </div>
+
+
+    <div class="management-card">
+        <div class="index">06 · FINANCE</div>
+        <h3>Cost & Budget</h3>
+        <p>
+            Bagaimana posisi biaya terhadap anggaran?
+        </p>
+    </div>
+
+
+    <div class="management-card">
+        <div class="index">07 · HUMAN RESOURCES</div>
+        <h3>People & Competence</h3>
+        <p>
+            Apakah personel tersedia dan memiliki kompetensi yang diperlukan?
+        </p>
+    </div>
+
+
+    <div class="management-card">
+        <div class="index">08 · CORPORATE</div>
+        <h3>Policy & Direction</h3>
+        <p>
+            Apakah kinerja sistem mendukung arah dan kebijakan organisasi?
+        </p>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DECISION FLOW
+========================= -->
+
+<section>
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Decision Support
+    </div>
+
+    <h2>
+        Dari Monitoring Menjadi Keputusan
+    </h2>
+
+    <p>
+        Informasi dashboard menjadi dasar proses manajemen
+        untuk menentukan tindakan dan peningkatan sistem.
+    </p>
+
+</div>
+
+
+<div class="flow">
+
+    <div class="flow-item">
+        <span class="flow-number">01</span>
+        <strong>MONITOR</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">02</span>
+        <strong>IDENTIFY</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">03</span>
+        <strong>ANALYZE</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">04</span>
+        <strong>DECIDE</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">05</span>
+        <strong>ACTION</strong>
+    </div>
+
+    <div class="flow-item">
+        <span class="flow-number">06</span>
+        <strong>IMPROVE</strong>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     REPORTING OUTPUT
+========================= -->
+
+<section>
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Information Output
+    </div>
+
+    <h2>
+        Output Informasi EEMS
+    </h2>
+
+    <p>
+        Dashboard berada di antara Data Center dan Management
+        Report sebagai lapisan informasi untuk pengambilan keputusan.
+    </p>
+
+</div>
+
+
+<div class="output-grid">
+
+
+    <a href="../reports/index.html" class="output-card">
+
+        <div class="output-code">
+            OUTPUT · 01
+        </div>
+
+        <h3>
+            Management Report
+        </h3>
+
+        <p>
+            Laporan manajemen yang mengonsolidasikan
+            KPI, tren, pengecualian, dan tindakan.
+        </p>
+
+        <span class="output-link">
+            Buka Management Report →
+        </span>
+
+    </a>
+
+
+    <a href="../datacenter/index.html" class="output-card">
+
+        <div class="output-code">
+            SOURCE · 01
+        </div>
+
+        <h3>
+            Data Center
+        </h3>
+
+        <p>
+            Sumber integrasi data, validasi, processing,
+            KPI engine, monitoring, dan konsolidasi informasi.
+        </p>
+
+        <span class="output-link">
+            Buka Data Center →
+        </span>
+
+    </a>
+
+
+    <a href="../index.html" class="output-card">
+
+        <div class="output-code">
+            SYSTEM · 01
+        </div>
+
+        <h3>
+            EEMS Main System
+        </h3>
+
+        <p>
+            Kembali ke arsitektur utama EEMS dan
+            seluruh modul manajemen sistem.
+        </p>
+
+        <span class="output-link">
+            Kembali ke EEMS →
+        </span>
+
+    </a>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     RESPONSIBILITIES
+========================= -->
+
+<section>
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Governance
+    </div>
+
+    <h2>
+        Tanggung Jawab Dashboard
+    </h2>
+
+    <p>
+        Dashboard memerlukan tata kelola yang jelas agar
+        informasi yang ditampilkan dapat dipercaya dan
+        digunakan secara tepat.
+    </p>
+
+</div>
+
+
+<div class="responsibility-grid">
+
+    <div class="responsibility">
+        <strong>Management</strong>
+        <span>Menggunakan informasi untuk keputusan dan arah organisasi.</span>
+    </div>
+
+    <div class="responsibility">
+        <strong>Data Center</strong>
+        <span>Menjaga integrasi, validasi, kualitas, dan konsolidasi data.</span>
+    </div>
+
+    <div class="responsibility">
+        <strong>Module Owner</strong>
+        <span>Bertanggung jawab terhadap data dan proses masing-masing modul.</span>
+    </div>
+
+    <div class="responsibility">
+        <strong>KPI Owner</strong>
+        <span>Menetapkan definisi, sumber, target, dan validitas KPI.</span>
+    </div>
+
+    <div class="responsibility">
+        <strong>System Control</strong>
+        <span>Menjaga kontrol, akses, audit trail, dan integritas sistem.</span>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PRINCIPLES
+========================= -->
+
+<section>
+
+<div class="section-heading">
+
+    <div class="section-label">
+        Dashboard Principles
+    </div>
+
+    <h2>
+        Prinsip Informasi Manajemen
+    </h2>
+
+</div>
+
+
+<div class="principles">
+
+    <div class="principle">
+        <strong>CLEAR</strong>
+        <span>Informasi mudah dipahami.</span>
+    </div>
+
+    <div class="principle">
+        <strong>INTEGRATED</strong>
+        <span>Informasi berasal dari sistem yang terintegrasi.</span>
+    </div>
+
+    <div class="principle">
+        <strong>TIMELY</strong>
+        <span>Informasi tersedia sesuai kebutuhan keputusan.</span>
+    </div>
+
+    <div class="principle">
+        <strong>ACTIONABLE</strong>
+        <span>Informasi dapat ditindaklanjuti.</span>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<div class="cta">
+
+    <div class="label">
+        EEMS · Executive Information
+    </div>
+
+    <h2>
+        Lihat Sistem. Ambil Keputusan.
+    </h2>
+
+    <p>
+        Dashboard memberikan gambaran menyeluruh tentang
+        kondisi EEMS. Dari informasi tersebut, manajemen
+        dapat menentukan prioritas, tindakan, dan program
+        peningkatan.
+    </p>
+
+    <div class="buttons">
+
+        <a href="../reports/index.html"
+           class="btn btn-primary">
+            Management Report
+        </a>
+
+        <a href="../datacenter/index.html"
+           class="btn btn-secondary">
+            Data Center
+        </a>
+
+        <a href="../index.html"
+           class="btn btn-secondary">
+            EEMS Main System
+        </a>
+
+    </div>
+
+</div>
+
+</div>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<div class="container footer-inner">
+
+    <div>
+        <strong>EEMS · EXECUTIVE DASHBOARD</strong>
+    </div>
+
+    <div>
+        Executive Information · Versi 1.0
+    </div>
+
+</div>
+
+</footer>
+
+</body>
+</html>
