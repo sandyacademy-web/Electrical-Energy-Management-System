@@ -1,0 +1,1778 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EEMS | Data Flow & Integration</title><meta name="description"
+content="EEMS Data Flow & Integration Specification — arsitektur aliran data, integrasi, validasi, KPI, dashboard, dan management reporting.">
+
+<meta name="theme-color" content="#07111f"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"><link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><style>
+
+:root {
+    --navy:#07111f;
+    --navy2:#0b1728;
+    --navy3:#101f33;
+    --gold:#d4af37;
+    --gold2:#f0d77a;
+    --text:#f4f6f8;
+    --muted:#9ca8b8;
+    --line:rgba(255,255,255,.08);
+    --goldline:rgba(212,175,55,.22);
+    --green:#6fcf97;
+    --orange:#e9c46a;
+    --red:#e76f51;
+}
+
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 85% 0%,rgba(212,175,55,.07),transparent 28%),
+        var(--navy);
+    color:var(--text);
+    font-family:"Inter",sans-serif;
+    line-height:1.65;
+}
+
+.container {
+    width:min(1200px,92%);
+    margin:auto;
+}
+
+/* HEADER */
+
+header {
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:rgba(7,17,31,.96);
+    backdrop-filter:blur(14px);
+
+    border-bottom:1px solid var(--line);
+}
+
+.header-inner {
+    width:min(1200px,92%);
+    min-height:74px;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.brand {
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    text-decoration:none;
+    color:var(--text);
+}
+
+.brand-icon {
+    width:40px;
+    height:40px;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid var(--gold);
+    border-radius:9px;
+
+    color:var(--gold);
+}
+
+.brand-text strong {
+    display:block;
+    font-size:14px;
+    letter-spacing:1.4px;
+}
+
+.brand-text span {
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+}
+
+nav {
+    display:flex;
+    gap:5px;
+}
+
+nav a {
+    color:var(--muted);
+    text-decoration:none;
+
+    padding:8px 11px;
+    border-radius:6px;
+
+    font-size:12px;
+}
+
+nav a:hover,
+nav a.active {
+    color:var(--gold2);
+    background:rgba(212,175,55,.08);
+}
+
+.menu {
+    display:none;
+
+    width:40px;
+    height:40px;
+
+    border:1px solid var(--goldline);
+    border-radius:7px;
+
+    background:transparent;
+    color:var(--gold);
+}
+
+/* HERO */
+
+.hero {
+    padding:60px 0 42px;
+}
+
+.eyebrow {
+    color:var(--gold);
+
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    margin-bottom:10px;
+}
+
+.hero h1 {
+    font-family:"Playfair Display",serif;
+    font-size:clamp(32px,5vw,54px);
+    line-height:1.12;
+    margin-bottom:15px;
+}
+
+.hero h1 span {
+    color:var(--gold);
+}
+
+.hero p {
+    max-width:850px;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.version {
+    display:inline-flex;
+    margin-top:18px;
+
+    border:1px solid var(--goldline);
+    border-radius:6px;
+
+    padding:6px 10px;
+
+    color:var(--gold2);
+    font-size:10px;
+}
+
+/* SECTIONS */
+
+section {
+    padding:24px 0;
+}
+
+.section-head {
+    margin-bottom:17px;
+}
+
+.section-head h2 {
+    font-family:"Playfair Display",serif;
+    font-size:25px;
+    margin-bottom:4px;
+}
+
+.section-head p {
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* CARDS */
+
+.card {
+    background:var(--navy2);
+
+    border:1px solid var(--line);
+    border-radius:11px;
+
+    padding:21px;
+}
+
+.grid-2 {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.grid-3 {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+/* ARCHITECTURE */
+
+.architecture {
+    background:var(--navy2);
+
+    border:1px solid var(--goldline);
+    border-radius:12px;
+
+    padding:25px;
+}
+
+.flow {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+}
+
+.flow-box {
+    min-width:135px;
+
+    padding:13px 14px;
+
+    text-align:center;
+
+    background:var(--navy3);
+    border:1px solid var(--goldline);
+    border-radius:8px;
+}
+
+.flow-box strong {
+    display:block;
+    color:var(--gold2);
+    font-size:12px;
+}
+
+.flow-box span {
+    display:block;
+    color:var(--muted);
+    font-size:9px;
+    margin-top:2px;
+}
+
+.arrow {
+    color:var(--gold);
+    font-size:12px;
+}
+
+/* NUMBER */
+
+.number {
+    width:32px;
+    height:32px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:7px;
+
+    background:rgba(212,175,55,.08);
+    border:1px solid var(--goldline);
+
+    color:var(--gold2);
+    font-weight:700;
+    font-size:12px;
+
+    margin-bottom:13px;
+}
+
+.card h3 {
+    font-family:"Playfair Display",serif;
+    font-size:18px;
+    margin-bottom:7px;
+}
+
+.card p {
+    color:var(--muted);
+    font-size:11px;
+}
+
+.card ul {
+    margin-top:10px;
+    padding-left:17px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.card li {
+    margin-bottom:5px;
+}
+
+/* DATA TYPES */
+
+.type-card {
+    padding:19px;
+
+    background:var(--navy2);
+    border:1px solid var(--line);
+    border-radius:10px;
+}
+
+.type-card i {
+    color:var(--gold);
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.type-card h3 {
+    font-size:14px;
+    margin-bottom:5px;
+}
+
+.type-card p {
+    color:var(--muted);
+    font-size:11px;
+}
+
+/* TABLE */
+
+.table-wrap {
+    overflow-x:auto;
+
+    border:1px solid var(--line);
+    border-radius:10px;
+}
+
+table {
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+}
+
+th,
+td {
+    padding:12px 14px;
+    text-align:left;
+
+    border-bottom:1px solid var(--line);
+
+    font-size:11px;
+}
+
+th {
+    color:var(--gold2);
+    background:rgba(212,175,55,.05);
+
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+td {
+    color:var(--muted);
+}
+
+tr:last-child td {
+    border-bottom:0;
+}
+
+/* LIFECYCLE */
+
+.lifecycle {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.life {
+    padding:15px;
+
+    border:1px solid var(--line);
+    border-radius:8px;
+
+    background:rgba(255,255,255,.015);
+}
+
+.life strong {
+    display:block;
+    color:var(--text);
+    font-size:12px;
+    margin-bottom:4px;
+}
+
+.life span {
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* PRINCIPLE */
+
+.principle {
+    border-left:2px solid var(--gold);
+    padding:15px 18px;
+
+    background:rgba(212,175,55,.035);
+}
+
+.principle strong {
+    color:var(--gold2);
+    font-size:13px;
+}
+
+.principle p {
+    color:var(--muted);
+    font-size:11px;
+    margin-top:4px;
+}
+
+/* FOOTER */
+
+footer {
+    margin-top:45px;
+
+    border-top:1px solid var(--line);
+
+    padding:25px 0;
+
+    background:rgba(0,0,0,.12);
+}
+
+.footer-inner {
+    width:min(1200px,92%);
+    margin:auto;
+
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+footer p {
+    color:var(--muted);
+    font-size:10px;
+}
+
+footer a {
+    color:var(--muted);
+    text-decoration:none;
+    font-size:10px;
+}
+
+footer a:hover {
+    color:var(--gold);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px) {
+
+    .grid-2,
+    .grid-3,
+    .lifecycle {
+        grid-template-columns:1fr;
+    }
+
+    nav {
+        display:none;
+
+        position:absolute;
+        top:74px;
+        left:0;
+        right:0;
+
+        padding:10px 4% 15px;
+
+        flex-direction:column;
+
+        background:var(--navy);
+
+        border-bottom:1px solid var(--line);
+    }
+
+    nav.open {
+        display:flex;
+    }
+
+    .menu {
+        display:block;
+    }
+
+    .flow {
+        flex-direction:column;
+    }
+
+    .arrow {
+        transform:rotate(90deg);
+    }
+
+    .footer-inner {
+        flex-direction:column;
+    }
+}
+
+</style></head><body><header><div class="header-inner">
+
+    <a href="../index.html" class="brand">
+
+        <div class="brand-icon">
+            <i class="fa-solid fa-diagram-project"></i>
+        </div>
+
+        <div class="brand-text">
+            <strong>EEMS</strong>
+            <span>Electrical &amp; Energy Management System</span>
+        </div>
+
+    </a>
+
+    <nav id="nav">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="../dashboard/index.html">
+            Dashboard
+        </a>
+
+        <a href="../datacenter/index.html">
+            Data Center
+        </a>
+
+        <a href="master-document.html">
+            Master Document
+        </a>
+
+        <a href="data-flow-integration.html" class="active">
+            Data Flow
+        </a>
+
+    </nav>
+
+    <button class="menu" id="menuButton" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+</div>
+
+</header><main><div class="container"><!-- HERO -->
+
+<section class="hero">
+
+    <div class="eyebrow">
+        EEMS Architecture
+    </div>
+
+    <h1>
+        Data Flow <span>&amp; Integration</span>
+    </h1>
+
+    <p>
+        Spesifikasi resmi mengenai bagaimana data EEMS
+        dikumpulkan, divalidasi, distandardisasi, diintegrasikan,
+        diproses menjadi indikator, disajikan melalui Dashboard,
+        dan diterbitkan sebagai Management Report.
+    </p>
+
+    <div class="version">
+        EEMS DATA FLOW &amp; INTEGRATION — SPECIFICATION v1.0
+    </div>
+
+</section>
+
+
+<!-- PURPOSE -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            01 — Purpose
+        </div>
+
+        <h2>
+            Tujuan Integrasi Data
+        </h2>
+
+        <p>
+            Menetapkan satu arsitektur aliran data yang konsisten
+            untuk seluruh lingkungan EEMS.
+        </p>
+
+    </div>
+
+    <div class="grid-2">
+
+        <div class="card">
+
+            <div class="number">01</div>
+
+            <h3>
+                Single Information Architecture
+            </h3>
+
+            <p>
+                Seluruh modul EEMS menggunakan struktur data yang
+                terdefinisi dan dapat ditelusuri.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="number">02</div>
+
+            <h3>
+                Data Integrity
+            </h3>
+
+            <p>
+                Data yang masuk ke Data Center harus melewati
+                aturan validasi dan standardisasi sebelum
+                digunakan untuk analisis.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CORE ARCHITECTURE -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            02 — Core Architecture
+        </div>
+
+        <h2>
+            Arsitektur Aliran Data
+        </h2>
+
+    </div>
+
+    <div class="architecture">
+
+        <div class="flow">
+
+            <div class="flow-box">
+                <strong>DATA SOURCE</strong>
+                <span>Input &amp; operational records</span>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="flow-box">
+                <strong>VALIDATION</strong>
+                <span>Quality &amp; completeness</span>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="flow-box">
+                <strong>DATA CENTER</strong>
+                <span>Central information layer</span>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="flow-box">
+                <strong>KPI ENGINE</strong>
+                <span>Calculation &amp; analysis</span>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="flow-box">
+                <strong>DASHBOARD</strong>
+                <span>Management information</span>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="flow-box">
+                <strong>REPORT</strong>
+                <span>Management output</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DATA LAYERS -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            03 — Data Layers
+        </div>
+
+        <h2>
+            Lapisan Data EEMS
+        </h2>
+
+        <p>
+            Data dibedakan berdasarkan fungsi dan karakteristiknya.
+        </p>
+
+    </div>
+
+    <div class="grid-3">
+
+        <div class="type-card">
+
+            <i class="fa-solid fa-database"></i>
+
+            <h3>
+                Master Data
+            </h3>
+
+            <p>
+                Data referensi yang menjadi identitas dasar
+                objek EEMS seperti asset, lokasi, person,
+                organisasi, vendor, dan customer.
+            </p>
+
+        </div>
+
+
+        <div class="type-card">
+
+            <i class="fa-solid fa-arrows-rotate"></i>
+
+            <h3>
+                Transaction Data
+            </h3>
+
+            <p>
+                Data kejadian dan aktivitas operasional seperti
+                meter reading, maintenance, inspection,
+                incident, project, dan transaksi lainnya.
+            </p>
+
+        </div>
+
+
+        <div class="type-card">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            <h3>
+                Analytical Data
+            </h3>
+
+            <p>
+                Data hasil pengolahan yang digunakan untuk KPI,
+                trend, exception analysis, Dashboard,
+                dan Management Report.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SOURCE MODULE -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            04 — Data Sources
+        </div>
+
+        <h2>
+            Sumber Data EEMS
+        </h2>
+
+    </div>
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Module</th>
+                    <th>Contoh Data</th>
+                    <th>Jenis</th>
+                    <th>Output</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Electrical</td>
+                    <td>Meter, panel, load, inspection</td>
+                    <td>Operational</td>
+                    <td>Electrical KPI</td>
+                </tr>
+
+                <tr>
+                    <td>Energy</td>
+                    <td>kWh, demand, tariff, energy cost</td>
+                    <td>Operational</td>
+                    <td>Energy KPI</td>
+                </tr>
+
+                <tr>
+                    <td>Maintenance</td>
+                    <td>Work order, schedule, asset condition</td>
+                    <td>Transaction</td>
+                    <td>Maintenance KPI</td>
+                </tr>
+
+                <tr>
+                    <td>HSE / K3</td>
+                    <td>Inspection, incident, corrective action</td>
+                    <td>Transaction</td>
+                    <td>HSE KPI</td>
+                </tr>
+
+                <tr>
+                    <td>Project</td>
+                    <td>Progress, budget, milestone</td>
+                    <td>Transaction</td>
+                    <td>Project KPI</td>
+                </tr>
+
+                <tr>
+                    <td>Finance</td>
+                    <td>Budget, actual cost, energy cost</td>
+                    <td>Transaction</td>
+                    <td>Financial KPI</td>
+                </tr>
+
+                <tr>
+                    <td>HR</td>
+                    <td>Person, competency, assignment</td>
+                    <td>Master / Transaction</td>
+                    <td>People KPI</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- VALIDATION -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            05 — Data Validation
+        </div>
+
+        <h2>
+            Validasi Data
+        </h2>
+
+        <p>
+            Data tidak langsung dianggap valid hanya karena telah
+            berhasil dimasukkan ke sistem.
+        </p>
+
+    </div>
+
+    <div class="grid-3">
+
+        <div class="card">
+
+            <div class="number">01</div>
+
+            <h3>
+                Completeness
+            </h3>
+
+            <p>
+                Memastikan field wajib telah terisi dan
+                tidak terdapat informasi penting yang hilang.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="number">02</div>
+
+            <h3>
+                Validity
+            </h3>
+
+            <p>
+                Memastikan nilai sesuai dengan tipe data,
+                format, rentang, dan aturan bisnis.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="number">03</div>
+
+            <h3>
+                Consistency
+            </h3>
+
+            <p>
+                Memastikan hubungan antar-record dan antar-modul
+                tetap konsisten.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STANDARDIZATION -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            06 — Standardization
+        </div>
+
+        <h2>
+            Standardisasi Data
+        </h2>
+
+    </div>
+
+    <div class="grid-2">
+
+        <div class="card">
+
+            <h3>
+                Data Dictionary sebagai Referensi
+            </h3>
+
+            <p>
+                Setiap field resmi EEMS harus memiliki nama,
+                definisi, tipe data, satuan, aturan pengisian,
+                dan status penggunaannya.
+            </p>
+
+            <ul>
+                <li>Field Name</li>
+                <li>Business Definition</li>
+                <li>Data Type</li>
+                <li>Unit of Measure</li>
+                <li>Required / Optional</li>
+                <li>Validation Rule</li>
+            </ul>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Identitas Data
+            </h3>
+
+            <p>
+                Setiap record harus mempunyai identitas yang
+                memungkinkan data dilacak kembali ke sumbernya.
+            </p>
+
+            <ul>
+                <li>Record ID</li>
+                <li>Source Module</li>
+                <li>Created Date</li>
+                <li>Created By</li>
+                <li>Updated Date</li>
+                <li>Updated By</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DATA CENTER -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            07 — Data Center
+        </div>
+
+        <h2>
+            Data Center sebagai Integration Layer
+        </h2>
+
+        <p>
+            Data Center menjadi titik integrasi informasi,
+            bukan sekadar tempat penyimpanan file.
+        </p>
+
+    </div>
+
+    <div class="architecture">
+
+        <div class="flow">
+
+            <div class="flow-box">
+                <strong>RECEIVE</strong>
+                <span>Menerima data</span>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="flow-box">
+                <strong>VALIDATE</strong>
+                <span>Memeriksa kualitas</span>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="flow-box">
+                <strong>STANDARDIZE</strong>
+                <span>Menyeragamkan</span>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="flow-box">
+                <strong>INTEGRATE</strong>
+                <span>Menghubungkan</span>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="flow-box">
+                <strong>STORE</strong>
+                <span>Menyimpan</span>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="flow-box">
+                <strong>PROCESS</strong>
+                <span>Mengolah</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- KPI -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            08 — KPI Layer
+        </div>
+
+        <h2>
+            KPI &amp; Analytical Layer
+        </h2>
+
+        <p>
+            KPI harus mempunyai definisi, sumber data, periode,
+            satuan, dan formula yang dapat ditelusuri.
+        </p>
+
+    </div>
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>KPI</th>
+                    <th>Source</th>
+                    <th>Unit</th>
+                    <th>Calculation</th>
+                    <th>Output</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Konsumsi Energi</td>
+                    <td>Energy / Meter</td>
+                    <td>kWh</td>
+                    <td>Accumulated Reading</td>
+                    <td>Dashboard</td>
+                </tr>
+
+                <tr>
+                    <td>Beban Puncak</td>
+                    <td>Electrical / Energy</td>
+                    <td>kW</td>
+                    <td>Maximum Demand</td>
+                    <td>Dashboard</td>
+                </tr>
+
+                <tr>
+                    <td>Energy Cost</td>
+                    <td>Energy / Finance</td>
+                    <td>Rp</td>
+                    <td>Energy × Tariff</td>
+                    <td>Dashboard</td>
+                </tr>
+
+                <tr>
+                    <td>Maintenance Status</td>
+                    <td>Maintenance</td>
+                    <td>%</td>
+                    <td>Completed / Planned</td>
+                    <td>Dashboard</td>
+                </tr>
+
+                <tr>
+                    <td>Project Progress</td>
+                    <td>Project</td>
+                    <td>%</td>
+                    <td>Actual / Planned</td>
+                    <td>Dashboard</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            09 — Dashboard
+        </div>
+
+        <h2>
+            Dashboard sebagai Information Layer
+        </h2>
+
+    </div>
+
+    <div class="principle">
+
+        <strong>
+            Prinsip utama
+        </strong>
+
+        <p>
+            Dashboard tidak menjadi sumber data utama.
+            Dashboard membaca data terstruktur dan hasil analisis
+            dari Data Center dan KPI Layer.
+        </p>
+
+    </div>
+
+    <br>
+
+    <div class="grid-3">
+
+        <div class="card">
+
+            <h3>
+                KPI
+            </h3>
+
+            <p>
+                Menampilkan indikator utama yang relevan
+                dengan kebutuhan manajemen.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Trend
+            </h3>
+
+            <p>
+                Menampilkan perubahan data berdasarkan
+                periode waktu yang ditentukan.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Exception
+            </h3>
+
+            <p>
+                Menunjukkan kondisi yang membutuhkan
+                perhatian atau tindakan manajemen.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REPORT -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            10 — Management Report
+        </div>
+
+        <h2>
+            Output Manajemen
+        </h2>
+
+    </div>
+
+    <div class="grid-2">
+
+        <div class="card">
+
+            <h3>
+                Dashboard → Report
+            </h3>
+
+            <p>
+                Informasi Dashboard dapat menjadi dasar penyusunan
+                laporan manajemen berdasarkan periode dan kebutuhan
+                organisasi.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Report → Action
+            </h3>
+
+            <p>
+                Temuan dan indikator yang memerlukan tindakan
+                dapat diteruskan menjadi corrective action,
+                preventive action, project, atau improvement.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LIFECYCLE -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            11 — Data Lifecycle
+        </div>
+
+        <h2>
+            Siklus Hidup Data
+        </h2>
+
+    </div>
+
+    <div class="lifecycle">
+
+        <div class="life">
+            <strong>01. Create</strong>
+            <span>Data dibuat oleh sumber yang berwenang.</span>
+        </div>
+
+        <div class="life">
+            <strong>02. Validate</strong>
+            <span>Data diperiksa kualitas dan kelengkapannya.</span>
+        </div>
+
+        <div class="life">
+            <strong>03. Approve</strong>
+            <span>Data tertentu mendapatkan persetujuan sesuai kewenangan.</span>
+        </div>
+
+        <div class="life">
+            <strong>04. Process</strong>
+            <span>Data diolah menjadi informasi dan indikator.</span>
+        </div>
+
+        <div class="life">
+            <strong>05. Report</strong>
+            <span>Informasi disajikan kepada manajemen.</span>
+        </div>
+
+        <div class="life">
+            <strong>06. Archive</strong>
+            <span>Data historis disimpan sesuai kebijakan retensi.</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- OWNERSHIP -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            12 — Data Governance
+        </div>
+
+        <h2>
+            Kepemilikan &amp; Pengendalian Data
+        </h2>
+
+    </div>
+
+    <div class="grid-3">
+
+        <div class="card">
+
+            <h3>
+                Data Owner
+            </h3>
+
+            <p>
+                Bertanggung jawab terhadap makna bisnis,
+                kualitas, dan penggunaan data dalam domainnya.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Data Custodian
+            </h3>
+
+            <p>
+                Bertanggung jawab terhadap penyimpanan,
+                keamanan, akses, dan pemeliharaan teknis data.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Data User
+            </h3>
+
+            <p>
+                Menggunakan data sesuai kewenangan,
+                kebutuhan pekerjaan, dan aturan EEMS.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- AUDIT -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            13 — Audit Trail
+        </div>
+
+        <h2>
+            Ketertelusuran Data
+        </h2>
+
+    </div>
+
+    <div class="principle">
+
+        <strong>
+            Traceability
+        </strong>
+
+        <p>
+            Setiap data penting harus dapat ditelusuri dari
+            output kembali menuju record sumbernya, termasuk
+            perubahan, waktu perubahan, dan pihak yang melakukan
+            perubahan sesuai mekanisme kontrol EEMS.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- INTEGRATION RULES -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            14 — Integration Rules
+        </div>
+
+        <h2>
+            Aturan Integrasi
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <ul>
+
+            <li>
+                Setiap modul menggunakan ID dan field yang
+                mengikuti Data Dictionary resmi EEMS.
+            </li>
+
+            <li>
+                Data yang belum lolos validasi tidak digunakan
+                sebagai dasar KPI resmi.
+            </li>
+
+            <li>
+                Dashboard tidak menjadi tempat penyimpanan
+                data transaksi utama.
+            </li>
+
+            <li>
+                Formula KPI harus dapat ditelusuri ke sumber
+                data dan definisi indikatornya.
+            </li>
+
+            <li>
+                Perubahan data penting harus dapat dicatat
+                melalui mekanisme audit trail.
+            </li>
+
+            <li>
+                Data historis tidak dihapus tanpa mengikuti
+                kebijakan retensi dan kontrol yang berlaku.
+            </li>
+
+            <li>
+                Integrasi antar-modul harus mempertahankan
+                identitas record dan referential integrity.
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<!-- IMPLEMENTATION ROADMAP -->
+
+<section>
+
+    <div class="section-head">
+
+        <div class="eyebrow">
+            15 — Implementation Roadmap
+        </div>
+
+        <h2>
+            Tahapan Implementasi EEMS
+        </h2>
+
+    </div>
+
+    <div class="grid-2">
+
+        <div class="card">
+
+            <div class="number">01</div>
+
+            <h3>
+                Data Foundation
+            </h3>
+
+            <p>
+                Master Data, Data Model, Data Dictionary,
+                dan identitas record.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="number">02</div>
+
+            <h3>
+                Module Data
+            </h3>
+
+            <p>
+                Struktur data operasional masing-masing
+                modul EEMS.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="number">03</div>
+
+            <h3>
+                Integration Layer
+            </h3>
+
+            <p>
+                Mekanisme penerimaan, validasi,
+                standardisasi, dan integrasi data.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="number">04</div>
+
+            <h3>
+                KPI Engine
+            </h3>
+
+            <p>
+                Perhitungan indikator berdasarkan
+                sumber data yang telah ditetapkan.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="number">05</div>
+
+            <h3>
+                Dashboard
+            </h3>
+
+            <p>
+                Penyajian informasi terintegrasi untuk
+                kebutuhan monitoring manajemen.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="number">06</div>
+
+            <h3>
+                Management Report
+            </h3>
+
+            <p>
+                Penyusunan laporan, temuan, tindakan,
+                dan improvement berdasarkan data.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FINAL PRINCIPLE -->
+
+<section>
+
+    <div class="architecture">
+
+        <div class="eyebrow">
+            EEMS Core Principle
+        </div>
+
+        <h2 style="font-family:'Playfair Display',serif;
+                   font-size:27px;
+                   margin-bottom:10px;">
+            One Data Flow. One Information Architecture.
+        </h2>
+
+        <p style="color:var(--muted);font-size:12px;max-width:850px;">
+            EEMS dibangun bukan sebagai kumpulan halaman yang
+            berdiri sendiri. Setiap modul menghasilkan data,
+            Data Center mengintegrasikan dan mengendalikan data,
+            KPI Layer mengolahnya menjadi indikator, Dashboard
+            menyajikan informasi, dan Management Report membawa
+            informasi tersebut kembali ke proses pengendalian
+            dan improvement.
+        </p>
+
+    </div>
+
+</section>
+
+</div></main><footer><div class="footer-inner">
+
+    <p>
+        © 2026 EEMS — Electrical &amp; Energy Management System
+    </p>
+
+    <div>
+
+        <a href="../index.html">
+            EEMS
+        </a>
+        &nbsp;&nbsp;·&nbsp;&nbsp;
+        <a href="../dashboard/index.html">
+            Dashboard
+        </a>
+        &nbsp;&nbsp;·&nbsp;&nbsp;
+        <a href="../datacenter/index.html">
+            Data Center
+        </a>
+        &nbsp;&nbsp;·&nbsp;&nbsp;
+        <a href="master-document.html">
+            Master Document
+        </a>
+
+    </div>
+
+</div>
+
+</footer><script>
+
+const menuButton = document.getElementById("menuButton");
+const nav = document.getElementById("nav");
+
+if (menuButton && nav) {
+
+    menuButton.addEventListener("click", function () {
+
+        nav.classList.toggle("open");
+
+        const icon = menuButton.querySelector("i");
+
+        if (nav.classList.contains("open")) {
+
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
+
+        } else {
+
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+
+        }
+
+    });
+
+}
+
+
+document.querySelectorAll("#nav a").forEach(function(link) {
+
+    link.addEventListener("click", function() {
+
+        nav.classList.remove("open");
+
+        const icon = menuButton?.querySelector("i");
+
+        if (icon) {
+
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+
+        }
+
+    });
+
+});
+
+</script></body>
+</html>
